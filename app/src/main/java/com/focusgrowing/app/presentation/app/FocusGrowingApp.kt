@@ -5,6 +5,7 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -118,8 +119,11 @@ fun FocusGrowingApp(
             },
         ) { padding ->
             // Screens without the bottom bar draw edge-to-edge and handle insets themselves.
+            // Only the BOTTOM inset is handled here (the bottom bar covers the navigation bar).
+            // The status bar inset must stay available: every screen applies statusBarsPadding() itself.
             val contentModifier = if (showBottomBar) {
-                Modifier.padding(bottom = padding.calculateBottomPadding()).consumeWindowInsets(padding)
+                val bottom = padding.calculateBottomPadding()
+                Modifier.padding(bottom = bottom).consumeWindowInsets(PaddingValues(bottom = bottom))
             } else {
                 Modifier
             }
