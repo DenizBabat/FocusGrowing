@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Only used before Compose draws (splash + launcher icon). App colors live in core/designsystem/theme. -->
+    <color name="splash_background">#F7FAF6</color>
+    <color name="brand_primary">#3FAE95</color>
+    <color name="icon_background">#E3F4EE</color>
+    <color name="black">#FF000000</color>
+    <color name="graySecondary">#FF888888</color>
+</resources>

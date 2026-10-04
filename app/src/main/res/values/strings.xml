@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Focus Growing</string>
+    <string name="channel_timer_name">Active focus timer</string>
+    <string name="channel_timer_desc">Shows the running focus session.</string>
+    <string name="channel_events_name">Session updates</string>
+    <string name="channel_events_desc">Focus session completed, break finished and world level ups.</string>
+</resources>

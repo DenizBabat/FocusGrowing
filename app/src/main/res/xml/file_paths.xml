@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Photos taken with the camera for Focus backgrounds are stored privately here. -->
+    <files-path name="backgrounds" path="backgrounds/" />
+</paths>
