@@ -38,6 +38,12 @@ internal object SettingsKeys {
 
     val PremiumActive = booleanPreferencesKey("premium_active")
     val PremiumPlan = stringPreferencesKey("premium_plan")
+    val PremiumScheduledPlan = stringPreferencesKey("premium_scheduled_plan")
+
+    // Premium palette unlocked for 24 hours by a rewarded ad.
+    val TrialPaletteId = stringPreferencesKey("trial_palette_id")
+    val TrialGrantedAt = longPreferencesKey("trial_granted_at")
+    val TrialExpiresAt = longPreferencesKey("trial_expires_at")
 }
 
 /** Keys for the "timer_state" DataStore. */

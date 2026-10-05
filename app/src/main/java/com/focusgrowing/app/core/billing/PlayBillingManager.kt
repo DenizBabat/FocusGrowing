@@ -17,8 +17,11 @@ import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
 import com.focusgrowing.app.di.ApplicationScope
 import com.focusgrowing.app.domain.logic.PremiumPricing
+import com.focusgrowing.app.domain.model.ActiveSubscription
+import com.focusgrowing.app.domain.model.BillingPeriod
 import com.focusgrowing.app.domain.model.BillingState
 import com.focusgrowing.app.domain.model.IsoPeriod
+import com.focusgrowing.app.domain.model.PlanChangeMode
 import com.focusgrowing.app.domain.model.PremiumOffer
 import com.focusgrowing.app.domain.model.PurchaseResult
 import com.focusgrowing.app.domain.repository.SubscriptionRepository
@@ -40,15 +43,18 @@ import javax.inject.Singleton
 import kotlin.coroutines.resume
 
 /**
- * Google Play Billing for the Premium subscription.
+ * Google Play Billing for Premium: two subscriptions and a one-time lifetime product ([BillingProducts]).
  *
  * Flow:
- * 1. [refresh] connects, loads the subscription's base plans (localized prices) and the user's purchases.
- * 2. [launchPurchase] opens Play's purchase sheet; Play calls [onPurchasesUpdated] with the result.
- * 3. Every purchase is signature-checked, acknowledged (otherwise Play refunds it after 3 days)
- *    and saved to [SubscriptionRepository], which drives all Premium checks in the app.
+ * 1. [refresh] connects, loads all products (localized prices) and the user's purchases.
+ * 2. [launchPurchase] opens Play's sheet. For a subscriber it becomes a plan change:
+ *    monthly → yearly immediately (CHARGE_FULL_PRICE), yearly → monthly at the next renewal (DEFERRED).
+ * 3. Play calls [onPurchasesUpdated]. Every purchase is signature-checked, acknowledged
+ *    (otherwise Play refunds it after 3 days) and saved to [SubscriptionRepository],
+ *    which drives all Premium checks in the app.
  * 4. On every app start / return to foreground purchases are re-read, so renewals, cancellations,
- *    refunds and expiries are picked up automatically. If Play can't be reached, the cached state is kept.
+ *    refunds, plan switches and expiries are picked up automatically. If Play can't be reached,
+ *    the cached state is kept.
  */
 @Singleton
 class PlayBillingManager @Inject constructor(
@@ -67,15 +73,31 @@ class PlayBillingManager @Inject constructor(
     private val refreshMutex = Mutex()
     private val productDetails = mutableMapOf<String, ProductDetails>()
 
-    /** Base plan of the purchase sheet currently open. Play's Purchase object doesn't carry it. */
+    /** Every offer Play returned (the UI only sees the chosen one per product). */
     @Volatile
-    private var launchedBasePlanId: String? = null
+    private var allOffers: List<PremiumOffer> = emptyList()
+
+    /** Purchase token of the active subscription; needed to replace it. Never logged or shown. */
+    @Volatile
+    private var activePurchaseToken: String? = null
+
+    /** What the purchase sheet that is currently open is doing. */
+    @Volatile
+    private var pendingChange: PendingChange? = null
+
+    private data class PendingChange(val targetProductId: String, val mode: PlanChangeMode?)
 
     private val _state = MutableStateFlow<BillingState>(BillingState.Loading)
     override val state: StateFlow<BillingState> = _state.asStateFlow()
 
     private val _offers = MutableStateFlow<List<PremiumOffer>>(emptyList())
     override val offers: StateFlow<List<PremiumOffer>> = _offers.asStateFlow()
+
+    private val _activeSubscription = MutableStateFlow<ActiveSubscription?>(null)
+    override val activeSubscription: StateFlow<ActiveSubscription?> = _activeSubscription.asStateFlow()
+
+    private val _ownsLifetime = MutableStateFlow(false)
+    override val ownsLifetime: StateFlow<Boolean> = _ownsLifetime.asStateFlow()
 
     private val _purchaseResults = MutableSharedFlow<PurchaseResult>(extraBufferCapacity = 4)
     override val purchaseResults: SharedFlow<PurchaseResult> = _purchaseResults.asSharedFlow()
@@ -104,28 +126,82 @@ class PlayBillingManager @Inject constructor(
             refreshAsync()
             return PurchaseResult.Failure("Google Play is not ready yet. Please try again in a moment.")
         }
-        val params = BillingFlowParams.newBuilder()
+
+        if (_ownsLifetime.value) return PurchaseResult.Failure("You already own lifetime Premium.")
+        if (offer.period == BillingPeriod.LIFETIME) return launchLifetimePurchase(activity, details, offer)
+
+        val current = _activeSubscription.value
+        val oldToken = activePurchaseToken
+        val changeMode = current?.let { PremiumPricing.planChangeMode(it.period, offer.period) }
+        if (current != null && changeMode == null) return PurchaseResult.Failure("You already have this plan.")
+
+        // A plan change always uses the plain base plan (free trials are for new subscribers).
+        val offerToUse = if (current != null) {
+            allOffers.firstOrNull { it.productId == offer.productId && it.offerId == null } ?: offer
+        } else {
+            offer
+        }
+
+        val flow = BillingFlowParams.newBuilder()
             .setProductDetailsParamsList(
                 listOf(
                     BillingFlowParams.ProductDetailsParams.newBuilder()
                         .setProductDetails(details)
-                        .setOfferToken(offer.offerToken)
+                        .setOfferToken(offerToUse.offerToken)
                         .build(),
                 ),
             )
-            .build()
-        launchedBasePlanId = offer.basePlanId
-        val result = client.launchBillingFlow(activity, params)
-        return when (result.responseCode) {
-            BillingResponseCode.OK -> null // Play sheet is showing; the outcome arrives in onPurchasesUpdated.
-            BillingResponseCode.ITEM_ALREADY_OWNED -> {
+
+        if (current != null && changeMode != null) {
+            if (oldToken == null) {
                 refreshAsync()
-                PurchaseResult.Success
+                return PurchaseResult.Failure("Couldn't read your current subscription. Please try again in a moment.")
             }
-            BillingResponseCode.USER_CANCELED -> PurchaseResult.Cancelled
-            else -> PurchaseResult.Failure(result.userMessage())
+            flow.setSubscriptionUpdateParams(replacementParams(oldToken, changeMode))
         }
+
+        pendingChange = PendingChange(offer.productId, changeMode)
+        return client.launchBillingFlow(activity, flow.build()).toLaunchResult()
     }
+
+    /**
+     * One-time purchase: Premium forever. It is independent of any subscription — an existing
+     * subscription keeps renewing until the user cancels it in Google Play (the UI reminds them).
+     */
+    private fun launchLifetimePurchase(activity: Activity, details: ProductDetails, offer: PremiumOffer): PurchaseResult? {
+        val product = BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(details)
+        if (offer.offerToken.isNotEmpty()) product.setOfferToken(offer.offerToken)
+        val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(product.build())).build()
+        pendingChange = PendingChange(offer.productId, null)
+        return client.launchBillingFlow(activity, flow).toLaunchResult()
+    }
+
+    private fun BillingResult.toLaunchResult(): PurchaseResult? = when (responseCode) {
+        BillingResponseCode.OK -> null // Play sheet is showing; the outcome arrives in onPurchasesUpdated.
+        BillingResponseCode.ITEM_ALREADY_OWNED -> {
+            refreshAsync()
+            PurchaseResult.Success
+        }
+        BillingResponseCode.USER_CANCELED -> PurchaseResult.Cancelled
+        else -> PurchaseResult.Failure(userMessage())
+    }
+
+    /**
+     * Uses the classic replacement API: it is marked deprecated in favour of product-level
+     * replacement params (meant for subscriptions with add-ons) but is fully supported for
+     * swapping one subscription for another.
+     */
+    @Suppress("DEPRECATION")
+    private fun replacementParams(oldPurchaseToken: String, mode: PlanChangeMode): BillingFlowParams.SubscriptionUpdateParams =
+        BillingFlowParams.SubscriptionUpdateParams.newBuilder()
+            .setOldPurchaseToken(oldPurchaseToken)
+            .setSubscriptionReplacementMode(
+                when (mode) {
+                    PlanChangeMode.IMMEDIATE -> BillingFlowParams.SubscriptionUpdateParams.ReplacementMode.CHARGE_FULL_PRICE
+                    PlanChangeMode.AT_NEXT_RENEWAL -> BillingFlowParams.SubscriptionUpdateParams.ReplacementMode.DEFERRED
+                },
+            )
+            .build()
 
     override suspend fun restore(): PurchaseResult {
         val connection = connect()
@@ -138,8 +214,14 @@ class PlayBillingManager @Inject constructor(
         }
     }
 
-    override fun manageSubscriptionUrl(): String =
-        "https://play.google.com/store/account/subscriptions?sku=${BillingConfig.PREMIUM_SUBSCRIPTION_ID}&package=${context.packageName}"
+    override fun manageSubscriptionUrl(): String {
+        val productId = _activeSubscription.value?.productId
+        return if (productId != null) {
+            "https://play.google.com/store/account/subscriptions?sku=$productId&package=${context.packageName}"
+        } else {
+            "https://play.google.com/store/account/subscriptions"
+        }
+    }
 
     // ---------------------------------------------------------------------------------------
     // Play callbacks
@@ -147,21 +229,23 @@ class PlayBillingManager @Inject constructor(
 
     override fun onPurchasesUpdated(result: BillingResult, purchases: MutableList<Purchase>?) {
         scope.launch {
+            val change = pendingChange
+            pendingChange = null
             val outcome: PurchaseResult = when (result.responseCode) {
                 BillingResponseCode.OK -> {
-                    val list = purchases.orEmpty()
-                    var granted = false
-                    var pending = false
-                    list.forEach { purchase ->
-                        when (handlePurchase(purchase)) {
-                            SyncOutcome.ACTIVE -> granted = true
-                            SyncOutcome.PENDING -> pending = true
-                            else -> Unit
-                        }
-                    }
+                    // Acknowledge whatever Play handed us, then read the real state back from Play.
+                    purchases.orEmpty().forEach { acknowledgeIfNeeded(it) }
+                    val sync = syncPurchases()
                     when {
-                        granted -> PurchaseResult.Success
-                        pending -> PurchaseResult.Pending
+                        sync == SyncOutcome.ACTIVE && change?.mode == PlanChangeMode.AT_NEXT_RENEWAL -> {
+                            // Deferred switch: the current plan stays until the paid period ends.
+                            if (_activeSubscription.value?.productId != change.targetProductId) {
+                                subscriptions.setScheduledPlan(change.targetProductId)
+                            }
+                            PurchaseResult.ChangeScheduled
+                        }
+                        sync == SyncOutcome.ACTIVE -> PurchaseResult.Success
+                        sync == SyncOutcome.PENDING -> PurchaseResult.Pending
                         else -> PurchaseResult.Failure("The purchase couldn't be verified. If you were charged, tap “Restore purchase”.")
                     }
                 }
@@ -203,42 +287,51 @@ class PlayBillingManager @Inject constructor(
             .build()
     }
 
-    private suspend fun loadOffers() {
+    private suspend fun queryDetails(productIds: List<String>, type: String): Pair<BillingResult, List<ProductDetails>> {
         val params = QueryProductDetailsParams.newBuilder()
             .setProductList(
-                listOf(
-                    QueryProductDetailsParams.Product.newBuilder()
-                        .setProductId(BillingConfig.PREMIUM_SUBSCRIPTION_ID)
-                        .setProductType(BillingClient.ProductType.SUBS)
-                        .build(),
-                ),
+                productIds.map { id ->
+                    QueryProductDetailsParams.Product.newBuilder().setProductId(id).setProductType(type).build()
+                },
             )
             .build()
-
-        val (result, detailsList) = suspendCancellableCoroutine<Pair<BillingResult, List<ProductDetails>>> { continuation ->
+        return suspendCancellableCoroutine { continuation ->
             client.queryProductDetailsAsync(params) { billingResult, queryResult ->
                 if (continuation.isActive) continuation.resume(billingResult to queryResult.productDetailsList)
             }
         }
+    }
 
-        if (result.responseCode != BillingResponseCode.OK) {
-            _state.value = BillingState.Unavailable(result.userMessage())
+    /** Subscriptions and one-time products have to be asked for separately. */
+    private suspend fun loadOffers() {
+        val (subsResult, subsDetails) = queryDetails(BillingProducts.subscriptions, BillingClient.ProductType.SUBS)
+        val (oneTimeResult, oneTimeDetails) = queryDetails(listOf(BillingProducts.LIFETIME), BillingClient.ProductType.INAPP)
+
+        if (subsResult.responseCode != BillingResponseCode.OK && oneTimeResult.responseCode != BillingResponseCode.OK) {
+            _state.value = BillingState.Unavailable(subsResult.userMessage())
             return
         }
-        productDetails.clear()
-        detailsList.forEach { productDetails[it.productId] = it }
+        val subs = if (subsResult.responseCode == BillingResponseCode.OK) subsDetails else emptyList()
+        val oneTime = if (oneTimeResult.responseCode == BillingResponseCode.OK) oneTimeDetails else emptyList()
 
-        val candidates = detailsList.flatMap { details ->
+        productDetails.clear()
+        (subs + oneTime).forEach { productDetails[it.productId] = it }
+
+        val subscriptionOffers = subs.flatMap { details ->
             details.subscriptionOfferDetails.orEmpty().mapNotNull { offer ->
                 val phases = offer.pricingPhases.pricingPhaseList
                 val recurring = phases.lastOrNull() ?: return@mapNotNull null
                 val trialPhase = phases.firstOrNull { it.priceAmountMicros == 0L }
+                // Trust the product id for the plan type; fall back to the billing period Play reports.
+                val period = BillingProducts.periodOf(details.productId)
+                    .takeIf { it != BillingPeriod.OTHER }
+                    ?: PremiumPricing.periodOf(recurring.billingPeriod)
                 PremiumOffer(
                     productId = details.productId,
                     basePlanId = offer.basePlanId,
                     offerId = offer.offerId,
                     offerToken = offer.offerToken,
-                    period = PremiumPricing.periodOf(recurring.billingPeriod),
+                    period = period,
                     formattedPrice = recurring.formattedPrice,
                     priceMicros = recurring.priceAmountMicros,
                     currencyCode = recurring.priceCurrencyCode,
@@ -246,7 +339,24 @@ class PlayBillingManager @Inject constructor(
                 )
             }
         }
-        _offers.value = PremiumPricing.chooseOffers(candidates)
+        val lifetimeOffers = oneTime.mapNotNull { details ->
+            val price = details.oneTimePurchaseOfferDetailsList?.firstOrNull() ?: details.oneTimePurchaseOfferDetails
+                ?: return@mapNotNull null
+            PremiumOffer(
+                productId = details.productId,
+                basePlanId = "",
+                offerId = null,
+                offerToken = price.offerToken.orEmpty(),
+                period = BillingPeriod.LIFETIME,
+                formattedPrice = price.formattedPrice,
+                priceMicros = price.priceAmountMicros,
+                currencyCode = price.priceCurrencyCode,
+                freeTrial = null,
+            )
+        }
+
+        allOffers = subscriptionOffers + lifetimeOffers
+        _offers.value = PremiumPricing.chooseOffers(allOffers)
         _state.value = if (_offers.value.isEmpty()) {
             BillingState.Unavailable("Premium isn't available in your country or on this Google Play account yet.")
         } else {
@@ -254,52 +364,73 @@ class PlayBillingManager @Inject constructor(
         }
     }
 
-    /** Re-reads active subscriptions from Play and updates the cached entitlement. */
-    private suspend fun syncPurchases(): SyncOutcome {
-        val params = QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.SUBS).build()
-        val (result, purchases) = suspendCancellableCoroutine<Pair<BillingResult, List<Purchase>>> { continuation ->
+    private suspend fun queryPurchases(type: String): Pair<BillingResult, List<Purchase>> {
+        val params = QueryPurchasesParams.newBuilder().setProductType(type).build()
+        return suspendCancellableCoroutine { continuation ->
             client.queryPurchasesAsync(params) { billingResult, list ->
                 if (continuation.isActive) continuation.resume(billingResult to list)
             }
         }
-        if (result.responseCode != BillingResponseCode.OK) {
-            Log.w(TAG, "queryPurchases failed: ${result.responseCode}")
+    }
+
+    private fun Purchase.isValidAndPaid(): Boolean =
+        purchaseState == Purchase.PurchaseState.PURCHASED &&
+            PurchaseVerifier.isValid(BillingConfig.PLAY_LICENSE_KEY, originalJson, signature)
+
+    /** Re-reads the lifetime purchase and subscriptions from Play and updates the cached entitlement. */
+    private suspend fun syncPurchases(): SyncOutcome {
+        val (subsResult, subsPurchases) = queryPurchases(BillingClient.ProductType.SUBS)
+        val (oneTimeResult, oneTimePurchases) = queryPurchases(BillingClient.ProductType.INAPP)
+        if (subsResult.responseCode != BillingResponseCode.OK || oneTimeResult.responseCode != BillingResponseCode.OK) {
+            Log.w(TAG, "queryPurchases failed: ${subsResult.responseCode} / ${oneTimeResult.responseCode}")
             return SyncOutcome.ERROR // keep the cached entitlement (e.g. offline)
         }
-        var outcome = SyncOutcome.NONE
-        for (purchase in purchases) {
-            when (handlePurchase(purchase, updateCacheWhenInactive = false)) {
-                SyncOutcome.ACTIVE -> outcome = SyncOutcome.ACTIVE
-                SyncOutcome.PENDING -> if (outcome != SyncOutcome.ACTIVE) outcome = SyncOutcome.PENDING
-                else -> Unit
-            }
-        }
-        if (outcome != SyncOutcome.ACTIVE) subscriptions.setPremium(false)
-        return outcome
-    }
 
-    private suspend fun handlePurchase(purchase: Purchase, updateCacheWhenInactive: Boolean = true): SyncOutcome {
-        if (BillingConfig.PREMIUM_SUBSCRIPTION_ID !in purchase.products) return SyncOutcome.NONE
-        return when (purchase.purchaseState) {
-            Purchase.PurchaseState.PURCHASED -> {
-                if (!PurchaseVerifier.isValid(BillingConfig.PLAY_LICENSE_KEY, purchase.originalJson, purchase.signature)) {
-                    Log.w(TAG, "Rejected purchase with an invalid signature")
-                    return SyncOutcome.NONE
-                }
-                if (!purchase.isAcknowledged) acknowledge(purchase)
-                // New purchase: remember the plan the user picked. Periodic sync: keep the cached plan.
-                subscriptions.setPremium(true, if (updateCacheWhenInactive) launchedBasePlanId else null)
+        val premiumSubs = subsPurchases.filter { purchase -> purchase.products.any(BillingProducts::isSubscription) }
+        val lifetimePurchases = oneTimePurchases.filter { BillingProducts.LIFETIME in it.products }
+
+        // Subscription (may exist next to a lifetime purchase until the user cancels it).
+        val validSubs = premiumSubs.filter { it.isValidAndPaid() }
+        validSubs.forEach { acknowledgeIfNeeded(it) }
+        // Normally there is exactly one. If both exist for a moment during a switch, prefer yearly.
+        val activeSub = validSubs.firstOrNull { BillingProducts.YEARLY in it.products } ?: validSubs.firstOrNull()
+        if (activeSub != null) {
+            val productId = activeSub.products.first(BillingProducts::isSubscription)
+            activePurchaseToken = activeSub.purchaseToken
+            _activeSubscription.value = ActiveSubscription(productId, BillingProducts.periodOf(productId), activeSub.isAutoRenewing)
+        } else {
+            activePurchaseToken = null
+            _activeSubscription.value = null
+        }
+
+        // Lifetime: a non-consumable one-time product. It is never consumed, only acknowledged.
+        val lifetime = lifetimePurchases.firstOrNull { it.isValidAndPaid() }
+        lifetime?.let { acknowledgeIfNeeded(it) }
+        _ownsLifetime.value = lifetime != null
+
+        return when {
+            lifetime != null -> {
+                subscriptions.setPremium(true, BillingProducts.LIFETIME)
                 SyncOutcome.ACTIVE
             }
-            Purchase.PurchaseState.PENDING -> SyncOutcome.PENDING
+            activeSub != null -> {
+                subscriptions.setPremium(true, activeSub.products.first(BillingProducts::isSubscription))
+                SyncOutcome.ACTIVE
+            }
             else -> {
-                if (updateCacheWhenInactive) subscriptions.setPremium(false)
-                SyncOutcome.NONE
+                subscriptions.setPremium(false)
+                val pending = (premiumSubs + lifetimePurchases).any { it.purchaseState == Purchase.PurchaseState.PENDING }
+                if (pending) SyncOutcome.PENDING else SyncOutcome.NONE
             }
         }
     }
 
-    private suspend fun acknowledge(purchase: Purchase) {
+    private suspend fun acknowledgeIfNeeded(purchase: Purchase) {
+        if (purchase.purchaseState != Purchase.PurchaseState.PURCHASED || purchase.isAcknowledged) return
+        if (!PurchaseVerifier.isValid(BillingConfig.PLAY_LICENSE_KEY, purchase.originalJson, purchase.signature)) {
+            Log.w(TAG, "Rejected purchase with an invalid signature")
+            return
+        }
         val params = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchase.purchaseToken).build()
         val result = suspendCancellableCoroutine<BillingResult> { continuation ->
             client.acknowledgePurchase(params) { billingResult ->

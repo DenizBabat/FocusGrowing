@@ -14,6 +14,10 @@ room = "2.7.2"
 datastore = "1.1.7"
 coil = "2.7.0"
 billing = "9.1.0"
+# Ads SDK 25.4+ is built with Kotlin 2.3 and does not compile with this project's Kotlin 2.1.
+# Stay on 24.x until the project moves to Kotlin 2.2 or newer.
+playServicesAds = "24.7.0"
+ump = "3.2.0"
 serialization = "1.8.1"
 coroutines = "1.10.2"
 junit = "4.13.2"
@@ -51,6 +55,8 @@ androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navig
 
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 billing = { group = "com.android.billingclient", name = "billing", version.ref = "billing" }
+play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+user-messaging-platform = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "ump" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }

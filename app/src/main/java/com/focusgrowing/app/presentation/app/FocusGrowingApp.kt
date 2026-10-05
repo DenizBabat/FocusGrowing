@@ -101,7 +101,8 @@ fun FocusGrowingApp(
     // Show reward screens (focus completed, level up, ...) whenever the queue has one.
     LaunchedEffect(celebration, destination) {
         val dest = destination ?: return@LaunchedEffect
-        if (celebration != null && !dest.hasRoute<CelebrationRoute>()) {
+        // Premium may be opened from a celebration ("Remove ads"); don't pull the user back from it.
+        if (celebration != null && !dest.hasRoute<CelebrationRoute>() && !dest.hasRoute<PremiumRoute>()) {
             navController.navigate(CelebrationRoute) { launchSingleTop = true }
         }
     }
@@ -250,6 +251,7 @@ private fun FocusNavHost(navController: NavHostController) {
                 onExploreWorld = {
                     navController.navigate(HomeRoute) { popUpTo<CelebrationRoute> { inclusive = true }; launchSingleTop = true }
                 },
+                onOpenPremium = { navController.navigate(PremiumRoute) { launchSingleTop = true } },
             )
         }
     }

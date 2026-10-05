@@ -1,6 +1,7 @@
 package com.focusgrowing.app
 
 import android.app.Application
+import com.focusgrowing.app.core.ads.AdsManager
 import com.focusgrowing.app.core.billing.PurchaseManager
 import com.focusgrowing.app.core.notification.FocusNotifier
 import com.focusgrowing.app.core.timer.AppForegroundTracker
@@ -15,6 +16,7 @@ class FocusGrowingApplication : Application() {
     @Inject lateinit var timerManager: FocusTimerManager
     @Inject lateinit var foregroundTracker: AppForegroundTracker
     @Inject lateinit var purchaseManager: PurchaseManager
+    @Inject lateinit var adsManager: AdsManager
 
     override fun onCreate() {
         super.onCreate()
@@ -24,6 +26,7 @@ class FocusGrowingApplication : Application() {
         foregroundTracker.start {
             timerManager.reconcile()
             purchaseManager.refreshAsync()
+            adsManager.onAppForeground()
         }
     }
 }

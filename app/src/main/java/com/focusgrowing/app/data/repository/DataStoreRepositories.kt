@@ -186,10 +186,26 @@ class SubscriptionRepositoryImpl @Inject constructor(
         store.edit { prefs ->
             prefs[SettingsKeys.PremiumActive] = active
             when {
-                !active -> prefs.remove(SettingsKeys.PremiumPlan)
-                planId != null -> prefs[SettingsKeys.PremiumPlan] = planId
+                !active -> {
+                    prefs.remove(SettingsKeys.PremiumPlan)
+                    prefs.remove(SettingsKeys.PremiumScheduledPlan)
+                }
+                planId != null -> {
+                    prefs[SettingsKeys.PremiumPlan] = planId
+                    // The scheduled switch has happened.
+                    if (prefs[SettingsKeys.PremiumScheduledPlan] == planId) prefs.remove(SettingsKeys.PremiumScheduledPlan)
+                }
                 else -> Unit // still premium, plan unknown: keep what we had
             }
+        }
+    }
+
+    override val scheduledPlanId: Flow<String?> =
+        store.data.safe().map { it[SettingsKeys.PremiumScheduledPlan] }.distinctUntilChanged()
+
+    override suspend fun setScheduledPlan(planId: String?) {
+        store.edit { prefs ->
+            if (planId == null) prefs.remove(SettingsKeys.PremiumScheduledPlan) else prefs[SettingsKeys.PremiumScheduledPlan] = planId
         }
     }
 }

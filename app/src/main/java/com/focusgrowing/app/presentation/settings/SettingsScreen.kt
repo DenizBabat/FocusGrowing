@@ -1,6 +1,9 @@
 package com.focusgrowing.app.presentation.settings
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -38,17 +41,23 @@ import androidx.compose.material.icons.rounded.FormatQuote
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.NotificationsActive
+import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material.icons.rounded.PrivacyTip
 import androidx.compose.material.icons.rounded.Timer
 import androidx.compose.material.icons.rounded.TouchApp
 import androidx.compose.material.icons.rounded.Wallpaper
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -68,7 +77,10 @@ import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.focusgrowing.app.BuildConfig
 import com.focusgrowing.app.core.designsystem.component.CircleIconButton
+import com.focusgrowing.app.core.designsystem.component.FocusButton
+import com.focusgrowing.app.core.designsystem.component.FocusButtonStyle
 import com.focusgrowing.app.core.designsystem.component.FocusChip
+import com.focusgrowing.app.core.designsystem.component.FocusTextButton
 import com.focusgrowing.app.core.designsystem.component.FocusTopBar
 import com.focusgrowing.app.core.designsystem.component.SettingsGroup
 import com.focusgrowing.app.core.designsystem.component.SettingsNavRow
@@ -95,6 +107,13 @@ fun SettingsScreen(
     val context = LocalContext.current
     var exactAlarms by remember { mutableStateOf(true) }
     var customFocusDialog by remember { mutableStateOf(false) }
+    // Locked premium palette the user tapped: offers a 24-hour trial for watching an ad.
+    var trialOffer by remember { mutableStateOf<FocusPalette?>(null) }
+
+    // The ad was watched and the palette is unlocked: close the offer.
+    LaunchedEffect(state.trialPaletteId) {
+        if (trialOffer != null && trialOffer?.id == state.trialPaletteId) trialOffer = null
+    }
 
     LifecycleResumeEffect(Unit) {
         exactAlarms = viewModel.canScheduleExactAlarms()
@@ -125,8 +144,13 @@ fun SettingsScreen(
                 PaletteRow(
                     selectedId = prefs.appearance.paletteId,
                     canUsePremium = viewModel.canUse(PremiumFeature.PREMIUM_PALETTES),
+                    trialPaletteId = state.trialPaletteId,
+                    trialHoursLeft = state.trialHoursLeft,
                     onSelect = { palette -> viewModel.updateAppearance { it.copy(paletteId = palette.id) } },
-                    onLocked = onOpenPremium,
+                    onLocked = { palette ->
+                        viewModel.clearAdMessage()
+                        trialOffer = palette
+                    },
                 )
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     SettingsToggleRow(
@@ -231,11 +255,36 @@ fun SettingsScreen(
                 )
             }
 
+            // Privacy (only where the law requires the ad consent choice to stay changeable) --------
+            if (state.showAdPrivacyOptions) {
+                SettingsGroup("Privacy") {
+                    SettingsNavRow(
+                        Icons.Rounded.PrivacyTip, "Ad privacy choices",
+                        onClick = { context.findActivity()?.let(viewModel::showAdPrivacyOptions) },
+                        subtitle = "Change your consent for personalized ads",
+                    )
+                }
+            }
+
             SettingsGroup("About") {
                 SettingsNavRow(Icons.Rounded.Info, "Version", onClick = {}, value = BuildConfig.VERSION_NAME)
             }
             Spacer(Modifier.height(spacing.lg))
         }
+    }
+
+    trialOffer?.let { palette ->
+        PaletteTrialSheet(
+            palette = palette,
+            loading = state.adInProgress,
+            message = state.adMessage,
+            onWatchAd = { context.findActivity()?.let { viewModel.watchAdForPalette(it, palette.id, palette.displayName) } },
+            onOpenPremium = {
+                trialOffer = null
+                onOpenPremium()
+            },
+            onDismiss = { trialOffer = null },
+        )
     }
 
     if (customFocusDialog) {
@@ -278,7 +327,14 @@ private fun ChoiceRow(title: String, options: List<String>, selected: Int, onSel
 }
 
 @Composable
-private fun PaletteRow(selectedId: String, canUsePremium: Boolean, onSelect: (FocusPalette) -> Unit, onLocked: () -> Unit) {
+private fun PaletteRow(
+    selectedId: String,
+    canUsePremium: Boolean,
+    trialPaletteId: String?,
+    trialHoursLeft: Int,
+    onSelect: (FocusPalette) -> Unit,
+    onLocked: (FocusPalette) -> Unit,
+) {
     val dark = FocusTheme.isDark
     Column(Modifier.padding(horizontal = FocusTheme.spacing.lg, vertical = FocusTheme.spacing.sm)) {
         Text("Color palette", style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface)
@@ -286,7 +342,8 @@ private fun PaletteRow(selectedId: String, canUsePremium: Boolean, onSelect: (Fo
         Row(horizontalArrangement = Arrangement.spacedBy(FocusTheme.spacing.lg)) {
             FocusPalettes.all.forEach { palette ->
                 val tokens = if (dark) palette.dark else palette.light
-                val locked = palette.isPremium && !canUsePremium
+                // Unlocked by Premium, or for 24 hours by a rewarded ad.
+                val locked = palette.isPremium && !canUsePremium && palette.id != trialPaletteId
                 val selected = palette.id == selectedId
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Box(
@@ -295,7 +352,7 @@ private fun PaletteRow(selectedId: String, canUsePremium: Boolean, onSelect: (Fo
                             .clip(CircleShape)
                             .background(Brush.linearGradient(listOf(tokens.primaryGradientStart, tokens.primaryGradientEnd)))
                             .border(if (selected) 3.dp else 1.dp, if (selected) FocusTheme.colors.onSurface else FocusTheme.colors.cardBorder, CircleShape)
-                            .clickable(role = Role.RadioButton) { if (locked) onLocked() else onSelect(palette) }
+                            .clickable(role = Role.RadioButton) { if (locked) onLocked(palette) else onSelect(palette) }
                             .semantics { contentDescription = palette.displayName + if (locked) ", premium" else "" },
                         contentAlignment = Alignment.Center,
                     ) {
@@ -309,7 +366,67 @@ private fun PaletteRow(selectedId: String, canUsePremium: Boolean, onSelect: (Fo
                 }
             }
         }
+        val trialName = FocusPalettes.all.firstOrNull { it.id == trialPaletteId }?.displayName
+        if (trialName != null && !canUsePremium) {
+            Spacer(Modifier.height(FocusTheme.spacing.sm))
+            Text(
+                if (trialHoursLeft <= 1) "$trialName is unlocked for less than an hour."
+                else "$trialName is unlocked for about $trialHoursLeft more hours.",
+                style = FocusTheme.typography.bodySmall,
+                color = FocusTheme.colors.onSurfaceVariant,
+            )
+        }
     }
+}
+
+/** Offer shown when a free user taps a locked premium palette: watch an ad for 24 hours, or go Premium. */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun PaletteTrialSheet(
+    palette: FocusPalette,
+    loading: Boolean,
+    message: String?,
+    onWatchAd: () -> Unit,
+    onOpenPremium: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    val colors = FocusTheme.colors
+    val spacing = FocusTheme.spacing
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    ModalBottomSheet(onDismissRequest = onDismiss, sheetState = sheetState, containerColor = colors.surface) {
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = spacing.screen)
+                .padding(bottom = spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(spacing.md),
+        ) {
+            Text("Try ${palette.displayName} for 24 hours", style = FocusTheme.typography.titleLarge, color = colors.onSurface)
+            Text(
+                "Watch one short video and use this palette until tomorrow. With Premium you keep every palette and never see ads.",
+                style = FocusTheme.typography.bodyMedium,
+                color = colors.onSurfaceVariant,
+            )
+            if (message != null) {
+                Text(message, style = FocusTheme.typography.bodySmall, color = colors.error)
+            }
+            FocusButton(
+                "Watch a short ad",
+                onClick = onWatchAd,
+                modifier = Modifier.fillMaxWidth(),
+                leadingIcon = Icons.Rounded.PlayArrow,
+                loading = loading,
+            )
+            FocusButton("See Premium", onClick = onOpenPremium, modifier = Modifier.fillMaxWidth(), style = FocusButtonStyle.Soft)
+            FocusTextButton("Not now", onClick = onDismiss, modifier = Modifier.align(Alignment.CenterHorizontally))
+        }
+    }
+}
+
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
 }
 
 @Composable

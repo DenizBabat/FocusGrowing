@@ -3,6 +3,7 @@ package com.focusgrowing.app.domain
 import com.focusgrowing.app.domain.logic.PremiumPricing
 import com.focusgrowing.app.domain.model.BillingPeriod
 import com.focusgrowing.app.domain.model.IsoPeriod
+import com.focusgrowing.app.domain.model.PlanChangeMode
 import com.focusgrowing.app.domain.model.PremiumOffer
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -53,5 +54,47 @@ class PremiumPricingTest {
         assertEquals(listOf("monthly", "yearly"), chosen.map { it.basePlanId })
         assertEquals(null, chosen[0].offerId) // plain base plan, not the intro offer
         assertEquals("trial", chosen[1].offerId)
+    }
+
+    @Test
+    fun `plan change rules`() {
+        // Longer period: switch now. Shorter period: wait until the paid year ends. Same plan: nothing.
+        assertEquals(PlanChangeMode.IMMEDIATE, PremiumPricing.planChangeMode(BillingPeriod.MONTHLY, BillingPeriod.YEARLY))
+        assertEquals(PlanChangeMode.AT_NEXT_RENEWAL, PremiumPricing.planChangeMode(BillingPeriod.YEARLY, BillingPeriod.MONTHLY))
+        assertNull(PremiumPricing.planChangeMode(BillingPeriod.YEARLY, BillingPeriod.YEARLY))
+        assertNull(PremiumPricing.planChangeMode(BillingPeriod.MONTHLY, BillingPeriod.MONTHLY))
+    }
+
+    @Test
+    fun `two products each keep their own offer`() {
+        val monthly = PremiumOffer("premium_monthly", "monthly", null, "t1", BillingPeriod.MONTHLY, "x", 49_990_000, "TRY", null)
+        val yearly = PremiumOffer("premium_yearly", "yearly", null, "t2", BillingPeriod.YEARLY, "x", 399_990_000, "TRY", null)
+        val yearlyTrial = yearly.copy(offerId = "trial", offerToken = "t3", freeTrial = IsoPeriod(days = 7))
+        val chosen = PremiumPricing.chooseOffers(listOf(yearly, yearlyTrial, monthly))
+        assertEquals(listOf("premium_monthly", "premium_yearly"), chosen.map { it.productId })
+        assertEquals("t3", chosen[1].offerToken)
+    }
+
+    @Test
+    fun `lifetime is a separate purchase, never a plan change`() {
+        assertNull(PremiumPricing.planChangeMode(BillingPeriod.MONTHLY, BillingPeriod.LIFETIME))
+        assertNull(PremiumPricing.planChangeMode(BillingPeriod.YEARLY, BillingPeriod.LIFETIME))
+        assertNull(PremiumPricing.planChangeMode(BillingPeriod.LIFETIME, BillingPeriod.MONTHLY))
+    }
+
+    @Test
+    fun `lifetime break-even in years of the yearly plan`() {
+        assertEquals(3, PremiumPricing.lifetimeBreakEvenYears(399_990_000, 999_990_000))
+        assertEquals(1, PremiumPricing.lifetimeBreakEvenYears(399_990_000, 399_990_000))
+        assertNull(PremiumPricing.lifetimeBreakEvenYears(0, 999_990_000))
+    }
+
+    @Test
+    fun `lifetime offer is listed after the subscriptions`() {
+        val lifetime = PremiumOffer("premium_lifetime", "", null, "t", BillingPeriod.LIFETIME, "x", 999_990_000, "TRY", null)
+        val monthly = PremiumOffer("premium_monthly", "monthly", null, "t1", BillingPeriod.MONTHLY, "x", 49_990_000, "TRY", null)
+        val yearly = PremiumOffer("premium_yearly", "yearly", null, "t2", BillingPeriod.YEARLY, "x", 399_990_000, "TRY", null)
+        val chosen = PremiumPricing.chooseOffers(listOf(lifetime, yearly, monthly))
+        assertEquals(listOf(BillingPeriod.MONTHLY, BillingPeriod.YEARLY, BillingPeriod.LIFETIME), chosen.map { it.period })
     }
 }

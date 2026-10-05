@@ -40,6 +40,7 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -47,6 +48,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.core.ads.SessionEndAdCard
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusCard
 import com.focusgrowing.app.core.designsystem.component.FocusProgressBar
@@ -65,6 +67,7 @@ import com.focusgrowing.app.domain.model.Celebration
 import com.focusgrowing.app.domain.model.WorldItemType
 import com.focusgrowing.app.presentation.common.icon
 import com.focusgrowing.app.presentation.common.label
+import com.google.android.gms.ads.nativead.NativeAd
 import java.time.DayOfWeek
 import java.time.format.TextStyle
 import java.util.Locale
@@ -74,9 +77,15 @@ fun CelebrationScreen(
     onClose: () -> Unit,
     onOpenMission: (Long) -> Unit,
     onExploreWorld: () -> Unit,
+    onOpenPremium: () -> Unit,
     viewModel: CelebrationViewModel = hiltViewModel(),
 ) {
     val current by viewModel.current.collectAsStateWithLifecycle()
+    val liveAd by viewModel.sessionEndAd.collectAsStateWithLifecycle()
+    // Only show an ad that was ready when the screen opened. An ad popping in later would move
+    // the "Continue" button under the user's finger and cause accidental taps.
+    val adReadyAtEntry = remember { viewModel.sessionEndAd.value != null }
+    val sessionEndAd = if (adReadyAtEntry) liveAd else null
     LaunchedEffect(current) { if (current == null) onClose() }
     BackHandler { viewModel.dismiss() }
 
@@ -107,7 +116,13 @@ fun CelebrationScreen(
                     }
                 }
                 when (item) {
-                    is Celebration.FocusCompleted -> FocusCompletedContent(item, onContinue = viewModel::dismiss)
+                    is Celebration.FocusCompleted -> FocusCompletedContent(
+                        item,
+                        ad = sessionEndAd,
+                        onAdShown = viewModel::onAdShown,
+                        onRemoveAds = onOpenPremium,
+                        onContinue = viewModel::dismiss,
+                    )
                     is Celebration.MissionCompleted -> MissionCompletedContent(
                         item,
                         onViewMission = { viewModel.dismiss(); onOpenMission(item.missionId) },
@@ -165,7 +180,13 @@ private fun StatDivider() {
 }
 
 @Composable
-private fun FocusCompletedContent(item: Celebration.FocusCompleted, onContinue: () -> Unit) {
+private fun FocusCompletedContent(
+    item: Celebration.FocusCompleted,
+    ad: NativeAd?,
+    onAdShown: () -> Unit,
+    onRemoveAds: () -> Unit,
+    onContinue: () -> Unit,
+) {
     val colors = FocusTheme.colors
     MedalHero(Icons.Rounded.Star, colors.xp)
     Headline("Great Job!", body = "You completed your focus session.")
@@ -179,8 +200,17 @@ private fun FocusCompletedContent(item: Celebration.FocusCompleted, onContinue: 
             RewardStat(Icons.AutoMirrored.Rounded.TrendingUp, "+${item.missionProgressDelta}", "Progress", colors.accentPurple, colors.accentPurpleContainer, Modifier.weight(1f))
         }
     }
+    // The only ad placement in the session flow: after the session, under the rewards. Never for Premium.
+    if (ad != null) {
+        LaunchedEffect(ad) { onAdShown() }
+        Spacer(Modifier.height(FocusTheme.spacing.lg))
+        SessionEndAdCard(ad)
+    }
     Spacer(Modifier.height(FocusTheme.spacing.xl))
     FocusButton("Continue", onClick = onContinue, modifier = Modifier.fillMaxWidth())
+    if (ad != null) {
+        FocusTextButton("Remove ads with Premium", onClick = onRemoveAds)
+    }
 }
 
 @Composable

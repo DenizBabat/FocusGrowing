@@ -92,9 +92,13 @@ interface NotificationRepository {
 /** Cached entitlement, so Premium works offline and right after app start. Google Play is the source of truth. */
 interface SubscriptionRepository {
     val isPremium: Flow<Boolean>
-    /** Base plan of the active subscription ("monthly", "yearly"), null when not premium or unknown. */
+    /** Product id of the active subscription ("premium_monthly", "premium_yearly"), null when not premium or unknown. */
     val activePlanId: Flow<String?>
+    /** Product the user will switch to when the current period ends (deferred plan change), if any. */
+    val scheduledPlanId: Flow<String?>
+    /** [planId] null keeps the cached plan. Turning premium off also clears a scheduled change. */
     suspend fun setPremium(active: Boolean, planId: String? = null)
+    suspend fun setScheduledPlan(planId: String?)
 }
 
 /** In-memory queue of reward screens waiting to be shown. */

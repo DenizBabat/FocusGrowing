@@ -14,17 +14,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.core.ads.AdsManager
 import com.focusgrowing.app.core.designsystem.theme.FocusTheme
 import com.focusgrowing.app.domain.model.ThemeMode
 import com.focusgrowing.app.presentation.app.FocusGrowingApp
 import com.focusgrowing.app.presentation.app.MainUiState
 import com.focusgrowing.app.presentation.app.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModels()
+
+    @Inject lateinit var adsManager: AdsManager
 
     /** Incremented when a notification asks to open the Focus screen. */
     private val openFocusSignal = mutableIntStateOf(0)
@@ -35,6 +39,8 @@ class MainActivity : ComponentActivity() {
         splash.setKeepOnScreenCondition { viewModel.uiState.value is MainUiState.Loading }
         enableEdgeToEdge()
         handleIntent(intent)
+        // Ads: asks for consent where required, then loads ads. Does nothing for Premium users.
+        adsManager.start(this)
 
         setContent {
             val state by viewModel.uiState.collectAsStateWithLifecycle()

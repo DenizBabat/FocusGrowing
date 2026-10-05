@@ -22,6 +22,7 @@ import com.focusgrowing.app.data.repository.FocusSessionRepositoryImpl
 import com.focusgrowing.app.data.repository.InMemoryCelebrationQueue
 import com.focusgrowing.app.data.repository.MissionRepositoryImpl
 import com.focusgrowing.app.data.repository.NotificationRepositoryImpl
+import com.focusgrowing.app.data.repository.RewardRepositoryImpl
 import com.focusgrowing.app.data.repository.SettingsRepositoryImpl
 import com.focusgrowing.app.data.repository.SubscriptionRepositoryImpl
 import com.focusgrowing.app.data.repository.SystemTimeProvider
@@ -33,6 +34,7 @@ import com.focusgrowing.app.domain.repository.FocusSessionRepository
 import com.focusgrowing.app.domain.repository.MissionRepository
 import com.focusgrowing.app.domain.repository.NotificationRepository
 import com.focusgrowing.app.domain.repository.PremiumManager
+import com.focusgrowing.app.domain.repository.RewardRepository
 import com.focusgrowing.app.domain.repository.SettingsRepository
 import com.focusgrowing.app.domain.repository.SubscriptionRepository
 import com.focusgrowing.app.domain.repository.TimeProvider
@@ -96,6 +98,7 @@ abstract class RepositoryModule {
     @Binds abstract fun bindSettingsRepository(impl: SettingsRepositoryImpl): SettingsRepository
     @Binds abstract fun bindTimerStateRepository(impl: TimerStateRepositoryImpl): TimerStateRepository
     @Binds abstract fun bindSubscriptionRepository(impl: SubscriptionRepositoryImpl): SubscriptionRepository
+    @Binds abstract fun bindRewardRepository(impl: RewardRepositoryImpl): RewardRepository
     @Binds abstract fun bindTimeProvider(impl: SystemTimeProvider): TimeProvider
     @Binds abstract fun bindCelebrationQueue(impl: InMemoryCelebrationQueue): CelebrationQueue
 }

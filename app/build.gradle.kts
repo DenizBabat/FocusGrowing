@@ -65,6 +65,19 @@ android {
             // See docs/billing/BILLING_SETUP.md for testing real purchases.
             buildConfigField("boolean", "FAKE_BILLING", "true")
         }
+        // Real Google Play Billing while developing: same package name as the Play listing, debuggable,
+        // runs straight from Android Studio (Build Variants → playTest) on a phone signed in with a
+        // license-tester account. See docs/billing/BILLING_SETUP.md.
+        create("playTest") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ""
+            versionNameSuffix = "-playtest"
+            matchingFallbacks += listOf("debug")
+            buildConfigField("boolean", "FAKE_BILLING", "false")
+            if (keystorePropertiesFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
+            }
+        }
     }
 
     compileOptions {
@@ -118,6 +131,9 @@ dependencies {
 
     implementation(libs.coil.compose)
     implementation(libs.billing)
+    // Ads (AdMob) + the consent form required in the EEA/UK. See docs/ads/ADS_SETUP.md.
+    implementation(libs.play.services.ads)
+    implementation(libs.user.messaging.platform)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.android)
 

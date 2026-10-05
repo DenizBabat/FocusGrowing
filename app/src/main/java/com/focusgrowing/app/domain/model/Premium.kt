@@ -12,7 +12,8 @@ enum class PremiumFeature {
     STATISTICS_EXPORT,
 }
 
-enum class BillingPeriod { MONTHLY, YEARLY, OTHER }
+/** LIFETIME is a one-time purchase (no renewal); the others are subscriptions. */
+enum class BillingPeriod { MONTHLY, YEARLY, LIFETIME, OTHER }
 
 /** An ISO-8601 period as used by Google Play ("P1M", "P1Y", "P7D", "P1W"). */
 data class IsoPeriod(val years: Int = 0, val months: Int = 0, val weeks: Int = 0, val days: Int = 0) {
@@ -51,6 +52,22 @@ data class PremiumOffer(
     val id: String get() = "$productId:$basePlanId:${offerId.orEmpty()}"
 }
 
+/** The subscription the user currently owns, as reported by Google Play. */
+data class ActiveSubscription(
+    val productId: String,
+    val period: BillingPeriod,
+    /** False when the user cancelled: Premium stays active until the paid period ends, then stops. */
+    val isAutoRenewing: Boolean,
+)
+
+/** How Google Play applies a switch between plans. */
+enum class PlanChangeMode {
+    /** Switch now and charge the new plan's full price; unused time of the old plan is credited as extra days. */
+    IMMEDIATE,
+    /** Keep the current plan until the paid period ends, then start the new plan. */
+    AT_NEXT_RENEWAL,
+}
+
 /** Loading state of the store connection / product catalogue. */
 sealed interface BillingState {
     data object Loading : BillingState
@@ -62,6 +79,8 @@ sealed interface PurchaseResult {
     data object Success : PurchaseResult
     /** Payment accepted by Play but not finished yet (e.g. cash / bank transfer). */
     data object Pending : PurchaseResult
+    /** A plan change was accepted and takes effect when the current period ends. */
+    data object ChangeScheduled : PurchaseResult
     data object Cancelled : PurchaseResult
     data class Failure(val message: String) : PurchaseResult
 }
