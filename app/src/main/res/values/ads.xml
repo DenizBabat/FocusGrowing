@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        AdMob APP ID (the one with a "~"). This is Google's public TEST app ID.
+        Replace it with your own from AdMob → Apps → App settings before publishing.
+        Ad UNIT IDs (with a "/") live in core/ads/AdsConfig.kt. See docs/ads/ADS_SETUP.md.
+    -->
+    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="ad_badge">Ad</string>
+</resources>
