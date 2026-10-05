@@ -80,7 +80,7 @@
     <string name="scene_minimal_waves">잔잔한 물결</string>
     <string name="scene_deep_dark">깊은 어둠</string>
 
-    <string name="onboarding_tagline">미션\n월드\n인텔리전스</string>
+    <string name="onboarding_tagline">미션\n월드\n인사이트</string>
     <string name="onboarding_subtitle">미션에 집중하고,\n나만의 월드를 키워 보세요.</string>
     <string name="onboarding_get_started">시작하기</string>
     <string name="onboarding_next">다음</string>
@@ -90,8 +90,8 @@
     <string name="onboarding_mission_text">할 일을 만들고, 목표를 정하고, 바로 실행해 보세요.</string>
     <string name="onboarding_world_title">월드</string>
     <string name="onboarding_world_text">집중 세션을 완료하며 나만의 월드를 키워 보세요.</string>
-    <string name="onboarding_intelligence_title">인텔리전스</string>
-    <string name="onboarding_intelligence_text">내 습관을 발견하고, 인사이트를 얻고, 더 나은 내가 되어 보세요.</string>
+    <string name="onboarding_intelligence_title">인사이트</string>
+    <string name="onboarding_intelligence_text">내 집중 습관을 분석하고, 인사이트를 얻어 목표를 달성해 보세요.</string>
     <string name="onboarding_change_later">설정에서 언제든지 바꿀 수 있어요.</string>
     <string name="onboarding_focus_length_title">보통 얼마나 오래 집중하세요?</string>
     <string name="onboarding_minutes_option">%1$d분</string>

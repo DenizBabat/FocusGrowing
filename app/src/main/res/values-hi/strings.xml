@@ -81,7 +81,7 @@
     <string name="scene_minimal_waves">शांत लहरें</string>
     <string name="scene_deep_dark">गहरा अँधेरा</string>
 
-    <string name="onboarding_tagline">मिशन\nदुनिया\nइंटेलिजेंस</string>
+    <string name="onboarding_tagline">मिशन\nदुनिया\nइनसाइट्स</string>
     <string name="onboarding_subtitle">अपने मिशन पर फ़ोकस करें।\nअपनी दुनिया बढ़ाएँ।</string>
     <string name="onboarding_get_started">शुरू करें</string>
     <string name="onboarding_next">आगे</string>
@@ -91,8 +91,8 @@
     <string name="onboarding_mission_text">अपने काम जोड़ें, लक्ष्य तय करें और शुरुआत करें।</string>
     <string name="onboarding_world_title">दुनिया</string>
     <string name="onboarding_world_text">फ़ोकस सेशन पूरे करें और अपनी दुनिया को बढ़ते देखें।</string>
-    <string name="onboarding_intelligence_title">इंटेलिजेंस</string>
-    <string name="onboarding_intelligence_text">अपनी आदतें पहचानें, इनसाइट्स पाएँ और खुद को बेहतर बनाएँ।</string>
+    <string name="onboarding_intelligence_title">इनसाइट्स</string>
+    <string name="onboarding_intelligence_text">अपनी फ़ोकस आदतों को समझें, इनसाइट्स पाएँ और अपने लक्ष्य पूरे करें।</string>
     <string name="onboarding_change_later">आप इसे सेटिंग्स में कभी भी बदल सकते हैं।</string>
     <string name="onboarding_focus_length_title">आप आमतौर पर कितनी देर फ़ोकस करते हैं?</string>
     <string name="onboarding_minutes_option">%1$d मिनट</string>

@@ -82,7 +82,7 @@
     <string name="scene_minimal_waves">Olas tranquilas</string>
     <string name="scene_deep_dark">Oscuridad profunda</string>
 
-    <string name="onboarding_tagline">Misión\nMundo\nInteligencia</string>
+    <string name="onboarding_tagline">Misión\nMundo\nAnálisis</string>
     <string name="onboarding_subtitle">Concéntrate en tus misiones.\nHaz crecer tu mundo.</string>
     <string name="onboarding_get_started">Empezar</string>
     <string name="onboarding_next">Siguiente</string>
@@ -92,8 +92,8 @@
     <string name="onboarding_mission_text">Crea tus tareas, fija tus objetivos y pasa a la acción.</string>
     <string name="onboarding_world_title">Mundo</string>
     <string name="onboarding_world_text">Completa sesiones de enfoque y haz crecer tu mundo personal.</string>
-    <string name="onboarding_intelligence_title">Inteligencia</string>
-    <string name="onboarding_intelligence_text">Descubre tus hábitos, recibe consejos y conviértete en tu mejor versión.</string>
+    <string name="onboarding_intelligence_title">Análisis</string>
+    <string name="onboarding_intelligence_text">Descubre tus hábitos, recibe datos sobre tu concentración y alcanza tus metas.</string>
     <string name="onboarding_change_later">Puedes cambiarlo cuando quieras en Ajustes.</string>
     <string name="onboarding_focus_length_title">¿Cuánto tiempo sueles concentrarte?</string>
     <string name="onboarding_minutes_option">%1$d minutos</string>

@@ -14,7 +14,7 @@
     <string name="common_back">Geri</string>
     <string name="common_close">Kapat</string>
     <string name="common_done">Bitti</string>
-    <string name="common_premium">Premium</string>
+    <string name="common_premium">Premium Üyelik</string>
     <string name="common_locked">Kilitli</string>
     <string name="common_unlock_premium">Premium’u aç</string>
     <string name="common_minutes_short">%1$d dk</string>
@@ -81,18 +81,18 @@
     <string name="scene_minimal_waves">Sakin Dalgalar</string>
     <string name="scene_deep_dark">Derin Karanlık</string>
 
-    <string name="onboarding_tagline">Görev\nDünya\nZekâ</string>
-    <string name="onboarding_subtitle">Görevlerine odaklan.\nDünyanı büyüt.</string>
+    <string name="onboarding_tagline">Görev\nDünya\nİçgörü</string>
+    <string name="onboarding_subtitle">Görevlerine odaklan.\nKendi dünyanı büyüt.</string>
     <string name="onboarding_get_started">Başla</string>
     <string name="onboarding_next">İleri</string>
     <string name="onboarding_skip">Geç</string>
     <string name="onboarding_step_number">%1$d.</string>
-    <string name="onboarding_mission_title">Görev</string>
+    <string name="onboarding_mission_title">Görevler</string>
     <string name="onboarding_mission_text">Görevlerini oluştur, hedeflerini belirle ve harekete geç.</string>
     <string name="onboarding_world_title">Dünya</string>
-    <string name="onboarding_world_text">Odak seanslarını tamamla, kendi dünyanı büyüt.</string>
-    <string name="onboarding_intelligence_title">Zekâ</string>
-    <string name="onboarding_intelligence_text">Alışkanlıklarını keşfet, içgörüler edin, daha iyi bir sen ol.</string>
+    <string name="onboarding_world_text">Odak seanslarını tamamladıkça kendi dünyanı büyüt ve yeni ögeler keşfet.</string>
+    <string name="onboarding_intelligence_title">İçgörüler</string>
+    <string name="onboarding_intelligence_text">Odaklanma alışkanlıklarını analiz et, verimliliğini artır ve hedeflerine ulaş.</string>
     <string name="onboarding_change_later">Bunu istediğin zaman Ayarlar’dan değiştirebilirsin.</string>
     <string name="onboarding_focus_length_title">Genellikle ne kadar süre odaklanırsın?</string>
     <string name="onboarding_minutes_option">%1$d dakika</string>
@@ -389,10 +389,10 @@
     <string name="profile_add_name">Adını ekle</string>
     <string name="profile_edit_name">Adı düzenle</string>
     <string name="profile_name_dialog_title">Adın</string>
-    <string name="profile_rank_seedling">Fidan • Yola yeni çıktı</string>
-    <string name="profile_rank_explorer">Kâşif • Odaklı • Büyüyor</string>
-    <string name="profile_rank_builder">Mimar • Odaklı • Büyüyor</string>
-    <string name="profile_rank_master">Usta • Odaklı • Serpiliyor</string>
+    <string name="profile_rank_seedling">Filiz • Yolun başındasın</string>
+    <string name="profile_rank_explorer">Kaşif • İstikrarlı</string>
+    <string name="profile_rank_builder">Mimar • Kararlı</string>
+    <string name="profile_rank_master">Usta • Odak Üstadı</string>
     <string name="profile_world_level">Dünya Seviyesi</string>
     <string name="profile_xp_progress">%1$d / %2$d XP</string>
     <string name="profile_premium_active">Etkin — teşekkürler!</string>
@@ -427,7 +427,7 @@
     <string name="focus_a11y_options">Odak ekranı seçenekleri</string>
 
     <string name="focus_background_unavailable">Arka plan görselin artık kullanılamıyor.</string>
-    <string name="focus_free_focus">Serbest odak</string>
+    <string name="focus_free_focus">Serbest odaklanma</string>
     <string name="focus_background">Arka plan</string>
 
     <string name="focus_quote_1">Odaklan, başarabilirsin!</string>
@@ -436,7 +436,7 @@
     <string name="focus_quote_4">Derin çalışma, sakin zihin.</string>
     <string name="focus_quote_5">Dünyanı büyütüyorsun.</string>
 
-    <string name="focus_label_focus">Odak</string>
+    <string name="focus_label_focus">Odaklan</string>
     <string name="focus_label_short_break">Kısa Mola</string>
     <string name="focus_label_long_break">Uzun Mola</string>
     <string name="focus_label_paused">Duraklatıldı</string>
@@ -444,7 +444,7 @@
     <string name="focus_label_break_over">Mola bitti</string>
     <string name="focus_a11y_time_remaining">%1$s, kalan süre %2$s</string>
 
-    <string name="focus_a11y_start">Odağı başlat</string>
+    <string name="focus_a11y_start">Odaklanmayı başlat</string>
     <string name="focus_a11y_pause">Duraklat</string>
     <string name="focus_a11y_resume">Devam et</string>
     <string name="focus_a11y_stop_session">Seansı durdur</string>
@@ -454,7 +454,7 @@
     <string name="focus_start_break">Molayı başlat · %1$d dk</string>
     <string name="focus_start_long_break">Uzun molayı başlat · %1$d dk</string>
     <string name="focus_skip_break">Molayı atla</string>
-    <string name="focus_start_next_focus">Sıradaki odağı başlat</string>
+    <string name="focus_start_next_focus">Sıradaki odaklanmayı başlat</string>
     <string name="focus_done_for_now">Şimdilik yeter</string>
 
     <string name="focus_finish_dialog_title">Şimdi bitirilsin mi?</string>
@@ -476,7 +476,7 @@
     <string name="focus_option_custom_motivation_locked">Özel motivasyon metni</string>
 
     <string name="focus_picker_title">Neye odaklanıyorsun?</string>
-    <string name="focus_picker_free_focus">Serbest odak (görev yok)</string>
+    <string name="focus_picker_free_focus">Serbest odaklanma (görev yok)</string>
     <string name="focus_a11y_selected">Seçili</string>
 
     <string name="notif_title_focusing">Odaklanıyorsun</string>
@@ -500,7 +500,7 @@
 
     <string name="nav_home">Ana Sayfa</string>
     <string name="nav_missions">Görevler</string>
-    <string name="nav_focus">Odak</string>
+    <string name="nav_focus">Odaklan</string>
     <string name="nav_stats">İstatistik</string>
     <string name="nav_profile">Profil</string>
 
@@ -530,9 +530,9 @@
     <string name="home_create_first_mission">İlk görevini oluştur</string>
     <string name="home_create_first_mission_hint">Odağına bir hedef ver.</string>
 
-    <string name="home_focus_return">Odağa Dön</string>
-    <string name="home_focus_resume">Odağa Devam Et</string>
-    <string name="home_focus_start">Odağı Başlat</string>
+    <string name="home_focus_return">Odaklanmaya Dön</string>
+    <string name="home_focus_resume">Odaklanmaya Devam Et</string>
+    <string name="home_focus_start">Odaklanmayı Başlat</string>
     <string name="home_focus_without_mission">Görev seçmeden odaklan</string>
 
     <string name="celebration_focus_title">Harika İş!</string>
@@ -618,7 +618,7 @@
     <string name="mission_detail_completed_on">Tamamlanma tarihi: %1$s</string>
     <string name="mission_detail_reopen_mission">Görevi yeniden aç</string>
     <string name="mission_detail_estimate_reached">Tahmine ulaşıldı — kalan adımları bitir ya da görevi tamamlandı olarak işaretle.</string>
-    <string name="mission_detail_start_focus">Odağı Başlat</string>
+    <string name="mission_detail_start_focus">Odaklanmayı Başlat</string>
     <string name="mission_detail_created">Oluşturulma</string>
     <string name="mission_detail_status">Durum</string>
     <string name="mission_status_todo">Yapılacak</string>

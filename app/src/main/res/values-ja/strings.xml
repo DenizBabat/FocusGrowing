@@ -80,7 +80,7 @@
     <string name="scene_minimal_waves">穏やかな波</string>
     <string name="scene_deep_dark">ディープダーク</string>
 
-    <string name="onboarding_tagline">ミッション\nワールド\nインテリジェンス</string>
+    <string name="onboarding_tagline">ミッション\nワールド\n分析</string>
     <string name="onboarding_subtitle">ミッションに集中して、\nワールドを育てましょう。</string>
     <string name="onboarding_get_started">はじめる</string>
     <string name="onboarding_next">次へ</string>
@@ -90,8 +90,8 @@
     <string name="onboarding_mission_text">タスクを作り、目標を決めて、行動に移しましょう。</string>
     <string name="onboarding_world_title">ワールド</string>
     <string name="onboarding_world_text">フォーカスセッションを完了して、自分だけのワールドを育てましょう。</string>
-    <string name="onboarding_intelligence_title">インテリジェンス</string>
-    <string name="onboarding_intelligence_text">自分の習慣を知り、インサイトを得て、もっと良い自分になりましょう。</string>
+    <string name="onboarding_intelligence_title">分析とインサイト</string>
+    <string name="onboarding_intelligence_text">自分の集中習慣を知り、インサイトを活用して目標を達成しましょう。</string>
     <string name="onboarding_change_later">この設定は、あとからいつでも「設定」で変更できます。</string>
     <string name="onboarding_focus_length_title">ふだんはどのくらい集中しますか？</string>
     <string name="onboarding_minutes_option">%1$d分</string>

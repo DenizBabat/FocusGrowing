@@ -104,7 +104,7 @@
 
     <!-- Onboarding (first launch) -->
     <!-- Three lines: the app's three ideas. Keep the line breaks. -->
-    <string name="onboarding_tagline">Mission\nWorld\nIntelligence</string>
+    <string name="onboarding_tagline">Missions\nWorld\nInsights</string>
     <string name="onboarding_subtitle">Focus on your missions.\nGrow your world.</string>
     <string name="onboarding_get_started">Get Started</string>
     <string name="onboarding_next">Next</string>
@@ -115,8 +115,8 @@
     <string name="onboarding_mission_text">Create your tasks, set your goals and take action.</string>
     <string name="onboarding_world_title">World</string>
     <string name="onboarding_world_text">Complete focus sessions, grow your personal world.</string>
-    <string name="onboarding_intelligence_title">Intelligence</string>
-    <string name="onboarding_intelligence_text">Discover your habits, get insights, become a better you.</string>
+    <string name="onboarding_intelligence_title">Insights</string>
+    <string name="onboarding_intelligence_text">Discover your habits, gain personal insights, and accomplish your goals.</string>
     <string name="onboarding_change_later">You can change this any time in Settings.</string>
     <string name="onboarding_focus_length_title">How long do you usually focus?</string>
     <string name="onboarding_minutes_option">%1$d minutes</string>

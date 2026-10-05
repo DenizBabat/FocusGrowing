@@ -82,7 +82,7 @@
     <string name="scene_minimal_waves">Ondas Calmas</string>
     <string name="scene_deep_dark">Escuro Profundo</string>
 
-    <string name="onboarding_tagline">Missão\nMundo\nInteligência</string>
+    <string name="onboarding_tagline">Missão\nMundo\nInsights</string>
     <string name="onboarding_subtitle">Foque nas suas missões.\nFaça seu mundo crescer.</string>
     <string name="onboarding_get_started">Começar</string>
     <string name="onboarding_next">Avançar</string>
@@ -92,8 +92,8 @@
     <string name="onboarding_mission_text">Crie suas tarefas, defina suas metas e entre em ação.</string>
     <string name="onboarding_world_title">Mundo</string>
     <string name="onboarding_world_text">Conclua sessões de foco e faça seu mundo crescer.</string>
-    <string name="onboarding_intelligence_title">Inteligência</string>
-    <string name="onboarding_intelligence_text">Descubra seus hábitos, receba insights e evolua a cada dia.</string>
+    <string name="onboarding_intelligence_title">Insights</string>
+    <string name="onboarding_intelligence_text">Descubra seus hábitos, receba análises do seu foco e alcance suas metas.</string>
     <string name="onboarding_change_later">Você pode mudar isso quando quiser nas Configurações.</string>
     <string name="onboarding_focus_length_title">Por quanto tempo você costuma focar?</string>
     <string name="onboarding_minutes_option">%1$d minutos</string>
