@@ -6,6 +6,7 @@ import com.focusgrowing.app.domain.model.Celebration
 import com.focusgrowing.app.domain.model.NotificationType
 import com.focusgrowing.app.domain.repository.NotificationRepository
 import com.focusgrowing.app.domain.repository.WorldRepository
+import com.focusgrowing.app.domain.repository.DomainStrings
 import javax.inject.Inject
 
 data class XpAward(val amount: Int, val newTotal: Int, val levelBefore: Int, val levelAfter: Int) {
@@ -16,6 +17,7 @@ data class XpAward(val amount: Int, val newTotal: Int, val levelBefore: Int, val
 class XpAwarder @Inject constructor(
     private val world: WorldRepository,
     private val notifications: NotificationRepository,
+    private val strings: DomainStrings,
 ) {
     suspend fun award(amount: Int, now: Long): Pair<XpAward, Celebration.WorldLevelUp?> {
         val before = WorldProgression.levelFor(world.getTotalXp())
@@ -29,10 +31,9 @@ class XpAwarder @Inject constructor(
         notifications.add(
             AppNotification(
                 type = NotificationType.WORLD,
-                title = "World Level Up!",
-                message = "Your world has reached Level $after!",
-                detail = if (unlocked.isEmpty()) null
-                else "New elements unlocked: " + unlocked.joinToString { it.displayName },
+                title = strings.levelUpTitle(),
+                message = strings.levelUpMessage(after),
+                detail = if (unlocked.isEmpty()) null else strings.levelUpUnlocked(unlocked),
                 createdAt = now,
             ),
         )

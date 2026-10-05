@@ -44,10 +44,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.ads.SessionEndAdCard
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusCard
@@ -112,7 +115,7 @@ fun CelebrationScreen(
                 Row(Modifier.fillMaxWidth()) {
                     Spacer(Modifier.weight(1f))
                     IconButton(onClick = viewModel::dismiss) {
-                        Icon(Icons.Rounded.Close, contentDescription = "Close", tint = FocusTheme.colors.onSurfaceVariant)
+                        Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.common_close), tint = FocusTheme.colors.onSurfaceVariant)
                     }
                 }
                 when (item) {
@@ -189,15 +192,15 @@ private fun FocusCompletedContent(
 ) {
     val colors = FocusTheme.colors
     MedalHero(Icons.Rounded.Star, colors.xp)
-    Headline("Great Job!", body = "You completed your focus session.")
+    Headline(stringResource(R.string.celebration_focus_title), body = stringResource(R.string.celebration_focus_body))
     Spacer(Modifier.height(FocusTheme.spacing.xl))
     StatsCard {
-        RewardStat(Icons.Rounded.AccessTime, "%d:00".format(item.focusMinutes), "Focus Time", colors.info, colors.infoContainer, Modifier.weight(1f))
+        RewardStat(Icons.Rounded.AccessTime, "%d:00".format(item.focusMinutes), stringResource(R.string.celebration_stat_focus_time), colors.info, colors.infoContainer, Modifier.weight(1f))
         StatDivider()
-        RewardStat(Icons.Rounded.Eco, "+${item.xpEarned} XP", "World XP", colors.success, colors.primaryContainer, Modifier.weight(1f))
+        RewardStat(Icons.Rounded.Eco, stringResource(R.string.celebration_xp_earned, item.xpEarned), stringResource(R.string.celebration_stat_world_xp), colors.success, colors.primaryContainer, Modifier.weight(1f))
         if (item.missionProgressDelta > 0) {
             StatDivider()
-            RewardStat(Icons.AutoMirrored.Rounded.TrendingUp, "+${item.missionProgressDelta}", "Progress", colors.accentPurple, colors.accentPurpleContainer, Modifier.weight(1f))
+            RewardStat(Icons.AutoMirrored.Rounded.TrendingUp, "+${item.missionProgressDelta}", stringResource(R.string.celebration_stat_progress), colors.accentPurple, colors.accentPurpleContainer, Modifier.weight(1f))
         }
     }
     // The only ad placement in the session flow: after the session, under the rewards. Never for Premium.
@@ -207,9 +210,9 @@ private fun FocusCompletedContent(
         SessionEndAdCard(ad)
     }
     Spacer(Modifier.height(FocusTheme.spacing.xl))
-    FocusButton("Continue", onClick = onContinue, modifier = Modifier.fillMaxWidth())
+    FocusButton(stringResource(R.string.common_continue), onClick = onContinue, modifier = Modifier.fillMaxWidth())
     if (ad != null) {
-        FocusTextButton("Remove ads with Premium", onClick = onRemoveAds)
+        FocusTextButton(stringResource(R.string.celebration_remove_ads), onClick = onRemoveAds)
     }
 }
 
@@ -217,20 +220,24 @@ private fun FocusCompletedContent(
 private fun MissionCompletedContent(item: Celebration.MissionCompleted, onViewMission: () -> Unit, onContinue: () -> Unit) {
     val colors = FocusTheme.colors
     MedalHero(Icons.Rounded.Star, colors.xp)
-    Headline("Mission Completed!", subtitle = "“${item.title}”", body = "Great job! You completed your mission and earned rewards.")
+    Headline(
+        stringResource(R.string.celebration_mission_completed_title),
+        subtitle = stringResource(R.string.format_quoted, item.title),
+        body = stringResource(R.string.celebration_mission_completed_body),
+    )
     Spacer(Modifier.height(FocusTheme.spacing.xl))
     StatsCard {
-        RewardStat(Icons.Rounded.Eco, "+${item.xpEarned} XP", "World XP", colors.success, colors.primaryContainer, Modifier.weight(1f))
+        RewardStat(Icons.Rounded.Eco, stringResource(R.string.celebration_xp_earned, item.xpEarned), stringResource(R.string.celebration_stat_world_xp), colors.success, colors.primaryContainer, Modifier.weight(1f))
         StatDivider()
-        RewardStat(Icons.AutoMirrored.Rounded.TrendingUp, "${item.pomodoros}", "Pomodoros", colors.info, colors.infoContainer, Modifier.weight(1f))
+        RewardStat(Icons.AutoMirrored.Rounded.TrendingUp, "${item.pomodoros}", pluralStringResource(R.plurals.celebration_stat_pomodoros, item.pomodoros), colors.info, colors.infoContainer, Modifier.weight(1f))
         if (item.focusMinutes > 0) {
             StatDivider()
-            RewardStat(Icons.Rounded.Schedule, "+${item.focusMinutes} min", "Focus Time", colors.accentPurple, colors.accentPurpleContainer, Modifier.weight(1f))
+            RewardStat(Icons.Rounded.Schedule, stringResource(R.string.celebration_minutes_earned, item.focusMinutes), stringResource(R.string.celebration_stat_focus_time), colors.accentPurple, colors.accentPurpleContainer, Modifier.weight(1f))
         }
     }
     Spacer(Modifier.height(FocusTheme.spacing.xl))
-    FocusButton("View Mission", onClick = onViewMission, modifier = Modifier.fillMaxWidth())
-    FocusTextButton("Continue", onClick = onContinue)
+    FocusButton(stringResource(R.string.celebration_view_mission), onClick = onViewMission, modifier = Modifier.fillMaxWidth())
+    FocusTextButton(stringResource(R.string.common_continue), onClick = onContinue)
     ForestFooter(Modifier.fillMaxWidth().height(110.dp))
 }
 
@@ -242,9 +249,9 @@ private fun StreakContent(item: Celebration.StreakContinued, onContinue: () -> U
         MedalBadge(Icons.Rounded.LocalFireDepartment, colors.streak, size = 150.dp, modifier = Modifier.align(Alignment.TopCenter))
     }
     Headline(
-        "Streak Continues!",
-        subtitle = "You’re on a ${item.days} day streak!",
-        body = "Your focus and consistency are building a better you.",
+        stringResource(R.string.celebration_streak_title),
+        subtitle = pluralStringResource(R.plurals.celebration_streak_subtitle, item.days, item.days),
+        body = stringResource(R.string.celebration_streak_body),
     )
     Spacer(Modifier.height(FocusTheme.spacing.xl))
     FocusCard(modifier = Modifier.fillMaxWidth()) {
@@ -268,10 +275,10 @@ private fun StreakContent(item: Celebration.StreakContinued, onContinue: () -> U
         }
     }
     Spacer(Modifier.height(FocusTheme.spacing.xl))
-    FocusButton("Keep Going", onClick = onContinue, modifier = Modifier.fillMaxWidth())
+    FocusButton(stringResource(R.string.celebration_keep_going), onClick = onContinue, modifier = Modifier.fillMaxWidth())
     Spacer(Modifier.height(FocusTheme.spacing.lg))
     Text(
-        "“Discipline is the bridge between goals and achievement.”",
+        stringResource(R.string.format_quoted, stringResource(R.string.celebration_streak_quote)),
         style = FocusTheme.extraTypography.quote,
         color = colors.onSurfaceVariant,
         textAlign = TextAlign.Center,
@@ -285,19 +292,19 @@ private fun LevelUpContent(item: Celebration.WorldLevelUp, onExplore: () -> Unit
         items = WorldProgression.unlockedItems(item.level, isPremium = true).filterNot { it.isPremium && it !in item.unlocked }.toSet(),
         modifier = Modifier.fillMaxWidth().aspectRatio(1.3f).padding(horizontal = FocusTheme.spacing.xl),
     )
-    Headline("World Level Up!", subtitle = "Your world has reached Level ${item.level}!")
+    Headline(stringResource(R.string.celebration_level_up_title), subtitle = stringResource(R.string.celebration_level_up_subtitle, item.level))
     Spacer(Modifier.height(FocusTheme.spacing.lg))
     FocusCard(modifier = Modifier.fillMaxWidth()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             MedalBadge(Icons.Rounded.Star, colors.xp, size = 56.dp)
             Spacer(Modifier.width(FocusTheme.spacing.md))
             Column(Modifier.weight(1f)) {
-                Text("Level ${item.level}", style = FocusTheme.typography.titleMedium, color = colors.onSurface)
+                Text(stringResource(R.string.celebration_level, item.level), style = FocusTheme.typography.titleMedium, color = colors.onSurface)
                 Spacer(Modifier.height(6.dp))
                 FocusProgressBar(item.xpIntoLevel.toFloat() / item.xpForNextLevel.coerceAtLeast(1))
                 Spacer(Modifier.height(4.dp))
                 Text(
-                    "${item.xpIntoLevel} / ${item.xpForNextLevel} XP",
+                    stringResource(R.string.celebration_xp_progress, item.xpIntoLevel, item.xpForNextLevel),
                     style = FocusTheme.typography.labelSmall,
                     color = colors.onSurfaceVariant,
                     modifier = Modifier.align(Alignment.End),
@@ -308,7 +315,7 @@ private fun LevelUpContent(item: Celebration.WorldLevelUp, onExplore: () -> Unit
     if (item.unlocked.isNotEmpty()) {
         Spacer(Modifier.height(FocusTheme.spacing.lg))
         Text(
-            "New elements unlocked:",
+            stringResource(R.string.celebration_unlocked_title),
             style = FocusTheme.typography.titleSmall,
             color = colors.onBackground,
             modifier = Modifier.fillMaxWidth(),
@@ -319,9 +326,9 @@ private fun LevelUpContent(item: Celebration.WorldLevelUp, onExplore: () -> Unit
         }
     }
     Spacer(Modifier.height(FocusTheme.spacing.xl))
-    FocusButton("Explore Your World", onClick = onExplore, modifier = Modifier.fillMaxWidth())
+    FocusButton(stringResource(R.string.celebration_explore_world), onClick = onExplore, modifier = Modifier.fillMaxWidth())
     Spacer(Modifier.height(FocusTheme.spacing.md))
-    Text("Your focus builds a more beautiful world.", style = FocusTheme.typography.bodySmall, color = colors.onSurfaceVariant)
+    Text(stringResource(R.string.celebration_level_up_footer), style = FocusTheme.typography.bodySmall, color = colors.onSurfaceVariant)
 }
 
 @Composable
@@ -329,7 +336,7 @@ private fun UnlockTile(item: WorldItemType, modifier: Modifier) {
     FocusCard(modifier = modifier, contentPadding = PaddingValues(FocusTheme.spacing.sm)) {
         WorldIsland(setOf(item), Modifier.fillMaxWidth().aspectRatio(1f))
         Text(
-            item.displayName,
+            item.label(),
             style = FocusTheme.typography.labelSmall,
             color = FocusTheme.colors.onSurfaceVariant,
             textAlign = TextAlign.Center,
@@ -342,19 +349,23 @@ private fun UnlockTile(item: WorldItemType, modifier: Modifier) {
 private fun MissionCreatedContent(item: Celebration.MissionCreated, onViewMission: () -> Unit, onContinue: () -> Unit) {
     val colors = FocusTheme.colors
     ChecklistIllustration(Modifier.fillMaxWidth().height(220.dp))
-    Headline("New Mission Assigned", subtitle = "“${item.title}”", body = "It's time to add a new mission to your list. Keep your momentum going!")
+    Headline(
+        stringResource(R.string.celebration_mission_created_title),
+        subtitle = stringResource(R.string.format_quoted, item.title),
+        body = stringResource(R.string.celebration_mission_created_body),
+    )
     Spacer(Modifier.height(FocusTheme.spacing.xl))
     StatsCard {
-        RewardStat(Icons.Rounded.Schedule, "${item.estimatedPomodoros} Pomodoros", "Estimated", colors.info, colors.infoContainer, Modifier.weight(1f))
+        RewardStat(Icons.Rounded.Schedule, pluralStringResource(R.plurals.celebration_estimated_pomodoros, item.estimatedPomodoros, item.estimatedPomodoros), stringResource(R.string.celebration_stat_estimated), colors.info, colors.infoContainer, Modifier.weight(1f))
         StatDivider()
-        RewardStat(Icons.Rounded.Flag, item.priority.label(), "Priority", colors.streak, colors.streakContainer, Modifier.weight(1f))
+        RewardStat(Icons.Rounded.Flag, item.priority.label(), stringResource(R.string.celebration_stat_priority), colors.streak, colors.streakContainer, Modifier.weight(1f))
         StatDivider()
-        RewardStat(item.category.icon(), item.category.label(), "Category", colors.accentPurple, colors.accentPurpleContainer, Modifier.weight(1f))
+        RewardStat(item.category.icon(), item.category.label(), stringResource(R.string.celebration_stat_category), colors.accentPurple, colors.accentPurpleContainer, Modifier.weight(1f))
     }
     Spacer(Modifier.height(FocusTheme.spacing.xl))
-    FocusButton("View Mission", onClick = onViewMission, modifier = Modifier.fillMaxWidth())
-    FocusTextButton("Continue", onClick = onContinue)
+    FocusButton(stringResource(R.string.celebration_view_mission), onClick = onViewMission, modifier = Modifier.fillMaxWidth())
+    FocusTextButton(stringResource(R.string.common_continue), onClick = onContinue)
     FocusCard(modifier = Modifier.fillMaxWidth(), color = colors.primaryContainer.copy(alpha = 0.5f), border = false) {
-        Text("Small steps every day lead to big results. 🌱", style = FocusTheme.typography.bodyMedium, color = colors.onPrimaryContainer)
+        Text(stringResource(R.string.celebration_mission_created_tip), style = FocusTheme.typography.bodyMedium, color = colors.onPrimaryContainer)
     }
 }

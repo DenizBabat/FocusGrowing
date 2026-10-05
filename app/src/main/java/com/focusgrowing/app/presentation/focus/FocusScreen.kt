@@ -68,6 +68,7 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -77,6 +78,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusButtonStyle
 import com.focusgrowing.app.core.designsystem.component.SettingsToggleRow
@@ -86,6 +88,7 @@ import com.focusgrowing.app.core.image.BackgroundImageView
 import com.focusgrowing.app.domain.model.PremiumFeature
 import com.focusgrowing.app.domain.model.SessionType
 import com.focusgrowing.app.presentation.app.LocalHapticsEnabled
+import com.focusgrowing.app.presentation.common.displayLabel
 import androidx.compose.material.icons.rounded.AccessTime
 import androidx.compose.material.icons.rounded.FormatQuote
 import androidx.compose.material.icons.rounded.Flag
@@ -164,14 +167,14 @@ fun FocusScreen(
         ) {
             Row(Modifier.fillMaxWidth().padding(top = spacing.xs), verticalAlignment = Alignment.CenterVertically) {
                 IconButton(onClick = onBack) {
-                    Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = "Back", tint = colors.onScrim)
+                    Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = stringResource(R.string.common_back), tint = colors.onScrim)
                 }
                 Spacer(Modifier.weight(1f))
                 IconButton(onClick = onOpenBackgrounds) {
-                    Icon(Icons.Rounded.Wallpaper, contentDescription = "Change background", tint = colors.onScrim)
+                    Icon(Icons.Rounded.Wallpaper, contentDescription = stringResource(R.string.focus_a11y_change_background), tint = colors.onScrim)
                 }
                 IconButton(onClick = { showOptions = true }) {
-                    Icon(Icons.Rounded.Tune, contentDescription = "Focus screen options", tint = colors.onScrim)
+                    Icon(Icons.Rounded.Tune, contentDescription = stringResource(R.string.focus_a11y_options), tint = colors.onScrim)
                 }
             }
 
@@ -179,9 +182,11 @@ fun FocusScreen(
                 Text(state.clockText, style = FocusTheme.extraTypography.clock, color = colors.onScrim)
                 Spacer(Modifier.height(spacing.sm))
             }
-            if (state.screen.showMotivation && state.motivation.isNotBlank()) {
+            // The user's own text wins; otherwise one of the built-in (translated) texts.
+            val motivation = state.motivation.ifBlank { state.motivationRes?.let { stringResource(it) }.orEmpty() }
+            if (state.screen.showMotivation && motivation.isNotBlank()) {
                 Text(
-                    state.motivation,
+                    motivation,
                     style = FocusTheme.typography.labelLarge,
                     color = colors.onSurface,
                     modifier = Modifier
@@ -193,7 +198,7 @@ fun FocusScreen(
             if (imageError) {
                 Spacer(Modifier.height(spacing.sm))
                 Text(
-                    "Your background image is no longer available.",
+                    stringResource(R.string.focus_background_unavailable),
                     style = FocusTheme.typography.bodySmall,
                     color = colors.onScrim,
                 )
@@ -204,7 +209,7 @@ fun FocusScreen(
             Spacer(Modifier.height(spacing.lg))
             if (state.screen.showMissionTitle) {
                 Text(
-                    state.mission?.title ?: "Free focus",
+                    state.mission?.title ?: stringResource(R.string.focus_free_focus),
                     style = FocusTheme.typography.titleMedium,
                     color = colors.onScrim,
                     maxLines = 2,
@@ -247,7 +252,7 @@ fun FocusScreen(
             Spacer(Modifier.height(spacing.lg))
             BottomChip(
                 icon = Icons.Rounded.Wallpaper,
-                text = state.background?.name ?: "Background",
+                text = state.background?.displayLabel() ?: stringResource(R.string.focus_background),
                 onClick = onOpenBackgrounds,
             )
             Spacer(Modifier.height(spacing.lg))
@@ -273,19 +278,19 @@ fun FocusScreen(
     if (confirmFinish) {
         AlertDialog(
             onDismissRequest = { confirmFinish = false },
-            title = { Text("Finish now?") },
-            text = { Text("You focused less than half of this session, so it won't count toward your mission or World XP.") },
-            confirmButton = { TextButton(onClick = { confirmFinish = false; viewModel.finish() }) { Text("Finish") } },
-            dismissButton = { TextButton(onClick = { confirmFinish = false }) { Text("Keep going") } },
+            title = { Text(stringResource(R.string.focus_finish_dialog_title)) },
+            text = { Text(stringResource(R.string.focus_finish_dialog_text)) },
+            confirmButton = { TextButton(onClick = { confirmFinish = false; viewModel.finish() }) { Text(stringResource(R.string.focus_finish_dialog_confirm)) } },
+            dismissButton = { TextButton(onClick = { confirmFinish = false }) { Text(stringResource(R.string.focus_keep_going)) } },
         )
     }
     if (confirmCancel) {
         AlertDialog(
             onDismissRequest = { confirmCancel = false },
-            title = { Text("Stop this session?") },
-            text = { Text("The session will be stopped without rewards.") },
-            confirmButton = { TextButton(onClick = { confirmCancel = false; viewModel.cancel() }) { Text("Stop", color = FocusTheme.colors.error) } },
-            dismissButton = { TextButton(onClick = { confirmCancel = false }) { Text("Keep going") } },
+            title = { Text(stringResource(R.string.focus_stop_dialog_title)) },
+            text = { Text(stringResource(R.string.focus_stop_dialog_text)) },
+            confirmButton = { TextButton(onClick = { confirmCancel = false; viewModel.cancel() }) { Text(stringResource(R.string.focus_stop_dialog_confirm), color = FocusTheme.colors.error) } },
+            dismissButton = { TextButton(onClick = { confirmCancel = false }) { Text(stringResource(R.string.focus_keep_going)) } },
         )
     }
 }
@@ -296,19 +301,20 @@ private fun TimerRing(state: FocusUiState) {
     val size = FocusTheme.dimens.timerRing
     val stroke = FocusTheme.dimens.timerStroke
     val label = when {
-        state.isFinished && state.sessionType == SessionType.FOCUS -> "Well done"
-        state.isFinished -> "Break over"
-        state.sessionType == SessionType.SHORT_BREAK -> "Short Break"
-        state.sessionType == SessionType.LONG_BREAK -> "Long Break"
-        state.isPaused -> "Paused"
-        else -> "Focus"
+        state.isFinished && state.sessionType == SessionType.FOCUS -> stringResource(R.string.focus_label_well_done)
+        state.isFinished -> stringResource(R.string.focus_label_break_over)
+        state.sessionType == SessionType.SHORT_BREAK -> stringResource(R.string.focus_label_short_break)
+        state.sessionType == SessionType.LONG_BREAK -> stringResource(R.string.focus_label_long_break)
+        state.isPaused -> stringResource(R.string.focus_label_paused)
+        else -> stringResource(R.string.focus_label_focus)
     }
+    val ringDescription = stringResource(R.string.focus_a11y_time_remaining, label, state.timeText)
     val ringColor = if (state.sessionType.isBreak) colors.info else colors.primaryGradientStart
     Box(
         Modifier
             .size(size)
             .semantics(mergeDescendants = true) {
-                contentDescription = "$label, ${state.timeText} remaining"
+                contentDescription = ringDescription
             },
         contentAlignment = Alignment.Center,
     ) {
@@ -373,10 +379,15 @@ private fun SessionDots(done: Int, total: Int) {
 @Composable
 private fun ControlsRow(state: FocusUiState, onPrimary: () -> Unit, onLeft: () -> Unit, onRight: () -> Unit) {
     val colors = FocusTheme.colors
+    val primaryDescription = when {
+        state.isRunning -> stringResource(R.string.focus_a11y_pause)
+        state.isPaused -> stringResource(R.string.focus_a11y_resume)
+        else -> stringResource(R.string.focus_a11y_start)
+    }
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(28.dp)) {
         GlassButton(
             icon = if (state.isActive) Icons.Rounded.Close else Icons.Rounded.Checklist,
-            description = if (state.isActive) "Stop session" else "Choose mission",
+            description = if (state.isActive) stringResource(R.string.focus_a11y_stop_session) else stringResource(R.string.focus_a11y_choose_mission),
             onClick = onLeft,
         )
         Box(
@@ -386,7 +397,7 @@ private fun ControlsRow(state: FocusUiState, onPrimary: () -> Unit, onLeft: () -
                 .background(Brush.linearGradient(listOf(colors.primaryGradientStart, colors.primaryGradientEnd)))
                 .border(3.dp, colors.onScrim.copy(alpha = 0.6f), CircleShape)
                 .clickable(role = Role.Button, onClick = onPrimary)
-                .semantics { contentDescription = if (state.isRunning) "Pause" else if (state.isPaused) "Resume" else "Start focus" },
+                .semantics { contentDescription = primaryDescription },
             contentAlignment = Alignment.Center,
         ) {
             Icon(
@@ -398,7 +409,7 @@ private fun ControlsRow(state: FocusUiState, onPrimary: () -> Unit, onLeft: () -
         }
         GlassButton(
             icon = if (state.isActive) Icons.Rounded.Check else Icons.Rounded.Wallpaper,
-            description = if (state.isActive) "Finish session" else "Background",
+            description = if (state.isActive) stringResource(R.string.focus_a11y_finish_session) else stringResource(R.string.focus_background),
             onClick = onRight,
         )
     }
@@ -426,14 +437,17 @@ private fun FinishedActions(state: FocusUiState, onStartBreak: () -> Unit, onNex
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         if (state.sessionType == SessionType.FOCUS) {
             val minutes = state.pomodoro.minutesFor(state.nextBreak)
-            val label = if (state.nextBreak == SessionType.LONG_BREAK) "Start long break · $minutes min" else "Start break · $minutes min"
+            val label = stringResource(
+                if (state.nextBreak == SessionType.LONG_BREAK) R.string.focus_start_long_break else R.string.focus_start_break,
+                minutes,
+            )
             FocusButton(label, onClick = onStartBreak, leadingIcon = Icons.Rounded.PlayArrow, modifier = Modifier.fillMaxWidth())
             Spacer(Modifier.height(FocusTheme.spacing.sm))
-            FocusButton("Skip break", onClick = onNextFocus, style = FocusButtonStyle.Soft, leadingIcon = Icons.Rounded.SkipNext, modifier = Modifier.fillMaxWidth())
+            FocusButton(stringResource(R.string.focus_skip_break), onClick = onNextFocus, style = FocusButtonStyle.Soft, leadingIcon = Icons.Rounded.SkipNext, modifier = Modifier.fillMaxWidth())
         } else {
-            FocusButton("Start next focus", onClick = onNextFocus, leadingIcon = Icons.Rounded.PlayArrow, modifier = Modifier.fillMaxWidth())
+            FocusButton(stringResource(R.string.focus_start_next_focus), onClick = onNextFocus, leadingIcon = Icons.Rounded.PlayArrow, modifier = Modifier.fillMaxWidth())
         }
-        TextButton(onClick = onDone) { Text("Done for now", color = FocusTheme.colors.onScrim) }
+        TextButton(onClick = onDone) { Text(stringResource(R.string.focus_done_for_now), color = FocusTheme.colors.onScrim) }
     }
 }
 
@@ -471,46 +485,46 @@ private fun FocusOptionsSheet(
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = sheetState, containerColor = colors.surface) {
         Column(Modifier.verticalScroll(rememberScrollState()).padding(bottom = FocusTheme.spacing.xl)) {
             Text(
-                "Focus screen",
+                stringResource(R.string.focus_options_title),
                 style = FocusTheme.typography.titleLarge,
                 color = colors.onSurface,
                 modifier = Modifier.padding(horizontal = FocusTheme.spacing.lg),
             )
-            SettingsToggleRow(Icons.Rounded.AccessTime, "Show clock", screen.showClock, { v -> onChange { it.copy(showClock = v) } })
-            SettingsToggleRow(Icons.Rounded.FormatQuote, "Motivational text", screen.showMotivation, { v -> onChange { it.copy(showMotivation = v) } })
-            SettingsToggleRow(Icons.Rounded.Flag, "Mission title", screen.showMissionTitle, { v -> onChange { it.copy(showMissionTitle = v) } })
-            SettingsToggleRow(Icons.Rounded.MoreHoriz, "Session progress dots", screen.showSessionDots, { v -> onChange { it.copy(showSessionDots = v) } })
+            SettingsToggleRow(Icons.Rounded.AccessTime, stringResource(R.string.focus_option_show_clock), screen.showClock, { v -> onChange { it.copy(showClock = v) } })
+            SettingsToggleRow(Icons.Rounded.FormatQuote, stringResource(R.string.focus_option_motivation), screen.showMotivation, { v -> onChange { it.copy(showMotivation = v) } })
+            SettingsToggleRow(Icons.Rounded.Flag, stringResource(R.string.focus_option_mission_title), screen.showMissionTitle, { v -> onChange { it.copy(showMissionTitle = v) } })
+            SettingsToggleRow(Icons.Rounded.MoreHoriz, stringResource(R.string.focus_option_session_dots), screen.showSessionDots, { v -> onChange { it.copy(showSessionDots = v) } })
 
             SliderRow(
-                title = "Dark overlay",
+                title = stringResource(R.string.focus_option_overlay),
                 value = screen.overlayAlpha,
                 range = 0f..0.9f,
-                valueText = "${(screen.overlayAlpha * 100).toInt()}%",
+                valueText = stringResource(R.string.format_percent, (screen.overlayAlpha * 100).toInt()),
                 onValueChange = { v -> onChange { it.copy(overlayAlpha = v) } },
             )
             if (canUse(PremiumFeature.BACKGROUND_BLUR)) {
                 SliderRow(
-                    title = "Blur",
+                    title = stringResource(R.string.focus_option_blur),
                     value = screen.blurRadius,
                     range = 0f..25f,
                     valueText = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) "${screen.blurRadius.toInt()} dp" else "Android 12+",
                     onValueChange = { v -> onChange { it.copy(blurRadius = v) } },
                 )
             } else {
-                LockedRow("Blur", onOpenPremium)
+                LockedRow(stringResource(R.string.focus_option_blur), onOpenPremium)
             }
             if (canUse(PremiumFeature.CUSTOM_MOTIVATION)) {
                 var text by remember { mutableStateOf(screen.customMotivation.orEmpty()) }
                 OutlinedTextField(
                     value = text,
                     onValueChange = { text = it.take(60); onChange { s -> s.copy(customMotivation = text) } },
-                    label = { Text("Your own motivational text") },
+                    label = { Text(stringResource(R.string.focus_option_custom_motivation_label)) },
                     singleLine = true,
                     colors = focusTextFieldColors(),
                     modifier = Modifier.fillMaxWidth().padding(horizontal = FocusTheme.spacing.lg, vertical = FocusTheme.spacing.sm),
                 )
             } else {
-                LockedRow("Custom motivational text", onOpenPremium)
+                LockedRow(stringResource(R.string.focus_option_custom_motivation_locked), onOpenPremium)
             }
         }
     }
@@ -546,9 +560,9 @@ private fun LockedRow(title: String, onClick: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(title, style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface, modifier = Modifier.weight(1f))
-        Icon(Icons.Rounded.Lock, contentDescription = "Premium", tint = FocusTheme.colors.premium, modifier = Modifier.size(18.dp))
+        Icon(Icons.Rounded.Lock, contentDescription = stringResource(R.string.common_premium), tint = FocusTheme.colors.premium, modifier = Modifier.size(18.dp))
         Spacer(Modifier.width(6.dp))
-        Text("Premium", style = FocusTheme.typography.labelMedium, color = FocusTheme.colors.premium)
+        Text(stringResource(R.string.common_premium), style = FocusTheme.typography.labelMedium, color = FocusTheme.colors.premium)
     }
 }
 
@@ -558,14 +572,14 @@ private fun MissionPickerSheet(state: FocusUiState, onDismiss: () -> Unit, onSel
     val colors = FocusTheme.colors
     ModalBottomSheet(onDismissRequest = onDismiss, containerColor = colors.surface) {
         Text(
-            "Focus on",
+            stringResource(R.string.focus_picker_title),
             style = FocusTheme.typography.titleLarge,
             color = colors.onSurface,
             modifier = Modifier.padding(horizontal = FocusTheme.spacing.lg, vertical = FocusTheme.spacing.sm),
         )
         LazyColumn(Modifier.padding(bottom = FocusTheme.spacing.xl)) {
             item {
-                PickerRow("Free focus (no mission)", selected = state.mission == null) { onSelect(null) }
+                PickerRow(stringResource(R.string.focus_picker_free_focus), selected = state.mission == null) { onSelect(null) }
             }
             items(state.activeMissions, key = { it.id }) { m ->
                 PickerRow("${m.title} · ${m.completedPomodoros}/${m.estimatedPomodoros}", selected = state.mission?.id == m.id) { onSelect(m.id) }
@@ -584,6 +598,6 @@ private fun PickerRow(text: String, selected: Boolean, onClick: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(text, style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface, modifier = Modifier.weight(1f), maxLines = 1, overflow = TextOverflow.Ellipsis)
-        if (selected) Icon(Icons.Rounded.Check, contentDescription = "Selected", tint = FocusTheme.colors.primary)
+        if (selected) Icon(Icons.Rounded.Check, contentDescription = stringResource(R.string.focus_a11y_selected), tint = FocusTheme.colors.primary)
     }
 }

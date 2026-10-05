@@ -7,6 +7,7 @@ import com.focusgrowing.app.domain.model.PremiumLimits
 import com.focusgrowing.app.domain.repository.BackgroundRepository
 import com.focusgrowing.app.domain.repository.PremiumManager
 import com.focusgrowing.app.domain.repository.SettingsRepository
+import com.focusgrowing.app.domain.repository.DomainStrings
 import javax.inject.Inject
 
 sealed interface AddBackgroundResult {
@@ -19,6 +20,7 @@ class AddCustomBackgroundUseCase @Inject constructor(
     private val backgrounds: BackgroundRepository,
     private val settings: SettingsRepository,
     private val premium: PremiumManager,
+    private val strings: DomainStrings,
 ) {
     suspend operator fun invoke(uri: String, source: BackgroundSource, name: String, select: Boolean = true): AddBackgroundResult {
         if (!premium.hasAccess(PremiumFeature.UNLIMITED_BACKGROUNDS) &&
@@ -31,7 +33,7 @@ class AddCustomBackgroundUseCase @Inject constructor(
             if (select) settings.updateFocusScreen { it.copy(selectedBackgroundId = added.id) }
             AddBackgroundResult.Added(added)
         } catch (e: Exception) {
-            AddBackgroundResult.Failed("This image could not be added. Please try another one.")
+            AddBackgroundResult.Failed(strings.imageAddFailed())
         }
     }
 }

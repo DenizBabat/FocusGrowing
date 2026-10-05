@@ -1,8 +1,1027 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    English source texts. Translations: res/values-<language>/strings.xml (same keys).
+    Rules for translators: keep placeholders (%1$d, %1$s) and "\n"; write a literal percent sign as %%;
+    escape apostrophes as \'. See docs/LOCALIZATION.md.
+-->
 <resources>
-    <string name="app_name">Focus Growing</string>
+    <string name="app_name" translatable="false">Focus Growing</string>
+
+    <!-- Notification channels (Android system settings) -->
     <string name="channel_timer_name">Active focus timer</string>
     <string name="channel_timer_desc">Shows the running focus session.</string>
     <string name="channel_events_name">Session updates</string>
     <string name="channel_events_desc">Focus session completed, break finished and world level ups.</string>
+
+    <!-- ============ base ============ -->
+    <!-- Common -->
+    <string name="common_continue">Continue</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_save">Save</string>
+    <string name="common_delete">Delete</string>
+    <string name="common_edit">Edit</string>
+    <string name="common_back">Back</string>
+    <string name="common_close">Close</string>
+    <string name="common_done">Done</string>
+    <string name="common_premium">Premium</string>
+    <string name="common_locked">Locked</string>
+    <string name="common_unlock_premium">Unlock Premium</string>
+    <!-- Short "minutes" unit after a number, e.g. "25 min" -->
+    <string name="common_minutes_short">%1$d min</string>
+    <!-- Screen reader text for a progress bar, e.g. "40 percent" -->
+    <string name="a11y_percent">%1$d percent</string>
+
+    <!-- Language -->
+    <string name="language_title">Language</string>
+    <string name="language_system_default">System default</string>
+    <!-- %1$s = language name, e.g. "System default (English)" -->
+    <string name="language_system_default_with_name">System default (%1$s)</string>
+
+    <!-- Formats. Keep the units short: h = hours, m = minutes. -->
+    <string name="format_duration_hours_minutes">%1$dh %2$dm</string>
+    <string name="format_duration_hours">%1$dh</string>
+    <string name="format_duration_minutes">%1$dm</string>
+    <string name="format_yesterday">Yesterday</string>
+    <plurals name="format_days_ago">
+        <item quantity="one">%1$d day ago</item>
+        <item quantity="other">%1$d days ago</item>
+    </plurals>
+    <!-- A percentage, e.g. "40%". Put the sign where your language writes it (Turkish: %%%1$d). -->
+    <string name="format_percent">%1$d%%</string>
+    <!-- A title in quotation marks. Use the quotation marks of your language. -->
+    <string name="format_quoted">“%1$s”</string>
+
+    <!-- Greetings on the Home screen -->
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="greeting_hello">Hello</string>
+
+    <!-- Mission priority -->
+    <string name="priority_low">Low</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_high">High</string>
+
+    <!-- Mission category -->
+    <string name="category_general">General</string>
+    <string name="category_development">Development</string>
+    <string name="category_design">Design</string>
+    <string name="category_study">Study</string>
+    <string name="category_reading">Reading</string>
+    <string name="category_work">Work</string>
+    <string name="category_health">Health</string>
+    <string name="category_personal">Personal</string>
+
+    <!-- Things that appear on the user's world island -->
+    <string name="world_item_sprout">Sprout</string>
+    <string name="world_item_grass">Grass</string>
+    <string name="world_item_flowers">Flowers</string>
+    <string name="world_item_bush">Bushes</string>
+    <string name="world_item_pine">Pine trees</string>
+    <string name="world_item_rocks">Rocks</string>
+    <string name="world_item_house">House</string>
+    <string name="world_item_fence">Fence</string>
+    <string name="world_item_garden">Garden</string>
+    <string name="world_item_lake">Lake</string>
+    <string name="world_item_oak">Oak trees</string>
+    <string name="world_item_waterfall">Waterfall</string>
+    <string name="world_item_cabin">Village cabin</string>
+    <string name="world_item_windmill">Windmill</string>
+    <string name="world_item_bridge">Bridge</string>
+    <string name="world_item_lighthouse">Lighthouse</string>
+
+    <!-- Names of the built-in timer backgrounds -->
+    <string name="scene_mountain_lake">Mountain Lake</string>
+    <string name="scene_forest_morning">Forest Morning</string>
+    <string name="scene_sunset_hills">Sunset Hills</string>
+    <string name="scene_city_dusk">City Dusk</string>
+    <string name="scene_city_night">City Night</string>
+    <string name="scene_abstract_blobs">Soft Shapes</string>
+    <string name="scene_aurora">Aurora</string>
+    <string name="scene_night_sky">Night Sky</string>
+    <string name="scene_minimal_waves">Calm Waves</string>
+    <string name="scene_deep_dark">Deep Dark</string>
+
+    <!-- Onboarding (first launch) -->
+    <!-- Three lines: the app's three ideas. Keep the line breaks. -->
+    <string name="onboarding_tagline">Mission\nWorld\nIntelligence</string>
+    <string name="onboarding_subtitle">Focus on your missions.\nGrow your world.</string>
+    <string name="onboarding_get_started">Get Started</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_skip">Skip</string>
+    <!-- Step number in front of a title, e.g. "1." -->
+    <string name="onboarding_step_number">%1$d.</string>
+    <string name="onboarding_mission_title">Mission</string>
+    <string name="onboarding_mission_text">Create your tasks, set your goals and take action.</string>
+    <string name="onboarding_world_title">World</string>
+    <string name="onboarding_world_text">Complete focus sessions, grow your personal world.</string>
+    <string name="onboarding_intelligence_title">Intelligence</string>
+    <string name="onboarding_intelligence_text">Discover your habits, get insights, become a better you.</string>
+    <string name="onboarding_change_later">You can change this any time in Settings.</string>
+    <string name="onboarding_focus_length_title">How long do you usually focus?</string>
+    <string name="onboarding_minutes_option">%1$d minutes</string>
+    <string name="onboarding_custom">Custom</string>
+    <string name="onboarding_custom_minutes_label">Minutes (1–180)</string>
+    <string name="onboarding_first_goal_title">Choose your first goal.</string>
+    <string name="onboarding_first_goal_text">It becomes your first mission. Every focus session moves it forward.</string>
+    <string name="onboarding_name_label">Your name (optional)</string>
+    <string name="onboarding_goal_example">e.g. Finish my presentation</string>
+    <string name="onboarding_idea_read">Read a book</string>
+    <string name="onboarding_idea_learn">Learn a language</string>
+    <string name="onboarding_idea_exercise">Exercise</string>
+    <string name="onboarding_start_growing">Start growing</string>
+    <string name="onboarding_skip_for_now">Skip for now</string>
+
+    <!-- Inbox entries (in-app notification list) -->
+    <string name="inbox_focus_completed_title">Focus Session Completed</string>
+    <string name="inbox_focus_completed_message">You completed a %1$d minute focus session. Great job!</string>
+    <!-- XP = experience points earned -->
+    <string name="inbox_xp_detail">+%1$d XP</string>
+    <!-- %2$s = mission title -->
+    <string name="inbox_xp_detail_with_mission">+%1$d XP · %2$s</string>
+    <string name="inbox_mission_completed_title">Mission Completed!</string>
+    <string name="inbox_bonus_xp_detail">You earned +%1$d bonus XP</string>
+    <string name="inbox_streak_title">Streak Continues!</string>
+    <string name="inbox_streak_message">You\'re on a %1$d day streak!</string>
+    <string name="inbox_streak_detail">Keep it up!</string>
+    <string name="inbox_mission_created_title">New Mission Assigned</string>
+    <!-- A pomodoro is one focus session -->
+    <plurals name="inbox_estimated_pomodoros">
+        <item quantity="one">Estimated %1$d Pomodoro</item>
+        <item quantity="other">Estimated %1$d Pomodoros</item>
+    </plurals>
+    <string name="inbox_level_up_title">World Level Up!</string>
+    <string name="inbox_level_up_message">Your world has reached Level %1$d!</string>
+    <!-- %1$s = comma separated list, e.g. "Lake, Oak trees" -->
+    <string name="inbox_level_up_unlocked">New elements unlocked: %1$s</string>
+    <string name="bg_error_image_add_failed">This image could not be added. Please try another one.</string>
+
+    <!-- Insights (personal tips based on the user's focus history) -->
+    <string name="insight_getting_started_title">Your insights are growing</string>
+    <plurals name="insight_getting_started_message">
+        <item quantity="one">Complete %1$d more focus session to unlock personal insights.</item>
+        <item quantity="other">Complete %1$d more focus sessions to unlock personal insights.</item>
+    </plurals>
+    <string name="insight_time_of_day_title_morning">You shine in the morning</string>
+    <string name="insight_time_of_day_title_afternoon">You shine in the afternoon</string>
+    <string name="insight_time_of_day_title_evening">You shine in the evening</string>
+    <string name="insight_time_of_day_title_night">You shine at night</string>
+    <string name="insight_time_of_day_message_morning">%1$d%% of your focus time happens in the morning. Plan your hardest missions then.</string>
+    <string name="insight_time_of_day_message_afternoon">%1$d%% of your focus time happens in the afternoon. Plan your hardest missions then.</string>
+    <string name="insight_time_of_day_message_evening">%1$d%% of your focus time happens in the evening. Plan your hardest missions then.</string>
+    <string name="insight_time_of_day_message_night">%1$d%% of your focus time happens at night. Plan your hardest missions then.</string>
+    <string name="insight_streak_title">%1$d day streak</string>
+    <string name="insight_streak_message">You have focused %1$d days in a row. Consistency beats intensity — keep the chain going.</string>
+    <string name="insight_daily_steps_title">Small daily steps</string>
+    <plurals name="insight_daily_steps_message">
+        <item quantity="one">You focused on %1$d day recently. One short session every day builds a stronger habit.</item>
+        <item quantity="other">You focused on %1$d different days recently. One short session every day builds a stronger habit.</item>
+    </plurals>
+    <string name="insight_short_sessions_title">Short sprints work for you</string>
+    <string name="insight_short_sessions_message">Your sessions average %1$d minutes. Shorter focus sessions appear to work well for you.</string>
+    <string name="insight_long_interrupted_title">Long sessions get interrupted</string>
+    <string name="insight_long_interrupted_message">About half of your 40+ minute sessions end early. Try 25–30 minute sessions instead.</string>
+    <string name="insight_average_session_title">Average session: %1$d min</string>
+    <string name="insight_average_session_message">Your typical focus block is %1$d minutes. Matching your timer to it reduces early stops.</string>
+    <string name="insight_estimation_over_title">Missions take longer than planned</string>
+    <string name="insight_estimation_over_message">Your recent missions took about %1$d%% more pomodoros than estimated. Add a buffer pomodoro when planning.</string>
+    <string name="insight_estimation_under_title">You finish ahead of plan</string>
+    <string name="insight_estimation_under_message">You complete missions with about %1$d%% fewer pomodoros than estimated. You can plan more ambitiously.</string>
+    <string name="insight_early_stops_title">Frequent early stops</string>
+    <string name="insight_early_stops_message">%1$d%% of your sessions end early. Silence notifications and keep your phone out of reach while focusing.</string>
+    <string name="insight_pauses_title">Lots of pauses</string>
+    <string name="insight_pauses_message">Half of your sessions include a pause. Prepare water and notes before you start.</string>
+    <!-- %1$s = name of a weekday, e.g. "Monday" -->
+    <string name="insight_best_day_title">%1$s is your power day</string>
+    <string name="insight_best_day_message">%1$s is the day you focus the most. Schedule important missions for that day.</string>
+
+    <!-- ============ premium ============ -->
+    <!-- ===================== Premium screen ===================== -->
+
+    <!-- Screen title: for people who already have Premium / for people who don't yet -->
+    <string name="premium_title_member">Your Premium</string>
+    <string name="premium_title_upsell">Go Premium</string>
+    <!-- Line under the title: lifetime owner / subscriber / not Premium yet -->
+    <string name="premium_subtitle_lifetime">Yours forever.</string>
+    <string name="premium_subtitle_subscribed">Manage your subscription.</string>
+    <string name="premium_subtitle_upsell">Unlock the full potential of your journey.</string>
+
+    <!-- List of Premium benefits (each line has a check mark in front) -->
+    <string name="premium_benefit_backgrounds">Unlimited custom backgrounds</string>
+    <string name="premium_benefit_editor">Advanced crop editor, blur &amp; your own motivational text</string>
+    <string name="premium_benefit_statistics">Advanced statistics: best hours, trends, monthly &amp; yearly</string>
+    <string name="premium_benefit_insights">Personalized insights about your focus</string>
+    <string name="premium_benefit_world">More world elements &amp; premium color palettes</string>
+    <string name="premium_benefit_no_ads">No ads</string>
+
+    <!-- Card shown when Google Play purchases can't be loaded. The reason (a billing_ text) is shown below the title. -->
+    <string name="premium_unavailable_title">Purchases unavailable</string>
+    <string name="premium_try_again">Try again</string>
+
+    <!-- Bottom of the screen -->
+    <string name="premium_free_note">Everything you need to focus stays free: timer, missions, your world, basic statistics and your own photos.</string>
+    <string name="premium_privacy_policy">Privacy Policy</string>
+
+    <!-- Plan names on the plan cards (the fourth, unknown plan type uses common_premium) -->
+    <string name="premium_period_monthly">Monthly</string>
+    <string name="premium_period_yearly">Yearly</string>
+    <string name="premium_period_lifetime">Lifetime</string>
+
+    <!-- Small badge on the yearly plan. %1$d = discount compared with paying monthly, e.g. "Save 33%" -->
+    <string name="premium_save_percent">Save %1$d%%</string>
+    <!-- Small badge on the lifetime plan -->
+    <string name="premium_pay_once">Pay once</string>
+    <!-- Description on the lifetime plan card -->
+    <string name="premium_plan_lifetime_desc">One payment. Premium forever, no subscription.</string>
+    <!-- Small label under the lifetime price -->
+    <string name="premium_one_time">one-time</string>
+    <!-- Under the yearly price: what it costs per month. %1$s = price, e.g. "≈ $3.33 / month" -->
+    <string name="premium_approx_per_month">≈ %1$s / month</string>
+
+    <!-- A price with its billing period. %1$s = price formatted by Google Play, e.g. "$4.99 per month".
+         These are also inserted into other texts as "price with period". -->
+    <string name="premium_price_per_month">%1$s per month</string>
+    <string name="premium_price_per_year">%1$s per year</string>
+    <string name="premium_price_one_time">%1$s one-time</string>
+    <string name="premium_price_per_period">%1$s per period</string>
+
+    <!-- Description on a plan card that has a free trial. %1$d = trial length, %2$s = price with period,
+         e.g. "7-day free, then $39.99 per year" -->
+    <plurals name="premium_plan_trial_then_price_days">
+        <item quantity="one">%1$d-day free, then %2$s</item>
+        <item quantity="other">%1$d-day free, then %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_months">
+        <item quantity="one">%1$d-month free, then %2$s</item>
+        <item quantity="other">%1$d-month free, then %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_years">
+        <item quantity="one">%1$d-year free, then %2$s</item>
+        <item quantity="other">%1$d-year free, then %2$s</item>
+    </plurals>
+
+    <!-- Main purchase button -->
+    <string name="premium_buy_lifetime">Buy lifetime Premium</string>
+    <string name="premium_upgrade">Upgrade to Premium</string>
+    <!-- Main purchase button when the plan has a free trial. %1$d = trial length, e.g. "Start 7-day free trial" -->
+    <plurals name="premium_start_trial_days">
+        <item quantity="one">Start %1$d-day free trial</item>
+        <item quantity="other">Start %1$d-day free trial</item>
+    </plurals>
+    <plurals name="premium_start_trial_months">
+        <item quantity="one">Start %1$d-month free trial</item>
+        <item quantity="other">Start %1$d-month free trial</item>
+    </plurals>
+    <plurals name="premium_start_trial_years">
+        <item quantity="one">Start %1$d-year free trial</item>
+        <item quantity="other">Start %1$d-year free trial</item>
+    </plurals>
+    <!-- Text button that restores an earlier purchase. The message billing_verify_failed quotes this label. -->
+    <string name="premium_restore_purchase">Restore purchase</string>
+    <string name="premium_no_plans">No plans available right now.</string>
+
+    <!-- Legal terms under the purchase button (required by Google Play: price, period, trial, how to cancel).
+         "Payments & subscriptions" is the name of a menu in the Google Play app: use Google's translation. -->
+    <!-- %1$s = price -->
+    <string name="premium_terms_lifetime">One-time payment of %1$s. No subscription and no renewals. Your purchase is linked to your Google account and can be restored on a new device.</string>
+    <!-- %1$s = price with period, e.g. "$4.99 per month" -->
+    <string name="premium_terms_subscription">%1$s. Renews automatically until you cancel. Cancel anytime in Google Play → Payments &amp; subscriptions.</string>
+    <!-- Subscription with a free trial. %1$d = trial length, %2$s = price with period, e.g. "$39.99 per year" -->
+    <plurals name="premium_terms_trial_days">
+        <item quantity="one">Free for %1$d day, then %2$s. Renews automatically until you cancel. Cancel before the trial ends and you won\'t be charged. Cancel anytime in Google Play → Payments &amp; subscriptions.</item>
+        <item quantity="other">Free for %1$d days, then %2$s. Renews automatically until you cancel. Cancel before the trial ends and you won\'t be charged. Cancel anytime in Google Play → Payments &amp; subscriptions.</item>
+    </plurals>
+    <plurals name="premium_terms_trial_months">
+        <item quantity="one">Free for %1$d month, then %2$s. Renews automatically until you cancel. Cancel before the trial ends and you won\'t be charged. Cancel anytime in Google Play → Payments &amp; subscriptions.</item>
+        <item quantity="other">Free for %1$d months, then %2$s. Renews automatically until you cancel. Cancel before the trial ends and you won\'t be charged. Cancel anytime in Google Play → Payments &amp; subscriptions.</item>
+    </plurals>
+    <plurals name="premium_terms_trial_years">
+        <item quantity="one">Free for %1$d year, then %2$s. Renews automatically until you cancel. Cancel before the trial ends and you won\'t be charged. Cancel anytime in Google Play → Payments &amp; subscriptions.</item>
+        <item quantity="other">Free for %1$d years, then %2$s. Renews automatically until you cancel. Cancel before the trial ends and you won\'t be charged. Cancel anytime in Google Play → Payments &amp; subscriptions.</item>
+    </plurals>
+
+    <!-- ===== For subscribers: current plan card ===== -->
+    <!-- Card title: right after buying / normally. Also shown as a message after a successful purchase. -->
+    <string name="premium_welcome">Welcome to Premium! 🎉</string>
+    <string name="premium_active">Premium is active</string>
+    <!-- Name of the plan the user has (a lifetime owner sees premium_period_lifetime) -->
+    <string name="premium_plan_monthly">Monthly plan</string>
+    <string name="premium_plan_yearly">Yearly plan</string>
+    <string name="premium_plan_other">Premium plan</string>
+    <!-- Plan name followed by its price. %1$s = plan name, %2$s = price with period,
+         e.g. "Monthly plan · $4.99 per month" -->
+    <string name="premium_plan_with_price">%1$s · %2$s</string>
+    <!-- Status line under the plan. A plan switch is waiting for the end of the paid period: -->
+    <string name="premium_status_switches_monthly">Switches to the monthly plan when the current period ends.</string>
+    <string name="premium_status_switches_yearly">Switches to the yearly plan when the current period ends.</string>
+    <string name="premium_status_switches_other">Switches to the premium plan when the current period ends.</string>
+    <string name="premium_status_checking">Checking your subscription with Google Play…</string>
+    <string name="premium_status_cancelled">Cancelled. Premium stays active until the end of the period you paid for.</string>
+    <string name="premium_status_renews">Renews automatically. Cancel anytime in Google Play.</string>
+
+    <!-- ===== For subscribers: switch between monthly and yearly (card title and button) ===== -->
+    <string name="premium_switch_to_monthly">Switch to monthly</string>
+    <string name="premium_switch_to_yearly">Switch to yearly</string>
+    <string name="premium_switch_to_other">Switch to premium</string>
+    <!-- %1$s = price of the new plan -->
+    <string name="premium_switch_immediate_desc">Starts today. You pay %1$s now, and the unused part of your current plan is added as extra days.</string>
+    <string name="premium_switch_deferred_desc">Starts when your current period ends. Nothing is charged today, and you keep Premium the whole time.</string>
+
+    <!-- ===== For subscribers: buy lifetime instead ===== -->
+    <string name="premium_go_lifetime">Go lifetime</string>
+    <string name="premium_go_lifetime_desc">Keep Premium forever with a single payment. Your subscription isn\'t cancelled automatically: cancel it in Google Play afterwards.</string>
+    <!-- Same text with a price comparison. %1$d = number of years of the yearly plan that cost about the same -->
+    <plurals name="premium_go_lifetime_desc_break_even">
+        <item quantity="one">Keep Premium forever with a single payment. Costs about as much as %1$d year of the yearly plan. Your subscription isn\'t cancelled automatically: cancel it in Google Play afterwards.</item>
+        <item quantity="other">Keep Premium forever with a single payment. Costs about as much as %1$d years of the yearly plan. Your subscription isn\'t cancelled automatically: cancel it in Google Play afterwards.</item>
+    </plurals>
+
+    <!-- Buttons that open the subscription page in Google Play, and the hint below them -->
+    <string name="premium_resubscribe_google_play">Resubscribe in Google Play</string>
+    <string name="premium_manage_google_play">Manage in Google Play</string>
+    <string name="premium_manage_hint">Cancel, resubscribe or change your payment method in Google Play. Changes show up here when you return.</string>
+
+    <!-- ===== For lifetime owners ===== -->
+    <!-- Card title: right after buying / normally. The first one is also shown as a message after the purchase. -->
+    <string name="premium_forever_celebration">Premium is yours forever. 🎉</string>
+    <string name="premium_lifetime_title">Lifetime Premium</string>
+    <!-- "Focus Growing" is the app name: do not translate it -->
+    <string name="premium_lifetime_thanks">Paid once. No renewals, nothing more to pay. Thank you for supporting Focus Growing!</string>
+    <!-- Warning: the user bought lifetime but an older subscription is still renewing -->
+    <string name="premium_lifetime_sub_active_monthly">Your monthly subscription is still active</string>
+    <string name="premium_lifetime_sub_active_yearly">Your yearly subscription is still active</string>
+    <string name="premium_lifetime_sub_active_other">Your premium subscription is still active</string>
+    <string name="premium_lifetime_sub_cancel_hint">Lifetime Premium doesn\'t cancel it automatically. Cancel it in Google Play so you aren\'t charged again.</string>
+    <string name="premium_cancel_subscription_google_play">Cancel subscription in Google Play</string>
+    <!-- Note: the older subscription is already cancelled -->
+    <string name="premium_lifetime_sub_cancelled_monthly">Your old monthly subscription is cancelled and won\'t renew.</string>
+    <string name="premium_lifetime_sub_cancelled_yearly">Your old yearly subscription is cancelled and won\'t renew.</string>
+    <string name="premium_lifetime_sub_cancelled_other">Your old premium subscription is cancelled and won\'t renew.</string>
+
+    <!-- Messages shown on the Premium screen after a purchase, plan change or restore -->
+    <string name="premium_restored">Your Premium was restored.</string>
+    <string name="premium_plan_changed">Your plan was changed.</string>
+    <string name="premium_change_scheduled">Done. Your new plan starts when the current period ends.</string>
+    <string name="premium_payment_pending">Your payment is being processed. Premium unlocks as soon as Google Play confirms it.</string>
+
+    <!-- Only visible in internal test builds (simulated store): badge and buttons -->
+    <string name="premium_test_mode">Test mode</string>
+    <string name="premium_test_resubscribe">Test: resubscribe</string>
+    <string name="premium_test_cancel">Test: cancel</string>
+    <string name="premium_test_reset">Test: reset</string>
+
+    <!-- ===================== Google Play billing messages (shown on the Premium screen) ===================== -->
+    <string name="billing_not_ready">Google Play is not ready yet. Please try again in a moment.</string>
+    <string name="billing_already_own_lifetime">You already own lifetime Premium.</string>
+    <string name="billing_already_have_plan">You already have this plan.</string>
+    <string name="billing_subscription_unreadable">Couldn\'t read your current subscription. Please try again in a moment.</string>
+    <string name="billing_restore_none">No active Premium subscription was found for this Google account.</string>
+    <!-- Only visible in internal test builds -->
+    <string name="billing_restore_none_test">No active Premium subscription was found (test mode).</string>
+    <!-- The text in quotation marks must be the same as premium_restore_purchase -->
+    <string name="billing_verify_failed">The purchase couldn\'t be verified. If you were charged, tap “Restore purchase”.</string>
+    <string name="billing_not_available_in_country">Premium isn\'t available in your country or on this Google Play account yet.</string>
+    <!-- Errors reported by Google Play -->
+    <string name="billing_error_unavailable_on_device">Google Play purchases aren\'t available on this device. Make sure the Play Store is installed and you\'re signed in.</string>
+    <string name="billing_error_unreachable">Couldn\'t reach Google Play. Check your connection and try again.</string>
+    <string name="billing_error_plan_unavailable">This plan isn\'t available right now.</string>
+    <string name="billing_error_update_play_store">Please update the Google Play Store app and try again.</string>
+    <string name="billing_error_not_set_up">Purchases aren\'t set up correctly yet. Please try again later.</string>
+    <string name="billing_error_generic">Something went wrong with Google Play. Please try again.</string>
+
+    <!-- ============ settings ============ -->
+    <!-- ===== Settings screen ===== -->
+    <string name="settings_title">Settings</string>
+
+    <!-- Section headers -->
+    <string name="settings_group_appearance">Appearance</string>
+    <string name="settings_group_timer">Timer</string>
+    <string name="settings_group_focus_screen">Focus screen</string>
+    <string name="settings_group_notifications">Notifications</string>
+    <string name="settings_group_sounds">Sounds &amp; Vibration</string>
+    <string name="settings_group_privacy">Privacy</string>
+    <string name="settings_group_about">About</string>
+
+    <!-- Appearance: theme choice (three short chips side by side, keep them short) -->
+    <string name="settings_theme_title">Theme</string>
+    <!-- Follow the phone's light/dark setting -->
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+
+    <!-- Appearance: color palette -->
+    <string name="settings_color_palette">Color palette</string>
+    <!-- Screen reader text for a palette that needs Premium. %1$s = palette name, e.g. "Ocean, premium" -->
+    <string name="settings_palette_premium_a11y">%1$s, premium</string>
+    <!-- Shown under the palettes while a palette is unlocked for a limited time. %1$s = palette name -->
+    <string name="settings_palette_trial_under_hour">%1$s is unlocked for less than an hour.</string>
+    <!-- %1$s = palette name, %2$d = number of hours left (2 to 24) -->
+    <plurals name="settings_palette_trial_hours_left">
+        <item quantity="one">%1$s is unlocked for about %2$d more hour.</item>
+        <item quantity="other">%1$s is unlocked for about %2$d more hours.</item>
+    </plurals>
+
+    <!-- Appearance: other rows -->
+    <string name="settings_dynamic_colors_title">Dynamic colors</string>
+    <string name="settings_dynamic_colors_subtitle">Use your wallpaper colors</string>
+    <!-- Text size choice (three short chips side by side, keep them short) -->
+    <string name="settings_text_size_title">Text size</string>
+    <string name="settings_text_size_small">Small</string>
+    <string name="settings_text_size_medium">Medium</string>
+    <string name="settings_text_size_large">Large</string>
+    <string name="settings_reduce_animations">Reduce animations</string>
+
+    <!-- Timer: length of a focus session -->
+    <string name="settings_focus_length">Focus</string>
+    <!-- Chip that lets the user type their own focus length -->
+    <string name="settings_focus_custom">Custom</string>
+    <string name="settings_short_break">Short break</string>
+    <string name="settings_long_break">Long break</string>
+    <!-- Row title, followed by a value such as "4 sessions": a long break comes after every N focus sessions -->
+    <string name="settings_long_break_every">Long break every</string>
+    <!-- Value of the "Long break every" row. Keep it short. -->
+    <plurals name="settings_sessions_count">
+        <item quantity="one">%1$d session</item>
+        <item quantity="other">%1$d sessions</item>
+    </plurals>
+    <!-- Screen reader text for the minus / plus buttons of a row. %1$s = row title, e.g. "Decrease Short break" -->
+    <string name="settings_stepper_decrease">Decrease %1$s</string>
+    <string name="settings_stepper_increase">Increase %1$s</string>
+    <!-- Dialog for typing a custom focus length -->
+    <string name="settings_custom_focus_title">Custom focus length</string>
+    <!-- Input label. %1$d = smallest allowed value, %2$d = largest allowed value, e.g. "Minutes (1–180)" -->
+    <string name="settings_custom_focus_minutes_label">Minutes (%1$d–%2$d)</string>
+
+    <!-- Focus screen (the full-screen timer) -->
+    <string name="settings_background">Background</string>
+    <string name="settings_show_clock">Show clock</string>
+    <string name="settings_motivational_text">Motivational text</string>
+    <!-- How strongly the background picture is darkened -->
+    <string name="settings_background_overlay">Background overlay</string>
+
+    <!-- Notifications -->
+    <string name="settings_session_alerts_title">Session alerts</string>
+    <string name="settings_session_alerts_subtitle">When a focus session or break ends</string>
+    <string name="settings_timer_in_notification_bar">Timer in notification bar</string>
+    <string name="settings_exact_alarms_title">Allow exact alarms</string>
+    <string name="settings_exact_alarms_subtitle">Sessions end exactly on time, even when the phone sleeps</string>
+    <string name="settings_system_notification_settings">System notification settings</string>
+
+    <!-- Sounds & vibration -->
+    <string name="settings_alert_sound_vibration">Alert sound &amp; vibration</string>
+    <string name="settings_haptic_feedback">Haptic feedback</string>
+
+    <!-- Privacy -->
+    <string name="settings_ad_privacy_title">Ad privacy choices</string>
+    <string name="settings_ad_privacy_subtitle">Change your consent for personalized ads</string>
+
+    <!-- About: the app version number is shown next to it -->
+    <string name="settings_version">Version</string>
+
+    <!-- Sheet shown when a free user taps a locked Premium palette -->
+    <!-- %1$s = palette name -->
+    <string name="settings_palette_trial_sheet_title">Try %1$s for 24 hours</string>
+    <string name="settings_palette_trial_sheet_text">Watch one short video and use this palette until tomorrow. With Premium you keep every palette and never see ads.</string>
+    <string name="settings_watch_ad">Watch a short ad</string>
+    <string name="settings_see_premium">See Premium</string>
+    <string name="settings_not_now">Not now</string>
+    <!-- Messages in that sheet after the ad. %1$s = palette name -->
+    <string name="settings_ad_palette_unlocked">%1$s is yours for the next 24 hours.</string>
+    <string name="settings_ad_watch_to_end">Watch the ad to the end to unlock the palette.</string>
+    <string name="settings_ad_unavailable">No ad is available right now. Please try again later.</string>
+
+    <!-- ===== Profile screen ===== -->
+    <string name="profile_title">Profile</string>
+    <!-- Shown instead of the name while the user has not entered one -->
+    <string name="profile_add_name">Add your name</string>
+    <!-- Screen reader text for the pencil icon next to the name -->
+    <string name="profile_edit_name">Edit name</string>
+    <!-- Title of the dialog for typing the name -->
+    <string name="profile_name_dialog_title">Your name</string>
+    <!-- Small line under the name; it changes as the user's world grows. Keep the • separators. -->
+    <string name="profile_rank_seedling">Seedling • Getting started</string>
+    <string name="profile_rank_explorer">Explorer • Focused • Growing</string>
+    <string name="profile_rank_builder">Builder • Focused • Growing</string>
+    <string name="profile_rank_master">Master • Focused • Thriving</string>
+    <!-- Label above the level number of the user's world -->
+    <string name="profile_world_level">World Level</string>
+    <!-- XP = experience points. %1$d = points earned in this level, %2$d = points needed for the next level -->
+    <string name="profile_xp_progress">%1$d / %2$d XP</string>
+    <!-- Menu rows: the "Premium" row uses the shared text; these are the lines under the titles -->
+    <string name="profile_premium_active">Active — thank you!</string>
+    <string name="profile_premium_upgrade">Upgrade for more features</string>
+    <!-- Under "Notifications": number of unread notifications -->
+    <plurals name="profile_notifications_new">
+        <item quantity="one">%1$d new</item>
+        <item quantity="other">%1$d new</item>
+    </plurals>
+    <string name="profile_notifications_subtitle">Your recent activity</string>
+    <string name="profile_app_settings">App Settings</string>
+    <string name="profile_app_settings_subtitle">Theme, timer, notifications, sound</string>
+    <string name="profile_background_gallery">Background Gallery</string>
+    <string name="profile_background_gallery_subtitle">Change your focus background</string>
+    <string name="profile_help_support">Help &amp; Support</string>
+    <string name="profile_help_support_subtitle">Contact us</string>
+    <string name="profile_privacy_policy">Privacy Policy</string>
+    <string name="profile_privacy_policy_subtitle">How we handle your data</string>
+    <!-- Short message when the phone has no email app or browser to open a link -->
+    <string name="profile_no_app_found">No app found to open this.</string>
+
+    <!-- ===== Notifications screen (in-app list of recent activity) ===== -->
+    <!-- Screen title; also the title of the Profile menu row that opens it -->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_subtitle">Stay focused, stay on track 🌱</string>
+    <!-- Screen reader text for the button that deletes all notifications -->
+    <string name="notifications_clear_all">Clear all</string>
+    <!-- Filter chips above the list -->
+    <string name="notifications_filter_all">All</string>
+    <string name="notifications_filter_mission">Mission</string>
+    <string name="notifications_filter_focus">Focus</string>
+    <string name="notifications_filter_world">World</string>
+    <string name="notifications_filter_system">System</string>
+    <!-- Shown when the list is empty -->
+    <string name="notifications_empty_title">No notifications yet</string>
+    <string name="notifications_empty_message">Complete focus sessions and missions to see your progress here.</string>
+
+    <!-- ============ focus ============ -->
+    <!-- Focus (timer) screen: top bar icons, read aloud by screen readers -->
+    <string name="focus_a11y_change_background">Change background</string>
+    <string name="focus_a11y_options">Focus screen options</string>
+
+    <!-- Focus screen: small notice when the user's own background photo can no longer be loaded -->
+    <string name="focus_background_unavailable">Your background image is no longer available.</string>
+    <!-- Shown instead of a mission title when the session is not linked to a mission -->
+    <string name="focus_free_focus">Free focus</string>
+    <!-- Label of the background button/row when no background is selected; also read aloud for the background button -->
+    <string name="focus_background">Background</string>
+
+    <!-- Built-in motivational texts shown in a small pill above the timer (one is picked per session). Keep them short. -->
+    <string name="focus_quote_1">Stay focused, you can do it!</string>
+    <string name="focus_quote_2">One task at a time.</string>
+    <string name="focus_quote_3">Small steps every day.</string>
+    <string name="focus_quote_4">Deep work, calm mind.</string>
+    <string name="focus_quote_5">You are growing your world.</string>
+
+    <!-- Short status label inside the timer ring, above the remaining time -->
+    <string name="focus_label_focus">Focus</string>
+    <string name="focus_label_short_break">Short Break</string>
+    <string name="focus_label_long_break">Long Break</string>
+    <string name="focus_label_paused">Paused</string>
+    <!-- Focus session finished -->
+    <string name="focus_label_well_done">Well done</string>
+    <!-- Break finished -->
+    <string name="focus_label_break_over">Break over</string>
+    <!-- Screen reader text for the timer ring. %1$s = status label (e.g. "Focus"), %2$s = remaining time (e.g. "24:10") -->
+    <string name="focus_a11y_time_remaining">%1$s, %2$s remaining</string>
+
+    <!-- Round timer control buttons (icons only), read aloud by screen readers -->
+    <string name="focus_a11y_start">Start focus</string>
+    <string name="focus_a11y_pause">Pause</string>
+    <string name="focus_a11y_resume">Resume</string>
+    <string name="focus_a11y_stop_session">Stop session</string>
+    <string name="focus_a11y_finish_session">Finish session</string>
+    <string name="focus_a11y_choose_mission">Choose mission</string>
+
+    <!-- Buttons shown when a session has finished. %1$d = length of the break in minutes -->
+    <string name="focus_start_break">Start break · %1$d min</string>
+    <string name="focus_start_long_break">Start long break · %1$d min</string>
+    <string name="focus_skip_break">Skip break</string>
+    <string name="focus_start_next_focus">Start next focus</string>
+    <string name="focus_done_for_now">Done for now</string>
+
+    <!-- Dialog: the user wants to finish a session before half of it has passed -->
+    <string name="focus_finish_dialog_title">Finish now?</string>
+    <!-- World XP = experience points for the user's world -->
+    <string name="focus_finish_dialog_text">You focused less than half of this session, so it won\'t count toward your mission or World XP.</string>
+    <string name="focus_finish_dialog_confirm">Finish</string>
+    <!-- Dialog: the user wants to stop (cancel) the running session -->
+    <string name="focus_stop_dialog_title">Stop this session?</string>
+    <string name="focus_stop_dialog_text">The session will be stopped without rewards.</string>
+    <string name="focus_stop_dialog_confirm">Stop</string>
+    <!-- Dismiss button of both dialogs: continue the session -->
+    <string name="focus_keep_going">Keep going</string>
+
+    <!-- Options sheet of the focus screen: title, on/off rows and sliders -->
+    <string name="focus_options_title">Focus screen</string>
+    <string name="focus_option_show_clock">Show clock</string>
+    <string name="focus_option_motivation">Motivational text</string>
+    <string name="focus_option_mission_title">Mission title</string>
+    <string name="focus_option_session_dots">Session progress dots</string>
+    <!-- Slider: how much the background photo is darkened -->
+    <string name="focus_option_overlay">Dark overlay</string>
+    <!-- Slider: how much the background photo is blurred -->
+    <string name="focus_option_blur">Blur</string>
+    <!-- Label of the text field where Premium users type their own motivational text -->
+    <string name="focus_option_custom_motivation_label">Your own motivational text</string>
+    <!-- Same feature, shown as a locked row to users without Premium -->
+    <string name="focus_option_custom_motivation_locked">Custom motivational text</string>
+
+    <!-- Mission picker sheet: title ("Focus on" + list of missions below) and its first row -->
+    <string name="focus_picker_title">Focus on</string>
+    <string name="focus_picker_free_focus">Free focus (no mission)</string>
+    <!-- Screen reader text for the check mark next to the chosen row -->
+    <string name="focus_a11y_selected">Selected</string>
+
+    <!-- System notification while the timer is running: title -->
+    <string name="notif_title_focusing">Focusing</string>
+    <string name="notif_title_short_break">Short break</string>
+    <string name="notif_title_long_break">Long break</string>
+    <!-- Running notification: text when the session has no mission (otherwise the mission title is shown) -->
+    <string name="notif_running_text_default">Stay focused, you can do it!</string>
+    <!-- Notification action buttons -->
+    <string name="notif_action_pause">Pause</string>
+    <string name="notif_action_resume">Resume</string>
+    <!-- Paused notification title. %1$s = remaining time, e.g. "12:30" -->
+    <string name="notif_paused_title">Paused · %1$s left</string>
+    <!-- Paused notification: text when the session has no mission -->
+    <string name="notif_paused_text_default">Tap to continue your session</string>
+
+    <!-- Notification when a focus session ends -->
+    <string name="notif_focus_completed_title">🎉 Focus session completed</string>
+    <string name="notif_mission_completed_title">🎉 Mission completed!</string>
+    <!-- %1$d = minutes focused -->
+    <string name="notif_focus_completed_text">You completed a %1$d minute focus session.</string>
+    <!-- %1$d = minutes focused, %2$d = experience points earned for the user's world -->
+    <string name="notif_focus_completed_text_xp">You completed a %1$d minute focus session. +%2$d World XP</string>
+    <!-- One-line notification text. %1$s = mission title, %2$s = one of the two sentences above -->
+    <string name="notif_text_with_mission">%1$s · %2$s</string>
+    <!-- Expanded notification text. %1$s = mission title, %2$s = one of the two sentences above. Keep the line break. -->
+    <string name="notif_big_text_with_mission">Mission: %1$s\n%2$s</string>
+
+    <!-- Notification when a break ends -->
+    <string name="notif_break_finished_title">☕ Break finished</string>
+    <string name="notif_break_finished_text">Ready for another focus session?</string>
+
+    <!-- ============ home ============ -->
+    <!-- Bottom navigation bar: tab labels. Keep them very short (one word). -->
+    <string name="nav_home">Home</string>
+    <string name="nav_missions">Missions</string>
+    <string name="nav_focus">Focus</string>
+    <string name="nav_stats">Stats</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Home screen: greeting at the top. %1$s = greeting such as "Good morning", %2$s = the user's name -->
+    <string name="home_greeting_with_name">%1$s, %2$s!</string>
+    <!-- Greeting when the user has not entered a name. %1$s = greeting such as "Good morning" -->
+    <string name="home_greeting_no_name">%1$s!</string>
+    <!-- Motto under the greeting -->
+    <string name="home_tagline">Small steps create big changes.</string>
+    <!-- Screen reader label of the bell button that opens the notification list -->
+    <string name="home_notifications">Notifications</string>
+    <!-- Small chip next to the greeting; the level number is shown below it -->
+    <string name="home_world_level_label">World Level</string>
+
+    <!-- Home screen: captions of the three statistic tiles. Keep them short. -->
+    <string name="home_stat_focus_time">Focus Time</string>
+    <!-- Number of completed missions -->
+    <string name="home_stat_completed">Completed</string>
+    <!-- Number of days in a row with a focus session -->
+    <string name="home_stat_streak">Streak</string>
+    <!-- Value of the Streak tile. %1$d = number of days -->
+    <plurals name="home_streak_days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+
+    <!-- Home screen: world progress card. %1$d = level number -->
+    <string name="home_world_level_number">World Level %1$d</string>
+    <!-- XP = experience points. %1$d = points earned in this level, %2$d = points needed for the next level -->
+    <string name="home_xp_progress">%1$d / %2$d XP</string>
+
+    <!-- Home screen: current mission section -->
+    <string name="home_todays_mission">Today\'s Mission</string>
+    <!-- Link that opens the full mission list -->
+    <string name="home_view_all">View all</string>
+    <!-- Mission progress. A pomodoro is one focus session. %1$d = finished, %2$d = planned (the plural follows %2$d) -->
+    <plurals name="home_mission_pomodoros">
+        <item quantity="one">%1$d/%2$d Pomodoro</item>
+        <item quantity="other">%1$d/%2$d Pomodoros</item>
+    </plurals>
+    <!-- Card shown when there is no mission yet: title and hint -->
+    <string name="home_create_first_mission">Create your first mission</string>
+    <string name="home_create_first_mission_hint">Give your focus a goal.</string>
+
+    <!-- Home screen: main button. Text depends on the timer: running / paused / not started -->
+    <string name="home_focus_return">Return to Focus</string>
+    <string name="home_focus_resume">Resume Focus</string>
+    <string name="home_focus_start">Start Focus</string>
+    <!-- Text button: start the timer without choosing a mission -->
+    <string name="home_focus_without_mission">Focus without a mission</string>
+
+    <!-- Reward screen after a finished focus session -->
+    <string name="celebration_focus_title">Great Job!</string>
+    <string name="celebration_focus_body">You completed your focus session.</string>
+    <!-- Text button under an ad; opens the Premium screen -->
+    <string name="celebration_remove_ads">Remove ads with Premium</string>
+
+    <!-- Reward screens: short captions under a number. Keep them short. -->
+    <string name="celebration_stat_focus_time">Focus Time</string>
+    <!-- XP = experience points for the user's world -->
+    <string name="celebration_stat_world_xp">World XP</string>
+    <!-- Progress made on the mission -->
+    <string name="celebration_stat_progress">Progress</string>
+    <!-- Caption under the number of pomodoros (focus sessions); the number itself is shown above, not in this text -->
+    <plurals name="celebration_stat_pomodoros">
+        <item quantity="one">Pomodoro</item>
+        <item quantity="other">Pomodoros</item>
+    </plurals>
+    <!-- Captions on the "new mission" screen: estimated effort, priority and category of the mission -->
+    <string name="celebration_stat_estimated">Estimated</string>
+    <string name="celebration_stat_priority">Priority</string>
+    <string name="celebration_stat_category">Category</string>
+
+    <!-- Reward values. %1$d = experience points earned -->
+    <string name="celebration_xp_earned">+%1$d XP</string>
+    <!-- %1$d = minutes of focus time added -->
+    <string name="celebration_minutes_earned">+%1$d min</string>
+    <!-- %1$d = number of pomodoros (focus sessions) planned for the mission -->
+    <plurals name="celebration_estimated_pomodoros">
+        <item quantity="one">%1$d Pomodoro</item>
+        <item quantity="other">%1$d Pomodoros</item>
+    </plurals>
+
+    <!-- Reward screen after finishing a mission -->
+    <string name="celebration_mission_completed_title">Mission Completed!</string>
+    <string name="celebration_mission_completed_body">Great job! You completed your mission and earned rewards.</string>
+    <!-- Button that opens the mission -->
+    <string name="celebration_view_mission">View Mission</string>
+
+    <!-- Reward screen when the daily streak grows -->
+    <string name="celebration_streak_title">Streak Continues!</string>
+    <!-- %1$d = number of days in a row -->
+    <plurals name="celebration_streak_subtitle">
+        <item quantity="one">You’re on a %1$d day streak!</item>
+        <item quantity="other">You’re on a %1$d day streak!</item>
+    </plurals>
+    <string name="celebration_streak_body">Your focus and consistency are building a better you.</string>
+    <!-- Button that closes the streak screen -->
+    <string name="celebration_keep_going">Keep Going</string>
+    <!-- Motivational quote. Do not add quotation marks; the app adds them. -->
+    <string name="celebration_streak_quote">Discipline is the bridge between goals and achievement.</string>
+
+    <!-- Reward screen when the user's world reaches a new level -->
+    <string name="celebration_level_up_title">World Level Up!</string>
+    <!-- %1$d = new level number -->
+    <string name="celebration_level_up_subtitle">Your world has reached Level %1$d!</string>
+    <!-- %1$d = level number -->
+    <string name="celebration_level">Level %1$d</string>
+    <!-- XP = experience points. %1$d = points earned in this level, %2$d = points needed for the next level -->
+    <string name="celebration_xp_progress">%1$d / %2$d XP</string>
+    <!-- Heading above pictures of the new things on the world island -->
+    <string name="celebration_unlocked_title">New elements unlocked:</string>
+    <!-- Button that goes to the Home screen with the world island -->
+    <string name="celebration_explore_world">Explore Your World</string>
+    <string name="celebration_level_up_footer">Your focus builds a more beautiful world.</string>
+
+    <!-- Screen shown after a new mission was created -->
+    <string name="celebration_mission_created_title">New Mission Assigned</string>
+    <string name="celebration_mission_created_body">It\'s time to add a new mission to your list. Keep your momentum going!</string>
+    <string name="celebration_mission_created_tip">Small steps every day lead to big results. 🌱</string>
+
+    <!-- ============ missions ============ -->
+    <!-- Missions list screen. A "mission" is a task the user wants to get done. -->
+    <string name="mission_list_title">Missions</string>
+    <!-- Screen reader label of the "+" button -->
+    <string name="mission_list_new">New mission</string>
+    <!-- Filter chips above the list (mission status). Keep them short. -->
+    <string name="mission_filter_all">All</string>
+    <string name="mission_filter_todo">Todo</string>
+    <string name="mission_filter_in_progress">In Progress</string>
+    <string name="mission_filter_completed">Completed</string>
+    <!-- Shown when the user has no missions at all -->
+    <string name="mission_list_empty_title">No missions yet</string>
+    <string name="mission_list_empty_message">Create a mission and start your first focus session.</string>
+    <string name="mission_list_create">Create mission</string>
+    <!-- Shown when the selected filter has no missions -->
+    <string name="mission_list_no_match_title">Nothing here</string>
+    <string name="mission_list_no_match_message">No missions match this filter.</string>
+
+    <!-- Mission card: planned number of focus sessions. A pomodoro is one focus session. -->
+    <plurals name="mission_pomodoro_count">
+        <item quantity="one">%1$d Pomodoro</item>
+        <item quantity="other">%1$d Pomodoros</item>
+    </plurals>
+
+    <!-- Shared by the mission detail and mission editor screens -->
+    <string name="mission_priority">Priority</string>
+    <!-- The mission was deleted or cannot be loaded -->
+    <string name="mission_not_found">Mission not found</string>
+    <string name="mission_not_found_message">It may have been deleted.</string>
+    <!-- Checklist steps: hint inside the empty text field -->
+    <string name="mission_step_placeholder">Add a step</string>
+    <!-- Screen reader labels of the buttons that add / remove a checklist step -->
+    <string name="mission_step_add">Add step</string>
+    <string name="mission_step_remove">Remove step</string>
+
+    <!-- Mission detail screen -->
+    <!-- Screen reader label of the "⋮" menu button -->
+    <string name="mission_detail_more_options">More options</string>
+    <!-- Menu entries -->
+    <string name="mission_detail_reopen">Reopen</string>
+    <string name="mission_detail_mark_completed">Mark as completed</string>
+    <string name="mission_detail_archive">Archive</string>
+    <string name="mission_detail_go_back">Go back</string>
+    <!-- Row label; the value next to it looks like "2 / 5" (done / planned focus sessions) -->
+    <string name="mission_detail_pomodoros">Pomodoros</string>
+    <string name="mission_detail_checklist">Checklist</string>
+    <!-- Shown when the checklist is empty -->
+    <string name="mission_detail_checklist_hint">Break the mission into small steps.</string>
+    <string name="mission_detail_completed_title">Mission completed 🎉</string>
+    <!-- %1$s = date, e.g. "5 Oct 2026" -->
+    <string name="mission_detail_completed_on">Completed on %1$s</string>
+    <string name="mission_detail_reopen_mission">Reopen mission</string>
+    <!-- All planned focus sessions are done but checklist steps are still open -->
+    <string name="mission_detail_estimate_reached">Estimate reached — finish the remaining steps or mark the mission as completed.</string>
+    <!-- Button that starts the focus timer for this mission -->
+    <string name="mission_detail_start_focus">Start Focus</string>
+    <!-- Row label; the value is the date the mission was created -->
+    <string name="mission_detail_created">Created</string>
+    <!-- Row label; the value is one of the mission_status_ texts below -->
+    <string name="mission_detail_status">Status</string>
+    <string name="mission_status_todo">To do</string>
+    <string name="mission_status_in_progress">In progress</string>
+    <string name="mission_status_completed">Completed</string>
+    <string name="mission_status_archived">Archived</string>
+    <!-- Confirmation dialog before deleting a mission. XP = experience points. -->
+    <string name="mission_delete_title">Delete mission?</string>
+    <string name="mission_delete_message">The mission and its checklist will be removed. Your focus history and World XP are kept.</string>
+
+    <!-- Mission editor screen (create / edit a mission) -->
+    <string name="mission_editor_title_new">New Mission</string>
+    <string name="mission_editor_title_edit">Edit Mission</string>
+    <!-- Text field labels -->
+    <string name="mission_editor_title_label">Mission title</string>
+    <string name="mission_editor_description_label">Description (optional)</string>
+    <!-- Section headings -->
+    <string name="mission_editor_estimate_label">Estimated pomodoros</string>
+    <string name="mission_editor_category_label">Category</string>
+    <string name="mission_editor_checklist_label">Checklist (optional)</string>
+    <!-- Screen reader labels of the − / + buttons that change the estimated number of pomodoros -->
+    <string name="mission_editor_decrease">Decrease</string>
+    <string name="mission_editor_increase">Increase</string>
+    <!-- Unit shown UNDER a large number (the number itself is not part of this text). Choose the form by that number. -->
+    <plurals name="mission_editor_pomodoros_unit">
+        <item quantity="one">Pomodoro</item>
+        <item quantity="other">Pomodoros</item>
+    </plurals>
+    <!-- Buttons at the bottom -->
+    <string name="mission_editor_create">Create Mission</string>
+    <string name="mission_editor_save_changes">Save changes</string>
+    <!-- Error messages shown above the save button -->
+    <string name="mission_error_empty_title">Please give your mission a title.</string>
+    <string name="mission_error_title_too_long">The title is too long.</string>
+    <!-- %1$d = largest allowed number (currently 50) -->
+    <string name="mission_error_invalid_estimate">Estimate must be between 1 and %1$d pomodoros.</string>
+
+    <!-- Statistics screen -->
+    <string name="stats_title">Statistics</string>
+    <string name="stats_subtitle">Understand your focus patterns</string>
+    <!-- Time range chips, very short: last 7 days, 30 days, 3 months, 1 year (D = days, M = months, Y = year) -->
+    <string name="stats_range_week">7D</string>
+    <string name="stats_range_month">30D</string>
+    <string name="stats_range_quarter">3M</string>
+    <string name="stats_range_year">1Y</string>
+    <!-- Captions of small tiles; each has a number or duration next to it. Keep them short. -->
+    <string name="stats_focus_time">Focus Time</string>
+    <string name="stats_sessions">Sessions</string>
+    <string name="stats_today">Today</string>
+    <string name="stats_this_week">This Week</string>
+    <!-- Number of completed missions -->
+    <string name="stats_missions">Missions</string>
+    <!-- Days in a row with at least one focus session -->
+    <string name="stats_streak">Streak</string>
+    <plurals name="stats_streak_days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+    <!-- Average length of a focus session -->
+    <string name="stats_average_session">Avg. Session</string>
+    <!-- Share of started sessions that were finished, shown as a percentage -->
+    <string name="stats_completion">Completion</string>
+    <!-- Time of day with the most focus, e.g. "09:00 - 11:00" -->
+    <string name="stats_best_time">Best Time</string>
+    <!-- How far the user's pomodoro estimates are off, e.g. "+20%" -->
+    <string name="stats_estimation">Estimation</string>
+    <!-- Chart titles -->
+    <string name="stats_trend_title">Focus Time Trend</string>
+    <string name="stats_top_hours_title">Top Focus Hours</string>
+    <string name="stats_top_hours_empty">Complete a few sessions to see your best hours.</string>
+    <!-- Screen reader description of the bar chart. %1$s = list of values, e.g. "Mon: 25m, Tue: 1h 5m" -->
+    <string name="stats_chart_description">Focus time chart. %1$s</string>
+    <!-- Card shown instead of the advanced statistics when the user has no Premium -->
+    <string name="stats_advanced_title">Advanced Statistics</string>
+    <string name="stats_advanced_description">Best focus hours, average session, completion rate, estimation accuracy and monthly/yearly trends.</string>
+    <!-- Insights = personal tips based on the user's focus history -->
+    <string name="stats_insights_title">Insights</string>
+    <!-- Placeholder for an insight that needs Premium -->
+    <string name="stats_insight_locked_title">Premium insight</string>
+    <string name="stats_insight_locked_message">Unlock Premium to see this personal insight about your focus.</string>
+
+    <!-- ============ backgrounds ============ -->
+    <!-- Background Gallery screen: the user picks the picture shown behind the focus timer -->
+    <string name="bg_gallery_title">Background Gallery</string>
+
+    <!-- Filter tabs at the top of the gallery. Keep them short. -->
+    <string name="bg_tab_all">All</string>
+    <string name="bg_tab_favorites">Favorites</string>
+    <!-- The user's own photos -->
+    <string name="bg_category_my_photos">My Photos</string>
+    <string name="bg_category_nature">Nature</string>
+    <string name="bg_category_city">Cities</string>
+    <string name="bg_category_abstract">Abstract</string>
+    <string name="bg_category_space">Space</string>
+    <string name="bg_category_minimal">Minimal</string>
+    <string name="bg_category_dark">Dark</string>
+
+    <!-- Card at the top of the gallery for adding an own photo -->
+    <string name="bg_add_title">Add Background</string>
+    <!-- Premium users: explains that photos are not uploaded anywhere -->
+    <string name="bg_add_photos_stay_on_device">Your photos stay on this device</string>
+    <!-- Free users: %1$d = how many own backgrounds are saved, %2$d = maximum allowed for free, e.g. "2 / 3 personal backgrounds" -->
+    <string name="bg_add_free_count">%1$d / %2$d personal backgrounds</string>
+    <!-- Shown on its own line under one of the two texts above -->
+    <string name="bg_add_adjust_hint">Tap the selected background again to preview &amp; adjust.</string>
+    <!-- Three buttons: where the new picture comes from. One short word each. -->
+    <string name="bg_source_gallery">Gallery</string>
+    <string name="bg_source_camera">Camera</string>
+    <string name="bg_source_files">Files</string>
+
+    <!-- Shown when a gallery tab has no pictures -->
+    <string name="bg_empty_favorites">Tap the heart on a background to add it here.</string>
+    <string name="bg_empty_tab">No backgrounds here yet.</string>
+
+    <!-- Short messages (toasts) on the gallery screen -->
+    <string name="bg_error_no_camera_app">No camera app is available.</string>
+    <string name="bg_error_no_file_manager">No file manager is available.</string>
+    <string name="bg_error_image_unusable">This image can\'t be used. Please pick another one.</string>
+    <string name="bg_message_removed">Background removed</string>
+
+    <!-- Names given automatically to a newly added picture -->
+    <!-- A photo just taken with the camera -->
+    <string name="bg_default_name_camera">Camera photo</string>
+    <!-- A picked photo whose file name is unknown -->
+    <string name="bg_default_name_photo">My photo</string>
+
+    <!-- Dialog: a free user tries to add more own backgrounds than allowed. %1$d = maximum number for free users -->
+    <string name="bg_limit_title">Free limit reached</string>
+    <string name="bg_limit_message">Free users can keep %1$d personal backgrounds. Remove one, or unlock unlimited backgrounds with Premium.</string>
+    <!-- Button: opens the Premium offer -->
+    <string name="bg_limit_see_premium">See Premium</string>
+    <string name="bg_limit_not_now">Not now</string>
+
+    <!-- Dialog: confirm removing one of the user's own backgrounds. %1$s = name of the background -->
+    <string name="bg_delete_title">Remove background?</string>
+    <!-- For a photo taken with the camera from inside this app -->
+    <string name="bg_delete_message_camera">\"%1$s\" was taken for this app and is stored only here, so it will be deleted.</string>
+    <!-- For a photo picked from the phone's gallery or files -->
+    <string name="bg_delete_message_photo">\"%1$s\" will be removed from the app. The original photo on your device is not deleted.</string>
+    <!-- Button in the dialog and item in the long-press menu: removes the background -->
+    <string name="bg_remove">Remove</string>
+
+    <!-- Long-press menu of a background in the gallery -->
+    <string name="bg_menu_preview">Preview</string>
+    <string name="bg_menu_preview_adjust">Preview &amp; adjust</string>
+    <!-- Actions: mark / unmark the background as a favorite -->
+    <string name="bg_menu_favorite">Favorite</string>
+    <string name="bg_menu_unfavorite">Unfavorite</string>
+
+    <!-- Screen reader texts in the gallery -->
+    <!-- %1$s = name of the background that is currently in use, e.g. "Mountain Lake, selected" -->
+    <string name="bg_a11y_tile_selected">%1$s, selected</string>
+    <string name="bg_a11y_add_favorite">Add to favorites</string>
+    <string name="bg_a11y_remove_favorite">Remove from favorites</string>
+
+    <!-- Preview / adjust screen: shows how the background looks behind the timer -->
+    <!-- Screen title for the user's own photo (can be moved and zoomed) -->
+    <string name="bg_adjust_title">Adjust background</string>
+    <!-- Screen title for a built-in background (preview only) -->
+    <string name="bg_adjust_title_preview">Preview</string>
+    <!-- Screen reader text of the button that moves the photo back to the center -->
+    <string name="bg_adjust_reset_position">Reset position</string>
+    <!-- Shown when the background no longer exists -->
+    <string name="bg_adjust_not_found_title">Background not available</string>
+    <string name="bg_adjust_not_found_message">It may have been removed.</string>
+    <string name="bg_adjust_go_back">Go back</string>
+    <!-- Sample timer label drawn over the preview picture, above "25:00" -->
+    <string name="bg_adjust_sample_label">Focus</string>
+    <!-- Hint under the preview for the user's own photo -->
+    <string name="bg_adjust_hint_drag">Drag to position · double-tap to reset</string>
+    <!-- Hint under the preview for a built-in background -->
+    <string name="bg_adjust_hint_builtin">Built-in backgrounds always fit your screen perfectly.</string>
+    <!-- Section title: which part of the photo stays visible -->
+    <string name="bg_adjust_position">Position</string>
+    <string name="bg_adjust_position_top">Top</string>
+    <string name="bg_adjust_position_center">Center</string>
+    <string name="bg_adjust_position_bottom">Bottom</string>
+    <string name="bg_adjust_position_left">Left</string>
+    <string name="bg_adjust_position_right">Right</string>
+    <!-- Section title: enlarge the photo (Premium feature) -->
+    <string name="bg_adjust_zoom">Zoom</string>
+    <!-- Locked button that opens the Premium offer -->
+    <string name="bg_adjust_unlock_crop_editor">Unlock advanced crop editor</string>
+    <!-- Section title: slider that makes the background darker so the timer is easier to read -->
+    <string name="bg_adjust_darken">Darken</string>
+    <!-- Main button: saves and uses this background for the timer -->
+    <string name="bg_adjust_use_background">Use this background</string>
+
 </resources>

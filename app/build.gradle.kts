@@ -91,6 +91,11 @@ android {
     packaging {
         resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" }
     }
+    // Keep every translation inside the download. Without this, Google Play only delivers the phone's
+    // own language and the in-app language picker would fall back to English for the others.
+    bundle {
+        language { enableSplit = false }
+    }
 }
 
 kotlin {
@@ -106,6 +111,8 @@ room {
 dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
+    // In-app language selection (per-app locales). See docs/LOCALIZATION.md.
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)

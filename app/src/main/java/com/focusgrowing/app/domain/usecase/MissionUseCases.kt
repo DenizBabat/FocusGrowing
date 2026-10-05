@@ -12,6 +12,7 @@ import com.focusgrowing.app.domain.repository.CelebrationQueue
 import com.focusgrowing.app.domain.repository.MissionRepository
 import com.focusgrowing.app.domain.repository.NotificationRepository
 import com.focusgrowing.app.domain.repository.TimeProvider
+import com.focusgrowing.app.domain.repository.DomainStrings
 import javax.inject.Inject
 
 data class MissionDraft(
@@ -37,6 +38,7 @@ class SaveMissionUseCase @Inject constructor(
     private val notifications: NotificationRepository,
     private val celebrations: CelebrationQueue,
     private val time: TimeProvider,
+    private val strings: DomainStrings,
 ) {
     suspend operator fun invoke(draft: MissionDraft): SaveMissionResult {
         val title = draft.title.trim()
@@ -73,9 +75,9 @@ class SaveMissionUseCase @Inject constructor(
         notifications.add(
             AppNotification(
                 type = NotificationType.MISSION,
-                title = "New Mission Assigned",
-                message = "\"$title\"",
-                detail = "Estimated ${draft.estimatedPomodoros} Pomodoros",
+                title = strings.missionCreatedTitle(),
+                message = strings.quoted(title),
+                detail = strings.estimatedPomodoros(draft.estimatedPomodoros),
                 missionId = id,
                 createdAt = now,
             ),
@@ -108,6 +110,7 @@ class CompleteMissionUseCase @Inject constructor(
     private val xpAwarder: XpAwarder,
     private val celebrations: CelebrationQueue,
     private val time: TimeProvider,
+    private val strings: DomainStrings,
 ) {
     suspend operator fun invoke(missionId: Long) {
         val mission = missions.getMission(missionId) ?: return
@@ -118,9 +121,9 @@ class CompleteMissionUseCase @Inject constructor(
         notifications.add(
             AppNotification(
                 type = NotificationType.MISSION,
-                title = "Mission Completed!",
-                message = "\"${mission.title}\"",
-                detail = "You earned +$bonus bonus XP",
+                title = strings.missionCompletedTitle(),
+                message = strings.quoted(mission.title),
+                detail = strings.bonusXpDetail(bonus),
                 missionId = missionId,
                 createdAt = now,
             ),

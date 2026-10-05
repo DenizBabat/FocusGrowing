@@ -32,9 +32,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.EmptyState
 import com.focusgrowing.app.core.designsystem.component.FocusCard
 import com.focusgrowing.app.core.designsystem.component.FocusChipRow
@@ -63,18 +65,18 @@ fun NotificationsScreen(
                 FocusTopBar(title = null, onBack = onBack) {
                     if (state.items.isNotEmpty()) {
                         IconButton(onClick = viewModel::clearAll) {
-                            Icon(Icons.Rounded.DeleteSweep, contentDescription = "Clear all", tint = FocusTheme.colors.onBackground)
+                            Icon(Icons.Rounded.DeleteSweep, contentDescription = stringResource(R.string.notifications_clear_all), tint = FocusTheme.colors.onBackground)
                         }
                     }
                 }
                 Text(
-                    "Notifications",
+                    stringResource(R.string.notifications_title),
                     style = FocusTheme.typography.headlineMedium,
                     color = FocusTheme.colors.onBackground,
                     modifier = Modifier.padding(horizontal = FocusTheme.spacing.screen),
                 )
                 Text(
-                    "Stay focused, stay on track 🌱",
+                    stringResource(R.string.notifications_subtitle),
                     style = FocusTheme.typography.bodyMedium,
                     color = FocusTheme.colors.onSurfaceVariant,
                     modifier = Modifier.padding(horizontal = FocusTheme.spacing.screen),
@@ -83,12 +85,12 @@ fun NotificationsScreen(
         }
         Spacer(Modifier.height(FocusTheme.spacing.sm))
         FocusChipRow(
-            options = filters.map { it.label },
+            options = filters.map { stringResource(it.labelRes) },
             selectedIndex = filters.indexOf(state.filter),
             onSelect = { viewModel.setFilter(filters[it]) },
         )
         if (!state.loading && state.items.isEmpty()) {
-            EmptyState(Icons.Rounded.Notifications, "No notifications yet", "Complete focus sessions and missions to see your progress here.")
+            EmptyState(Icons.Rounded.Notifications, stringResource(R.string.notifications_empty_title), stringResource(R.string.notifications_empty_message))
         } else {
             LazyColumn(
                 contentPadding = PaddingValues(horizontal = FocusTheme.spacing.screen, vertical = FocusTheme.spacing.lg),

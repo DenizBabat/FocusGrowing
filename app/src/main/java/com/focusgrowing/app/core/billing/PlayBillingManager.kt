@@ -15,6 +15,8 @@ import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
+import com.focusgrowing.app.R
+import com.focusgrowing.app.core.locale.StringProvider
 import com.focusgrowing.app.di.ApplicationScope
 import com.focusgrowing.app.domain.logic.PremiumPricing
 import com.focusgrowing.app.domain.model.ActiveSubscription
@@ -61,6 +63,7 @@ class PlayBillingManager @Inject constructor(
     @ApplicationContext private val context: Context,
     private val subscriptions: SubscriptionRepository,
     @ApplicationScope private val scope: CoroutineScope,
+    private val strings: StringProvider,
 ) : PurchaseManager, PurchasesUpdatedListener {
 
     private val client: BillingClient = BillingClient.newBuilder(context)
@@ -124,16 +127,16 @@ class PlayBillingManager @Inject constructor(
         val details = productDetails[offer.productId]
         if (!client.isReady || details == null) {
             refreshAsync()
-            return PurchaseResult.Failure("Google Play is not ready yet. Please try again in a moment.")
+            return PurchaseResult.Failure(strings.get(R.string.billing_not_ready))
         }
 
-        if (_ownsLifetime.value) return PurchaseResult.Failure("You already own lifetime Premium.")
+        if (_ownsLifetime.value) return PurchaseResult.Failure(strings.get(R.string.billing_already_own_lifetime))
         if (offer.period == BillingPeriod.LIFETIME) return launchLifetimePurchase(activity, details, offer)
 
         val current = _activeSubscription.value
         val oldToken = activePurchaseToken
         val changeMode = current?.let { PremiumPricing.planChangeMode(it.period, offer.period) }
-        if (current != null && changeMode == null) return PurchaseResult.Failure("You already have this plan.")
+        if (current != null && changeMode == null) return PurchaseResult.Failure(strings.get(R.string.billing_already_have_plan))
 
         // A plan change always uses the plain base plan (free trials are for new subscribers).
         val offerToUse = if (current != null) {
@@ -155,7 +158,7 @@ class PlayBillingManager @Inject constructor(
         if (current != null && changeMode != null) {
             if (oldToken == null) {
                 refreshAsync()
-                return PurchaseResult.Failure("Couldn't read your current subscription. Please try again in a moment.")
+                return PurchaseResult.Failure(strings.get(R.string.billing_subscription_unreadable))
             }
             flow.setSubscriptionUpdateParams(replacementParams(oldToken, changeMode))
         }
@@ -209,8 +212,8 @@ class PlayBillingManager @Inject constructor(
         return when (syncPurchases()) {
             SyncOutcome.ACTIVE -> PurchaseResult.Success
             SyncOutcome.PENDING -> PurchaseResult.Pending
-            SyncOutcome.NONE -> PurchaseResult.Failure("No active Premium subscription was found for this Google account.")
-            SyncOutcome.ERROR -> PurchaseResult.Failure("Couldn't reach Google Play. Check your connection and try again.")
+            SyncOutcome.NONE -> PurchaseResult.Failure(strings.get(R.string.billing_restore_none))
+            SyncOutcome.ERROR -> PurchaseResult.Failure(strings.get(R.string.billing_error_unreachable))
         }
     }
 
@@ -246,7 +249,7 @@ class PlayBillingManager @Inject constructor(
                         }
                         sync == SyncOutcome.ACTIVE -> PurchaseResult.Success
                         sync == SyncOutcome.PENDING -> PurchaseResult.Pending
-                        else -> PurchaseResult.Failure("The purchase couldn't be verified. If you were charged, tap “Restore purchase”.")
+                        else -> PurchaseResult.Failure(strings.get(R.string.billing_verify_failed))
                     }
                 }
                 BillingResponseCode.USER_CANCELED -> PurchaseResult.Cancelled
@@ -358,7 +361,7 @@ class PlayBillingManager @Inject constructor(
         allOffers = subscriptionOffers + lifetimeOffers
         _offers.value = PremiumPricing.chooseOffers(allOffers)
         _state.value = if (_offers.value.isEmpty()) {
-            BillingState.Unavailable("Premium isn't available in your country or on this Google Play account yet.")
+            BillingState.Unavailable(strings.get(R.string.billing_not_available_in_country))
         } else {
             BillingState.Ready
         }
@@ -443,16 +446,17 @@ class PlayBillingManager @Inject constructor(
 
     private fun okResult(): BillingResult = BillingResult.newBuilder().setResponseCode(BillingResponseCode.OK).build()
 
-    private fun BillingResult.userMessage(): String = when (responseCode) {
-        BillingResponseCode.BILLING_UNAVAILABLE ->
-            "Google Play purchases aren't available on this device. Make sure the Play Store is installed and you're signed in."
-        BillingResponseCode.SERVICE_UNAVAILABLE, BillingResponseCode.SERVICE_DISCONNECTED, BillingResponseCode.NETWORK_ERROR ->
-            "Couldn't reach Google Play. Check your connection and try again."
-        BillingResponseCode.ITEM_UNAVAILABLE -> "This plan isn't available right now."
-        BillingResponseCode.FEATURE_NOT_SUPPORTED -> "Please update the Google Play Store app and try again."
-        BillingResponseCode.DEVELOPER_ERROR -> "Purchases aren't set up correctly yet. Please try again later."
-        else -> "Something went wrong with Google Play. Please try again."
-    }
+    private fun BillingResult.userMessage(): String = strings.get(
+        when (responseCode) {
+            BillingResponseCode.BILLING_UNAVAILABLE -> R.string.billing_error_unavailable_on_device
+            BillingResponseCode.SERVICE_UNAVAILABLE, BillingResponseCode.SERVICE_DISCONNECTED, BillingResponseCode.NETWORK_ERROR ->
+                R.string.billing_error_unreachable
+            BillingResponseCode.ITEM_UNAVAILABLE -> R.string.billing_error_plan_unavailable
+            BillingResponseCode.FEATURE_NOT_SUPPORTED -> R.string.billing_error_update_play_store
+            BillingResponseCode.DEVELOPER_ERROR -> R.string.billing_error_not_set_up
+            else -> R.string.billing_error_generic
+        },
+    )
 
     private companion object {
         const val TAG = "PlayBilling"

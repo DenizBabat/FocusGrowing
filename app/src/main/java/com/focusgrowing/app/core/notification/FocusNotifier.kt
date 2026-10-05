@@ -14,6 +14,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.focusgrowing.app.MainActivity
 import com.focusgrowing.app.R
+import com.focusgrowing.app.core.locale.StringProvider
 import com.focusgrowing.app.core.timer.TimerAlarmReceiver
 import com.focusgrowing.app.domain.logic.TimerCalculator
 import com.focusgrowing.app.domain.model.SessionReward
@@ -31,6 +32,7 @@ import javax.inject.Singleton
 @Singleton
 class FocusNotifier @Inject constructor(
     @ApplicationContext private val context: Context,
+    private val strings: StringProvider,
 ) {
     private val manager = NotificationManagerCompat.from(context)
 
@@ -39,18 +41,18 @@ class FocusNotifier @Inject constructor(
         val system = context.getSystemService(NotificationManager::class.java) ?: return
         val timer = NotificationChannel(
             CHANNEL_TIMER,
-            context.getString(R.string.channel_timer_name),
+            strings.get(R.string.channel_timer_name),
             NotificationManager.IMPORTANCE_LOW,
         ).apply {
-            description = context.getString(R.string.channel_timer_desc)
+            description = strings.get(R.string.channel_timer_desc)
             setShowBadge(false)
         }
         val events = NotificationChannel(
             CHANNEL_EVENTS,
-            context.getString(R.string.channel_events_name),
+            strings.get(R.string.channel_events_name),
             NotificationManager.IMPORTANCE_HIGH,
         ).apply {
-            description = context.getString(R.string.channel_events_desc)
+            description = strings.get(R.string.channel_events_desc)
         }
         system.createNotificationChannels(listOf(timer, events))
     }
@@ -64,13 +66,13 @@ class FocusNotifier @Inject constructor(
 
     fun showRunning(state: TimerState, missionTitle: String?) {
         val title = when (state.sessionType) {
-            SessionType.FOCUS -> "Focusing"
-            SessionType.SHORT_BREAK -> "Short break"
-            SessionType.LONG_BREAK -> "Long break"
+            SessionType.FOCUS -> strings.get(R.string.notif_title_focusing)
+            SessionType.SHORT_BREAK -> strings.get(R.string.notif_title_short_break)
+            SessionType.LONG_BREAK -> strings.get(R.string.notif_title_long_break)
         }
         val builder = baseBuilder(CHANNEL_TIMER)
             .setContentTitle(title)
-            .setContentText(missionTitle ?: "Stay focused, you can do it!")
+            .setContentText(missionTitle ?: strings.get(R.string.notif_running_text_default))
             .setOngoing(true)
             .setOnlyAlertOnce(true)
             .setSilent(true)
@@ -79,19 +81,19 @@ class FocusNotifier @Inject constructor(
             .setShowWhen(true)
             .setUsesChronometer(true)
             .setChronometerCountDown(true)
-            .addAction(0, "Pause", actionIntent(TimerAlarmReceiver.ACTION_PAUSE, 1))
+            .addAction(0, strings.get(R.string.notif_action_pause), actionIntent(TimerAlarmReceiver.ACTION_PAUSE, 1))
         post(ID_TIMER, builder)
     }
 
     fun showPaused(state: TimerState, missionTitle: String?) {
         val left = TimerCalculator.formatMmSs(state.remainingWhenPausedMillis)
         val builder = baseBuilder(CHANNEL_TIMER)
-            .setContentTitle("Paused · $left left")
-            .setContentText(missionTitle ?: "Tap to continue your session")
+            .setContentTitle(strings.get(R.string.notif_paused_title, left))
+            .setContentText(missionTitle ?: strings.get(R.string.notif_paused_text_default))
             .setOngoing(true)
             .setOnlyAlertOnce(true)
             .setSilent(true)
-            .addAction(0, "Resume", actionIntent(TimerAlarmReceiver.ACTION_RESUME, 2))
+            .addAction(0, strings.get(R.string.notif_action_resume), actionIntent(TimerAlarmReceiver.ACTION_RESUME, 2))
         post(ID_TIMER, builder)
     }
 
@@ -101,18 +103,19 @@ class FocusNotifier @Inject constructor(
 
     fun showSessionFinished(reward: SessionReward, withSound: Boolean) {
         val builder = if (reward.sessionType == SessionType.FOCUS) {
-            val text = buildString {
-                append("You completed a ${reward.focusMinutes} minute focus session.")
-                if (reward.xpEarned > 0) append(" +${reward.xpEarned} World XP")
+            val text = if (reward.xpEarned > 0) {
+                strings.get(R.string.notif_focus_completed_text_xp, reward.focusMinutes, reward.xpEarned)
+            } else {
+                strings.get(R.string.notif_focus_completed_text, reward.focusMinutes)
             }
             baseBuilder(CHANNEL_EVENTS)
-                .setContentTitle(if (reward.missionCompleted) "🎉 Mission completed!" else "🎉 Focus session completed")
-                .setContentText(reward.missionTitle?.let { "$it · $text" } ?: text)
-                .setStyle(NotificationCompat.BigTextStyle().bigText(reward.missionTitle?.let { "Mission: $it\n$text" } ?: text))
+                .setContentTitle(strings.get(if (reward.missionCompleted) R.string.notif_mission_completed_title else R.string.notif_focus_completed_title))
+                .setContentText(reward.missionTitle?.let { strings.get(R.string.notif_text_with_mission, it, text) } ?: text)
+                .setStyle(NotificationCompat.BigTextStyle().bigText(reward.missionTitle?.let { strings.get(R.string.notif_big_text_with_mission, it, text) } ?: text))
         } else {
             baseBuilder(CHANNEL_EVENTS)
-                .setContentTitle("☕ Break finished")
-                .setContentText("Ready for another focus session?")
+                .setContentTitle(strings.get(R.string.notif_break_finished_title))
+                .setContentText(strings.get(R.string.notif_break_finished_text))
         }
         builder.setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_HIGH)

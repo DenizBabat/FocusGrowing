@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_timer_name">Minuteur en cours</string>
+    <string name="channel_timer_desc">Affiche la session de concentration en cours.</string>
+    <string name="channel_events_name">Infos de session</string>
+    <string name="channel_events_desc">Session de concentration terminée, fin de pause et nouveaux niveaux de ton monde.</string>
+
+    <string name="ad_badge">Annonce</string>
+    <string name="common_continue">Continuer</string>
+    <string name="common_cancel">Annuler</string>
+    <string name="common_save">Enregistrer</string>
+    <string name="common_delete">Supprimer</string>
+    <string name="common_edit">Modifier</string>
+    <string name="common_back">Retour</string>
+    <string name="common_close">Fermer</string>
+    <string name="common_done">OK</string>
+    <string name="common_premium">Premium</string>
+    <string name="common_locked">Verrouillé</string>
+    <string name="common_unlock_premium">Débloquer Premium</string>
+    <string name="common_minutes_short">%1$d min</string>
+    <string name="a11y_percent">%1$d pour cent</string>
+
+    <string name="language_title">Langue</string>
+    <string name="language_system_default">Langue du système</string>
+    <string name="language_system_default_with_name">Langue du système (%1$s)</string>
+
+    <string name="format_duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="format_duration_hours">%1$d h</string>
+    <string name="format_duration_minutes">%1$d min</string>
+    <string name="format_yesterday">Hier</string>
+    <plurals name="format_days_ago">
+        <item quantity="one">Il y a %1$d jour</item>
+        <item quantity="many">Il y a %1$d jours</item>
+        <item quantity="other">Il y a %1$d jours</item>
+    </plurals>
+    <string name="format_percent">%1$d %%</string>
+    <string name="format_quoted">« %1$s »</string>
+
+    <string name="greeting_morning">Bonjour</string>
+    <string name="greeting_afternoon">Bon après-midi</string>
+    <string name="greeting_evening">Bonsoir</string>
+    <string name="greeting_hello">Salut</string>
+
+    <string name="priority_low">Basse</string>
+    <string name="priority_medium">Moyenne</string>
+    <string name="priority_high">Haute</string>
+
+    <string name="category_general">Général</string>
+    <string name="category_development">Développement</string>
+    <string name="category_design">Design</string>
+    <string name="category_study">Études</string>
+    <string name="category_reading">Lecture</string>
+    <string name="category_work">Travail</string>
+    <string name="category_health">Santé</string>
+    <string name="category_personal">Personnel</string>
+
+    <string name="world_item_sprout">Pousse</string>
+    <string name="world_item_grass">Herbe</string>
+    <string name="world_item_flowers">Fleurs</string>
+    <string name="world_item_bush">Buissons</string>
+    <string name="world_item_pine">Pins</string>
+    <string name="world_item_rocks">Rochers</string>
+    <string name="world_item_house">Maison</string>
+    <string name="world_item_fence">Clôture</string>
+    <string name="world_item_garden">Jardin</string>
+    <string name="world_item_lake">Lac</string>
+    <string name="world_item_oak">Chênes</string>
+    <string name="world_item_waterfall">Cascade</string>
+    <string name="world_item_cabin">Cabane du village</string>
+    <string name="world_item_windmill">Moulin à vent</string>
+    <string name="world_item_bridge">Pont</string>
+    <string name="world_item_lighthouse">Phare</string>
+
+    <string name="scene_mountain_lake">Lac de montagne</string>
+    <string name="scene_forest_morning">Matin en forêt</string>
+    <string name="scene_sunset_hills">Collines au couchant</string>
+    <string name="scene_city_dusk">Crépuscule urbain</string>
+    <string name="scene_city_night">Nuit urbaine</string>
+    <string name="scene_abstract_blobs">Formes douces</string>
+    <string name="scene_aurora">Aurore boréale</string>
+    <string name="scene_night_sky">Ciel nocturne</string>
+    <string name="scene_minimal_waves">Vagues calmes</string>
+    <string name="scene_deep_dark">Noir profond</string>
+
+    <string name="onboarding_tagline">Mission\nMonde\nIntelligence</string>
+    <string name="onboarding_subtitle">Concentre-toi sur tes missions.\nFais grandir ton monde.</string>
+    <string name="onboarding_get_started">Commencer</string>
+    <string name="onboarding_next">Suivant</string>
+    <string name="onboarding_skip">Passer</string>
+    <string name="onboarding_step_number">%1$d.</string>
+    <string name="onboarding_mission_title">Mission</string>
+    <string name="onboarding_mission_text">Crée tes tâches, fixe tes objectifs et passe à l’action.</string>
+    <string name="onboarding_world_title">Monde</string>
+    <string name="onboarding_world_text">Termine des sessions de concentration et fais grandir ton monde.</string>
+    <string name="onboarding_intelligence_title">Intelligence</string>
+    <string name="onboarding_intelligence_text">Découvre tes habitudes, reçois des conseils et deviens la meilleure version de toi-même.</string>
+    <string name="onboarding_change_later">Tu peux modifier ce réglage à tout moment dans les paramètres.</string>
+    <string name="onboarding_focus_length_title">Combien de temps te concentres-tu d’habitude ?</string>
+    <string name="onboarding_minutes_option">%1$d minutes</string>
+    <string name="onboarding_custom">Personnalisé</string>
+    <string name="onboarding_custom_minutes_label">Minutes (1–180)</string>
+    <string name="onboarding_first_goal_title">Choisis ton premier objectif.</string>
+    <string name="onboarding_first_goal_text">Il deviendra ta première mission. Chaque session de concentration la fait avancer.</string>
+    <string name="onboarding_name_label">Ton prénom (facultatif)</string>
+    <string name="onboarding_goal_example">p. ex. Finir ma présentation</string>
+    <string name="onboarding_idea_read">Lire un livre</string>
+    <string name="onboarding_idea_learn">Apprendre une langue</string>
+    <string name="onboarding_idea_exercise">Faire du sport</string>
+    <string name="onboarding_start_growing">C’est parti</string>
+    <string name="onboarding_skip_for_now">Plus tard</string>
+
+    <string name="inbox_focus_completed_title">Session de concentration terminée</string>
+    <string name="inbox_focus_completed_message">Tu as terminé une session de concentration de %1$d min. Bravo !</string>
+    <string name="inbox_xp_detail">+%1$d XP</string>
+    <string name="inbox_xp_detail_with_mission">+%1$d XP · %2$s</string>
+    <string name="inbox_mission_completed_title">Mission terminée !</string>
+    <string name="inbox_bonus_xp_detail">Tu as gagné +%1$d XP bonus</string>
+    <string name="inbox_streak_title">La série continue !</string>
+    <string name="inbox_streak_message">Tu en es à %1$d jours d’affilée !</string>
+    <string name="inbox_streak_detail">Continue comme ça !</string>
+    <string name="inbox_mission_created_title">Nouvelle mission</string>
+    <plurals name="inbox_estimated_pomodoros">
+        <item quantity="one">Estimation : %1$d Pomodoro</item>
+        <item quantity="many">Estimation : %1$d Pomodoros</item>
+        <item quantity="other">Estimation : %1$d Pomodoros</item>
+    </plurals>
+    <string name="inbox_level_up_title">Ton monde monte de niveau !</string>
+    <string name="inbox_level_up_message">Ton monde a atteint le niveau %1$d !</string>
+    <string name="inbox_level_up_unlocked">Nouveaux éléments débloqués : %1$s</string>
+    <string name="bg_error_image_add_failed">Impossible d’ajouter cette image. Essaies-en une autre.</string>
+
+    <string name="insight_getting_started_title">Tes conseils se préparent</string>
+    <plurals name="insight_getting_started_message">
+        <item quantity="one">Termine encore %1$d session de concentration pour débloquer tes conseils personnalisés.</item>
+        <item quantity="many">Termine encore %1$d sessions de concentration pour débloquer tes conseils personnalisés.</item>
+        <item quantity="other">Termine encore %1$d sessions de concentration pour débloquer tes conseils personnalisés.</item>
+    </plurals>
+    <string name="insight_time_of_day_title_morning">Tu es au top le matin</string>
+    <string name="insight_time_of_day_title_afternoon">Tu es au top l’après-midi</string>
+    <string name="insight_time_of_day_title_evening">Tu es au top le soir</string>
+    <string name="insight_time_of_day_title_night">Tu es au top la nuit</string>
+    <string name="insight_time_of_day_message_morning">%1$d %% de ton temps de concentration se situe le matin. Prévois tes missions les plus difficiles à ce moment-là.</string>
+    <string name="insight_time_of_day_message_afternoon">%1$d %% de ton temps de concentration se situe l’après-midi. Prévois tes missions les plus difficiles à ce moment-là.</string>
+    <string name="insight_time_of_day_message_evening">%1$d %% de ton temps de concentration se situe le soir. Prévois tes missions les plus difficiles à ce moment-là.</string>
+    <string name="insight_time_of_day_message_night">%1$d %% de ton temps de concentration se situe la nuit. Prévois tes missions les plus difficiles à ce moment-là.</string>
+    <string name="insight_streak_title">Série de %1$d jours</string>
+    <string name="insight_streak_message">Tu as enchaîné %1$d jours de concentration d’affilée. La régularité l’emporte sur l’intensité : ne brise pas la chaîne.</string>
+    <string name="insight_daily_steps_title">Un petit pas chaque jour</string>
+    <plurals name="insight_daily_steps_message">
+        <item quantity="one">Tu as eu %1$d jour de concentration récemment. Une courte session chaque jour ancre mieux l’habitude.</item>
+        <item quantity="many">Tu as eu %1$d jours de concentration différents récemment. Une courte session chaque jour ancre mieux l’habitude.</item>
+        <item quantity="other">Tu as eu %1$d jours de concentration différents récemment. Une courte session chaque jour ancre mieux l’habitude.</item>
+    </plurals>
+    <string name="insight_short_sessions_title">Les sprints courts te réussissent</string>
+    <string name="insight_short_sessions_message">Tes sessions durent %1$d minutes en moyenne. Les sessions de concentration courtes semblent bien te convenir.</string>
+    <string name="insight_long_interrupted_title">Tes longues sessions s’interrompent</string>
+    <string name="insight_long_interrupted_message">Environ la moitié de tes sessions de 40 minutes ou plus se terminent plus tôt que prévu. Essaie plutôt des sessions de 25 à 30 minutes.</string>
+    <string name="insight_average_session_title">Session moyenne : %1$d min</string>
+    <string name="insight_average_session_message">Tes sessions de concentration durent en général %1$d minutes. Règle ton minuteur sur cette durée pour moins d’arrêts anticipés.</string>
+    <string name="insight_estimation_over_title">Tes missions durent plus que prévu</string>
+    <string name="insight_estimation_over_message">Tes dernières missions ont demandé environ %1$d %% de pomodoros en plus que prévu. Ajoute un pomodoro de marge quand tu planifies.</string>
+    <string name="insight_estimation_under_title">Tu finis en avance</string>
+    <string name="insight_estimation_under_message">Tu termines tes missions avec environ %1$d %% de pomodoros en moins que prévu. Tu peux voir plus grand quand tu planifies.</string>
+    <string name="insight_early_stops_title">Arrêts anticipés fréquents</string>
+    <string name="insight_early_stops_message">%1$d %% de tes sessions se terminent plus tôt que prévu. Coupe les notifications et garde ton téléphone hors de portée pendant que tu te concentres.</string>
+    <string name="insight_pauses_title">Beaucoup de mises en pause</string>
+    <string name="insight_pauses_message">La moitié de tes sessions sont mises en pause au moins une fois. Prépare de l’eau et tes notes avant de commencer.</string>
+    <string name="insight_best_day_title">Ton jour fort : %1$s</string>
+    <string name="insight_best_day_message">C’est le %1$s que tu te concentres le plus. Réserve ce jour-là à tes missions importantes.</string>
+
+    <string name="premium_title_member">Ton Premium</string>
+    <string name="premium_title_upsell">Passe à Premium</string>
+    <string name="premium_subtitle_lifetime">À toi pour toujours.</string>
+    <string name="premium_subtitle_subscribed">Gère ton abonnement.</string>
+    <string name="premium_subtitle_upsell">Libère tout le potentiel de ton parcours.</string>
+
+    <string name="premium_benefit_backgrounds">Fonds personnalisés illimités</string>
+    <string name="premium_benefit_editor">Éditeur de recadrage avancé, flou et ton propre texte de motivation</string>
+    <string name="premium_benefit_statistics">Statistiques avancées : meilleures heures, tendances, vues mensuelle et annuelle</string>
+    <string name="premium_benefit_insights">Conseils personnalisés sur ta concentration</string>
+    <string name="premium_benefit_world">Plus d’éléments pour ton monde et palettes de couleurs premium</string>
+    <string name="premium_benefit_no_ads">Sans pub</string>
+
+    <string name="premium_unavailable_title">Achats indisponibles</string>
+    <string name="premium_try_again">Réessayer</string>
+
+    <string name="premium_free_note">Tout ce qu’il te faut pour te concentrer reste gratuit : minuteur, missions, ton monde, statistiques de base et tes propres photos.</string>
+    <string name="premium_privacy_policy">Politique de confidentialité</string>
+
+    <string name="premium_period_monthly">Mensuel</string>
+    <string name="premium_period_yearly">Annuel</string>
+    <string name="premium_period_lifetime">À vie</string>
+
+    <string name="premium_save_percent">Économise %1$d %%</string>
+    <string name="premium_pay_once">Paiement unique</string>
+    <string name="premium_plan_lifetime_desc">Un seul paiement. Premium pour toujours, sans abonnement.</string>
+    <string name="premium_one_time">en une fois</string>
+    <string name="premium_approx_per_month">≈ %1$s / mois</string>
+
+    <string name="premium_price_per_month">%1$s par mois</string>
+    <string name="premium_price_per_year">%1$s par an</string>
+    <string name="premium_price_one_time">%1$s en une fois</string>
+    <string name="premium_price_per_period">%1$s par période</string>
+
+    <plurals name="premium_plan_trial_then_price_days">
+        <item quantity="one">%1$d jour gratuit, puis %2$s</item>
+        <item quantity="many">%1$d jours gratuits, puis %2$s</item>
+        <item quantity="other">%1$d jours gratuits, puis %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_months">
+        <item quantity="one">%1$d mois gratuit, puis %2$s</item>
+        <item quantity="many">%1$d mois gratuits, puis %2$s</item>
+        <item quantity="other">%1$d mois gratuits, puis %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_years">
+        <item quantity="one">%1$d an gratuit, puis %2$s</item>
+        <item quantity="many">%1$d ans gratuits, puis %2$s</item>
+        <item quantity="other">%1$d ans gratuits, puis %2$s</item>
+    </plurals>
+
+    <string name="premium_buy_lifetime">Acheter Premium à vie</string>
+    <string name="premium_upgrade">Passer à Premium</string>
+    <plurals name="premium_start_trial_days">
+        <item quantity="one">Essayer %1$d jour gratuitement</item>
+        <item quantity="many">Essayer %1$d jours gratuitement</item>
+        <item quantity="other">Essayer %1$d jours gratuitement</item>
+    </plurals>
+    <plurals name="premium_start_trial_months">
+        <item quantity="one">Essayer %1$d mois gratuitement</item>
+        <item quantity="many">Essayer %1$d mois gratuitement</item>
+        <item quantity="other">Essayer %1$d mois gratuitement</item>
+    </plurals>
+    <plurals name="premium_start_trial_years">
+        <item quantity="one">Essayer %1$d an gratuitement</item>
+        <item quantity="many">Essayer %1$d ans gratuitement</item>
+        <item quantity="other">Essayer %1$d ans gratuitement</item>
+    </plurals>
+    <string name="premium_restore_purchase">Restaurer l’achat</string>
+    <string name="premium_no_plans">Aucune formule disponible pour le moment.</string>
+
+    <string name="premium_terms_lifetime">Paiement unique de %1$s. Sans abonnement ni renouvellement. Ton achat est lié à ton compte Google et peut être restauré sur un nouvel appareil.</string>
+    <string name="premium_terms_subscription">%1$s. Renouvellement automatique jusqu’à l’annulation. Annule à tout moment dans Google Play → Paiements et abonnements.</string>
+    <plurals name="premium_terms_trial_days">
+        <item quantity="one">Gratuit pendant %1$d jour, puis %2$s. Renouvellement automatique jusqu’à l’annulation. Annule avant la fin de l’essai et rien ne te sera facturé. Annule à tout moment dans Google Play → Paiements et abonnements.</item>
+        <item quantity="many">Gratuit pendant %1$d jours, puis %2$s. Renouvellement automatique jusqu’à l’annulation. Annule avant la fin de l’essai et rien ne te sera facturé. Annule à tout moment dans Google Play → Paiements et abonnements.</item>
+        <item quantity="other">Gratuit pendant %1$d jours, puis %2$s. Renouvellement automatique jusqu’à l’annulation. Annule avant la fin de l’essai et rien ne te sera facturé. Annule à tout moment dans Google Play → Paiements et abonnements.</item>
+    </plurals>
+    <plurals name="premium_terms_trial_months">
+        <item quantity="one">Gratuit pendant %1$d mois, puis %2$s. Renouvellement automatique jusqu’à l’annulation. Annule avant la fin de l’essai et rien ne te sera facturé. Annule à tout moment dans Google Play → Paiements et abonnements.</item>
+        <item quantity="many">Gratuit pendant %1$d mois, puis %2$s. Renouvellement automatique jusqu’à l’annulation. Annule avant la fin de l’essai et rien ne te sera facturé. Annule à tout moment dans Google Play → Paiements et abonnements.</item>
+        <item quantity="other">Gratuit pendant %1$d mois, puis %2$s. Renouvellement automatique jusqu’à l’annulation. Annule avant la fin de l’essai et rien ne te sera facturé. Annule à tout moment dans Google Play → Paiements et abonnements.</item>
+    </plurals>
+
+    <plurals name="premium_terms_trial_years">
+        <item quantity="one">Gratuit pendant %1$d an, puis %2$s. Renouvellement automatique jusqu’à l’annulation. Annule avant la fin de l’essai et rien ne te sera facturé. Annule à tout moment dans Google Play → Paiements et abonnements.</item>
+        <item quantity="many">Gratuit pendant %1$d ans, puis %2$s. Renouvellement automatique jusqu’à l’annulation. Annule avant la fin de l’essai et rien ne te sera facturé. Annule à tout moment dans Google Play → Paiements et abonnements.</item>
+        <item quantity="other">Gratuit pendant %1$d ans, puis %2$s. Renouvellement automatique jusqu’à l’annulation. Annule avant la fin de l’essai et rien ne te sera facturé. Annule à tout moment dans Google Play → Paiements et abonnements.</item>
+    </plurals>
+
+    <string name="premium_welcome">Bienvenue dans Premium ! 🎉</string>
+    <string name="premium_active">Premium est actif</string>
+    <string name="premium_plan_monthly">Formule mensuelle</string>
+    <string name="premium_plan_yearly">Formule annuelle</string>
+    <string name="premium_plan_other">Formule Premium</string>
+    <string name="premium_plan_with_price">%1$s · %2$s</string>
+    <string name="premium_status_switches_monthly">Passe à la formule mensuelle à la fin de la période en cours.</string>
+    <string name="premium_status_switches_yearly">Passe à la formule annuelle à la fin de la période en cours.</string>
+    <string name="premium_status_switches_other">Passe à la formule Premium à la fin de la période en cours.</string>
+    <string name="premium_status_checking">Vérification de ton abonnement auprès de Google Play…</string>
+    <string name="premium_status_cancelled">Annulé. Premium reste actif jusqu’à la fin de la période que tu as payée.</string>
+    <string name="premium_status_renews">Renouvellement automatique. Annule à tout moment dans Google Play.</string>
+
+    <string name="premium_switch_to_monthly">Passer au mensuel</string>
+    <string name="premium_switch_to_yearly">Passer à l’annuel</string>
+    <string name="premium_switch_to_other">Passer à Premium</string>
+    <string name="premium_switch_immediate_desc">Commence aujourd’hui. Tu paies %1$s maintenant, et la partie non utilisée de ta formule actuelle est ajoutée sous forme de jours supplémentaires.</string>
+    <string name="premium_switch_deferred_desc">Commence à la fin de ta période en cours. Rien n’est facturé aujourd’hui, et tu gardes Premium sans interruption.</string>
+
+    <string name="premium_go_lifetime">Passer à Premium à vie</string>
+    <string name="premium_go_lifetime_desc">Garde Premium pour toujours avec un seul paiement. Ton abonnement n’est pas annulé automatiquement : annule-le ensuite dans Google Play.</string>
+    <plurals name="premium_go_lifetime_desc_break_even">
+        <item quantity="one">Garde Premium pour toujours avec un seul paiement. Cela coûte à peu près autant que %1$d an de formule annuelle. Ton abonnement n’est pas annulé automatiquement : annule-le ensuite dans Google Play.</item>
+        <item quantity="many">Garde Premium pour toujours avec un seul paiement. Cela coûte à peu près autant que %1$d ans de formule annuelle. Ton abonnement n’est pas annulé automatiquement : annule-le ensuite dans Google Play.</item>
+        <item quantity="other">Garde Premium pour toujours avec un seul paiement. Cela coûte à peu près autant que %1$d ans de formule annuelle. Ton abonnement n’est pas annulé automatiquement : annule-le ensuite dans Google Play.</item>
+    </plurals>
+
+    <string name="premium_resubscribe_google_play">Se réabonner dans Google Play</string>
+    <string name="premium_manage_google_play">Gérer dans Google Play</string>
+    <string name="premium_manage_hint">Annule, réabonne-toi ou change de mode de paiement dans Google Play. Les changements apparaissent ici à ton retour.</string>
+
+    <string name="premium_forever_celebration">Premium est à toi pour toujours. 🎉</string>
+    <string name="premium_lifetime_title">Premium à vie</string>
+    <string name="premium_lifetime_thanks">Payé une seule fois. Aucun renouvellement, plus rien à payer. Merci de soutenir Focus Growing !</string>
+    <string name="premium_lifetime_sub_active_monthly">Ton abonnement mensuel est toujours actif</string>
+    <string name="premium_lifetime_sub_active_yearly">Ton abonnement annuel est toujours actif</string>
+    <string name="premium_lifetime_sub_active_other">Ton abonnement Premium est toujours actif</string>
+    <string name="premium_lifetime_sub_cancel_hint">Premium à vie ne l’annule pas automatiquement. Annule-le dans Google Play pour éviter un nouveau prélèvement.</string>
+    <string name="premium_cancel_subscription_google_play">Annuler l’abonnement dans Google Play</string>
+    <string name="premium_lifetime_sub_cancelled_monthly">Ton ancien abonnement mensuel est annulé et ne sera pas renouvelé.</string>
+    <string name="premium_lifetime_sub_cancelled_yearly">Ton ancien abonnement annuel est annulé et ne sera pas renouvelé.</string>
+    <string name="premium_lifetime_sub_cancelled_other">Ton ancien abonnement Premium est annulé et ne sera pas renouvelé.</string>
+
+    <string name="premium_restored">Ton Premium a été restauré.</string>
+    <string name="premium_plan_changed">Ta formule a été modifiée.</string>
+    <string name="premium_change_scheduled">C’est noté. Ta nouvelle formule commence à la fin de la période en cours.</string>
+    <string name="premium_payment_pending">Ton paiement est en cours de traitement. Premium se débloque dès que Google Play le confirme.</string>
+
+    <string name="premium_test_mode">Mode test</string>
+    <string name="premium_test_resubscribe">Test : se réabonner</string>
+    <string name="premium_test_cancel">Test : annuler</string>
+    <string name="premium_test_reset">Test : réinitialiser</string>
+
+    <string name="billing_not_ready">Google Play n’est pas encore prêt. Réessaie dans un instant.</string>
+    <string name="billing_already_own_lifetime">Tu possèdes déjà Premium à vie.</string>
+    <string name="billing_already_have_plan">Tu as déjà cette formule.</string>
+    <string name="billing_subscription_unreadable">Impossible de lire ton abonnement actuel. Réessaie dans un instant.</string>
+    <string name="billing_restore_none">Aucun abonnement Premium actif n’a été trouvé pour ce compte Google.</string>
+    <string name="billing_restore_none_test">Aucun abonnement Premium actif n’a été trouvé (mode test).</string>
+    <string name="billing_verify_failed">L’achat n’a pas pu être vérifié. Si le montant a été prélevé, appuie sur « Restaurer l’achat ».</string>
+    <string name="billing_not_available_in_country">Premium n’est pas encore disponible dans ton pays ou sur ce compte Google Play.</string>
+    <string name="billing_error_unavailable_on_device">Les achats Google Play ne sont pas disponibles sur cet appareil. Vérifie que le Play Store est installé et que ton compte y est connecté.</string>
+    <string name="billing_error_unreachable">Impossible de joindre Google Play. Vérifie ta connexion et réessaie.</string>
+    <string name="billing_error_plan_unavailable">Cette formule n’est pas disponible pour le moment.</string>
+    <string name="billing_error_update_play_store">Mets à jour l’application Google Play Store, puis réessaie.</string>
+    <string name="billing_error_not_set_up">Les achats ne sont pas encore configurés correctement. Réessaie plus tard.</string>
+    <string name="billing_error_generic">Un problème est survenu avec Google Play. Réessaie.</string>
+
+    <string name="settings_title">Paramètres</string>
+
+    <string name="settings_group_appearance">Apparence</string>
+    <string name="settings_group_timer">Minuteur</string>
+    <string name="settings_group_focus_screen">Écran de focus</string>
+    <string name="settings_group_notifications">Notifications</string>
+    <string name="settings_group_sounds">Sons et vibration</string>
+    <string name="settings_group_privacy">Confidentialité</string>
+    <string name="settings_group_about">À propos</string>
+
+    <string name="settings_theme_title">Thème</string>
+    <string name="settings_theme_system">Système</string>
+    <string name="settings_theme_light">Clair</string>
+    <string name="settings_theme_dark">Sombre</string>
+
+    <string name="settings_color_palette">Palette de couleurs</string>
+    <string name="settings_palette_premium_a11y">%1$s, Premium</string>
+    <string name="settings_palette_trial_under_hour">%1$s est débloquée pour moins d’une heure.</string>
+    <plurals name="settings_palette_trial_hours_left">
+        <item quantity="one">%1$s est débloquée pour encore %2$d heure environ.</item>
+        <item quantity="many">%1$s est débloquée pour encore %2$d heures environ.</item>
+        <item quantity="other">%1$s est débloquée pour encore %2$d heures environ.</item>
+    </plurals>
+
+    <string name="settings_dynamic_colors_title">Couleurs dynamiques</string>
+    <string name="settings_dynamic_colors_subtitle">Utiliser les couleurs de ton fond d’écran</string>
+    <string name="settings_text_size_title">Taille du texte</string>
+    <string name="settings_text_size_small">Petit</string>
+    <string name="settings_text_size_medium">Moyen</string>
+    <string name="settings_text_size_large">Grand</string>
+    <string name="settings_reduce_animations">Réduire les animations</string>
+
+    <string name="settings_focus_length">Focus</string>
+    <string name="settings_focus_custom">Personnalisé</string>
+    <string name="settings_short_break">Pause courte</string>
+    <string name="settings_long_break">Pause longue</string>
+    <string name="settings_long_break_every">Pause longue toutes les</string>
+    <plurals name="settings_sessions_count">
+        <item quantity="one">%1$d session</item>
+        <item quantity="many">%1$d sessions</item>
+        <item quantity="other">%1$d sessions</item>
+    </plurals>
+    <string name="settings_stepper_decrease">Diminuer : %1$s</string>
+    <string name="settings_stepper_increase">Augmenter : %1$s</string>
+    <string name="settings_custom_focus_title">Durée de focus personnalisée</string>
+    <string name="settings_custom_focus_minutes_label">Minutes (%1$d–%2$d)</string>
+
+    <string name="settings_background">Fond</string>
+    <string name="settings_show_clock">Afficher l’heure</string>
+    <string name="settings_motivational_text">Texte de motivation</string>
+    <string name="settings_background_overlay">Assombrissement du fond</string>
+
+    <string name="settings_session_alerts_title">Alertes de session</string>
+    <string name="settings_session_alerts_subtitle">À la fin d’une session de concentration ou d’une pause</string>
+    <string name="settings_timer_in_notification_bar">Minuteur dans la barre de notifications</string>
+    <string name="settings_exact_alarms_title">Autoriser les alarmes exactes</string>
+    <string name="settings_exact_alarms_subtitle">Les sessions se terminent pile à l’heure, même quand le téléphone est en veille</string>
+    <string name="settings_system_notification_settings">Paramètres de notification du système</string>
+
+    <string name="settings_alert_sound_vibration">Son et vibration des alertes</string>
+    <string name="settings_haptic_feedback">Retour haptique</string>
+
+    <string name="settings_ad_privacy_title">Confidentialité des pubs</string>
+    <string name="settings_ad_privacy_subtitle">Modifie ton consentement aux pubs personnalisées</string>
+
+    <string name="settings_version">Version</string>
+
+    <string name="settings_palette_trial_sheet_title">Essaie %1$s pendant 24 heures</string>
+    <string name="settings_palette_trial_sheet_text">Regarde une courte vidéo et utilise cette palette jusqu’à demain. Avec Premium, tu gardes toutes les palettes et tu ne vois plus jamais de pub.</string>
+    <string name="settings_watch_ad">Regarder une courte pub</string>
+    <string name="settings_see_premium">Voir Premium</string>
+    <string name="settings_not_now">Pas maintenant</string>
+    <string name="settings_ad_palette_unlocked">%1$s est à toi pour les prochaines 24 heures.</string>
+    <string name="settings_ad_watch_to_end">Regarde la pub jusqu’au bout pour débloquer la palette.</string>
+    <string name="settings_ad_unavailable">Aucune pub disponible pour le moment. Réessaie plus tard.</string>
+
+    <string name="profile_title">Profil</string>
+    <string name="profile_add_name">Ajoute ton prénom</string>
+    <string name="profile_edit_name">Modifier le prénom</string>
+    <string name="profile_name_dialog_title">Ton prénom</string>
+    <string name="profile_rank_seedling">Jeune pousse • Premiers pas</string>
+    <string name="profile_rank_explorer">Exploration • Concentration • Croissance</string>
+    <string name="profile_rank_builder">Construction • Concentration • Croissance</string>
+    <string name="profile_rank_master">Maîtrise • Concentration • Épanouissement</string>
+    <string name="profile_world_level">Niveau du monde</string>
+    <string name="profile_xp_progress">%1$d / %2$d XP</string>
+    <string name="profile_premium_active">Actif — merci !</string>
+    <string name="profile_premium_upgrade">Passe à Premium pour plus de fonctionnalités</string>
+    <plurals name="profile_notifications_new">
+        <item quantity="one">%1$d nouvelle</item>
+        <item quantity="many">%1$d nouvelles</item>
+        <item quantity="other">%1$d nouvelles</item>
+    </plurals>
+    <string name="profile_notifications_subtitle">Ton activité récente</string>
+    <string name="profile_app_settings">Paramètres de l’appli</string>
+    <string name="profile_app_settings_subtitle">Thème, minuteur, notifications, son</string>
+    <string name="profile_background_gallery">Galerie de fonds</string>
+    <string name="profile_background_gallery_subtitle">Change le fond de ton écran de focus</string>
+    <string name="profile_help_support">Aide et assistance</string>
+    <string name="profile_help_support_subtitle">Nous contacter</string>
+    <string name="profile_privacy_policy">Politique de confidentialité</string>
+    <string name="profile_privacy_policy_subtitle">Comment nous traitons tes données</string>
+    <string name="profile_no_app_found">Aucune appli trouvée pour ouvrir ce lien.</string>
+
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_subtitle">Garde ta concentration, garde le cap 🌱</string>
+    <string name="notifications_clear_all">Tout effacer</string>
+    <string name="notifications_filter_all">Toutes</string>
+    <string name="notifications_filter_mission">Mission</string>
+    <string name="notifications_filter_focus">Focus</string>
+    <string name="notifications_filter_world">Monde</string>
+    <string name="notifications_filter_system">Système</string>
+    <string name="notifications_empty_title">Aucune notification pour l’instant</string>
+    <string name="notifications_empty_message">Termine des sessions de concentration et des missions pour voir ta progression ici.</string>
+
+    <string name="focus_a11y_change_background">Changer de fond</string>
+    <string name="focus_a11y_options">Options de l’écran de focus</string>
+
+    <string name="focus_background_unavailable">Ton image de fond n’est plus disponible.</string>
+    <string name="focus_free_focus">Focus libre</string>
+    <string name="focus_background">Fond</string>
+
+    <string name="focus_quote_1">Garde le cap, tu peux le faire !</string>
+    <string name="focus_quote_2">Une tâche à la fois.</string>
+    <string name="focus_quote_3">Un petit pas chaque jour.</string>
+    <string name="focus_quote_4">Travail profond, esprit calme.</string>
+    <string name="focus_quote_5">Tu fais grandir ton monde.</string>
+
+    <string name="focus_label_focus">Focus</string>
+    <string name="focus_label_short_break">Pause courte</string>
+    <string name="focus_label_long_break">Pause longue</string>
+    <string name="focus_label_paused">En pause</string>
+    <string name="focus_label_well_done">Bravo</string>
+    <string name="focus_label_break_over">Pause finie</string>
+    <string name="focus_a11y_time_remaining">%1$s, temps restant : %2$s</string>
+
+    <string name="focus_a11y_start">Démarrer le focus</string>
+    <string name="focus_a11y_pause">Mettre en pause</string>
+    <string name="focus_a11y_resume">Reprendre</string>
+    <string name="focus_a11y_stop_session">Arrêter la session</string>
+    <string name="focus_a11y_finish_session">Terminer la session</string>
+    <string name="focus_a11y_choose_mission">Choisir une mission</string>
+
+    <string name="focus_start_break">Faire une pause · %1$d min</string>
+    <string name="focus_start_long_break">Pause longue · %1$d min</string>
+    <string name="focus_skip_break">Passer la pause</string>
+    <string name="focus_start_next_focus">Focus suivant</string>
+    <string name="focus_done_for_now">Fini pour l’instant</string>
+
+    <string name="focus_finish_dialog_title">Terminer maintenant ?</string>
+    <string name="focus_finish_dialog_text">Tu as fait moins de la moitié de cette session : elle ne comptera ni pour ta mission ni pour les XP de ton monde.</string>
+    <string name="focus_finish_dialog_confirm">Terminer</string>
+    <string name="focus_stop_dialog_title">Arrêter cette session ?</string>
+    <string name="focus_stop_dialog_text">La session sera arrêtée sans récompense.</string>
+    <string name="focus_stop_dialog_confirm">Arrêter</string>
+    <string name="focus_keep_going">Continuer</string>
+
+    <string name="focus_options_title">Écran de focus</string>
+    <string name="focus_option_show_clock">Afficher l’heure</string>
+    <string name="focus_option_motivation">Texte de motivation</string>
+    <string name="focus_option_mission_title">Titre de la mission</string>
+    <string name="focus_option_session_dots">Points de progression des sessions</string>
+    <string name="focus_option_overlay">Assombrissement</string>
+    <string name="focus_option_blur">Flou</string>
+    <string name="focus_option_custom_motivation_label">Ton propre texte de motivation</string>
+    <string name="focus_option_custom_motivation_locked">Texte de motivation personnalisé</string>
+
+    <string name="focus_picker_title">Se concentrer sur</string>
+    <string name="focus_picker_free_focus">Focus libre (sans mission)</string>
+    <string name="focus_a11y_selected">Sélectionné</string>
+
+    <string name="notif_title_focusing">Concentration en cours</string>
+    <string name="notif_title_short_break">Pause courte</string>
+    <string name="notif_title_long_break">Pause longue</string>
+    <string name="notif_running_text_default">Garde le cap, tu peux le faire !</string>
+    <string name="notif_action_pause">Pause</string>
+    <string name="notif_action_resume">Reprendre</string>
+    <string name="notif_paused_title">En pause · reste %1$s</string>
+    <string name="notif_paused_text_default">Appuie pour reprendre ta session</string>
+
+    <string name="notif_focus_completed_title">🎉 Session de concentration terminée</string>
+    <string name="notif_mission_completed_title">🎉 Mission terminée !</string>
+    <string name="notif_focus_completed_text">Tu as terminé une session de concentration de %1$d min.</string>
+    <string name="notif_focus_completed_text_xp">Tu as terminé une session de concentration de %1$d min. +%2$d XP pour ton monde</string>
+    <string name="notif_text_with_mission">%1$s · %2$s</string>
+    <string name="notif_big_text_with_mission">Mission : %1$s\n%2$s</string>
+
+    <string name="notif_break_finished_title">☕ Pause terminée</string>
+    <string name="notif_break_finished_text">On repart pour une session de concentration ?</string>
+
+    <string name="nav_home">Accueil</string>
+    <string name="nav_missions">Missions</string>
+    <string name="nav_focus">Focus</string>
+    <string name="nav_stats">Stats</string>
+    <string name="nav_profile">Profil</string>
+
+    <string name="home_greeting_with_name">%1$s, %2$s !</string>
+    <string name="home_greeting_no_name">%1$s !</string>
+    <string name="home_tagline">Les petits pas font les grands changements.</string>
+    <string name="home_notifications">Notifications</string>
+    <string name="home_world_level_label">Niveau du monde</string>
+
+    <string name="home_stat_focus_time">Temps de focus</string>
+    <string name="home_stat_completed">Terminées</string>
+    <string name="home_stat_streak">Série</string>
+    <plurals name="home_streak_days">
+        <item quantity="one">%1$d jour</item>
+        <item quantity="many">%1$d jours</item>
+        <item quantity="other">%1$d jours</item>
+    </plurals>
+
+    <string name="home_world_level_number">Monde niveau %1$d</string>
+    <string name="home_xp_progress">%1$d / %2$d XP</string>
+
+    <string name="home_todays_mission">Mission du jour</string>
+    <string name="home_view_all">Tout voir</string>
+    <plurals name="home_mission_pomodoros">
+        <item quantity="one">%1$d/%2$d Pomodoro</item>
+        <item quantity="many">%1$d/%2$d Pomodoros</item>
+        <item quantity="other">%1$d/%2$d Pomodoros</item>
+    </plurals>
+    <string name="home_create_first_mission">Crée ta première mission</string>
+    <string name="home_create_first_mission_hint">Donne un objectif à ta concentration.</string>
+
+    <string name="home_focus_return">Revenir au focus</string>
+    <string name="home_focus_resume">Reprendre le focus</string>
+    <string name="home_focus_start">Démarrer le focus</string>
+    <string name="home_focus_without_mission">Focus sans mission</string>
+
+    <string name="celebration_focus_title">Bravo !</string>
+    <string name="celebration_focus_body">Tu as terminé ta session de concentration.</string>
+    <string name="celebration_remove_ads">Supprimer les pubs avec Premium</string>
+
+    <string name="celebration_stat_focus_time">Temps de focus</string>
+    <string name="celebration_stat_world_xp">XP du monde</string>
+    <string name="celebration_stat_progress">Progression</string>
+    <plurals name="celebration_stat_pomodoros">
+        <item quantity="one">Pomodoro</item>
+        <item quantity="many">Pomodoros</item>
+        <item quantity="other">Pomodoros</item>
+    </plurals>
+    <string name="celebration_stat_estimated">Estimation</string>
+    <string name="celebration_stat_priority">Priorité</string>
+    <string name="celebration_stat_category">Catégorie</string>
+
+    <string name="celebration_xp_earned">+%1$d XP</string>
+    <string name="celebration_minutes_earned">+%1$d min</string>
+    <plurals name="celebration_estimated_pomodoros">
+        <item quantity="one">%1$d Pomodoro</item>
+        <item quantity="many">%1$d Pomodoros</item>
+        <item quantity="other">%1$d Pomodoros</item>
+    </plurals>
+
+    <string name="celebration_mission_completed_title">Mission terminée !</string>
+    <string name="celebration_mission_completed_body">Bravo ! Tu as terminé ta mission et gagné des récompenses.</string>
+    <string name="celebration_view_mission">Voir la mission</string>
+
+    <string name="celebration_streak_title">La série continue !</string>
+    <plurals name="celebration_streak_subtitle">
+        <item quantity="one">Tu en es à %1$d jour d’affilée !</item>
+        <item quantity="many">Tu en es à %1$d jours d’affilée !</item>
+        <item quantity="other">Tu en es à %1$d jours d’affilée !</item>
+    </plurals>
+    <string name="celebration_streak_body">Ta concentration et ta régularité font de toi une meilleure version de toi-même.</string>
+    <string name="celebration_keep_going">Continuer</string>
+    <string name="celebration_streak_quote">La discipline est le pont entre les objectifs et leur réalisation.</string>
+
+    <string name="celebration_level_up_title">Ton monde monte de niveau !</string>
+    <string name="celebration_level_up_subtitle">Ton monde a atteint le niveau %1$d !</string>
+    <string name="celebration_level">Niveau %1$d</string>
+    <string name="celebration_xp_progress">%1$d / %2$d XP</string>
+    <string name="celebration_unlocked_title">Nouveaux éléments débloqués :</string>
+    <string name="celebration_explore_world">Explorer ton monde</string>
+    <string name="celebration_level_up_footer">Ta concentration construit un monde plus beau.</string>
+
+    <string name="celebration_mission_created_title">Nouvelle mission</string>
+    <string name="celebration_mission_created_body">Une nouvelle mission rejoint ta liste. Garde ton élan !</string>
+    <string name="celebration_mission_created_tip">De petits pas chaque jour mènent à de grands résultats. 🌱</string>
+
+    <string name="mission_list_title">Missions</string>
+    <string name="mission_list_new">Nouvelle mission</string>
+    <string name="mission_filter_all">Toutes</string>
+    <string name="mission_filter_todo">À faire</string>
+    <string name="mission_filter_in_progress">En cours</string>
+    <string name="mission_filter_completed">Terminées</string>
+    <string name="mission_list_empty_title">Aucune mission pour l’instant</string>
+    <string name="mission_list_empty_message">Crée une mission et lance ta première session de concentration.</string>
+    <string name="mission_list_create">Créer une mission</string>
+    <string name="mission_list_no_match_title">Rien ici</string>
+    <string name="mission_list_no_match_message">Aucune mission ne correspond à ce filtre.</string>
+
+    <plurals name="mission_pomodoro_count">
+        <item quantity="one">%1$d Pomodoro</item>
+        <item quantity="many">%1$d Pomodoros</item>
+        <item quantity="other">%1$d Pomodoros</item>
+    </plurals>
+
+    <string name="mission_priority">Priorité</string>
+    <string name="mission_not_found">Mission introuvable</string>
+    <string name="mission_not_found_message">Elle a peut-être été supprimée.</string>
+    <string name="mission_step_placeholder">Ajouter une étape</string>
+    <string name="mission_step_add">Ajouter l’étape</string>
+    <string name="mission_step_remove">Supprimer l’étape</string>
+
+    <string name="mission_detail_more_options">Plus d’options</string>
+    <string name="mission_detail_reopen">Rouvrir</string>
+    <string name="mission_detail_mark_completed">Marquer comme terminée</string>
+    <string name="mission_detail_archive">Archiver</string>
+    <string name="mission_detail_go_back">Retour</string>
+    <string name="mission_detail_pomodoros">Pomodoros</string>
+    <string name="mission_detail_checklist">Étapes</string>
+    <string name="mission_detail_checklist_hint">Découpe la mission en petites étapes.</string>
+    <string name="mission_detail_completed_title">Mission terminée 🎉</string>
+    <string name="mission_detail_completed_on">Terminée le %1$s</string>
+    <string name="mission_detail_reopen_mission">Rouvrir la mission</string>
+    <string name="mission_detail_estimate_reached">Estimation atteinte : termine les étapes restantes ou marque la mission comme terminée.</string>
+    <string name="mission_detail_start_focus">Démarrer le focus</string>
+    <string name="mission_detail_created">Création</string>
+    <string name="mission_detail_status">Statut</string>
+    <string name="mission_status_todo">À faire</string>
+    <string name="mission_status_in_progress">En cours</string>
+    <string name="mission_status_completed">Terminée</string>
+    <string name="mission_status_archived">Archivée</string>
+    <string name="mission_delete_title">Supprimer la mission ?</string>
+    <string name="mission_delete_message">La mission et ses étapes seront supprimées. Ton historique de concentration et les XP de ton monde sont conservés.</string>
+
+    <string name="mission_editor_title_new">Nouvelle mission</string>
+    <string name="mission_editor_title_edit">Modifier la mission</string>
+    <string name="mission_editor_title_label">Titre de la mission</string>
+    <string name="mission_editor_description_label">Description (facultatif)</string>
+    <string name="mission_editor_estimate_label">Pomodoros estimés</string>
+    <string name="mission_editor_category_label">Catégorie</string>
+    <string name="mission_editor_checklist_label">Étapes (facultatif)</string>
+    <string name="mission_editor_decrease">Diminuer</string>
+    <string name="mission_editor_increase">Augmenter</string>
+    <plurals name="mission_editor_pomodoros_unit">
+        <item quantity="one">Pomodoro</item>
+        <item quantity="many">Pomodoros</item>
+        <item quantity="other">Pomodoros</item>
+    </plurals>
+    <string name="mission_editor_create">Créer la mission</string>
+    <string name="mission_editor_save_changes">Enregistrer</string>
+    <string name="mission_error_empty_title">Donne un titre à ta mission.</string>
+    <string name="mission_error_title_too_long">Le titre est trop long.</string>
+    <string name="mission_error_invalid_estimate">L’estimation doit être comprise entre 1 et %1$d pomodoros.</string>
+
+    <string name="stats_title">Statistiques</string>
+    <string name="stats_subtitle">Comprends tes habitudes de concentration</string>
+    <string name="stats_range_week">7 j</string>
+    <string name="stats_range_month">30 j</string>
+    <string name="stats_range_quarter">3 mois</string>
+    <string name="stats_range_year">1 an</string>
+    <string name="stats_focus_time">Temps de focus</string>
+    <string name="stats_sessions">Sessions</string>
+    <string name="stats_today">Aujourd’hui</string>
+    <string name="stats_this_week">Cette semaine</string>
+    <string name="stats_missions">Missions</string>
+    <string name="stats_streak">Série</string>
+    <plurals name="stats_streak_days">
+        <item quantity="one">%1$d jour</item>
+        <item quantity="many">%1$d jours</item>
+        <item quantity="other">%1$d jours</item>
+    </plurals>
+    <string name="stats_average_session">Session moy.</string>
+    <string name="stats_completion">Achèvement</string>
+    <string name="stats_best_time">Meilleur créneau</string>
+    <string name="stats_estimation">Estimation</string>
+    <string name="stats_trend_title">Évolution du temps de focus</string>
+    <string name="stats_top_hours_title">Meilleures heures de focus</string>
+    <string name="stats_top_hours_empty">Termine quelques sessions pour découvrir tes meilleures heures.</string>
+    <string name="stats_chart_description">Graphique du temps de concentration. %1$s</string>
+    <string name="stats_advanced_title">Statistiques avancées</string>
+    <string name="stats_advanced_description">Meilleures heures de concentration, session moyenne, taux d’achèvement, précision des estimations et tendances mensuelles et annuelles.</string>
+    <string name="stats_insights_title">Conseils</string>
+    <string name="stats_insight_locked_title">Conseil Premium</string>
+    <string name="stats_insight_locked_message">Débloque Premium pour voir ce conseil personnalisé sur ta concentration.</string>
+
+    <string name="bg_gallery_title">Galerie de fonds</string>
+
+    <string name="bg_tab_all">Tous</string>
+    <string name="bg_tab_favorites">Favoris</string>
+    <string name="bg_category_my_photos">Mes photos</string>
+    <string name="bg_category_nature">Nature</string>
+    <string name="bg_category_city">Villes</string>
+    <string name="bg_category_abstract">Abstrait</string>
+    <string name="bg_category_space">Espace</string>
+    <string name="bg_category_minimal">Minimal</string>
+    <string name="bg_category_dark">Sombre</string>
+
+    <string name="bg_add_title">Ajouter un fond</string>
+    <string name="bg_add_photos_stay_on_device">Tes photos restent sur cet appareil</string>
+    <string name="bg_add_free_count">%1$d / %2$d fonds personnels</string>
+    <string name="bg_add_adjust_hint">Appuie à nouveau sur le fond sélectionné pour l’afficher en aperçu et l’ajuster.</string>
+    <string name="bg_source_gallery">Galerie</string>
+    <string name="bg_source_camera">Caméra</string>
+    <string name="bg_source_files">Fichiers</string>
+
+    <string name="bg_empty_favorites">Appuie sur le cœur d’un fond pour l’ajouter ici.</string>
+    <string name="bg_empty_tab">Aucun fond ici pour l’instant.</string>
+
+    <string name="bg_error_no_camera_app">Aucune appli d’appareil photo disponible.</string>
+    <string name="bg_error_no_file_manager">Aucun gestionnaire de fichiers disponible.</string>
+    <string name="bg_error_image_unusable">Cette image est inutilisable. Choisis-en une autre.</string>
+    <string name="bg_message_removed">Fond retiré</string>
+
+    <string name="bg_default_name_camera">Photo prise</string>
+    <string name="bg_default_name_photo">Ma photo</string>
+
+    <string name="bg_limit_title">Limite gratuite atteinte</string>
+    <string name="bg_limit_message">La version gratuite permet de garder %1$d fonds personnels. Retires-en un, ou débloque les fonds illimités avec Premium.</string>
+    <string name="bg_limit_see_premium">Voir Premium</string>
+    <string name="bg_limit_not_now">Pas maintenant</string>
+
+    <string name="bg_delete_title">Retirer ce fond ?</string>
+    <string name="bg_delete_message_camera">« %1$s » a été prise pour cette appli et n’est stockée qu’ici : elle sera donc supprimée.</string>
+    <string name="bg_delete_message_photo">« %1$s » sera retirée de l’appli. La photo d’origine sur ton appareil n’est pas supprimée.</string>
+    <string name="bg_remove">Retirer</string>
+
+    <string name="bg_menu_preview">Aperçu</string>
+    <string name="bg_menu_preview_adjust">Aperçu et réglages</string>
+    <string name="bg_menu_favorite">Ajouter aux favoris</string>
+    <string name="bg_menu_unfavorite">Retirer des favoris</string>
+
+    <string name="bg_a11y_tile_selected">%1$s, sélectionné</string>
+    <string name="bg_a11y_add_favorite">Ajouter aux favoris</string>
+    <string name="bg_a11y_remove_favorite">Retirer des favoris</string>
+
+    <string name="bg_adjust_title">Ajuster le fond</string>
+    <string name="bg_adjust_title_preview">Aperçu</string>
+    <string name="bg_adjust_reset_position">Réinitialiser la position</string>
+    <string name="bg_adjust_not_found_title">Fond indisponible</string>
+    <string name="bg_adjust_not_found_message">Il a peut-être été retiré.</string>
+    <string name="bg_adjust_go_back">Retour</string>
+    <string name="bg_adjust_sample_label">Focus</string>
+    <string name="bg_adjust_hint_drag">Fais glisser pour positionner · double appui pour réinitialiser</string>
+    <string name="bg_adjust_hint_builtin">Les fonds intégrés s’adaptent toujours parfaitement à ton écran.</string>
+    <string name="bg_adjust_position">Position</string>
+    <string name="bg_adjust_position_top">Haut</string>
+    <string name="bg_adjust_position_center">Centre</string>
+    <string name="bg_adjust_position_bottom">Bas</string>
+    <string name="bg_adjust_position_left">Gauche</string>
+    <string name="bg_adjust_position_right">Droite</string>
+    <string name="bg_adjust_zoom">Zoom</string>
+    <string name="bg_adjust_unlock_crop_editor">Débloquer l’éditeur de recadrage avancé</string>
+    <string name="bg_adjust_darken">Assombrir</string>
+    <string name="bg_adjust_use_background">Utiliser ce fond</string>
+</resources>

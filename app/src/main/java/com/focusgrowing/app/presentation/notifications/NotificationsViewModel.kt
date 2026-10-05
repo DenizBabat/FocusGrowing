@@ -1,7 +1,9 @@
 package com.focusgrowing.app.presentation.notifications
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.focusgrowing.app.R
 import com.focusgrowing.app.domain.model.AppNotification
 import com.focusgrowing.app.domain.model.NotificationType
 import com.focusgrowing.app.domain.repository.NotificationRepository
@@ -14,12 +16,12 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-enum class NotificationFilter(val label: String, val types: Set<NotificationType>?) {
-    ALL("All", null),
-    MISSION("Mission", setOf(NotificationType.MISSION)),
-    FOCUS("Focus", setOf(NotificationType.FOCUS, NotificationType.STREAK)),
-    WORLD("World", setOf(NotificationType.WORLD)),
-    SYSTEM("System", setOf(NotificationType.SYSTEM)),
+enum class NotificationFilter(@StringRes val labelRes: Int, val types: Set<NotificationType>?) {
+    ALL(R.string.notifications_filter_all, null),
+    MISSION(R.string.notifications_filter_mission, setOf(NotificationType.MISSION)),
+    FOCUS(R.string.notifications_filter_focus, setOf(NotificationType.FOCUS, NotificationType.STREAK)),
+    WORLD(R.string.notifications_filter_world, setOf(NotificationType.WORLD)),
+    SYSTEM(R.string.notifications_filter_system, setOf(NotificationType.SYSTEM)),
 }
 
 data class NotificationsUiState(

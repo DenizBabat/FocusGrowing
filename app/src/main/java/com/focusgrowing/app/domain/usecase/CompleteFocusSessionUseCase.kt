@@ -14,6 +14,7 @@ import com.focusgrowing.app.domain.repository.FocusSessionRepository
 import com.focusgrowing.app.domain.repository.MissionRepository
 import com.focusgrowing.app.domain.repository.NotificationRepository
 import com.focusgrowing.app.domain.repository.TimeProvider
+import com.focusgrowing.app.domain.repository.DomainStrings
 import java.time.Instant
 import javax.inject.Inject
 
@@ -27,6 +28,7 @@ class CompleteFocusSessionUseCase @Inject constructor(
     private val notifications: NotificationRepository,
     private val xpAwarder: XpAwarder,
     private val time: TimeProvider,
+    private val strings: DomainStrings,
 ) {
     /**
      * @param finishedEarly the user pressed "Finish" before the timer ran out.
@@ -109,9 +111,9 @@ class CompleteFocusSessionUseCase @Inject constructor(
         notifications.add(
             AppNotification(
                 type = NotificationType.FOCUS,
-                title = "Focus Session Completed",
-                message = "You completed a $focusMinutes minute focus session. Great job!",
-                detail = "+$sessionXp XP" + (missionTitle?.let { " · $it" } ?: ""),
+                title = strings.focusCompletedTitle(),
+                message = strings.focusCompletedMessage(focusMinutes),
+                detail = strings.xpDetail(sessionXp, missionTitle),
                 missionId = state.missionId,
                 createdAt = endedAt,
             ),
@@ -120,9 +122,9 @@ class CompleteFocusSessionUseCase @Inject constructor(
             notifications.add(
                 AppNotification(
                     type = NotificationType.MISSION,
-                    title = "Mission Completed!",
-                    message = "\"$missionTitle\"",
-                    detail = "You earned +$missionBonus bonus XP",
+                    title = strings.missionCompletedTitle(),
+                    message = strings.quoted(missionTitle),
+                    detail = strings.bonusXpDetail(missionBonus),
                     missionId = state.missionId,
                     createdAt = endedAt,
                 ),
@@ -132,9 +134,9 @@ class CompleteFocusSessionUseCase @Inject constructor(
             notifications.add(
                 AppNotification(
                     type = NotificationType.STREAK,
-                    title = "Streak Continues!",
-                    message = "You're on a ${streakAfter.currentDays} day streak!",
-                    detail = "Keep it up!",
+                    title = strings.streakTitle(),
+                    message = strings.streakMessage(streakAfter.currentDays),
+                    detail = strings.streakDetail(),
                     createdAt = endedAt,
                 ),
             )

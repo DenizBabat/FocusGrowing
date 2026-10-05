@@ -21,12 +21,15 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/** What went wrong in the editor. The screen turns it into a translated message. */
+enum class MissionEditorError { NOT_FOUND, EMPTY_TITLE, TITLE_TOO_LONG, INVALID_ESTIMATE }
+
 data class MissionEditorUiState(
     val isNew: Boolean = true,
     val loading: Boolean = false,
     val draft: MissionDraft = MissionDraft(),
     val newSubTask: String = "",
-    val error: String? = null,
+    val error: MissionEditorError? = null,
     val saving: Boolean = false,
 )
 
@@ -47,7 +50,7 @@ class MissionEditorViewModel @Inject constructor(
             viewModelScope.launch {
                 val m = missions.getMission(missionId)
                 _state.update {
-                    if (m == null) it.copy(loading = false, error = "Mission not found")
+                    if (m == null) it.copy(loading = false, error = MissionEditorError.NOT_FOUND)
                     else it.copy(
                         loading = false,
                         draft = MissionDraft(
@@ -91,14 +94,14 @@ class MissionEditorViewModel @Inject constructor(
             val draft = _state.value.draft.let { if (pending.isNotEmpty()) it.copy(subTasks = it.subTasks + pending) else it }
             when (val result = saveMission(draft)) {
                 is SaveMissionResult.Saved -> onSaved()
-                is SaveMissionResult.Invalid -> _state.update { it.copy(saving = false, error = result.error.message()) }
+                is SaveMissionResult.Invalid -> _state.update { it.copy(saving = false, error = result.error.toEditorError()) }
             }
         }
     }
 
-    private fun MissionValidationError.message() = when (this) {
-        MissionValidationError.EMPTY_TITLE -> "Please give your mission a title."
-        MissionValidationError.TITLE_TOO_LONG -> "The title is too long."
-        MissionValidationError.INVALID_ESTIMATE -> "Estimate must be between 1 and ${SaveMissionUseCase.MAX_ESTIMATE} pomodoros."
+    private fun MissionValidationError.toEditorError() = when (this) {
+        MissionValidationError.EMPTY_TITLE -> MissionEditorError.EMPTY_TITLE
+        MissionValidationError.TITLE_TOO_LONG -> MissionEditorError.TITLE_TOO_LONG
+        MissionValidationError.INVALID_ESTIMATE -> MissionEditorError.INVALID_ESTIMATE
     }
 }

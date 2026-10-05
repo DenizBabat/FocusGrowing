@@ -3,8 +3,10 @@ package com.focusgrowing.app.presentation.premium
 import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.billing.BillingProducts
 import com.focusgrowing.app.core.billing.PurchaseManager
+import com.focusgrowing.app.core.locale.StringProvider
 import com.focusgrowing.app.domain.logic.PremiumPricing
 import com.focusgrowing.app.domain.model.ActiveSubscription
 import com.focusgrowing.app.domain.model.BillingPeriod
@@ -101,6 +103,7 @@ class PremiumViewModel @Inject constructor(
     premium: PremiumManager,
     subscriptions: SubscriptionRepository,
     private val store: PurchaseManager,
+    private val strings: StringProvider,
 ) : ViewModel() {
 
     private val local = MutableStateFlow(LocalState())
@@ -195,13 +198,13 @@ class PremiumViewModel @Inject constructor(
         val wasPremium = premiumAtLaunch
         val (message, celebrate) = when (result) {
             PurchaseResult.Success -> when {
-                !fromPurchase -> "Your Premium was restored." to false
-                launchedPeriod == BillingPeriod.LIFETIME -> "Premium is yours forever. 🎉" to true
-                wasPremium -> "Your plan was changed." to false
-                else -> "Welcome to Premium! 🎉" to true
+                !fromPurchase -> strings.get(R.string.premium_restored) to false
+                launchedPeriod == BillingPeriod.LIFETIME -> strings.get(R.string.premium_forever_celebration) to true
+                wasPremium -> strings.get(R.string.premium_plan_changed) to false
+                else -> strings.get(R.string.premium_welcome) to true
             }
-            PurchaseResult.ChangeScheduled -> "Done. Your new plan starts when the current period ends." to false
-            PurchaseResult.Pending -> "Your payment is being processed. Premium unlocks as soon as Google Play confirms it." to false
+            PurchaseResult.ChangeScheduled -> strings.get(R.string.premium_change_scheduled) to false
+            PurchaseResult.Pending -> strings.get(R.string.premium_payment_pending) to false
             PurchaseResult.Cancelled -> null to false
             is PurchaseResult.Failure -> result.message to false
         }

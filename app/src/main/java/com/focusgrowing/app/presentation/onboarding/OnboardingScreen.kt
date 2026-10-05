@@ -37,12 +37,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusChip
 import com.focusgrowing.app.core.designsystem.component.FocusTextButton
@@ -53,6 +55,7 @@ import com.focusgrowing.app.core.designsystem.illustration.LandscapeBackdrop
 import com.focusgrowing.app.core.designsystem.illustration.WorldIsland
 import com.focusgrowing.app.core.designsystem.theme.FocusTheme
 import com.focusgrowing.app.domain.logic.WorldProgression
+import com.focusgrowing.app.presentation.common.LanguageOptions
 
 @Composable
 fun OnboardingScreen(onFinished: () -> Unit, viewModel: OnboardingViewModel = hiltViewModel()) {
@@ -67,22 +70,23 @@ fun OnboardingScreen(onFinished: () -> Unit, viewModel: OnboardingViewModel = hi
     ) { page ->
         when (page) {
             0 -> SplashPage(onStart = viewModel::next)
-            1 -> IntroPage(
-                number = 1, title = "Mission",
-                text = "Create your tasks, set your goals and take action.",
+            OnboardingViewModel.PAGE_LANGUAGE -> LanguagePage(page = page, onNext = viewModel::next)
+            2 -> IntroPage(
+                number = 1, title = stringResource(R.string.onboarding_mission_title),
+                text = stringResource(R.string.onboarding_mission_text),
                 page = page, onNext = viewModel::next, onSkip = viewModel::skipIntro,
             ) { ChecklistIllustration(Modifier.fillMaxWidth().aspectRatio(1.1f)) }
-            2 -> IntroPage(
-                number = 2, title = "World",
-                text = "Complete focus sessions, grow your personal world.",
+            3 -> IntroPage(
+                number = 2, title = stringResource(R.string.onboarding_world_title),
+                text = stringResource(R.string.onboarding_world_text),
                 page = page, onNext = viewModel::next, onSkip = viewModel::skipIntro,
             ) { WorldIsland(WorldProgression.unlockedItems(5, isPremium = false), Modifier.fillMaxWidth().aspectRatio(1.1f)) }
-            3 -> IntroPage(
-                number = 3, title = "Intelligence",
-                text = "Discover your habits, get insights, become a better you.",
-                page = page, onNext = viewModel::next, onSkip = null, nextLabel = "Get Started",
+            4 -> IntroPage(
+                number = 3, title = stringResource(R.string.onboarding_intelligence_title),
+                text = stringResource(R.string.onboarding_intelligence_text),
+                page = page, onNext = viewModel::next, onSkip = null, nextLabel = stringResource(R.string.onboarding_get_started),
             ) { InsightIllustration(Modifier.fillMaxWidth().aspectRatio(1.1f)) }
-            4 -> FocusLengthPage(state, viewModel)
+            OnboardingViewModel.PAGE_FOCUS_LENGTH -> FocusLengthPage(state, viewModel)
             else -> FirstGoalPage(state, viewModel, onFinish = { viewModel.finish(onFinished) })
         }
     }
@@ -111,21 +115,21 @@ private fun SplashPage(onStart: () -> Unit) {
             Icon(Icons.Rounded.Eco, contentDescription = null, tint = colors.primary, modifier = Modifier.size(40.dp))
             Spacer(Modifier.height(FocusTheme.spacing.md))
             Text(
-                "Mission\nWorld\nIntelligence",
+                stringResource(R.string.onboarding_tagline),
                 style = FocusTheme.typography.displaySmall,
                 color = colors.onBackground,
                 textAlign = TextAlign.Center,
             )
             Spacer(Modifier.height(FocusTheme.spacing.md))
             Text(
-                "Focus on your missions.\nGrow your world.",
+                stringResource(R.string.onboarding_subtitle),
                 style = FocusTheme.typography.bodyLarge,
                 color = colors.onSurfaceVariant,
                 textAlign = TextAlign.Center,
             )
             Spacer(Modifier.weight(1f))
             FocusButton(
-                "Get Started",
+                stringResource(R.string.onboarding_get_started),
                 onClick = onStart,
                 trailingIcon = Icons.AutoMirrored.Rounded.ArrowForward,
                 modifier = Modifier.fillMaxWidth(),
@@ -142,18 +146,18 @@ private fun IntroPage(
     page: Int,
     onNext: () -> Unit,
     onSkip: (() -> Unit)?,
-    nextLabel: String = "Next",
+    nextLabel: String = stringResource(R.string.onboarding_next),
     art: @Composable () -> Unit,
 ) {
     OnboardingScaffold(
         page = page,
         primaryLabel = nextLabel,
         onPrimary = onNext,
-        secondaryLabel = if (onSkip != null) "Skip" else null,
+        secondaryLabel = if (onSkip != null) stringResource(R.string.onboarding_skip) else null,
         onSecondary = onSkip ?: {},
     ) {
         Row(verticalAlignment = Alignment.Bottom) {
-            Text("$number.", style = FocusTheme.typography.headlineLarge, color = FocusTheme.colors.primary)
+            Text(stringResource(R.string.onboarding_step_number, number), style = FocusTheme.typography.headlineLarge, color = FocusTheme.colors.primary)
             Spacer(Modifier.width(FocusTheme.spacing.sm))
             Text(title, style = FocusTheme.typography.headlineLarge, color = FocusTheme.colors.onBackground)
         }
@@ -164,32 +168,48 @@ private fun IntroPage(
     }
 }
 
+/** Language choice. "System default" is preselected; picking a language switches the app immediately. */
+@Composable
+private fun LanguagePage(page: Int, onNext: () -> Unit) {
+    OnboardingScaffold(
+        page = page,
+        primaryLabel = stringResource(R.string.common_continue),
+        onPrimary = onNext,
+    ) {
+        Text(stringResource(R.string.language_title), style = FocusTheme.typography.headlineMedium, color = FocusTheme.colors.onBackground)
+        Spacer(Modifier.height(FocusTheme.spacing.sm))
+        Text(stringResource(R.string.onboarding_change_later), style = FocusTheme.typography.bodyMedium, color = FocusTheme.colors.onSurfaceVariant)
+        Spacer(Modifier.height(FocusTheme.spacing.lg))
+        LanguageOptions()
+    }
+}
+
 @Composable
 private fun FocusLengthPage(state: OnboardingUiState, viewModel: OnboardingViewModel) {
     OnboardingScaffold(
         page = state.page,
-        primaryLabel = "Continue",
+        primaryLabel = stringResource(R.string.common_continue),
         onPrimary = viewModel::next,
     ) {
-        Text("How long do you usually focus?", style = FocusTheme.typography.headlineMedium, color = FocusTheme.colors.onBackground)
+        Text(stringResource(R.string.onboarding_focus_length_title), style = FocusTheme.typography.headlineMedium, color = FocusTheme.colors.onBackground)
         Spacer(Modifier.height(FocusTheme.spacing.sm))
-        Text("You can change this any time in Settings.", style = FocusTheme.typography.bodyMedium, color = FocusTheme.colors.onSurfaceVariant)
+        Text(stringResource(R.string.onboarding_change_later), style = FocusTheme.typography.bodyMedium, color = FocusTheme.colors.onSurfaceVariant)
         Spacer(Modifier.height(FocusTheme.spacing.xl))
         listOf(25, 30, 45).forEach { minutes ->
             OptionRow(
-                label = "$minutes minutes",
+                label = stringResource(R.string.onboarding_minutes_option, minutes),
                 selected = !state.useCustom && state.focusMinutes == minutes,
                 onClick = { viewModel.selectMinutes(minutes) },
             )
             Spacer(Modifier.height(FocusTheme.spacing.sm))
         }
-        OptionRow(label = "Custom", selected = state.useCustom, onClick = viewModel::selectCustom)
+        OptionRow(label = stringResource(R.string.onboarding_custom), selected = state.useCustom, onClick = viewModel::selectCustom)
         if (state.useCustom) {
             Spacer(Modifier.height(FocusTheme.spacing.sm))
             OutlinedTextField(
                 value = state.customMinutesText,
                 onValueChange = viewModel::setCustomMinutes,
-                label = { Text("Minutes (1–180)") },
+                label = { Text(stringResource(R.string.onboarding_custom_minutes_label)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
                 colors = focusTextFieldColors(),
@@ -203,16 +223,16 @@ private fun FocusLengthPage(state: OnboardingUiState, viewModel: OnboardingViewM
 private fun FirstGoalPage(state: OnboardingUiState, viewModel: OnboardingViewModel, onFinish: () -> Unit) {
     OnboardingScaffold(
         page = state.page,
-        primaryLabel = "Start growing",
+        primaryLabel = stringResource(R.string.onboarding_start_growing),
         onPrimary = onFinish,
         loading = state.saving,
-        secondaryLabel = "Skip for now",
+        secondaryLabel = stringResource(R.string.onboarding_skip_for_now),
         onSecondary = onFinish,
     ) {
-        Text("Choose your first goal.", style = FocusTheme.typography.headlineMedium, color = FocusTheme.colors.onBackground)
+        Text(stringResource(R.string.onboarding_first_goal_title), style = FocusTheme.typography.headlineMedium, color = FocusTheme.colors.onBackground)
         Spacer(Modifier.height(FocusTheme.spacing.sm))
         Text(
-            "It becomes your first mission. Every focus session moves it forward.",
+            stringResource(R.string.onboarding_first_goal_text),
             style = FocusTheme.typography.bodyMedium,
             color = FocusTheme.colors.onSurfaceVariant,
         )
@@ -220,7 +240,7 @@ private fun FirstGoalPage(state: OnboardingUiState, viewModel: OnboardingViewMod
         OutlinedTextField(
             value = state.name,
             onValueChange = viewModel::setName,
-            label = { Text("Your name (optional)") },
+            label = { Text(stringResource(R.string.onboarding_name_label)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
             colors = focusTextFieldColors(),
@@ -230,7 +250,7 @@ private fun FirstGoalPage(state: OnboardingUiState, viewModel: OnboardingViewMod
         OutlinedTextField(
             value = state.firstGoal,
             onValueChange = viewModel::setGoal,
-            label = { Text("e.g. Finish authentication") },
+            label = { Text(stringResource(R.string.onboarding_goal_example)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             colors = focusTextFieldColors(),
@@ -238,7 +258,11 @@ private fun FirstGoalPage(state: OnboardingUiState, viewModel: OnboardingViewMod
         )
         Spacer(Modifier.height(FocusTheme.spacing.lg))
         Row(horizontalArrangement = Arrangement.spacedBy(FocusTheme.spacing.sm)) {
-            listOf("Read a book", "Learn Kotlin", "Exercise").forEach { idea ->
+            listOf(
+                stringResource(R.string.onboarding_idea_read),
+                stringResource(R.string.onboarding_idea_learn),
+                stringResource(R.string.onboarding_idea_exercise),
+            ).forEach { idea ->
                 FocusChip(idea, selected = state.firstGoal == idea, onClick = { viewModel.setGoal(idea) })
             }
         }

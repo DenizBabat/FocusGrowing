@@ -14,10 +14,13 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.FocusProgressBar
 import com.focusgrowing.app.core.designsystem.theme.FocusTheme
 import com.focusgrowing.app.domain.model.DayBucket
@@ -29,10 +32,12 @@ import com.focusgrowing.app.presentation.common.UiFormat
 fun FocusBarChart(buckets: List<DayBucket>, modifier: Modifier = Modifier) {
     val colors = FocusTheme.colors
     val max = (buckets.maxOfOrNull { it.focusSeconds } ?: 0L).coerceAtLeast(1L)
-    val summary = buckets.joinToString { "${it.label}: ${UiFormat.duration(it.focusSeconds)}" }
+    val resources = LocalContext.current.resources
+    val summary = buckets.joinToString { "${it.label}: ${UiFormat.duration(it.focusSeconds, resources)}" }
+    val chartDescription = stringResource(R.string.stats_chart_description, summary)
     val showLabels = buckets.size <= 14
     val labelEvery = if (buckets.size <= 14) 1 else (buckets.size / 6).coerceAtLeast(1)
-    Column(modifier.semantics { contentDescription = "Focus time chart. $summary" }) {
+    Column(modifier.semantics { contentDescription = chartDescription }) {
         val top = colors.chartPrimary
         val bottom = colors.chartPrimary.copy(alpha = 0.55f)
         val track = colors.progressTrack
@@ -90,7 +95,7 @@ fun TopHoursList(slots: List<HourSlotShare>) {
                 )
                 FocusProgressBar(slot.share, color = palette[index % palette.size], height = 8.dp, modifier = Modifier.weight(0.45f))
                 Text(
-                    "${(slot.share * 100).toInt()}%",
+                    stringResource(R.string.format_percent, (slot.share * 100).toInt()),
                     style = FocusTheme.typography.labelMedium,
                     color = FocusTheme.colors.onSurface,
                     textAlign = TextAlign.End,

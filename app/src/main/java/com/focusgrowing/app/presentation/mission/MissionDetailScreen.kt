@@ -53,11 +53,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.EmptyState
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusButtonStyle
@@ -93,17 +95,17 @@ fun MissionDetailScreen(
             if (loaded != null) {
                 Box {
                     IconButton(onClick = { menuOpen = true }) {
-                        Icon(Icons.Rounded.MoreVert, contentDescription = "More options", tint = FocusTheme.colors.onBackground)
+                        Icon(Icons.Rounded.MoreVert, contentDescription = stringResource(R.string.mission_detail_more_options), tint = FocusTheme.colors.onBackground)
                     }
                     DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
-                        MenuItem("Edit", Icons.Rounded.Edit) { menuOpen = false; onEdit(loaded.mission.id) }
+                        MenuItem(stringResource(R.string.common_edit), Icons.Rounded.Edit) { menuOpen = false; onEdit(loaded.mission.id) }
                         if (loaded.mission.isCompleted) {
-                            MenuItem("Reopen", Icons.Rounded.Replay) { menuOpen = false; viewModel.reopen() }
+                            MenuItem(stringResource(R.string.mission_detail_reopen), Icons.Rounded.Replay) { menuOpen = false; viewModel.reopen() }
                         } else {
-                            MenuItem("Mark as completed", Icons.Rounded.CheckCircle) { menuOpen = false; viewModel.complete() }
+                            MenuItem(stringResource(R.string.mission_detail_mark_completed), Icons.Rounded.CheckCircle) { menuOpen = false; viewModel.complete() }
                         }
-                        MenuItem("Archive", Icons.Rounded.Archive) { menuOpen = false; viewModel.archive(onBack) }
-                        MenuItem("Delete", Icons.Rounded.Delete) { menuOpen = false; confirmDelete = true }
+                        MenuItem(stringResource(R.string.mission_detail_archive), Icons.Rounded.Archive) { menuOpen = false; viewModel.archive(onBack) }
+                        MenuItem(stringResource(R.string.common_delete), Icons.Rounded.Delete) { menuOpen = false; confirmDelete = true }
                     }
                 }
             }
@@ -112,9 +114,9 @@ fun MissionDetailScreen(
             MissionDetailUiState.Loading -> Unit
             MissionDetailUiState.NotFound -> EmptyState(
                 icon = Icons.Rounded.Info,
-                title = "Mission not found",
-                message = "It may have been deleted.",
-                action = { FocusButton("Go back", onClick = onBack) },
+                title = stringResource(R.string.mission_not_found),
+                message = stringResource(R.string.mission_not_found_message),
+                action = { FocusButton(stringResource(R.string.mission_detail_go_back), onClick = onBack) },
             )
             is MissionDetailUiState.Loaded -> MissionDetailContent(
                 mission = s.mission,
@@ -132,14 +134,14 @@ fun MissionDetailScreen(
     if (confirmDelete) {
         AlertDialog(
             onDismissRequest = { confirmDelete = false },
-            title = { Text("Delete mission?") },
-            text = { Text("The mission and its checklist will be removed. Your focus history and World XP are kept.") },
+            title = { Text(stringResource(R.string.mission_delete_title)) },
+            text = { Text(stringResource(R.string.mission_delete_message)) },
             confirmButton = {
                 TextButton(onClick = { confirmDelete = false; viewModel.delete(onBack) }) {
-                    Text("Delete", color = FocusTheme.colors.error)
+                    Text(stringResource(R.string.common_delete), color = FocusTheme.colors.error)
                 }
             },
-            dismissButton = { TextButton(onClick = { confirmDelete = false }) { Text("Cancel") } },
+            dismissButton = { TextButton(onClick = { confirmDelete = false }) { Text(stringResource(R.string.common_cancel)) } },
         )
     }
 }
@@ -180,22 +182,22 @@ private fun MissionDetailContent(
         }
 
         Spacer(Modifier.height(spacing.lg))
-        InfoRow(Icons.Rounded.Flag, "Priority", mission.priority.label(), mission.priority.color())
-        InfoRow(Icons.Rounded.Timer, "Pomodoros", "${mission.completedPomodoros} / ${mission.estimatedPomodoros}", colors.primary)
+        InfoRow(Icons.Rounded.Flag, stringResource(R.string.mission_priority), mission.priority.label(), mission.priority.color())
+        InfoRow(Icons.Rounded.Timer, stringResource(R.string.mission_detail_pomodoros), "${mission.completedPomodoros} / ${mission.estimatedPomodoros}", colors.primary)
         Spacer(Modifier.height(spacing.sm))
         FocusProgressBar(mission.progress)
 
         Spacer(Modifier.height(spacing.xl))
         FocusCard(contentPadding = PaddingValues(vertical = spacing.sm)) {
             Text(
-                "Checklist",
+                stringResource(R.string.mission_detail_checklist),
                 style = FocusTheme.typography.titleSmall,
                 color = colors.onSurface,
                 modifier = Modifier.padding(horizontal = spacing.lg, vertical = spacing.sm),
             )
             if (mission.subTasks.isEmpty()) {
                 Text(
-                    "Break the mission into small steps.",
+                    stringResource(R.string.mission_detail_checklist_hint),
                     style = FocusTheme.typography.bodySmall,
                     color = colors.onSurfaceVariant,
                     modifier = Modifier.padding(horizontal = spacing.lg),
@@ -209,7 +211,7 @@ private fun MissionDetailContent(
                 OutlinedTextField(
                     value = newSubTask,
                     onValueChange = onNewSubTaskChange,
-                    placeholder = { Text("Add a step") },
+                    placeholder = { Text(stringResource(R.string.mission_step_placeholder)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                     keyboardActions = KeyboardActions(onDone = { onAddSubTask() }),
@@ -217,7 +219,7 @@ private fun MissionDetailContent(
                     modifier = Modifier.weight(1f),
                 )
                 IconButton(onClick = onAddSubTask, enabled = newSubTask.isNotBlank()) {
-                    Icon(Icons.Rounded.Add, contentDescription = "Add step", tint = colors.primary)
+                    Icon(Icons.Rounded.Add, contentDescription = stringResource(R.string.mission_step_add), tint = colors.primary)
                 }
             }
         }
@@ -225,29 +227,29 @@ private fun MissionDetailContent(
         Spacer(Modifier.height(spacing.xl))
         if (mission.status == MissionStatus.COMPLETED) {
             FocusCard(color = colors.primaryContainer, border = false) {
-                Text("Mission completed 🎉", style = FocusTheme.typography.titleMedium, color = colors.onPrimaryContainer)
+                Text(stringResource(R.string.mission_detail_completed_title), style = FocusTheme.typography.titleMedium, color = colors.onPrimaryContainer)
                 mission.completedAt?.let {
-                    Text("Completed on ${UiFormat.date(it)}", style = FocusTheme.typography.bodySmall, color = colors.onPrimaryContainer)
+                    Text(stringResource(R.string.mission_detail_completed_on, UiFormat.date(it)), style = FocusTheme.typography.bodySmall, color = colors.onPrimaryContainer)
                 }
             }
             Spacer(Modifier.height(spacing.md))
-            FocusButton("Reopen mission", onClick = onReopen, style = FocusButtonStyle.Soft, leadingIcon = Icons.Rounded.Replay, modifier = Modifier.fillMaxWidth())
+            FocusButton(stringResource(R.string.mission_detail_reopen_mission), onClick = onReopen, style = FocusButtonStyle.Soft, leadingIcon = Icons.Rounded.Replay, modifier = Modifier.fillMaxWidth())
         } else {
             if (mission.completedPomodoros >= mission.estimatedPomodoros && mission.subTasks.any { !it.isDone }) {
                 Text(
-                    "Estimate reached — finish the remaining steps or mark the mission as completed.",
+                    stringResource(R.string.mission_detail_estimate_reached),
                     style = FocusTheme.typography.bodySmall,
                     color = colors.onSurfaceVariant,
                 )
                 Spacer(Modifier.height(spacing.sm))
             }
-            FocusButton("Start Focus", onClick = onStartFocus, leadingIcon = Icons.Rounded.PlayArrow, modifier = Modifier.fillMaxWidth())
+            FocusButton(stringResource(R.string.mission_detail_start_focus), onClick = onStartFocus, leadingIcon = Icons.Rounded.PlayArrow, modifier = Modifier.fillMaxWidth())
         }
 
         Spacer(Modifier.height(spacing.xl))
         FocusCard {
-            InfoRow(Icons.Rounded.CalendarToday, "Created", UiFormat.date(mission.createdAt), colors.onSurfaceVariant)
-            InfoRow(Icons.Rounded.Info, "Status", mission.status.readable(), colors.onSurfaceVariant)
+            InfoRow(Icons.Rounded.CalendarToday, stringResource(R.string.mission_detail_created), UiFormat.date(mission.createdAt), colors.onSurfaceVariant)
+            InfoRow(Icons.Rounded.Info, stringResource(R.string.mission_detail_status), mission.status.readable(), colors.onSurfaceVariant)
         }
         ForestFooter(Modifier.fillMaxWidth().height(90.dp))
     }
@@ -276,7 +278,7 @@ private fun SubTaskRow(task: SubTask, onToggle: (Long, Boolean) -> Unit, onDelet
             modifier = Modifier.weight(1f),
         )
         IconButton(onClick = { onDelete(task.id) }) {
-            Icon(Icons.Rounded.Close, contentDescription = "Remove step", tint = FocusTheme.colors.outline, modifier = Modifier.size(18.dp))
+            Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.mission_step_remove), tint = FocusTheme.colors.outline, modifier = Modifier.size(18.dp))
         }
     }
 }
@@ -291,9 +293,12 @@ private fun InfoRow(icon: ImageVector, label: String, value: String, tint: andro
     }
 }
 
-private fun MissionStatus.readable(): String = when (this) {
-    MissionStatus.TODO -> "To do"
-    MissionStatus.IN_PROGRESS -> "In progress"
-    MissionStatus.COMPLETED -> "Completed"
-    MissionStatus.ARCHIVED -> "Archived"
-}
+@Composable
+private fun MissionStatus.readable(): String = stringResource(
+    when (this) {
+        MissionStatus.TODO -> R.string.mission_status_todo
+        MissionStatus.IN_PROGRESS -> R.string.mission_status_in_progress
+        MissionStatus.COMPLETED -> R.string.mission_status_completed
+        MissionStatus.ARCHIVED -> R.string.mission_status_archived
+    },
+)

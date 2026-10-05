@@ -13,9 +13,11 @@ import androidx.compose.material.icons.rounded.Checklist
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.CircleIconButton
 import com.focusgrowing.app.core.designsystem.component.EmptyState
 import com.focusgrowing.app.core.designsystem.component.FocusButton
@@ -34,10 +36,10 @@ fun MissionsScreen(
     val filters = MissionFilter.entries
 
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
-        ScreenTitle("Missions") {
+        ScreenTitle(stringResource(R.string.mission_list_title)) {
             CircleIconButton(
                 Icons.Rounded.Add,
-                contentDescription = "New mission",
+                contentDescription = stringResource(R.string.mission_list_new),
                 onClick = onCreateMission,
                 container = FocusTheme.colors.xp,
                 tint = FocusTheme.colors.onSecondary,
@@ -45,16 +47,16 @@ fun MissionsScreen(
             )
         }
         FocusChipRow(
-            options = filters.map { it.label },
+            options = filters.map { stringResource(it.labelRes) },
             selectedIndex = filters.indexOf(state.filter),
             onSelect = { viewModel.setFilter(filters[it]) },
         )
         if (!state.loading && state.missions.isEmpty()) {
             EmptyState(
                 icon = Icons.Rounded.Checklist,
-                title = if (state.totalCount == 0) "No missions yet" else "Nothing here",
-                message = if (state.totalCount == 0) "Create a mission and start your first focus session." else "No missions match this filter.",
-                action = { if (state.totalCount == 0) FocusButton("Create mission", onClick = onCreateMission) },
+                title = stringResource(if (state.totalCount == 0) R.string.mission_list_empty_title else R.string.mission_list_no_match_title),
+                message = stringResource(if (state.totalCount == 0) R.string.mission_list_empty_message else R.string.mission_list_no_match_message),
+                action = { if (state.totalCount == 0) FocusButton(stringResource(R.string.mission_list_create), onClick = onCreateMission) },
             )
         } else {
             LazyColumn(

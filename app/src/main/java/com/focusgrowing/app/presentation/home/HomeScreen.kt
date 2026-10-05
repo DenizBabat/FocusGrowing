@@ -32,10 +32,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusCard
 import com.focusgrowing.app.core.designsystem.component.FocusProgressBar
@@ -77,15 +80,19 @@ fun HomeScreen(
                     Column(Modifier.weight(1f)) {
                         val greeting = UiFormat.greeting(state.hour)
                         Text(
-                            if (state.userName.isBlank()) "$greeting!" else "$greeting, ${state.userName}!",
+                            if (state.userName.isBlank()) {
+                                stringResource(R.string.home_greeting_no_name, greeting)
+                            } else {
+                                stringResource(R.string.home_greeting_with_name, greeting, state.userName)
+                            },
                             style = FocusTheme.typography.titleLarge,
                             color = colors.onBackground,
                         )
-                        Text("Small steps create big changes.", style = FocusTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
+                        Text(stringResource(R.string.home_tagline), style = FocusTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
                     }
                     IconButton(onClick = onOpenNotifications) {
                         BadgedBox(badge = { if (state.unreadNotifications > 0) Badge { Text(state.unreadNotifications.coerceAtMost(9).toString()) } }) {
-                            Icon(Icons.Rounded.Notifications, contentDescription = "Notifications", tint = colors.onBackground)
+                            Icon(Icons.Rounded.Notifications, contentDescription = stringResource(R.string.home_notifications), tint = colors.onBackground)
                         }
                     }
                     WorldLevelChip(state.world.level)
@@ -103,15 +110,16 @@ fun HomeScreen(
         Column(Modifier.padding(horizontal = spacing.screen).offset(y = (-12).dp)) {
             Row(horizontalArrangement = Arrangement.spacedBy(spacing.sm)) {
                 StatTile(
-                    Icons.Rounded.Timer, "Focus Time", UiFormat.duration(state.totalFocusSeconds),
+                    Icons.Rounded.Timer, stringResource(R.string.home_stat_focus_time), UiFormat.duration(state.totalFocusSeconds),
                     colors.info, colors.infoContainer, Modifier.weight(1f),
                 )
                 StatTile(
-                    Icons.Rounded.CheckCircle, "Completed", state.completedMissions.toString(),
+                    Icons.Rounded.CheckCircle, stringResource(R.string.home_stat_completed), state.completedMissions.toString(),
                     colors.success, colors.primaryContainer, Modifier.weight(1f),
                 )
                 StatTile(
-                    Icons.Rounded.LocalFireDepartment, "Streak", "${state.streak.currentDays} days",
+                    Icons.Rounded.LocalFireDepartment, stringResource(R.string.home_stat_streak),
+                    pluralStringResource(R.plurals.home_streak_days, state.streak.currentDays, state.streak.currentDays),
                     colors.streak, colors.streakContainer, Modifier.weight(1f),
                 )
             }
@@ -119,9 +127,9 @@ fun HomeScreen(
             Spacer(Modifier.height(spacing.lg))
             FocusCard(contentPadding = PaddingValues(spacing.lg)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("World Level ${state.world.level}", style = FocusTheme.typography.titleSmall, color = colors.onSurface, modifier = Modifier.weight(1f))
+                    Text(stringResource(R.string.home_world_level_number, state.world.level), style = FocusTheme.typography.titleSmall, color = colors.onSurface, modifier = Modifier.weight(1f))
                     Text(
-                        "${state.world.xpIntoLevel} / ${state.world.xpForNextLevel} XP",
+                        stringResource(R.string.home_xp_progress, state.world.xpIntoLevel, state.world.xpForNextLevel),
                         style = FocusTheme.typography.labelMedium,
                         color = colors.onSurfaceVariant,
                     )
@@ -131,7 +139,7 @@ fun HomeScreen(
             }
 
             Spacer(Modifier.height(spacing.xl))
-            SectionHeader("Today's Mission", action = "View all", onAction = onViewAllMissions)
+            SectionHeader(stringResource(R.string.home_todays_mission), action = stringResource(R.string.home_view_all), onAction = onViewAllMissions)
             Spacer(Modifier.height(spacing.sm))
             val mission = state.currentMission
             if (mission != null) {
@@ -143,12 +151,17 @@ fun HomeScreen(
                         Column(Modifier.weight(1f)) {
                             Text(mission.title, style = FocusTheme.typography.titleSmall, color = colors.onSurface, maxLines = 1, overflow = TextOverflow.Ellipsis)
                             Text(
-                                "${mission.completedPomodoros}/${mission.estimatedPomodoros} Pomodoros",
+                                pluralStringResource(
+                                    R.plurals.home_mission_pomodoros,
+                                    mission.estimatedPomodoros,
+                                    mission.completedPomodoros,
+                                    mission.estimatedPomodoros,
+                                ),
                                 style = FocusTheme.typography.bodySmall,
                                 color = colors.onSurfaceVariant,
                             )
                         }
-                        Text("${(mission.progress * 100).toInt()}%", style = FocusTheme.typography.labelLarge, color = accent)
+                        Text(stringResource(R.string.format_percent, (mission.progress * 100).toInt()), style = FocusTheme.typography.labelLarge, color = accent)
                     }
                     Spacer(Modifier.height(spacing.sm))
                     FocusProgressBar(mission.progress, color = accent, height = 6.dp)
@@ -159,8 +172,8 @@ fun HomeScreen(
                         IconBadge(Icons.Rounded.Add, colors.primary, colors.primaryContainer)
                         Spacer(Modifier.width(spacing.md))
                         Column(Modifier.weight(1f)) {
-                            Text("Create your first mission", style = FocusTheme.typography.titleSmall, color = colors.onSurface)
-                            Text("Give your focus a goal.", style = FocusTheme.typography.bodySmall, color = colors.onSurfaceVariant)
+                            Text(stringResource(R.string.home_create_first_mission), style = FocusTheme.typography.titleSmall, color = colors.onSurface)
+                            Text(stringResource(R.string.home_create_first_mission_hint), style = FocusTheme.typography.bodySmall, color = colors.onSurfaceVariant)
                         }
                     }
                 }
@@ -168,9 +181,9 @@ fun HomeScreen(
 
             Spacer(Modifier.height(spacing.lg))
             val timerLabel = when (state.timer.phase) {
-                TimerPhase.RUNNING -> "Return to Focus"
-                TimerPhase.PAUSED -> "Resume Focus"
-                else -> "Start Focus"
+                TimerPhase.RUNNING -> stringResource(R.string.home_focus_return)
+                TimerPhase.PAUSED -> stringResource(R.string.home_focus_resume)
+                else -> stringResource(R.string.home_focus_start)
             }
             FocusButton(
                 timerLabel,
@@ -179,7 +192,7 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxWidth(),
             )
             if (mission == null) {
-                FocusTextButton("Focus without a mission", onClick = { onStartFocus(null) }, modifier = Modifier.align(Alignment.CenterHorizontally))
+                FocusTextButton(stringResource(R.string.home_focus_without_mission), onClick = { onStartFocus(null) }, modifier = Modifier.align(Alignment.CenterHorizontally))
             }
             Spacer(Modifier.height(spacing.xl))
         }
@@ -189,7 +202,7 @@ fun HomeScreen(
 @Composable
 private fun WorldLevelChip(level: Int) {
     FocusCard(contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)) {
-        Text("World Level", style = FocusTheme.typography.labelSmall, color = FocusTheme.colors.onSurfaceVariant)
+        Text(stringResource(R.string.home_world_level_label), style = FocusTheme.typography.labelSmall, color = FocusTheme.colors.onSurfaceVariant)
         Text(level.toString(), style = FocusTheme.typography.titleLarge, color = FocusTheme.colors.primary, modifier = Modifier.align(Alignment.CenterHorizontally))
     }
 }

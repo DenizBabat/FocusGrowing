@@ -1,8 +1,10 @@
 package com.focusgrowing.app.presentation.focus
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.timer.FocusTimerManager
 import com.focusgrowing.app.domain.logic.TimerCalculator
 import com.focusgrowing.app.domain.model.BackgroundImage
@@ -60,7 +62,10 @@ data class FocusUiState(
     val screen: FocusScreenSettings = FocusScreenSettings(),
     val background: BackgroundImage? = null,
     val clockText: String = "",
+    /** The user's own motivational text (Premium); blank when a built-in one is shown instead. */
     val motivation: String = "",
+    /** Built-in motivational text, resolved in the UI so it follows the app language. */
+    @StringRes val motivationRes: Int? = null,
     val isPremium: Boolean = false,
     val activeMissions: List<Mission> = emptyList(),
 ) {
@@ -151,7 +156,8 @@ class FocusViewModel @Inject constructor(
             screen = prefs.focusScreen,
             background = bg,
             clockText = CLOCK_FORMAT.format(Instant.ofEpochMilli(now).atZone(ZoneId.systemDefault())),
-            motivation = motivationFor(prefs.focusScreen, isPremium, t.startedAt),
+            motivation = customMotivation(prefs.focusScreen, isPremium),
+            motivationRes = MOTIVATIONS[abs((t.startedAt / 1000) % MOTIVATIONS.size).toInt()],
             isPremium = isPremium,
             activeMissions = active,
         )
@@ -189,21 +195,20 @@ class FocusViewModel @Inject constructor(
         viewModelScope.launch { block(timer) }
     }
 
-    private fun motivationFor(screen: FocusScreenSettings, isPremium: Boolean, seed: Long): String {
+    private fun customMotivation(screen: FocusScreenSettings, isPremium: Boolean): String {
         val custom = screen.customMotivation
-        if (isPremium && !custom.isNullOrBlank()) return custom
-        return MOTIVATIONS[abs((seed / 1000) % MOTIVATIONS.size).toInt()]
+        return if (isPremium && !custom.isNullOrBlank()) custom else ""
     }
 
     private companion object {
         const val TICK_MS = 250L
         val CLOCK_FORMAT: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
         val MOTIVATIONS = listOf(
-            "Stay focused, you can do it!",
-            "One task at a time.",
-            "Small steps every day.",
-            "Deep work, calm mind.",
-            "You are growing your world.",
+            R.string.focus_quote_1,
+            R.string.focus_quote_2,
+            R.string.focus_quote_3,
+            R.string.focus_quote_4,
+            R.string.focus_quote_5,
         )
     }
 }

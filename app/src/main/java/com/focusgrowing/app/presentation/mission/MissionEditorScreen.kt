@@ -30,11 +30,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.CircleIconButton
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusCard
@@ -44,6 +47,7 @@ import com.focusgrowing.app.core.designsystem.component.focusTextFieldColors
 import com.focusgrowing.app.core.designsystem.theme.FocusTheme
 import com.focusgrowing.app.domain.model.MissionCategory
 import com.focusgrowing.app.domain.model.MissionPriority
+import com.focusgrowing.app.domain.usecase.SaveMissionUseCase
 import com.focusgrowing.app.presentation.common.label
 
 @Composable
@@ -51,7 +55,7 @@ fun MissionEditorScreen(onDone: () -> Unit, viewModel: MissionEditorViewModel = 
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     Column(Modifier.fillMaxSize().statusBarsPadding().imePadding()) {
-        FocusTopBar(title = if (state.isNew) "New Mission" else "Edit Mission", onBack = onDone)
+        FocusTopBar(title = stringResource(if (state.isNew) R.string.mission_editor_title_new else R.string.mission_editor_title_edit), onBack = onDone)
         if (!state.loading) EditorBody(state, viewModel, onDone)
     }
 }
@@ -69,7 +73,7 @@ private fun ColumnScope.EditorBody(state: MissionEditorUiState, viewModel: Missi
         OutlinedTextField(
             value = state.draft.title,
             onValueChange = viewModel::setTitle,
-            label = { Text("Mission title") },
+            label = { Text(stringResource(R.string.mission_editor_title_label)) },
             singleLine = true,
             isError = state.error != null && state.draft.title.isBlank(),
             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences, imeAction = ImeAction.Next),
@@ -80,7 +84,7 @@ private fun ColumnScope.EditorBody(state: MissionEditorUiState, viewModel: Missi
         OutlinedTextField(
             value = state.draft.description,
             onValueChange = viewModel::setDescription,
-            label = { Text("Description (optional)") },
+            label = { Text(stringResource(R.string.mission_editor_description_label)) },
             minLines = 2,
             maxLines = 5,
             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
@@ -89,20 +93,20 @@ private fun ColumnScope.EditorBody(state: MissionEditorUiState, viewModel: Missi
         )
 
         Spacer(Modifier.height(spacing.xl))
-        Label("Estimated pomodoros")
+        Label(stringResource(R.string.mission_editor_estimate_label))
         FocusCard {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                CircleIconButton(Icons.Rounded.Remove, "Decrease", onClick = { viewModel.changeEstimate(-1) }, size = 40.dp)
+                CircleIconButton(Icons.Rounded.Remove, stringResource(R.string.mission_editor_decrease), onClick = { viewModel.changeEstimate(-1) }, size = 40.dp)
                 Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                     Text("${state.draft.estimatedPomodoros}", style = FocusTheme.typography.headlineMedium, color = colors.onSurface)
-                    Text("Pomodoros", style = FocusTheme.typography.labelMedium, color = colors.onSurfaceVariant)
+                    Text(pluralStringResource(R.plurals.mission_editor_pomodoros_unit, state.draft.estimatedPomodoros), style = FocusTheme.typography.labelMedium, color = colors.onSurfaceVariant)
                 }
-                CircleIconButton(Icons.Rounded.Add, "Increase", onClick = { viewModel.changeEstimate(1) }, size = 40.dp)
+                CircleIconButton(Icons.Rounded.Add, stringResource(R.string.mission_editor_increase), onClick = { viewModel.changeEstimate(1) }, size = 40.dp)
             }
         }
 
         Spacer(Modifier.height(spacing.xl))
-        Label("Priority")
+        Label(stringResource(R.string.mission_priority))
         Row(horizontalArrangement = Arrangement.spacedBy(spacing.sm)) {
             MissionPriority.entries.forEach { p ->
                 FocusChip(p.label(), selected = state.draft.priority == p, onClick = { viewModel.setPriority(p) }, modifier = Modifier.weight(1f))
@@ -110,7 +114,7 @@ private fun ColumnScope.EditorBody(state: MissionEditorUiState, viewModel: Missi
         }
 
         Spacer(Modifier.height(spacing.xl))
-        Label("Category")
+        Label(stringResource(R.string.mission_editor_category_label))
         Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(spacing.sm)) {
             MissionCategory.entries.forEach { c ->
                 FocusChip(c.label(), selected = state.draft.category == c, onClick = { viewModel.setCategory(c) })
@@ -119,12 +123,12 @@ private fun ColumnScope.EditorBody(state: MissionEditorUiState, viewModel: Missi
 
         if (state.isNew) {
             Spacer(Modifier.height(spacing.xl))
-            Label("Checklist (optional)")
+            Label(stringResource(R.string.mission_editor_checklist_label))
             state.draft.subTasks.forEachIndexed { index, title ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text("•  $title", style = FocusTheme.typography.bodyMedium, color = colors.onSurface, modifier = Modifier.weight(1f))
                     IconButton(onClick = { viewModel.removeSubTask(index) }) {
-                        Icon(Icons.Rounded.Close, contentDescription = "Remove step", tint = colors.outline)
+                        Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.mission_step_remove), tint = colors.outline)
                     }
                 }
             }
@@ -132,7 +136,7 @@ private fun ColumnScope.EditorBody(state: MissionEditorUiState, viewModel: Missi
                 OutlinedTextField(
                     value = state.newSubTask,
                     onValueChange = viewModel::setNewSubTask,
-                    placeholder = { Text("Add a step") },
+                    placeholder = { Text(stringResource(R.string.mission_step_placeholder)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                     keyboardActions = KeyboardActions(onDone = { viewModel.addSubTask() }),
@@ -140,23 +144,31 @@ private fun ColumnScope.EditorBody(state: MissionEditorUiState, viewModel: Missi
                     modifier = Modifier.weight(1f),
                 )
                 Spacer(Modifier.width(spacing.sm))
-                CircleIconButton(Icons.Rounded.Add, "Add step", onClick = viewModel::addSubTask, size = 44.dp)
+                CircleIconButton(Icons.Rounded.Add, stringResource(R.string.mission_step_add), onClick = viewModel::addSubTask, size = 44.dp)
             }
         }
         Spacer(Modifier.height(spacing.xl))
     }
     Column(Modifier.padding(horizontal = spacing.screen, vertical = spacing.md).navigationBarsPadding()) {
         state.error?.let {
-            Text(it, style = FocusTheme.typography.bodySmall, color = colors.error)
+            Text(it.message(), style = FocusTheme.typography.bodySmall, color = colors.error)
             Spacer(Modifier.height(spacing.sm))
         }
         FocusButton(
-            if (state.isNew) "Create Mission" else "Save changes",
+            stringResource(if (state.isNew) R.string.mission_editor_create else R.string.mission_editor_save_changes),
             onClick = { viewModel.save(onDone) },
             loading = state.saving,
             modifier = Modifier.fillMaxWidth(),
         )
     }
+}
+
+@Composable
+private fun MissionEditorError.message(): String = when (this) {
+    MissionEditorError.NOT_FOUND -> stringResource(R.string.mission_not_found)
+    MissionEditorError.EMPTY_TITLE -> stringResource(R.string.mission_error_empty_title)
+    MissionEditorError.TITLE_TOO_LONG -> stringResource(R.string.mission_error_title_too_long)
+    MissionEditorError.INVALID_ESTIMATE -> stringResource(R.string.mission_error_invalid_estimate, SaveMissionUseCase.MAX_ESTIMATE)
 }
 
 @Composable

@@ -6,6 +6,9 @@ import com.focusgrowing.app.domain.model.InsightKind
 import com.focusgrowing.app.domain.model.Mission
 import com.focusgrowing.app.domain.model.SessionType
 import com.focusgrowing.app.domain.model.StreakInfo
+import com.focusgrowing.app.domain.repository.DayPart
+import com.focusgrowing.app.domain.repository.DomainStrings
+import com.focusgrowing.app.domain.repository.EnglishDomainStrings
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.TextStyle
@@ -19,6 +22,8 @@ data class InsightInput(
     val streak: StreakInfo,
     val zone: ZoneId,
     val locale: Locale = Locale.getDefault(),
+    /** Translated texts. The app passes the resource-backed implementation. */
+    val strings: DomainStrings = EnglishDomainStrings,
 )
 
 /** One independent, unit-testable rule. Return null when the rule has nothing useful to say. */
@@ -39,8 +44,8 @@ class InsightEngine(private val rules: List<InsightRule> = DefaultRules) {
                 Insight(
                     id = "getting_started",
                     kind = InsightKind.GETTING_STARTED,
-                    title = "Your insights are growing",
-                    message = "Complete ${MIN_SESSIONS - completedFocus} more focus session(s) to unlock personal insights.",
+                    title = input.strings.insightGettingStartedTitle(),
+                    message = input.strings.insightGettingStartedMessage(MIN_SESSIONS - completedFocus),
                     isPremium = false,
                 ),
             )
@@ -64,10 +69,10 @@ val TimeOfDayRule = InsightRule { input ->
     val sessions = focusSessions(input).filter { it.completed }
     val byPart = sessions.groupBy { s ->
         when (Instant.ofEpochMilli(s.startedAt).atZone(input.zone).hour) {
-            in 5..11 -> "morning"
-            in 12..17 -> "afternoon"
-            in 18..23 -> "evening"
-            else -> "night"
+            in 5..11 -> DayPart.MORNING
+            in 12..17 -> DayPart.AFTERNOON
+            in 18..23 -> DayPart.EVENING
+            else -> DayPart.NIGHT
         }
     }.mapValues { (_, list) -> list.sumOf { it.actualDurationSeconds } }
     val total = byPart.values.sum()
@@ -78,8 +83,8 @@ val TimeOfDayRule = InsightRule { input ->
     Insight(
         id = "time_of_day",
         kind = InsightKind.TIME_OF_DAY,
-        title = "You shine in the ${best.key}",
-        message = "$share% of your focus time happens in the ${best.key}. Plan your hardest missions then.",
+        title = input.strings.insightTimeOfDayTitle(best.key),
+        message = input.strings.insightTimeOfDayMessage(share, best.key),
         isPremium = false,
     )
 }
@@ -90,8 +95,8 @@ val ConsistencyRule = InsightRule { input ->
         days >= 3 -> Insight(
             id = "consistency_streak",
             kind = InsightKind.CONSISTENCY,
-            title = "$days day streak",
-            message = "You have focused $days days in a row. Consistency beats intensity — keep the chain going.",
+            title = input.strings.insightStreakTitle(days),
+            message = input.strings.insightStreakMessage(days),
             isPremium = false,
         )
         else -> {
@@ -101,8 +106,8 @@ val ConsistencyRule = InsightRule { input ->
             if (activeDays in 1..4) Insight(
                 id = "consistency_tip",
                 kind = InsightKind.CONSISTENCY,
-                title = "Small daily steps",
-                message = "You focused on $activeDays different day(s) recently. One short session every day builds a stronger habit.",
+                title = input.strings.insightDailyStepsTitle(),
+                message = input.strings.insightDailyStepsMessage(activeDays),
                 isPremium = true,
             ) else null
         }
@@ -117,18 +122,18 @@ val SessionLengthRule = InsightRule { input ->
     val longInterrupted = longOnes.count { !it.completed }
     when {
         averageMinutes < 15 -> Insight(
-            "session_short", InsightKind.SESSION_LENGTH, "Short sprints work for you",
-            "Your sessions average $averageMinutes minutes. Shorter focus sessions appear to work well for you.",
+            "session_short", InsightKind.SESSION_LENGTH, input.strings.insightShortSessionsTitle(),
+            input.strings.insightShortSessionsMessage(averageMinutes.toInt()),
             isPremium = true,
         )
         longOnes.size >= 3 && longInterrupted * 2 >= longOnes.size -> Insight(
-            "session_long_interrupted", InsightKind.SESSION_LENGTH, "Long sessions get interrupted",
-            "About half of your 40+ minute sessions end early. Try 25–30 minute sessions instead.",
+            "session_long_interrupted", InsightKind.SESSION_LENGTH, input.strings.insightLongInterruptedTitle(),
+            input.strings.insightLongInterruptedMessage(),
             isPremium = true,
         )
         else -> Insight(
-            "session_average", InsightKind.SESSION_LENGTH, "Average session: $averageMinutes min",
-            "Your typical focus block is $averageMinutes minutes. Matching your timer to it reduces early stops.",
+            "session_average", InsightKind.SESSION_LENGTH, input.strings.insightAverageSessionTitle(averageMinutes.toInt()),
+            input.strings.insightAverageSessionMessage(averageMinutes.toInt()),
             isPremium = true,
         )
     }
@@ -138,13 +143,13 @@ val EstimationRule = InsightRule { input ->
     val error = StatisticsCalculator.estimationError(input.missions, 0L) ?: return@InsightRule null
     when {
         error >= 15 -> Insight(
-            "estimation_over", InsightKind.ESTIMATION, "Missions take longer than planned",
-            "Your recent missions took about $error% more pomodoros than estimated. Add a buffer pomodoro when planning.",
+            "estimation_over", InsightKind.ESTIMATION, input.strings.insightEstimationOverTitle(),
+            input.strings.insightEstimationOverMessage(error),
             isPremium = true,
         )
         error <= -15 -> Insight(
-            "estimation_under", InsightKind.ESTIMATION, "You finish ahead of plan",
-            "You complete missions with about ${-error}% fewer pomodoros than estimated. You can plan more ambitiously.",
+            "estimation_under", InsightKind.ESTIMATION, input.strings.insightEstimationUnderTitle(),
+            input.strings.insightEstimationUnderMessage(-error),
             isPremium = true,
         )
         else -> null
@@ -159,13 +164,13 @@ val InterruptionRule = InsightRule { input ->
     val rate = (interrupted * 100.0 / sessions.size).roundToInt()
     when {
         rate >= 30 -> Insight(
-            "interruptions_high", InsightKind.INTERRUPTIONS, "Frequent early stops",
-            "$rate% of your sessions end early. Silence notifications and keep your phone out of reach while focusing.",
+            "interruptions_high", InsightKind.INTERRUPTIONS, input.strings.insightEarlyStopsTitle(),
+            input.strings.insightEarlyStopsMessage(rate),
             isPremium = true,
         )
         paused * 2 >= sessions.size -> Insight(
-            "pauses_high", InsightKind.INTERRUPTIONS, "Lots of pauses",
-            "Half of your sessions include a pause. Prepare water and notes before you start.",
+            "pauses_high", InsightKind.INTERRUPTIONS, input.strings.insightPausesTitle(),
+            input.strings.insightPausesMessage(),
             isPremium = true,
         )
         else -> null
@@ -179,10 +184,11 @@ val BestDayRule = InsightRule { input ->
         .groupBy { Instant.ofEpochMilli(it.startedAt).atZone(input.zone).dayOfWeek }
         .maxByOrNull { (_, list) -> list.sumOf { it.actualDurationSeconds } }
         ?.key ?: return@InsightRule null
-    val name = best.getDisplayName(TextStyle.FULL, input.locale)
+    val name = best.getDisplayName(TextStyle.FULL_STANDALONE, input.locale)
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(input.locale) else it.toString() }
     Insight(
-        "best_day", InsightKind.BEST_DAY, "$name is your power day",
-        "You focus the most on ${name}s. Schedule important missions for that day.",
+        "best_day", InsightKind.BEST_DAY, input.strings.insightBestDayTitle(name),
+        input.strings.insightBestDayMessage(name),
         isPremium = true,
     )
 }

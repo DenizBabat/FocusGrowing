@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_timer_name">Etkin odak zamanlayıcısı</string>
+    <string name="channel_timer_desc">Devam eden odak seansını gösterir.</string>
+    <string name="channel_events_name">Seans güncellemeleri</string>
+    <string name="channel_events_desc">Odak seansı tamamlandığında, mola bittiğinde ve dünyan seviye atladığında haber verir.</string>
+
+    <string name="ad_badge">Reklam</string>
+    <string name="common_continue">Devam</string>
+    <string name="common_cancel">İptal</string>
+    <string name="common_save">Kaydet</string>
+    <string name="common_delete">Sil</string>
+    <string name="common_edit">Düzenle</string>
+    <string name="common_back">Geri</string>
+    <string name="common_close">Kapat</string>
+    <string name="common_done">Bitti</string>
+    <string name="common_premium">Premium</string>
+    <string name="common_locked">Kilitli</string>
+    <string name="common_unlock_premium">Premium’u aç</string>
+    <string name="common_minutes_short">%1$d dk</string>
+    <string name="a11y_percent">yüzde %1$d</string>
+
+    <string name="language_title">Dil</string>
+    <string name="language_system_default">Sistem varsayılanı</string>
+    <string name="language_system_default_with_name">Sistem varsayılanı (%1$s)</string>
+
+    <string name="format_duration_hours_minutes">%1$d sa %2$d dk</string>
+    <string name="format_duration_hours">%1$d sa</string>
+    <string name="format_duration_minutes">%1$d dk</string>
+    <string name="format_yesterday">Dün</string>
+    <plurals name="format_days_ago">
+        <item quantity="one">%1$d gün önce</item>
+        <item quantity="other">%1$d gün önce</item>
+    </plurals>
+    <string name="format_percent">%%%1$d</string>
+    <string name="format_quoted">“%1$s”</string>
+
+    <string name="greeting_morning">Günaydın</string>
+    <string name="greeting_afternoon">İyi günler</string>
+    <string name="greeting_evening">İyi akşamlar</string>
+    <string name="greeting_hello">Merhaba</string>
+
+    <string name="priority_low">Düşük</string>
+    <string name="priority_medium">Orta</string>
+    <string name="priority_high">Yüksek</string>
+
+    <string name="category_general">Genel</string>
+    <string name="category_development">Geliştirme</string>
+    <string name="category_design">Tasarım</string>
+    <string name="category_study">Ders</string>
+    <string name="category_reading">Okuma</string>
+    <string name="category_work">İş</string>
+    <string name="category_health">Sağlık</string>
+    <string name="category_personal">Kişisel</string>
+
+    <string name="world_item_sprout">Filiz</string>
+    <string name="world_item_grass">Çimen</string>
+    <string name="world_item_flowers">Çiçekler</string>
+    <string name="world_item_bush">Çalılar</string>
+    <string name="world_item_pine">Çam ağaçları</string>
+    <string name="world_item_rocks">Kayalar</string>
+    <string name="world_item_house">Ev</string>
+    <string name="world_item_fence">Çit</string>
+    <string name="world_item_garden">Bahçe</string>
+    <string name="world_item_lake">Göl</string>
+    <string name="world_item_oak">Meşe ağaçları</string>
+    <string name="world_item_waterfall">Şelale</string>
+    <string name="world_item_cabin">Köy kulübesi</string>
+    <string name="world_item_windmill">Yel değirmeni</string>
+    <string name="world_item_bridge">Köprü</string>
+    <string name="world_item_lighthouse">Deniz feneri</string>
+
+    <string name="scene_mountain_lake">Dağ Gölü</string>
+    <string name="scene_forest_morning">Orman Sabahı</string>
+    <string name="scene_sunset_hills">Gün Batımı Tepeleri</string>
+    <string name="scene_city_dusk">Şehirde Alacakaranlık</string>
+    <string name="scene_city_night">Şehirde Gece</string>
+    <string name="scene_abstract_blobs">Yumuşak Şekiller</string>
+    <string name="scene_aurora">Kutup Işıkları</string>
+    <string name="scene_night_sky">Gece Göğü</string>
+    <string name="scene_minimal_waves">Sakin Dalgalar</string>
+    <string name="scene_deep_dark">Derin Karanlık</string>
+
+    <string name="onboarding_tagline">Görev\nDünya\nZekâ</string>
+    <string name="onboarding_subtitle">Görevlerine odaklan.\nDünyanı büyüt.</string>
+    <string name="onboarding_get_started">Başla</string>
+    <string name="onboarding_next">İleri</string>
+    <string name="onboarding_skip">Geç</string>
+    <string name="onboarding_step_number">%1$d.</string>
+    <string name="onboarding_mission_title">Görev</string>
+    <string name="onboarding_mission_text">Görevlerini oluştur, hedeflerini belirle ve harekete geç.</string>
+    <string name="onboarding_world_title">Dünya</string>
+    <string name="onboarding_world_text">Odak seanslarını tamamla, kendi dünyanı büyüt.</string>
+    <string name="onboarding_intelligence_title">Zekâ</string>
+    <string name="onboarding_intelligence_text">Alışkanlıklarını keşfet, içgörüler edin, daha iyi bir sen ol.</string>
+    <string name="onboarding_change_later">Bunu istediğin zaman Ayarlar’dan değiştirebilirsin.</string>
+    <string name="onboarding_focus_length_title">Genellikle ne kadar süre odaklanırsın?</string>
+    <string name="onboarding_minutes_option">%1$d dakika</string>
+    <string name="onboarding_custom">Özel</string>
+    <string name="onboarding_custom_minutes_label">Dakika (1–180)</string>
+    <string name="onboarding_first_goal_title">İlk hedefini seç.</string>
+    <string name="onboarding_first_goal_text">Bu, ilk görevin olacak. Her odak seansı onu bir adım ilerletir.</string>
+    <string name="onboarding_name_label">Adın (isteğe bağlı)</string>
+    <string name="onboarding_goal_example">ör. Sunumumu bitirmek</string>
+    <string name="onboarding_idea_read">Kitap oku</string>
+    <string name="onboarding_idea_learn">Dil öğren</string>
+    <string name="onboarding_idea_exercise">Egzersiz yap</string>
+    <string name="onboarding_start_growing">Büyümeye başla</string>
+    <string name="onboarding_skip_for_now">Şimdilik geç</string>
+
+    <string name="inbox_focus_completed_title">Odak Seansı Tamamlandı</string>
+    <string name="inbox_focus_completed_message">%1$d dakikalık bir odak seansı tamamladın. Harika iş!</string>
+    <string name="inbox_xp_detail">+%1$d XP</string>
+    <string name="inbox_xp_detail_with_mission">+%1$d XP · %2$s</string>
+    <string name="inbox_mission_completed_title">Görev Tamamlandı!</string>
+    <string name="inbox_bonus_xp_detail">+%1$d bonus XP kazandın</string>
+    <string name="inbox_streak_title">Seri Devam Ediyor!</string>
+    <string name="inbox_streak_message">%1$d günlük seridesin!</string>
+    <string name="inbox_streak_detail">Böyle devam et!</string>
+    <string name="inbox_mission_created_title">Yeni Görev Oluşturuldu</string>
+    <plurals name="inbox_estimated_pomodoros">
+        <item quantity="one">Tahmini %1$d Pomodoro</item>
+        <item quantity="other">Tahmini %1$d Pomodoro</item>
+    </plurals>
+    <string name="inbox_level_up_title">Dünya Seviye Atladı!</string>
+    <string name="inbox_level_up_message">Dünyan %1$d. seviyeye ulaştı!</string>
+    <string name="inbox_level_up_unlocked">Yeni ögeler açıldı: %1$s</string>
+    <string name="bg_error_image_add_failed">Bu görsel eklenemedi. Lütfen başka bir görsel dene.</string>
+
+    <string name="insight_getting_started_title">İçgörülerin büyüyor</string>
+    <plurals name="insight_getting_started_message">
+        <item quantity="one">Kişisel içgörülerin açılması için %1$d odak seansı daha tamamla.</item>
+        <item quantity="other">Kişisel içgörülerin açılması için %1$d odak seansı daha tamamla.</item>
+    </plurals>
+    <string name="insight_time_of_day_title_morning">Sabahları formundasın</string>
+    <string name="insight_time_of_day_title_afternoon">Öğleden sonraları formundasın</string>
+    <string name="insight_time_of_day_title_evening">Akşamları formundasın</string>
+    <string name="insight_time_of_day_title_night">Geceleri formundasın</string>
+    <string name="insight_time_of_day_message_morning">Odak sürenin %%%1$d kadarı sabah saatlerinde geçiyor. En zor görevlerini o saatlere planla.</string>
+    <string name="insight_time_of_day_message_afternoon">Odak sürenin %%%1$d kadarı öğleden sonra geçiyor. En zor görevlerini o saatlere planla.</string>
+    <string name="insight_time_of_day_message_evening">Odak sürenin %%%1$d kadarı akşam saatlerinde geçiyor. En zor görevlerini o saatlere planla.</string>
+    <string name="insight_time_of_day_message_night">Odak sürenin %%%1$d kadarı gece saatlerinde geçiyor. En zor görevlerini o saatlere planla.</string>
+    <string name="insight_streak_title">%1$d günlük seri</string>
+    <string name="insight_streak_message">Art arda %1$d gündür odaklanıyorsun. İstikrar, yoğunluktan daha değerlidir — zinciri kırma.</string>
+    <string name="insight_daily_steps_title">Her gün küçük adımlar</string>
+    <plurals name="insight_daily_steps_message">
+        <item quantity="one">Son zamanlarda %1$d günde odaklandın. Her gün kısa bir seans, daha güçlü bir alışkanlık kazandırır.</item>
+        <item quantity="other">Son zamanlarda %1$d farklı günde odaklandın. Her gün kısa bir seans, daha güçlü bir alışkanlık kazandırır.</item>
+    </plurals>
+    <string name="insight_short_sessions_title">Kısa seanslar sana iyi geliyor</string>
+    <string name="insight_short_sessions_message">Seansların ortalama %1$d dakika sürüyor. Daha kısa odak seansları sende işe yarıyor gibi görünüyor.</string>
+    <string name="insight_long_interrupted_title">Uzun seanslar yarıda kalıyor</string>
+    <string name="insight_long_interrupted_message">40 dakikadan uzun seanslarının yaklaşık yarısı erken bitiyor. Bunun yerine 25–30 dakikalık seansları dene.</string>
+    <string name="insight_average_session_title">Ortalama seans: %1$d dk</string>
+    <string name="insight_average_session_message">Tipik odak bloğun %1$d dakika. Zamanlayıcını buna göre ayarlarsan seansları erken bırakma ihtimalin azalır.</string>
+    <string name="insight_estimation_over_title">Görevler planlanandan uzun sürüyor</string>
+    <string name="insight_estimation_over_message">Son görevlerin, tahmin ettiğinden yaklaşık %%%1$d daha fazla Pomodoro sürdü. Plan yaparken fazladan bir Pomodoro payı bırak.</string>
+    <string name="insight_estimation_under_title">Planın önünde bitiriyorsun</string>
+    <string name="insight_estimation_under_message">Görevlerini tahmin ettiğinden yaklaşık %%%1$d daha az Pomodoro ile tamamlıyorsun. Daha iddialı planlar yapabilirsin.</string>
+    <string name="insight_early_stops_title">Seanslar sık sık erken bitiyor</string>
+    <string name="insight_early_stops_message">Seanslarının %%%1$d kadarı erken bitiyor. Odaklanırken bildirimleri sessize al ve telefonunu uzağa koy.</string>
+    <string name="insight_pauses_title">Çok fazla duraklatma</string>
+    <string name="insight_pauses_message">Seanslarının yarısında duraklatma var. Başlamadan önce suyunu ve notlarını hazırla.</string>
+    <string name="insight_best_day_title">Güç günün: %1$s</string>
+    <string name="insight_best_day_message">En çok odaklandığın gün: %1$s. Önemli görevlerini o güne planla.</string>
+
+    <string name="premium_title_member">Premium Üyeliğin</string>
+    <string name="premium_title_upsell">Premium’a Geç</string>
+    <string name="premium_subtitle_lifetime">Sonsuza dek senin.</string>
+    <string name="premium_subtitle_subscribed">Aboneliğini yönet.</string>
+    <string name="premium_subtitle_upsell">Yolculuğunun tüm potansiyelini ortaya çıkar.</string>
+
+    <string name="premium_benefit_backgrounds">Sınırsız özel arka plan</string>
+    <string name="premium_benefit_editor">Gelişmiş kırpma düzenleyicisi, bulanıklık ve kendi motivasyon metnin</string>
+    <string name="premium_benefit_statistics">Gelişmiş istatistikler: en verimli saatler, eğilimler, aylık ve yıllık görünüm</string>
+    <string name="premium_benefit_insights">Odağın hakkında sana özel içgörüler</string>
+    <string name="premium_benefit_world">Daha fazla dünya ögesi ve Premium renk paletleri</string>
+    <string name="premium_benefit_no_ads">Reklam yok</string>
+
+    <string name="premium_unavailable_title">Satın alma kullanılamıyor</string>
+    <string name="premium_try_again">Tekrar dene</string>
+
+    <string name="premium_free_note">Odaklanmak için ihtiyacın olan her şey ücretsiz kalır: zamanlayıcı, görevler, dünyan, temel istatistikler ve kendi fotoğrafların.</string>
+    <string name="premium_privacy_policy">Gizlilik Politikası</string>
+
+    <string name="premium_period_monthly">Aylık</string>
+    <string name="premium_period_yearly">Yıllık</string>
+    <string name="premium_period_lifetime">Ömür boyu</string>
+
+    <string name="premium_save_percent">%%%1$d tasarruf</string>
+    <string name="premium_pay_once">Bir kez öde</string>
+    <string name="premium_plan_lifetime_desc">Tek ödeme. Sonsuza dek Premium, abonelik yok.</string>
+    <string name="premium_one_time">tek seferlik</string>
+    <string name="premium_approx_per_month">≈ %1$s / ay</string>
+
+    <string name="premium_price_per_month">%1$s / ay</string>
+    <string name="premium_price_per_year">%1$s / yıl</string>
+    <string name="premium_price_one_time">%1$s (tek seferlik)</string>
+    <string name="premium_price_per_period">%1$s / dönem</string>
+
+    <plurals name="premium_plan_trial_then_price_days">
+        <item quantity="one">%1$d gün ücretsiz, sonra %2$s</item>
+        <item quantity="other">%1$d gün ücretsiz, sonra %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_months">
+        <item quantity="one">%1$d ay ücretsiz, sonra %2$s</item>
+        <item quantity="other">%1$d ay ücretsiz, sonra %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_years">
+        <item quantity="one">%1$d yıl ücretsiz, sonra %2$s</item>
+        <item quantity="other">%1$d yıl ücretsiz, sonra %2$s</item>
+    </plurals>
+
+    <string name="premium_buy_lifetime">Ömür boyu Premium satın al</string>
+    <string name="premium_upgrade">Premium’a yükselt</string>
+    <plurals name="premium_start_trial_days">
+        <item quantity="one">%1$d günlük ücretsiz denemeyi başlat</item>
+        <item quantity="other">%1$d günlük ücretsiz denemeyi başlat</item>
+    </plurals>
+    <plurals name="premium_start_trial_months">
+        <item quantity="one">%1$d aylık ücretsiz denemeyi başlat</item>
+        <item quantity="other">%1$d aylık ücretsiz denemeyi başlat</item>
+    </plurals>
+    <plurals name="premium_start_trial_years">
+        <item quantity="one">%1$d yıllık ücretsiz denemeyi başlat</item>
+        <item quantity="other">%1$d yıllık ücretsiz denemeyi başlat</item>
+    </plurals>
+    <string name="premium_restore_purchase">Satın alımı geri yükle</string>
+    <string name="premium_no_plans">Şu anda kullanılabilir plan yok.</string>
+
+    <string name="premium_terms_lifetime">Tek seferlik ödeme: %1$s. Abonelik yok, yenileme yok. Satın alımın Google hesabına bağlıdır ve yeni bir cihazda geri yüklenebilir.</string>
+    <string name="premium_terms_subscription">%1$s. Sen iptal edene kadar otomatik olarak yenilenir. Google Play → Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin.</string>
+    <plurals name="premium_terms_trial_days">
+        <item quantity="one">%1$d gün ücretsiz, sonra %2$s. Sen iptal edene kadar otomatik olarak yenilenir. Deneme süresi bitmeden iptal edersen senden ücret alınmaz. Google Play → Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin.</item>
+        <item quantity="other">%1$d gün ücretsiz, sonra %2$s. Sen iptal edene kadar otomatik olarak yenilenir. Deneme süresi bitmeden iptal edersen senden ücret alınmaz. Google Play → Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin.</item>
+    </plurals>
+    <plurals name="premium_terms_trial_months">
+        <item quantity="one">%1$d ay ücretsiz, sonra %2$s. Sen iptal edene kadar otomatik olarak yenilenir. Deneme süresi bitmeden iptal edersen senden ücret alınmaz. Google Play → Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin.</item>
+        <item quantity="other">%1$d ay ücretsiz, sonra %2$s. Sen iptal edene kadar otomatik olarak yenilenir. Deneme süresi bitmeden iptal edersen senden ücret alınmaz. Google Play → Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin.</item>
+    </plurals>
+
+    <plurals name="premium_terms_trial_years">
+        <item quantity="one">%1$d yıl ücretsiz, sonra %2$s. Sen iptal edene kadar otomatik olarak yenilenir. Deneme süresi bitmeden iptal edersen senden ücret alınmaz. Google Play → Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin.</item>
+        <item quantity="other">%1$d yıl ücretsiz, sonra %2$s. Sen iptal edene kadar otomatik olarak yenilenir. Deneme süresi bitmeden iptal edersen senden ücret alınmaz. Google Play → Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin.</item>
+    </plurals>
+
+    <string name="premium_welcome">Premium’a hoş geldin! 🎉</string>
+    <string name="premium_active">Premium etkin</string>
+    <string name="premium_plan_monthly">Aylık plan</string>
+    <string name="premium_plan_yearly">Yıllık plan</string>
+    <string name="premium_plan_other">Premium plan</string>
+    <string name="premium_plan_with_price">%1$s · %2$s</string>
+    <string name="premium_status_switches_monthly">Mevcut dönem bittiğinde aylık plana geçilecek.</string>
+    <string name="premium_status_switches_yearly">Mevcut dönem bittiğinde yıllık plana geçilecek.</string>
+    <string name="premium_status_switches_other">Mevcut dönem bittiğinde Premium plana geçilecek.</string>
+    <string name="premium_status_checking">Aboneliğin Google Play üzerinden kontrol ediliyor…</string>
+    <string name="premium_status_cancelled">İptal edildi. Premium, ödediğin dönemin sonuna kadar etkin kalır.</string>
+    <string name="premium_status_renews">Otomatik olarak yenilenir. Google Play üzerinden istediğin zaman iptal edebilirsin.</string>
+
+    <string name="premium_switch_to_monthly">Aylık plana geç</string>
+    <string name="premium_switch_to_yearly">Yıllık plana geç</string>
+    <string name="premium_switch_to_other">Premium plana geç</string>
+    <string name="premium_switch_immediate_desc">Bugün başlar. Şimdi %1$s ödersin; mevcut planının kullanılmayan kısmı ek gün olarak eklenir.</string>
+    <string name="premium_switch_deferred_desc">Mevcut dönemin bittiğinde başlar. Bugün hiçbir ücret alınmaz ve Premium kesintisiz devam eder.</string>
+
+    <string name="premium_go_lifetime">Ömür boyu plana geç</string>
+    <string name="premium_go_lifetime_desc">Tek bir ödemeyle Premium sonsuza dek senin olsun. Aboneliğin otomatik olarak iptal edilmez: sonrasında Google Play üzerinden iptal et.</string>
+    <plurals name="premium_go_lifetime_desc_break_even">
+        <item quantity="one">Tek bir ödemeyle Premium sonsuza dek senin olsun. Fiyatı, yıllık planın yaklaşık %1$d yıllık ücretine denk gelir. Aboneliğin otomatik olarak iptal edilmez: sonrasında Google Play üzerinden iptal et.</item>
+        <item quantity="other">Tek bir ödemeyle Premium sonsuza dek senin olsun. Fiyatı, yıllık planın yaklaşık %1$d yıllık ücretine denk gelir. Aboneliğin otomatik olarak iptal edilmez: sonrasında Google Play üzerinden iptal et.</item>
+    </plurals>
+
+    <string name="premium_resubscribe_google_play">Google Play’de yeniden abone ol</string>
+    <string name="premium_manage_google_play">Google Play’de yönet</string>
+    <string name="premium_manage_hint">Google Play üzerinden aboneliğini iptal edebilir, yeniden abone olabilir veya ödeme yöntemini değiştirebilirsin. Değişiklikler, geri döndüğünde burada görünür.</string>
+
+    <string name="premium_forever_celebration">Premium sonsuza dek senin. 🎉</string>
+    <string name="premium_lifetime_title">Ömür Boyu Premium</string>
+    <string name="premium_lifetime_thanks">Bir kez ödendi. Yenileme yok, başka ödeme yok. Focus Growing’i desteklediğin için teşekkürler!</string>
+    <string name="premium_lifetime_sub_active_monthly">Aylık aboneliğin hâlâ etkin</string>
+    <string name="premium_lifetime_sub_active_yearly">Yıllık aboneliğin hâlâ etkin</string>
+    <string name="premium_lifetime_sub_active_other">Premium aboneliğin hâlâ etkin</string>
+    <string name="premium_lifetime_sub_cancel_hint">Ömür boyu Premium, aboneliğini otomatik olarak iptal etmez. Senden tekrar ücret alınmaması için aboneliği Google Play üzerinden iptal et.</string>
+    <string name="premium_cancel_subscription_google_play">Aboneliği Google Play’de iptal et</string>
+    <string name="premium_lifetime_sub_cancelled_monthly">Eski aylık aboneliğin iptal edildi ve yenilenmeyecek.</string>
+    <string name="premium_lifetime_sub_cancelled_yearly">Eski yıllık aboneliğin iptal edildi ve yenilenmeyecek.</string>
+    <string name="premium_lifetime_sub_cancelled_other">Eski Premium aboneliğin iptal edildi ve yenilenmeyecek.</string>
+
+    <string name="premium_restored">Premium üyeliğin geri yüklendi.</string>
+    <string name="premium_plan_changed">Planın değiştirildi.</string>
+    <string name="premium_change_scheduled">Tamam. Yeni planın, mevcut dönem bittiğinde başlayacak.</string>
+    <string name="premium_payment_pending">Ödemen işleniyor. Google Play onayladığı anda Premium açılacak.</string>
+
+    <string name="premium_test_mode">Test modu</string>
+    <string name="premium_test_resubscribe">Test: yeniden abone ol</string>
+    <string name="premium_test_cancel">Test: iptal et</string>
+    <string name="premium_test_reset">Test: sıfırla</string>
+
+    <string name="billing_not_ready">Google Play henüz hazır değil. Lütfen birazdan tekrar dene.</string>
+    <string name="billing_already_own_lifetime">Ömür boyu Premium zaten senin.</string>
+    <string name="billing_already_have_plan">Bu plana zaten sahipsin.</string>
+    <string name="billing_subscription_unreadable">Mevcut aboneliğin okunamadı. Lütfen birazdan tekrar dene.</string>
+    <string name="billing_restore_none">Bu Google hesabında etkin bir Premium aboneliği bulunamadı.</string>
+    <string name="billing_restore_none_test">Etkin bir Premium aboneliği bulunamadı (test modu).</string>
+    <string name="billing_verify_failed">Satın alma doğrulanamadı. Senden ücret alındıysa “Satın alımı geri yükle” seçeneğine dokun.</string>
+    <string name="billing_not_available_in_country">Premium, ülkende veya bu Google Play hesabında henüz kullanılamıyor.</string>
+    <string name="billing_error_unavailable_on_device">Google Play satın alımları bu cihazda kullanılamıyor. Play Store’un yüklü olduğundan ve oturum açtığından emin ol.</string>
+    <string name="billing_error_unreachable">Google Play’e ulaşılamadı. Bağlantını kontrol edip tekrar dene.</string>
+    <string name="billing_error_plan_unavailable">Bu plan şu anda kullanılamıyor.</string>
+    <string name="billing_error_update_play_store">Lütfen Google Play Store uygulamasını güncelle ve tekrar dene.</string>
+    <string name="billing_error_not_set_up">Satın alma henüz doğru şekilde ayarlanmamış. Lütfen daha sonra tekrar dene.</string>
+    <string name="billing_error_generic">Google Play ile ilgili bir sorun oluştu. Lütfen tekrar dene.</string>
+
+    <string name="settings_title">Ayarlar</string>
+
+    <string name="settings_group_appearance">Görünüm</string>
+    <string name="settings_group_timer">Zamanlayıcı</string>
+    <string name="settings_group_focus_screen">Odak ekranı</string>
+    <string name="settings_group_notifications">Bildirimler</string>
+    <string name="settings_group_sounds">Ses ve Titreşim</string>
+    <string name="settings_group_privacy">Gizlilik</string>
+    <string name="settings_group_about">Hakkında</string>
+
+    <string name="settings_theme_title">Tema</string>
+    <string name="settings_theme_system">Sistem</string>
+    <string name="settings_theme_light">Açık</string>
+    <string name="settings_theme_dark">Koyu</string>
+
+    <string name="settings_color_palette">Renk paleti</string>
+    <string name="settings_palette_premium_a11y">%1$s, Premium</string>
+    <string name="settings_palette_trial_under_hour">%1$s paleti bir saatten kısa bir süre daha açık.</string>
+    <plurals name="settings_palette_trial_hours_left">
+        <item quantity="one">%1$s paleti yaklaşık %2$d saat daha açık.</item>
+        <item quantity="other">%1$s paleti yaklaşık %2$d saat daha açık.</item>
+    </plurals>
+
+    <string name="settings_dynamic_colors_title">Dinamik renkler</string>
+    <string name="settings_dynamic_colors_subtitle">Duvar kâğıdının renklerini kullan</string>
+    <string name="settings_text_size_title">Yazı boyutu</string>
+    <string name="settings_text_size_small">Küçük</string>
+    <string name="settings_text_size_medium">Orta</string>
+    <string name="settings_text_size_large">Büyük</string>
+    <string name="settings_reduce_animations">Animasyonları azalt</string>
+
+    <string name="settings_focus_length">Odak</string>
+    <string name="settings_focus_custom">Özel</string>
+    <string name="settings_short_break">Kısa mola</string>
+    <string name="settings_long_break">Uzun mola</string>
+    <string name="settings_long_break_every">Uzun mola sıklığı</string>
+    <plurals name="settings_sessions_count">
+        <item quantity="one">%1$d seansta bir</item>
+        <item quantity="other">%1$d seansta bir</item>
+    </plurals>
+    <string name="settings_stepper_decrease">Azalt: %1$s</string>
+    <string name="settings_stepper_increase">Artır: %1$s</string>
+    <string name="settings_custom_focus_title">Özel odak süresi</string>
+    <string name="settings_custom_focus_minutes_label">Dakika (%1$d–%2$d)</string>
+
+    <string name="settings_background">Arka plan</string>
+    <string name="settings_show_clock">Saati göster</string>
+    <string name="settings_motivational_text">Motivasyon metni</string>
+    <string name="settings_background_overlay">Arka plan karartması</string>
+
+    <string name="settings_session_alerts_title">Seans uyarıları</string>
+    <string name="settings_session_alerts_subtitle">Bir odak seansı veya mola bittiğinde</string>
+    <string name="settings_timer_in_notification_bar">Bildirim çubuğunda zamanlayıcı</string>
+    <string name="settings_exact_alarms_title">Tam zamanlı alarmlara izin ver</string>
+    <string name="settings_exact_alarms_subtitle">Telefon uykudayken bile seanslar tam zamanında biter</string>
+    <string name="settings_system_notification_settings">Sistem bildirim ayarları</string>
+
+    <string name="settings_alert_sound_vibration">Uyarı sesi ve titreşim</string>
+    <string name="settings_haptic_feedback">Dokunsal geri bildirim</string>
+
+    <string name="settings_ad_privacy_title">Reklam gizliliği tercihleri</string>
+    <string name="settings_ad_privacy_subtitle">Kişiselleştirilmiş reklamlar için verdiğin izni değiştir</string>
+
+    <string name="settings_version">Sürüm</string>
+
+    <string name="settings_palette_trial_sheet_title">%1$s paletini 24 saat dene</string>
+    <string name="settings_palette_trial_sheet_text">Kısa bir video izle, bu paleti yarına kadar kullan. Premium ile bütün paletler sende kalır ve hiç reklam görmezsin.</string>
+    <string name="settings_watch_ad">Kısa bir reklam izle</string>
+    <string name="settings_see_premium">Premium’u gör</string>
+    <string name="settings_not_now">Şimdi değil</string>
+    <string name="settings_ad_palette_unlocked">%1$s paleti önümüzdeki 24 saat boyunca senin.</string>
+    <string name="settings_ad_watch_to_end">Paletin kilidini açmak için reklamı sonuna kadar izle.</string>
+    <string name="settings_ad_unavailable">Şu anda gösterilecek reklam yok. Lütfen daha sonra tekrar dene.</string>
+
+    <string name="profile_title">Profil</string>
+    <string name="profile_add_name">Adını ekle</string>
+    <string name="profile_edit_name">Adı düzenle</string>
+    <string name="profile_name_dialog_title">Adın</string>
+    <string name="profile_rank_seedling">Fidan • Yola yeni çıktı</string>
+    <string name="profile_rank_explorer">Kâşif • Odaklı • Büyüyor</string>
+    <string name="profile_rank_builder">Mimar • Odaklı • Büyüyor</string>
+    <string name="profile_rank_master">Usta • Odaklı • Serpiliyor</string>
+    <string name="profile_world_level">Dünya Seviyesi</string>
+    <string name="profile_xp_progress">%1$d / %2$d XP</string>
+    <string name="profile_premium_active">Etkin — teşekkürler!</string>
+    <string name="profile_premium_upgrade">Daha fazla özellik için yükselt</string>
+    <plurals name="profile_notifications_new">
+        <item quantity="one">%1$d yeni</item>
+        <item quantity="other">%1$d yeni</item>
+    </plurals>
+    <string name="profile_notifications_subtitle">Son etkinliklerin</string>
+    <string name="profile_app_settings">Uygulama Ayarları</string>
+    <string name="profile_app_settings_subtitle">Tema, zamanlayıcı, bildirimler, ses</string>
+    <string name="profile_background_gallery">Arka Plan Galerisi</string>
+    <string name="profile_background_gallery_subtitle">Odak arka planını değiştir</string>
+    <string name="profile_help_support">Yardım ve Destek</string>
+    <string name="profile_help_support_subtitle">Bize ulaş</string>
+    <string name="profile_privacy_policy">Gizlilik Politikası</string>
+    <string name="profile_privacy_policy_subtitle">Verilerini nasıl işliyoruz</string>
+    <string name="profile_no_app_found">Bunu açacak bir uygulama bulunamadı.</string>
+
+    <string name="notifications_title">Bildirimler</string>
+    <string name="notifications_subtitle">Odaklan, yolundan şaşma 🌱</string>
+    <string name="notifications_clear_all">Tümünü temizle</string>
+    <string name="notifications_filter_all">Tümü</string>
+    <string name="notifications_filter_mission">Görev</string>
+    <string name="notifications_filter_focus">Odak</string>
+    <string name="notifications_filter_world">Dünya</string>
+    <string name="notifications_filter_system">Sistem</string>
+    <string name="notifications_empty_title">Henüz bildirim yok</string>
+    <string name="notifications_empty_message">İlerlemeni burada görmek için odak seansları ve görevler tamamla.</string>
+
+    <string name="focus_a11y_change_background">Arka planı değiştir</string>
+    <string name="focus_a11y_options">Odak ekranı seçenekleri</string>
+
+    <string name="focus_background_unavailable">Arka plan görselin artık kullanılamıyor.</string>
+    <string name="focus_free_focus">Serbest odak</string>
+    <string name="focus_background">Arka plan</string>
+
+    <string name="focus_quote_1">Odaklan, başarabilirsin!</string>
+    <string name="focus_quote_2">Her seferinde tek bir iş.</string>
+    <string name="focus_quote_3">Her gün küçük adımlar.</string>
+    <string name="focus_quote_4">Derin çalışma, sakin zihin.</string>
+    <string name="focus_quote_5">Dünyanı büyütüyorsun.</string>
+
+    <string name="focus_label_focus">Odak</string>
+    <string name="focus_label_short_break">Kısa Mola</string>
+    <string name="focus_label_long_break">Uzun Mola</string>
+    <string name="focus_label_paused">Duraklatıldı</string>
+    <string name="focus_label_well_done">Tebrikler</string>
+    <string name="focus_label_break_over">Mola bitti</string>
+    <string name="focus_a11y_time_remaining">%1$s, kalan süre %2$s</string>
+
+    <string name="focus_a11y_start">Odağı başlat</string>
+    <string name="focus_a11y_pause">Duraklat</string>
+    <string name="focus_a11y_resume">Devam et</string>
+    <string name="focus_a11y_stop_session">Seansı durdur</string>
+    <string name="focus_a11y_finish_session">Seansı bitir</string>
+    <string name="focus_a11y_choose_mission">Görev seç</string>
+
+    <string name="focus_start_break">Molayı başlat · %1$d dk</string>
+    <string name="focus_start_long_break">Uzun molayı başlat · %1$d dk</string>
+    <string name="focus_skip_break">Molayı atla</string>
+    <string name="focus_start_next_focus">Sıradaki odağı başlat</string>
+    <string name="focus_done_for_now">Şimdilik yeter</string>
+
+    <string name="focus_finish_dialog_title">Şimdi bitirilsin mi?</string>
+    <string name="focus_finish_dialog_text">Bu seansın yarısından azını tamamladın; bu yüzden görevine ve Dünya XP puanına sayılmayacak.</string>
+    <string name="focus_finish_dialog_confirm">Bitir</string>
+    <string name="focus_stop_dialog_title">Bu seans durdurulsun mu?</string>
+    <string name="focus_stop_dialog_text">Seans, ödül kazanılmadan durdurulacak.</string>
+    <string name="focus_stop_dialog_confirm">Durdur</string>
+    <string name="focus_keep_going">Devam et</string>
+
+    <string name="focus_options_title">Odak ekranı</string>
+    <string name="focus_option_show_clock">Saati göster</string>
+    <string name="focus_option_motivation">Motivasyon metni</string>
+    <string name="focus_option_mission_title">Görev başlığı</string>
+    <string name="focus_option_session_dots">Seans ilerleme noktaları</string>
+    <string name="focus_option_overlay">Karartma</string>
+    <string name="focus_option_blur">Bulanıklık</string>
+    <string name="focus_option_custom_motivation_label">Kendi motivasyon metnin</string>
+    <string name="focus_option_custom_motivation_locked">Özel motivasyon metni</string>
+
+    <string name="focus_picker_title">Neye odaklanıyorsun?</string>
+    <string name="focus_picker_free_focus">Serbest odak (görev yok)</string>
+    <string name="focus_a11y_selected">Seçili</string>
+
+    <string name="notif_title_focusing">Odaklanıyorsun</string>
+    <string name="notif_title_short_break">Kısa mola</string>
+    <string name="notif_title_long_break">Uzun mola</string>
+    <string name="notif_running_text_default">Odaklan, başarabilirsin!</string>
+    <string name="notif_action_pause">Duraklat</string>
+    <string name="notif_action_resume">Devam et</string>
+    <string name="notif_paused_title">Duraklatıldı · %1$s kaldı</string>
+    <string name="notif_paused_text_default">Seansına devam etmek için dokun</string>
+
+    <string name="notif_focus_completed_title">🎉 Odak seansı tamamlandı</string>
+    <string name="notif_mission_completed_title">🎉 Görev tamamlandı!</string>
+    <string name="notif_focus_completed_text">%1$d dakikalık bir odak seansı tamamladın.</string>
+    <string name="notif_focus_completed_text_xp">%1$d dakikalık bir odak seansı tamamladın. +%2$d Dünya XP</string>
+    <string name="notif_text_with_mission">%1$s · %2$s</string>
+    <string name="notif_big_text_with_mission">Görev: %1$s\n%2$s</string>
+
+    <string name="notif_break_finished_title">☕ Mola bitti</string>
+    <string name="notif_break_finished_text">Yeni bir odak seansına hazır mısın?</string>
+
+    <string name="nav_home">Ana Sayfa</string>
+    <string name="nav_missions">Görevler</string>
+    <string name="nav_focus">Odak</string>
+    <string name="nav_stats">İstatistik</string>
+    <string name="nav_profile">Profil</string>
+
+    <string name="home_greeting_with_name">%1$s, %2$s!</string>
+    <string name="home_greeting_no_name">%1$s!</string>
+    <string name="home_tagline">Küçük adımlar büyük değişimler yaratır.</string>
+    <string name="home_notifications">Bildirimler</string>
+    <string name="home_world_level_label">Dünya Seviyesi</string>
+
+    <string name="home_stat_focus_time">Odak Süresi</string>
+    <string name="home_stat_completed">Tamamlanan</string>
+    <string name="home_stat_streak">Seri</string>
+    <plurals name="home_streak_days">
+        <item quantity="one">%1$d gün</item>
+        <item quantity="other">%1$d gün</item>
+    </plurals>
+
+    <string name="home_world_level_number">Dünya Seviyesi %1$d</string>
+    <string name="home_xp_progress">%1$d / %2$d XP</string>
+
+    <string name="home_todays_mission">Bugünün Görevi</string>
+    <string name="home_view_all">Tümünü gör</string>
+    <plurals name="home_mission_pomodoros">
+        <item quantity="one">%1$d/%2$d Pomodoro</item>
+        <item quantity="other">%1$d/%2$d Pomodoro</item>
+    </plurals>
+    <string name="home_create_first_mission">İlk görevini oluştur</string>
+    <string name="home_create_first_mission_hint">Odağına bir hedef ver.</string>
+
+    <string name="home_focus_return">Odağa Dön</string>
+    <string name="home_focus_resume">Odağa Devam Et</string>
+    <string name="home_focus_start">Odağı Başlat</string>
+    <string name="home_focus_without_mission">Görev seçmeden odaklan</string>
+
+    <string name="celebration_focus_title">Harika İş!</string>
+    <string name="celebration_focus_body">Odak seansını tamamladın.</string>
+    <string name="celebration_remove_ads">Premium ile reklamları kaldır</string>
+
+    <string name="celebration_stat_focus_time">Odak Süresi</string>
+    <string name="celebration_stat_world_xp">Dünya XP</string>
+    <string name="celebration_stat_progress">İlerleme</string>
+    <plurals name="celebration_stat_pomodoros">
+        <item quantity="one">Pomodoro</item>
+        <item quantity="other">Pomodoro</item>
+    </plurals>
+    <string name="celebration_stat_estimated">Tahmini</string>
+    <string name="celebration_stat_priority">Öncelik</string>
+    <string name="celebration_stat_category">Kategori</string>
+
+    <string name="celebration_xp_earned">+%1$d XP</string>
+    <string name="celebration_minutes_earned">+%1$d dk</string>
+    <plurals name="celebration_estimated_pomodoros">
+        <item quantity="one">%1$d Pomodoro</item>
+        <item quantity="other">%1$d Pomodoro</item>
+    </plurals>
+
+    <string name="celebration_mission_completed_title">Görev Tamamlandı!</string>
+    <string name="celebration_mission_completed_body">Harika iş! Görevini tamamladın ve ödüller kazandın.</string>
+    <string name="celebration_view_mission">Görevi Gör</string>
+
+    <string name="celebration_streak_title">Seri Devam Ediyor!</string>
+    <plurals name="celebration_streak_subtitle">
+        <item quantity="one">%1$d günlük seridesin!</item>
+        <item quantity="other">%1$d günlük seridesin!</item>
+    </plurals>
+    <string name="celebration_streak_body">Odağın ve istikrarın, daha iyi bir seni inşa ediyor.</string>
+    <string name="celebration_keep_going">Devam Et</string>
+    <string name="celebration_streak_quote">Disiplin, hedeflerle başarı arasındaki köprüdür.</string>
+
+    <string name="celebration_level_up_title">Dünya Seviye Atladı!</string>
+    <string name="celebration_level_up_subtitle">Dünyan %1$d. seviyeye ulaştı!</string>
+    <string name="celebration_level">Seviye %1$d</string>
+    <string name="celebration_xp_progress">%1$d / %2$d XP</string>
+    <string name="celebration_unlocked_title">Yeni ögeler açıldı:</string>
+    <string name="celebration_explore_world">Dünyanı Keşfet</string>
+    <string name="celebration_level_up_footer">Odağın, daha güzel bir dünya kuruyor.</string>
+
+    <string name="celebration_mission_created_title">Yeni Görev Oluşturuldu</string>
+    <string name="celebration_mission_created_body">Listende yeni bir görev var. Bu ivmeyi koru!</string>
+    <string name="celebration_mission_created_tip">Her gün atılan küçük adımlar büyük sonuçlar getirir. 🌱</string>
+
+    <string name="mission_list_title">Görevler</string>
+    <string name="mission_list_new">Yeni görev</string>
+    <string name="mission_filter_all">Tümü</string>
+    <string name="mission_filter_todo">Yapılacak</string>
+    <string name="mission_filter_in_progress">Sürüyor</string>
+    <string name="mission_filter_completed">Tamamlandı</string>
+    <string name="mission_list_empty_title">Henüz görev yok</string>
+    <string name="mission_list_empty_message">Bir görev oluştur ve ilk odak seansını başlat.</string>
+    <string name="mission_list_create">Görev oluştur</string>
+    <string name="mission_list_no_match_title">Burada bir şey yok</string>
+    <string name="mission_list_no_match_message">Bu filtreye uyan görev yok.</string>
+
+    <plurals name="mission_pomodoro_count">
+        <item quantity="one">%1$d Pomodoro</item>
+        <item quantity="other">%1$d Pomodoro</item>
+    </plurals>
+
+    <string name="mission_priority">Öncelik</string>
+    <string name="mission_not_found">Görev bulunamadı</string>
+    <string name="mission_not_found_message">Silinmiş olabilir.</string>
+    <string name="mission_step_placeholder">Bir adım ekle</string>
+    <string name="mission_step_add">Adım ekle</string>
+    <string name="mission_step_remove">Adımı kaldır</string>
+
+    <string name="mission_detail_more_options">Diğer seçenekler</string>
+    <string name="mission_detail_reopen">Yeniden aç</string>
+    <string name="mission_detail_mark_completed">Tamamlandı olarak işaretle</string>
+    <string name="mission_detail_archive">Arşivle</string>
+    <string name="mission_detail_go_back">Geri dön</string>
+    <string name="mission_detail_pomodoros">Pomodoro</string>
+    <string name="mission_detail_checklist">Kontrol listesi</string>
+    <string name="mission_detail_checklist_hint">Görevi küçük adımlara böl.</string>
+    <string name="mission_detail_completed_title">Görev tamamlandı 🎉</string>
+    <string name="mission_detail_completed_on">Tamamlanma tarihi: %1$s</string>
+    <string name="mission_detail_reopen_mission">Görevi yeniden aç</string>
+    <string name="mission_detail_estimate_reached">Tahmine ulaşıldı — kalan adımları bitir ya da görevi tamamlandı olarak işaretle.</string>
+    <string name="mission_detail_start_focus">Odağı Başlat</string>
+    <string name="mission_detail_created">Oluşturulma</string>
+    <string name="mission_detail_status">Durum</string>
+    <string name="mission_status_todo">Yapılacak</string>
+    <string name="mission_status_in_progress">Devam ediyor</string>
+    <string name="mission_status_completed">Tamamlandı</string>
+    <string name="mission_status_archived">Arşivlendi</string>
+    <string name="mission_delete_title">Görev silinsin mi?</string>
+    <string name="mission_delete_message">Görev ve kontrol listesi silinecek. Odak geçmişin ve Dünya XP puanın korunur.</string>
+
+    <string name="mission_editor_title_new">Yeni Görev</string>
+    <string name="mission_editor_title_edit">Görevi Düzenle</string>
+    <string name="mission_editor_title_label">Görev başlığı</string>
+    <string name="mission_editor_description_label">Açıklama (isteğe bağlı)</string>
+    <string name="mission_editor_estimate_label">Tahmini Pomodoro sayısı</string>
+    <string name="mission_editor_category_label">Kategori</string>
+    <string name="mission_editor_checklist_label">Kontrol listesi (isteğe bağlı)</string>
+    <string name="mission_editor_decrease">Azalt</string>
+    <string name="mission_editor_increase">Artır</string>
+    <plurals name="mission_editor_pomodoros_unit">
+        <item quantity="one">Pomodoro</item>
+        <item quantity="other">Pomodoro</item>
+    </plurals>
+    <string name="mission_editor_create">Görevi Oluştur</string>
+    <string name="mission_editor_save_changes">Değişiklikleri kaydet</string>
+    <string name="mission_error_empty_title">Lütfen görevine bir başlık ver.</string>
+    <string name="mission_error_title_too_long">Başlık çok uzun.</string>
+    <string name="mission_error_invalid_estimate">Tahmin 1 ile %1$d Pomodoro arasında olmalı.</string>
+
+    <string name="stats_title">İstatistikler</string>
+    <string name="stats_subtitle">Odak alışkanlıklarını tanı</string>
+    <string name="stats_range_week">7G</string>
+    <string name="stats_range_month">30G</string>
+    <string name="stats_range_quarter">3A</string>
+    <string name="stats_range_year">1Y</string>
+    <string name="stats_focus_time">Odak Süresi</string>
+    <string name="stats_sessions">Seanslar</string>
+    <string name="stats_today">Bugün</string>
+    <string name="stats_this_week">Bu Hafta</string>
+    <string name="stats_missions">Görevler</string>
+    <string name="stats_streak">Seri</string>
+    <plurals name="stats_streak_days">
+        <item quantity="one">%1$d gün</item>
+        <item quantity="other">%1$d gün</item>
+    </plurals>
+    <string name="stats_average_session">Ort. Seans</string>
+    <string name="stats_completion">Tamamlama</string>
+    <string name="stats_best_time">En İyi Saat</string>
+    <string name="stats_estimation">Tahmin</string>
+    <string name="stats_trend_title">Odak Süresi Eğilimi</string>
+    <string name="stats_top_hours_title">En Verimli Odak Saatleri</string>
+    <string name="stats_top_hours_empty">En verimli saatlerini görmek için birkaç seans tamamla.</string>
+    <string name="stats_chart_description">Odak süresi grafiği. %1$s</string>
+    <string name="stats_advanced_title">Gelişmiş İstatistikler</string>
+    <string name="stats_advanced_description">En verimli odak saatleri, ortalama seans, tamamlama oranı, tahmin isabeti ve aylık/yıllık eğilimler.</string>
+    <string name="stats_insights_title">İçgörüler</string>
+    <string name="stats_insight_locked_title">Premium içgörü</string>
+    <string name="stats_insight_locked_message">Odağınla ilgili bu kişisel içgörüyü görmek için Premium’u aç.</string>
+
+    <string name="bg_gallery_title">Arka Plan Galerisi</string>
+
+    <string name="bg_tab_all">Tümü</string>
+    <string name="bg_tab_favorites">Favoriler</string>
+    <string name="bg_category_my_photos">Fotoğraflarım</string>
+    <string name="bg_category_nature">Doğa</string>
+    <string name="bg_category_city">Şehirler</string>
+    <string name="bg_category_abstract">Soyut</string>
+    <string name="bg_category_space">Uzay</string>
+    <string name="bg_category_minimal">Minimal</string>
+    <string name="bg_category_dark">Koyu</string>
+
+    <string name="bg_add_title">Arka Plan Ekle</string>
+    <string name="bg_add_photos_stay_on_device">Fotoğrafların bu cihazda kalır</string>
+    <string name="bg_add_free_count">%1$d / %2$d kişisel arka plan</string>
+    <string name="bg_add_adjust_hint">Önizlemek ve ayarlamak için seçili arka plana tekrar dokun.</string>
+    <string name="bg_source_gallery">Galeri</string>
+    <string name="bg_source_camera">Kamera</string>
+    <string name="bg_source_files">Dosyalar</string>
+
+    <string name="bg_empty_favorites">Buraya eklemek için bir arka plandaki kalbe dokun.</string>
+    <string name="bg_empty_tab">Burada henüz arka plan yok.</string>
+
+    <string name="bg_error_no_camera_app">Kullanılabilir bir kamera uygulaması yok.</string>
+    <string name="bg_error_no_file_manager">Kullanılabilir bir dosya yöneticisi yok.</string>
+    <string name="bg_error_image_unusable">Bu görsel kullanılamıyor. Lütfen başka bir görsel seç.</string>
+    <string name="bg_message_removed">Arka plan kaldırıldı</string>
+
+    <string name="bg_default_name_camera">Kamera fotoğrafı</string>
+    <string name="bg_default_name_photo">Fotoğrafım</string>
+
+    <string name="bg_limit_title">Ücretsiz sınıra ulaşıldı</string>
+    <string name="bg_limit_message">Ücretsiz kullanıcılar %1$d kişisel arka plan saklayabilir. Birini kaldır ya da Premium ile sınırsız arka plana kavuş.</string>
+    <string name="bg_limit_see_premium">Premium’u gör</string>
+    <string name="bg_limit_not_now">Şimdi değil</string>
+
+    <string name="bg_delete_title">Arka plan kaldırılsın mı?</string>
+    <string name="bg_delete_message_camera">“%1$s” bu uygulama için çekildi ve yalnızca burada saklanıyor; bu yüzden silinecek.</string>
+    <string name="bg_delete_message_photo">“%1$s” uygulamadan kaldırılacak. Cihazındaki asıl fotoğraf silinmez.</string>
+    <string name="bg_remove">Kaldır</string>
+
+    <string name="bg_menu_preview">Önizle</string>
+    <string name="bg_menu_preview_adjust">Önizle ve ayarla</string>
+    <string name="bg_menu_favorite">Favorilere ekle</string>
+    <string name="bg_menu_unfavorite">Favorilerden çıkar</string>
+
+    <string name="bg_a11y_tile_selected">%1$s, seçili</string>
+    <string name="bg_a11y_add_favorite">Favorilere ekle</string>
+    <string name="bg_a11y_remove_favorite">Favorilerden çıkar</string>
+
+    <string name="bg_adjust_title">Arka planı ayarla</string>
+    <string name="bg_adjust_title_preview">Önizleme</string>
+    <string name="bg_adjust_reset_position">Konumu sıfırla</string>
+    <string name="bg_adjust_not_found_title">Arka plan kullanılamıyor</string>
+    <string name="bg_adjust_not_found_message">Kaldırılmış olabilir.</string>
+    <string name="bg_adjust_go_back">Geri dön</string>
+    <string name="bg_adjust_sample_label">Odak</string>
+    <string name="bg_adjust_hint_drag">Konumlandırmak için sürükle · sıfırlamak için çift dokun</string>
+    <string name="bg_adjust_hint_builtin">Hazır arka planlar ekranına her zaman kusursuz uyar.</string>
+    <string name="bg_adjust_position">Konum</string>
+    <string name="bg_adjust_position_top">Üst</string>
+    <string name="bg_adjust_position_center">Orta</string>
+    <string name="bg_adjust_position_bottom">Alt</string>
+    <string name="bg_adjust_position_left">Sol</string>
+    <string name="bg_adjust_position_right">Sağ</string>
+    <string name="bg_adjust_zoom">Yakınlaştırma</string>
+    <string name="bg_adjust_unlock_crop_editor">Gelişmiş kırpma düzenleyicisini aç</string>
+    <string name="bg_adjust_darken">Karart</string>
+    <string name="bg_adjust_use_background">Bu arka planı kullan</string>
+</resources>

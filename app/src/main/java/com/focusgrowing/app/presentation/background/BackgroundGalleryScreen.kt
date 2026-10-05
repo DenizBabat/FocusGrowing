@@ -56,6 +56,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -63,6 +64,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.FocusCard
 import com.focusgrowing.app.core.designsystem.component.FocusChipRow
 import com.focusgrowing.app.core.designsystem.component.FocusTopBar
@@ -72,6 +74,23 @@ import com.focusgrowing.app.core.image.BackgroundImageView
 import com.focusgrowing.app.domain.model.BackgroundImage
 import com.focusgrowing.app.domain.model.BackgroundSource
 import com.focusgrowing.app.domain.model.PremiumLimits
+import com.focusgrowing.app.presentation.common.displayLabel
+
+/** Translated name of a gallery filter tab. */
+@Composable
+private fun GalleryTab.label(): String = stringResource(
+    when (this) {
+        GalleryTab.ALL -> R.string.bg_tab_all
+        GalleryTab.MY_PHOTOS -> R.string.bg_category_my_photos
+        GalleryTab.FAVORITES -> R.string.bg_tab_favorites
+        GalleryTab.NATURE -> R.string.bg_category_nature
+        GalleryTab.CITY -> R.string.bg_category_city
+        GalleryTab.ABSTRACT -> R.string.bg_category_abstract
+        GalleryTab.SPACE -> R.string.bg_category_space
+        GalleryTab.MINIMAL -> R.string.bg_category_minimal
+        GalleryTab.DARK -> R.string.bg_category_dark
+    },
+)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -88,6 +107,8 @@ fun BackgroundGalleryScreen(
     var showLimitDialog by remember { mutableStateOf(false) }
     var pendingDelete by remember { mutableStateOf<BackgroundImage?>(null) }
     var cameraUri by rememberSaveable { mutableStateOf<String?>(null) }
+    val noCameraMessage = stringResource(R.string.bg_error_no_camera_app)
+    val noFileManagerMessage = stringResource(R.string.bg_error_no_file_manager)
 
     val photoPicker = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         viewModel.onImagePicked(uri, BackgroundSource.GALLERY)
@@ -111,11 +132,11 @@ fun BackgroundGalleryScreen(
     }
 
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
-        FocusTopBar(title = "Background Gallery", onBack = onBack) {
+        FocusTopBar(title = stringResource(R.string.bg_gallery_title), onBack = onBack) {
             if (state.busy) CircularProgressIndicator(Modifier.size(22.dp).padding(end = 4.dp), strokeWidth = 2.dp, color = colors.primary)
         }
         FocusChipRow(
-            options = GalleryTab.entries.map { it.label },
+            options = GalleryTab.entries.map { it.label() },
             selectedIndex = GalleryTab.entries.indexOf(state.tab),
             onSelect = { viewModel.setTab(GalleryTab.entries[it]) },
         )
@@ -142,7 +163,7 @@ fun BackgroundGalleryScreen(
                                 camera.launch(uri)
                             } catch (_: Exception) {
                                 cameraUri = null
-                                Toast.makeText(context, "No camera app is available.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, noCameraMessage, Toast.LENGTH_SHORT).show()
                             }
                         }
                     },
@@ -151,7 +172,7 @@ fun BackgroundGalleryScreen(
                             try {
                                 filePicker.launch(arrayOf("image/*"))
                             } catch (_: Exception) {
-                                Toast.makeText(context, "No file manager is available.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, noFileManagerMessage, Toast.LENGTH_SHORT).show()
                             }
                         }
                     },
@@ -160,7 +181,7 @@ fun BackgroundGalleryScreen(
             if (state.items.isEmpty()) {
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     Text(
-                        if (state.tab == GalleryTab.FAVORITES) "Tap the heart on a background to add it here." else "No backgrounds here yet.",
+                        stringResource(if (state.tab == GalleryTab.FAVORITES) R.string.bg_empty_favorites else R.string.bg_empty_tab),
                         style = FocusTheme.typography.bodyMedium,
                         color = colors.onSurfaceVariant,
                         modifier = Modifier.padding(spacing.lg),
@@ -183,27 +204,26 @@ fun BackgroundGalleryScreen(
     if (showLimitDialog) {
         AlertDialog(
             onDismissRequest = { showLimitDialog = false },
-            title = { Text("Free limit reached") },
-            text = { Text("Free users can keep ${PremiumLimits.FREE_CUSTOM_BACKGROUNDS} personal backgrounds. Remove one, or unlock unlimited backgrounds with Premium.") },
-            confirmButton = { TextButton(onClick = { showLimitDialog = false; onOpenPremium() }) { Text("See Premium") } },
-            dismissButton = { TextButton(onClick = { showLimitDialog = false }) { Text("Not now") } },
+            title = { Text(stringResource(R.string.bg_limit_title)) },
+            text = { Text(stringResource(R.string.bg_limit_message, PremiumLimits.FREE_CUSTOM_BACKGROUNDS)) },
+            confirmButton = { TextButton(onClick = { showLimitDialog = false; onOpenPremium() }) { Text(stringResource(R.string.bg_limit_see_premium)) } },
+            dismissButton = { TextButton(onClick = { showLimitDialog = false }) { Text(stringResource(R.string.bg_limit_not_now)) } },
         )
     }
     pendingDelete?.let { item ->
         AlertDialog(
             onDismissRequest = { pendingDelete = null },
-            title = { Text("Remove background?") },
+            title = { Text(stringResource(R.string.bg_delete_title)) },
             text = {
                 Text(
-                    if (item.source == BackgroundSource.CAMERA) {
-                        "\"${item.name}\" was taken for this app and is stored only here, so it will be deleted."
-                    } else {
-                        "\"${item.name}\" will be removed from the app. The original photo on your device is not deleted."
-                    },
+                    stringResource(
+                        if (item.source == BackgroundSource.CAMERA) R.string.bg_delete_message_camera else R.string.bg_delete_message_photo,
+                        item.displayLabel(),
+                    ),
                 )
             },
-            confirmButton = { TextButton(onClick = { viewModel.delete(item); pendingDelete = null }) { Text("Remove", color = colors.error) } },
-            dismissButton = { TextButton(onClick = { pendingDelete = null }) { Text("Cancel") } },
+            confirmButton = { TextButton(onClick = { viewModel.delete(item); pendingDelete = null }) { Text(stringResource(R.string.bg_remove), color = colors.error) } },
+            dismissButton = { TextButton(onClick = { pendingDelete = null }) { Text(stringResource(R.string.common_cancel)) } },
         )
     }
 }
@@ -216,10 +236,10 @@ private fun AddBackgroundCard(customCount: Int, isPremium: Boolean, onGallery: (
             IconBadge(Icons.Rounded.AddPhotoAlternate, colors.primary, colors.primaryContainer)
             Spacer(Modifier.width(FocusTheme.spacing.md))
             Column(Modifier.weight(1f)) {
-                Text("Add Background", style = FocusTheme.typography.titleSmall, color = colors.onSurface)
+                Text(stringResource(R.string.bg_add_title), style = FocusTheme.typography.titleSmall, color = colors.onSurface)
                 Text(
-                    (if (isPremium) "Your photos stay on this device" else "$customCount / ${PremiumLimits.FREE_CUSTOM_BACKGROUNDS} personal backgrounds") +
-                        "\nTap the selected background again to preview & adjust.",
+                    (if (isPremium) stringResource(R.string.bg_add_photos_stay_on_device) else stringResource(R.string.bg_add_free_count, customCount, PremiumLimits.FREE_CUSTOM_BACKGROUNDS)) +
+                        "\n" + stringResource(R.string.bg_add_adjust_hint),
                     style = FocusTheme.typography.bodySmall,
                     color = colors.onSurfaceVariant,
                 )
@@ -227,9 +247,9 @@ private fun AddBackgroundCard(customCount: Int, isPremium: Boolean, onGallery: (
         }
         Spacer(Modifier.height(FocusTheme.spacing.md))
         Row(horizontalArrangement = Arrangement.spacedBy(FocusTheme.spacing.sm)) {
-            SourceButton(Icons.Rounded.PhotoLibrary, "Gallery", onGallery, Modifier.weight(1f))
-            SourceButton(Icons.Rounded.PhotoCamera, "Camera", onCamera, Modifier.weight(1f))
-            SourceButton(Icons.Rounded.Folder, "Files", onFiles, Modifier.weight(1f))
+            SourceButton(Icons.Rounded.PhotoLibrary, stringResource(R.string.bg_source_gallery), onGallery, Modifier.weight(1f))
+            SourceButton(Icons.Rounded.PhotoCamera, stringResource(R.string.bg_source_camera), onCamera, Modifier.weight(1f))
+            SourceButton(Icons.Rounded.Folder, stringResource(R.string.bg_source_files), onFiles, Modifier.weight(1f))
         }
     }
 }
@@ -257,6 +277,8 @@ private fun BackgroundTile(
     val colors = FocusTheme.colors
     var menu by remember { mutableStateOf(false) }
     val shape = FocusTheme.shapes.medium
+    val label = item.displayLabel()
+    val tileDescription = if (selected) stringResource(R.string.bg_a11y_tile_selected, label) else label
     Box {
         Box(
             Modifier
@@ -265,7 +287,7 @@ private fun BackgroundTile(
                 .clip(shape)
                 .border(if (selected) 3.dp else 0.dp, if (selected) colors.primary else colors.cardBorder, shape)
                 .combinedClickable(role = Role.RadioButton, onClick = onSelect, onLongClick = { menu = true })
-                .semantics { contentDescription = item.name + if (selected) ", selected" else "" },
+                .semantics { contentDescription = tileDescription },
         ) {
             BackgroundImageView(item, Modifier.fillMaxSize())
             Box(
@@ -275,7 +297,7 @@ private fun BackgroundTile(
                     .background(colors.scrim.copy(alpha = 0.35f))
                     .padding(horizontal = 8.dp, vertical = 4.dp),
             ) {
-                Text(item.name, style = FocusTheme.typography.labelSmall, color = colors.onScrim, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(label, style = FocusTheme.typography.labelSmall, color = colors.onScrim, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
             if (selected) {
                 Icon(
@@ -287,7 +309,7 @@ private fun BackgroundTile(
             }
             Icon(
                 if (item.isFavorite) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
-                contentDescription = if (item.isFavorite) "Remove from favorites" else "Add to favorites",
+                contentDescription = stringResource(if (item.isFavorite) R.string.bg_a11y_remove_favorite else R.string.bg_a11y_add_favorite),
                 tint = if (item.isFavorite) colors.danger else colors.onScrim,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
@@ -300,18 +322,18 @@ private fun BackgroundTile(
         }
         DropdownMenu(expanded = menu, onDismissRequest = { menu = false }) {
             DropdownMenuItem(
-                text = { Text(if (item.isDefault) "Preview" else "Preview & adjust") },
+                text = { Text(stringResource(if (item.isDefault) R.string.bg_menu_preview else R.string.bg_menu_preview_adjust)) },
                 leadingIcon = { Icon(Icons.Rounded.Crop, contentDescription = null) },
                 onClick = { menu = false; onAdjust() },
             )
             DropdownMenuItem(
-                text = { Text(if (item.isFavorite) "Unfavorite" else "Favorite") },
+                text = { Text(stringResource(if (item.isFavorite) R.string.bg_menu_unfavorite else R.string.bg_menu_favorite)) },
                 leadingIcon = { Icon(Icons.Rounded.Favorite, contentDescription = null) },
                 onClick = { menu = false; onFavorite() },
             )
             if (!item.isDefault) {
                 DropdownMenuItem(
-                    text = { Text("Remove") },
+                    text = { Text(stringResource(R.string.bg_remove)) },
                     leadingIcon = { Icon(Icons.Rounded.Delete, contentDescription = null) },
                     onClick = { menu = false; onDelete() },
                 )

@@ -2,6 +2,7 @@ package com.focusgrowing.app.presentation.statistics
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.focusgrowing.app.core.locale.StringProvider
 import com.focusgrowing.app.domain.model.FocusStatistics
 import com.focusgrowing.app.domain.model.Insight
 import com.focusgrowing.app.domain.model.PremiumFeature
@@ -37,13 +38,15 @@ class StatisticsViewModel @Inject constructor(
     observeInsights: ObserveInsightsUseCase,
     observeStreak: ObserveStreakUseCase,
     private val premium: PremiumManager,
+    strings: StringProvider,
 ) : ViewModel() {
 
     private val range = MutableStateFlow(StatsRange.WEEK)
 
     val uiState: StateFlow<StatisticsUiState> = combine(
         range.flatMapLatest { observeStatistics(it) },
-        observeInsights(),
+        // Insight texts are produced in the current language: rebuild them when it changes.
+        strings.language.flatMapLatest { observeInsights() },
         observeStreak(),
         premium.premiumState,
     ) { stats, insights, streak, isPremium ->

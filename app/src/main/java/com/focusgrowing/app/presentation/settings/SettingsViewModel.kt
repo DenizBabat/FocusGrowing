@@ -3,12 +3,15 @@ package com.focusgrowing.app.presentation.settings
 import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.ads.AdsManager
 import com.focusgrowing.app.core.ads.ConsentManager
 import com.focusgrowing.app.core.ads.RewardedResult
+import com.focusgrowing.app.core.locale.StringProvider
 import com.focusgrowing.app.core.timer.FocusTimerManager
 import com.focusgrowing.app.domain.logic.PaletteAccess
 import com.focusgrowing.app.domain.model.AppearanceSettings
+import com.focusgrowing.app.domain.model.BackgroundImage
 import com.focusgrowing.app.domain.model.FocusScreenSettings
 import com.focusgrowing.app.domain.model.NotificationSettings
 import com.focusgrowing.app.domain.model.PaletteTrial
@@ -36,7 +39,8 @@ import javax.inject.Inject
 data class SettingsUiState(
     val prefs: UserPreferences = UserPreferences(),
     val isPremium: Boolean = false,
-    val backgroundName: String = "",
+    /** Selected focus background; the screen shows its (translated) name. */
+    val background: BackgroundImage? = null,
     /** Premium palette currently unlocked by a rewarded ad (null when none or expired). */
     val trialPaletteId: String? = null,
     val trialHoursLeft: Int = 0,
@@ -59,13 +63,13 @@ class SettingsViewModel @Inject constructor(
     private val ads: AdsManager,
     private val consent: ConsentManager,
     private val time: TimeProvider,
+    private val strings: StringProvider,
     backgrounds: BackgroundRepository,
 ) : ViewModel() {
 
-    private val backgroundName = settings.preferences
+    private val background = settings.preferences
         .map { it.focusScreen.selectedBackgroundId }
         .flatMapLatest { backgrounds.observeBackground(it) }
-        .map { it?.name.orEmpty() }
 
     private val adState = MutableStateFlow(AdUiState())
 
@@ -73,14 +77,14 @@ class SettingsViewModel @Inject constructor(
     private val adContext = combine(rewards.paletteTrial, consent.privacyOptionsRequired) { trial, privacy -> trial to privacy }
 
     val uiState: StateFlow<SettingsUiState> =
-        combine(settings.preferences, premium.premiumState, backgroundName, adContext, adState) { prefs, isPremium, bg, context, ad ->
+        combine(settings.preferences, premium.premiumState, background, adContext, adState) { prefs, isPremium, bg, context, ad ->
             val (trial, privacyRequired) = context
             val now = time.now()
             val active = trial?.takeIf { PaletteAccess.isTrialActive(it, now) }
             SettingsUiState(
                 prefs = prefs,
                 isPremium = isPremium,
-                backgroundName = bg,
+                background = bg,
                 trialPaletteId = active?.paletteId,
                 trialHoursLeft = PaletteAccess.hoursLeft(active, now),
                 adInProgress = ad.inProgress,
@@ -121,12 +125,12 @@ class SettingsViewModel @Inject constructor(
                 RewardedResult.EARNED -> viewModelScope.launch {
                     rewards.setPaletteTrial(PaletteAccess.newTrial(paletteId, time.now()))
                     settings.updateAppearance { it.copy(paletteId = paletteId) }
-                    adState.value = AdUiState(message = "$paletteName is yours for the next 24 hours.")
+                    adState.value = AdUiState(message = strings.get(R.string.settings_ad_palette_unlocked, paletteName))
                 }
                 RewardedResult.DISMISSED ->
-                    adState.value = AdUiState(message = "Watch the ad to the end to unlock the palette.")
+                    adState.value = AdUiState(message = strings.get(R.string.settings_ad_watch_to_end))
                 RewardedResult.UNAVAILABLE ->
-                    adState.value = AdUiState(message = "No ad is available right now. Please try again later.")
+                    adState.value = AdUiState(message = strings.get(R.string.settings_ad_unavailable))
             }
         }
     }

@@ -1,7 +1,9 @@
 package com.focusgrowing.app.presentation.profile
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.focusgrowing.app.R
 import com.focusgrowing.app.domain.logic.WorldProgression
 import com.focusgrowing.app.domain.model.WorldItemType
 import com.focusgrowing.app.domain.model.WorldState
@@ -25,12 +27,13 @@ data class ProfileUiState(
     val unread: Int = 0,
 ) {
     /** Small identity line under the name, grows with the world. */
-    val title: String
+    @get:StringRes
+    val titleRes: Int
         get() = when {
-            world.level >= 8 -> "Master • Focused • Thriving"
-            world.level >= 5 -> "Builder • Focused • Growing"
-            world.level >= 3 -> "Explorer • Focused • Growing"
-            else -> "Seedling • Getting started"
+            world.level >= 8 -> R.string.profile_rank_master
+            world.level >= 5 -> R.string.profile_rank_builder
+            world.level >= 3 -> R.string.profile_rank_explorer
+            else -> R.string.profile_rank_seedling
         }
 }
 

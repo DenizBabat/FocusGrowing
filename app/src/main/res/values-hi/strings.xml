@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_timer_name">चालू फ़ोकस टाइमर</string>
+    <string name="channel_timer_desc">चल रहा फ़ोकस सेशन दिखाता है।</string>
+    <string name="channel_events_name">सेशन अपडेट</string>
+    <string name="channel_events_desc">फ़ोकस सेशन पूरा होने, ब्रेक खत्म होने और दुनिया का लेवल बढ़ने की सूचनाएँ।</string>
+
+    <string name="ad_badge">विज्ञापन</string>
+    <string name="common_continue">जारी रखें</string>
+    <string name="common_cancel">रद्द करें</string>
+    <string name="common_save">सेव करें</string>
+    <string name="common_delete">हटाएँ</string>
+    <string name="common_edit">बदलें</string>
+    <string name="common_back">वापस</string>
+    <string name="common_close">बंद करें</string>
+    <string name="common_done">हो गया</string>
+    <string name="common_premium">प्रीमियम</string>
+    <string name="common_locked">लॉक है</string>
+    <string name="common_unlock_premium">प्रीमियम अनलॉक करें</string>
+    <string name="common_minutes_short">%1$d मिनट</string>
+    <string name="a11y_percent">%1$d प्रतिशत</string>
+
+    <string name="language_title">भाषा</string>
+    <string name="language_system_default">सिस्टम डिफ़ॉल्ट</string>
+    <string name="language_system_default_with_name">सिस्टम डिफ़ॉल्ट (%1$s)</string>
+
+    <string name="format_duration_hours_minutes">%1$d घं %2$d मि</string>
+    <string name="format_duration_hours">%1$d घं</string>
+    <string name="format_duration_minutes">%1$d मि</string>
+    <string name="format_yesterday">कल</string>
+    <plurals name="format_days_ago">
+        <item quantity="one">%1$d दिन पहले</item>
+        <item quantity="other">%1$d दिन पहले</item>
+    </plurals>
+    <string name="format_percent">%1$d%%</string>
+    <string name="format_quoted">“%1$s”</string>
+
+    <string name="greeting_morning">सुप्रभात</string>
+    <string name="greeting_afternoon">नमस्ते</string>
+    <string name="greeting_evening">शुभ संध्या</string>
+    <string name="greeting_hello">नमस्ते</string>
+
+    <string name="priority_low">कम</string>
+    <string name="priority_medium">मध्यम</string>
+    <string name="priority_high">ज़्यादा</string>
+
+    <string name="category_general">सामान्य</string>
+    <string name="category_development">डेवलपमेंट</string>
+    <string name="category_design">डिज़ाइन</string>
+    <string name="category_study">पढ़ाई</string>
+    <string name="category_reading">रीडिंग</string>
+    <string name="category_work">काम</string>
+    <string name="category_health">सेहत</string>
+    <string name="category_personal">निजी</string>
+
+    <string name="world_item_sprout">अंकुर</string>
+    <string name="world_item_grass">घास</string>
+    <string name="world_item_flowers">फूल</string>
+    <string name="world_item_bush">झाड़ियाँ</string>
+    <string name="world_item_pine">चीड़ के पेड़</string>
+    <string name="world_item_rocks">चट्टानें</string>
+    <string name="world_item_house">घर</string>
+    <string name="world_item_fence">बाड़</string>
+    <string name="world_item_garden">बगीचा</string>
+    <string name="world_item_lake">झील</string>
+    <string name="world_item_oak">ओक के पेड़</string>
+    <string name="world_item_waterfall">झरना</string>
+    <string name="world_item_cabin">गाँव की कुटिया</string>
+    <string name="world_item_windmill">पवनचक्की</string>
+    <string name="world_item_bridge">पुल</string>
+    <string name="world_item_lighthouse">लाइटहाउस</string>
+
+    <string name="scene_mountain_lake">पहाड़ी झील</string>
+    <string name="scene_forest_morning">जंगल की सुबह</string>
+    <string name="scene_sunset_hills">सूर्यास्त की पहाड़ियाँ</string>
+    <string name="scene_city_dusk">शहर की शाम</string>
+    <string name="scene_city_night">शहर की रात</string>
+    <string name="scene_abstract_blobs">नरम आकृतियाँ</string>
+    <string name="scene_aurora">ऑरोरा</string>
+    <string name="scene_night_sky">रात का आसमान</string>
+    <string name="scene_minimal_waves">शांत लहरें</string>
+    <string name="scene_deep_dark">गहरा अँधेरा</string>
+
+    <string name="onboarding_tagline">मिशन\nदुनिया\nइंटेलिजेंस</string>
+    <string name="onboarding_subtitle">अपने मिशन पर फ़ोकस करें।\nअपनी दुनिया बढ़ाएँ।</string>
+    <string name="onboarding_get_started">शुरू करें</string>
+    <string name="onboarding_next">आगे</string>
+    <string name="onboarding_skip">छोड़ें</string>
+    <string name="onboarding_step_number">%1$d.</string>
+    <string name="onboarding_mission_title">मिशन</string>
+    <string name="onboarding_mission_text">अपने काम जोड़ें, लक्ष्य तय करें और शुरुआत करें।</string>
+    <string name="onboarding_world_title">दुनिया</string>
+    <string name="onboarding_world_text">फ़ोकस सेशन पूरे करें और अपनी दुनिया को बढ़ते देखें।</string>
+    <string name="onboarding_intelligence_title">इंटेलिजेंस</string>
+    <string name="onboarding_intelligence_text">अपनी आदतें पहचानें, इनसाइट्स पाएँ और खुद को बेहतर बनाएँ।</string>
+    <string name="onboarding_change_later">आप इसे सेटिंग्स में कभी भी बदल सकते हैं।</string>
+    <string name="onboarding_focus_length_title">आप आमतौर पर कितनी देर फ़ोकस करते हैं?</string>
+    <string name="onboarding_minutes_option">%1$d मिनट</string>
+    <string name="onboarding_custom">कस्टम</string>
+    <string name="onboarding_custom_minutes_label">मिनट (1–180)</string>
+    <string name="onboarding_first_goal_title">अपना पहला लक्ष्य चुनें।</string>
+    <string name="onboarding_first_goal_text">यही आपका पहला मिशन बनेगा। हर फ़ोकस सेशन इसे आगे बढ़ाएगा।</string>
+    <string name="onboarding_name_label">आपका नाम (वैकल्पिक)</string>
+    <string name="onboarding_goal_example">जैसे, अपनी प्रेज़ेंटेशन पूरी करना</string>
+    <string name="onboarding_idea_read">किताब पढ़ना</string>
+    <string name="onboarding_idea_learn">नई भाषा सीखना</string>
+    <string name="onboarding_idea_exercise">एक्सरसाइज़ करना</string>
+    <string name="onboarding_start_growing">बढ़ना शुरू करें</string>
+    <string name="onboarding_skip_for_now">अभी छोड़ें</string>
+
+    <string name="inbox_focus_completed_title">फ़ोकस सेशन पूरा हुआ</string>
+    <string name="inbox_focus_completed_message">आपने %1$d मिनट का फ़ोकस सेशन पूरा किया। बहुत बढ़िया!</string>
+    <string name="inbox_xp_detail">+%1$d XP</string>
+    <string name="inbox_xp_detail_with_mission">+%1$d XP · %2$s</string>
+    <string name="inbox_mission_completed_title">मिशन पूरा हुआ!</string>
+    <string name="inbox_bonus_xp_detail">आपको +%1$d बोनस XP मिला</string>
+    <string name="inbox_streak_title">स्ट्रीक जारी है!</string>
+    <string name="inbox_streak_message">आपकी %1$d दिन की स्ट्रीक चल रही है!</string>
+    <string name="inbox_streak_detail">ऐसे ही लगे रहें!</string>
+    <string name="inbox_mission_created_title">नया मिशन जुड़ गया</string>
+    <plurals name="inbox_estimated_pomodoros">
+        <item quantity="one">अनुमानित %1$d पोमोडोरो</item>
+        <item quantity="other">अनुमानित %1$d पोमोडोरो</item>
+    </plurals>
+    <string name="inbox_level_up_title">दुनिया का लेवल बढ़ा!</string>
+    <string name="inbox_level_up_message">आपकी दुनिया लेवल %1$d पर पहुँच गई है!</string>
+    <string name="inbox_level_up_unlocked">नई चीज़ें अनलॉक हुईं: %1$s</string>
+    <string name="bg_error_image_add_failed">यह इमेज जोड़ी नहीं जा सकी। कृपया कोई दूसरी इमेज आज़माएँ।</string>
+
+    <string name="insight_getting_started_title">आपके इनसाइट्स तैयार हो रहे हैं</string>
+    <plurals name="insight_getting_started_message">
+        <item quantity="one">अपने लिए खास इनसाइट्स अनलॉक करने के लिए %1$d और फ़ोकस सेशन पूरा करें।</item>
+        <item quantity="other">अपने लिए खास इनसाइट्स अनलॉक करने के लिए %1$d और फ़ोकस सेशन पूरे करें।</item>
+    </plurals>
+    <string name="insight_time_of_day_title_morning">सुबह आप कमाल करते हैं</string>
+    <string name="insight_time_of_day_title_afternoon">दोपहर में आप कमाल करते हैं</string>
+    <string name="insight_time_of_day_title_evening">शाम को आप कमाल करते हैं</string>
+    <string name="insight_time_of_day_title_night">रात में आप कमाल करते हैं</string>
+    <string name="insight_time_of_day_message_morning">आपके फ़ोकस का %1$d%% समय सुबह का होता है। अपने सबसे मुश्किल मिशन इसी समय के लिए रखें।</string>
+    <string name="insight_time_of_day_message_afternoon">आपके फ़ोकस का %1$d%% समय दोपहर का होता है। अपने सबसे मुश्किल मिशन इसी समय के लिए रखें।</string>
+    <string name="insight_time_of_day_message_evening">आपके फ़ोकस का %1$d%% समय शाम का होता है। अपने सबसे मुश्किल मिशन इसी समय के लिए रखें।</string>
+    <string name="insight_time_of_day_message_night">आपके फ़ोकस का %1$d%% समय रात का होता है। अपने सबसे मुश्किल मिशन इसी समय के लिए रखें।</string>
+    <string name="insight_streak_title">%1$d दिन की स्ट्रीक</string>
+    <string name="insight_streak_message">आपने लगातार %1$d दिन फ़ोकस किया है। ज़ोर लगाने से ज़्यादा ज़रूरी है रोज़ करना — यह सिलसिला टूटने न दें।</string>
+    <string name="insight_daily_steps_title">रोज़ के छोटे कदम</string>
+    <plurals name="insight_daily_steps_message">
+        <item quantity="one">हाल में आपने %1$d दिन फ़ोकस किया। रोज़ का एक छोटा सेशन आदत को मज़बूत बनाता है।</item>
+        <item quantity="other">हाल में आपने %1$d अलग-अलग दिन फ़ोकस किया। रोज़ का एक छोटा सेशन आदत को मज़बूत बनाता है।</item>
+    </plurals>
+    <string name="insight_short_sessions_title">छोटे सेशन आपके लिए कारगर हैं</string>
+    <string name="insight_short_sessions_message">आपके सेशन औसतन %1$d मिनट के होते हैं। लगता है छोटे फ़ोकस सेशन आपके लिए अच्छा काम करते हैं।</string>
+    <string name="insight_long_interrupted_title">लंबे सेशन बीच में छूट जाते हैं</string>
+    <string name="insight_long_interrupted_message">40 मिनट से लंबे आपके करीब आधे सेशन समय से पहले खत्म हो जाते हैं। इनकी जगह 25–30 मिनट के सेशन आज़माएँ।</string>
+    <string name="insight_average_session_title">औसत सेशन: %1$d मिनट</string>
+    <string name="insight_average_session_message">आप आमतौर पर एक बार में %1$d मिनट फ़ोकस करते हैं। टाइमर को इसी के हिसाब से सेट करेंगे तो सेशन बीच में कम छूटेंगे।</string>
+    <string name="insight_estimation_over_title">मिशन में सोचे से ज़्यादा समय लगता है</string>
+    <string name="insight_estimation_over_message">आपके हाल के मिशन में अनुमान से करीब %1$d%% ज़्यादा पोमोडोरो लगे। प्लान बनाते समय एक पोमोडोरो अलग से जोड़ लें।</string>
+    <string name="insight_estimation_under_title">आप प्लान से पहले काम पूरा कर लेते हैं</string>
+    <string name="insight_estimation_under_message">आप अनुमान से करीब %1$d%% कम पोमोडोरो में मिशन पूरे कर लेते हैं। आप और बड़े लक्ष्य रख सकते हैं।</string>
+    <string name="insight_early_stops_title">सेशन अक्सर बीच में छूटते हैं</string>
+    <string name="insight_early_stops_message">आपके %1$d%% सेशन समय से पहले खत्म हो जाते हैं। फ़ोकस करते समय नोटिफ़िकेशन म्यूट करें और फ़ोन को पहुँच से दूर रखें।</string>
+    <string name="insight_pauses_title">बार-बार पॉज़</string>
+    <string name="insight_pauses_message">आपके आधे सेशन में पॉज़ होता है। शुरू करने से पहले पानी और नोट्स पास रख लें।</string>
+    <string name="insight_best_day_title">%1$s आपका सबसे दमदार दिन है</string>
+    <string name="insight_best_day_message">%1$s को आप सबसे ज़्यादा फ़ोकस करते हैं। अपने ज़रूरी मिशन इसी दिन के लिए रखें।</string>
+
+    <string name="premium_title_member">आपका प्रीमियम</string>
+    <string name="premium_title_upsell">प्रीमियम लें</string>
+    <string name="premium_subtitle_lifetime">हमेशा के लिए आपका।</string>
+    <string name="premium_subtitle_subscribed">अपना सब्सक्रिप्शन मैनेज करें।</string>
+    <string name="premium_subtitle_upsell">अपने सफ़र की पूरी ताकत अनलॉक करें।</string>
+
+    <string name="premium_benefit_backgrounds">अनलिमिटेड कस्टम बैकग्राउंड</string>
+    <string name="premium_benefit_editor">एडवांस क्रॉप एडिटर, ब्लर और आपका अपना मोटिवेशनल टेक्स्ट</string>
+    <string name="premium_benefit_statistics">एडवांस आँकड़े: सबसे अच्छे घंटे, ट्रेंड, मासिक और सालाना</string>
+    <string name="premium_benefit_insights">आपके फ़ोकस के बारे में खास आपके लिए इनसाइट्स</string>
+    <string name="premium_benefit_world">दुनिया की और चीज़ें और प्रीमियम कलर पैलेट</string>
+    <string name="premium_benefit_no_ads">कोई विज्ञापन नहीं</string>
+
+    <string name="premium_unavailable_title">खरीदारी उपलब्ध नहीं है</string>
+    <string name="premium_try_again">फिर कोशिश करें</string>
+
+    <string name="premium_free_note">फ़ोकस के लिए ज़रूरी हर चीज़ फ़्री रहेगी: टाइमर, मिशन, आपकी दुनिया, बेसिक आँकड़े और आपकी अपनी फ़ोटो।</string>
+    <string name="premium_privacy_policy">निजता नीति</string>
+
+    <string name="premium_period_monthly">मासिक</string>
+    <string name="premium_period_yearly">सालाना</string>
+    <string name="premium_period_lifetime">लाइफ़टाइम</string>
+
+    <string name="premium_save_percent">%1$d%% बचाएँ</string>
+    <string name="premium_pay_once">एक बार पेमेंट</string>
+    <string name="premium_plan_lifetime_desc">एक पेमेंट। प्रीमियम हमेशा के लिए, कोई सब्सक्रिप्शन नहीं।</string>
+    <string name="premium_one_time">एक बार</string>
+    <string name="premium_approx_per_month">≈ %1$s / महीना</string>
+
+    <string name="premium_price_per_month">%1$s हर महीने</string>
+    <string name="premium_price_per_year">%1$s हर साल</string>
+    <string name="premium_price_one_time">%1$s एक बार</string>
+    <string name="premium_price_per_period">%1$s हर अवधि</string>
+
+    <plurals name="premium_plan_trial_then_price_days">
+        <item quantity="one">%1$d दिन फ़्री, फिर %2$s</item>
+        <item quantity="other">%1$d दिन फ़्री, फिर %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_months">
+        <item quantity="one">%1$d महीना फ़्री, फिर %2$s</item>
+        <item quantity="other">%1$d महीने फ़्री, फिर %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_years">
+        <item quantity="one">%1$d साल फ़्री, फिर %2$s</item>
+        <item quantity="other">%1$d साल फ़्री, फिर %2$s</item>
+    </plurals>
+
+    <string name="premium_buy_lifetime">लाइफ़टाइम प्रीमियम खरीदें</string>
+    <string name="premium_upgrade">प्रीमियम में अपग्रेड करें</string>
+    <plurals name="premium_start_trial_days">
+        <item quantity="one">%1$d दिन का फ़्री ट्रायल शुरू करें</item>
+        <item quantity="other">%1$d दिन का फ़्री ट्रायल शुरू करें</item>
+    </plurals>
+    <plurals name="premium_start_trial_months">
+        <item quantity="one">%1$d महीने का फ़्री ट्रायल शुरू करें</item>
+        <item quantity="other">%1$d महीने का फ़्री ट्रायल शुरू करें</item>
+    </plurals>
+    <plurals name="premium_start_trial_years">
+        <item quantity="one">%1$d साल का फ़्री ट्रायल शुरू करें</item>
+        <item quantity="other">%1$d साल का फ़्री ट्रायल शुरू करें</item>
+    </plurals>
+    <string name="premium_restore_purchase">खरीदारी रीस्टोर करें</string>
+    <string name="premium_no_plans">अभी कोई प्लान उपलब्ध नहीं है।</string>
+
+    <string name="premium_terms_lifetime">%1$s का एक बार का पेमेंट। कोई सब्सक्रिप्शन नहीं, कोई रिन्यूअल नहीं। आपकी खरीदारी आपके Google खाते से जुड़ी है और नए डिवाइस पर रीस्टोर की जा सकती है।</string>
+    <string name="premium_terms_subscription">%1$s। जब तक आप कैंसल नहीं करते, सब्सक्रिप्शन अपने-आप रिन्यू होता रहेगा। Google Play → पेमेंट और सदस्यताएं में जाकर कभी भी कैंसल करें।</string>
+    <plurals name="premium_terms_trial_days">
+        <item quantity="one">%1$d दिन फ़्री, फिर %2$s। जब तक आप कैंसल नहीं करते, सब्सक्रिप्शन अपने-आप रिन्यू होता रहेगा। ट्रायल खत्म होने से पहले कैंसल करने पर आपसे कोई शुल्क नहीं लिया जाएगा। Google Play → पेमेंट और सदस्यताएं में जाकर कभी भी कैंसल करें।</item>
+        <item quantity="other">%1$d दिन फ़्री, फिर %2$s। जब तक आप कैंसल नहीं करते, सब्सक्रिप्शन अपने-आप रिन्यू होता रहेगा। ट्रायल खत्म होने से पहले कैंसल करने पर आपसे कोई शुल्क नहीं लिया जाएगा। Google Play → पेमेंट और सदस्यताएं में जाकर कभी भी कैंसल करें।</item>
+    </plurals>
+    <plurals name="premium_terms_trial_months">
+        <item quantity="one">%1$d महीना फ़्री, फिर %2$s। जब तक आप कैंसल नहीं करते, सब्सक्रिप्शन अपने-आप रिन्यू होता रहेगा। ट्रायल खत्म होने से पहले कैंसल करने पर आपसे कोई शुल्क नहीं लिया जाएगा। Google Play → पेमेंट और सदस्यताएं में जाकर कभी भी कैंसल करें।</item>
+        <item quantity="other">%1$d महीने फ़्री, फिर %2$s। जब तक आप कैंसल नहीं करते, सब्सक्रिप्शन अपने-आप रिन्यू होता रहेगा। ट्रायल खत्म होने से पहले कैंसल करने पर आपसे कोई शुल्क नहीं लिया जाएगा। Google Play → पेमेंट और सदस्यताएं में जाकर कभी भी कैंसल करें।</item>
+    </plurals>
+
+    <plurals name="premium_terms_trial_years">
+        <item quantity="one">%1$d साल फ़्री, फिर %2$s। जब तक आप कैंसल नहीं करते, सब्सक्रिप्शन अपने-आप रिन्यू होता रहेगा। ट्रायल खत्म होने से पहले कैंसल करने पर आपसे कोई शुल्क नहीं लिया जाएगा। Google Play → पेमेंट और सदस्यताएं में जाकर कभी भी कैंसल करें।</item>
+        <item quantity="other">%1$d साल फ़्री, फिर %2$s। जब तक आप कैंसल नहीं करते, सब्सक्रिप्शन अपने-आप रिन्यू होता रहेगा। ट्रायल खत्म होने से पहले कैंसल करने पर आपसे कोई शुल्क नहीं लिया जाएगा। Google Play → पेमेंट और सदस्यताएं में जाकर कभी भी कैंसल करें।</item>
+    </plurals>
+
+    <string name="premium_welcome">प्रीमियम में आपका स्वागत है! 🎉</string>
+    <string name="premium_active">प्रीमियम चालू है</string>
+    <string name="premium_plan_monthly">मासिक प्लान</string>
+    <string name="premium_plan_yearly">सालाना प्लान</string>
+    <string name="premium_plan_other">प्रीमियम प्लान</string>
+    <string name="premium_plan_with_price">%1$s · %2$s</string>
+    <string name="premium_status_switches_monthly">मौजूदा अवधि खत्म होने पर मासिक प्लान शुरू हो जाएगा।</string>
+    <string name="premium_status_switches_yearly">मौजूदा अवधि खत्म होने पर सालाना प्लान शुरू हो जाएगा।</string>
+    <string name="premium_status_switches_other">मौजूदा अवधि खत्म होने पर प्रीमियम प्लान शुरू हो जाएगा।</string>
+    <string name="premium_status_checking">Google Play से आपका सब्सक्रिप्शन चेक किया जा रहा है…</string>
+    <string name="premium_status_cancelled">कैंसल हो गया। जिस अवधि का पेमेंट आपने किया है, उसके खत्म होने तक प्रीमियम चालू रहेगा।</string>
+    <string name="premium_status_renews">अपने-आप रिन्यू होता है। Google Play में कभी भी कैंसल करें।</string>
+
+    <string name="premium_switch_to_monthly">मासिक प्लान पर जाएँ</string>
+    <string name="premium_switch_to_yearly">सालाना प्लान पर जाएँ</string>
+    <string name="premium_switch_to_other">प्रीमियम प्लान पर जाएँ</string>
+    <string name="premium_switch_immediate_desc">आज से शुरू होगा। आप अभी %1$s चुकाएँगे, और आपके मौजूदा प्लान का बचा हुआ हिस्सा अतिरिक्त दिनों के रूप में जुड़ जाएगा।</string>
+    <string name="premium_switch_deferred_desc">आपकी मौजूदा अवधि खत्म होने पर शुरू होगा। आज कोई शुल्क नहीं लिया जाएगा, और प्रीमियम पूरे समय आपके पास रहेगा।</string>
+
+    <string name="premium_go_lifetime">लाइफ़टाइम लें</string>
+    <string name="premium_go_lifetime_desc">एक ही पेमेंट में प्रीमियम हमेशा के लिए अपने पास रखें। आपका सब्सक्रिप्शन अपने-आप कैंसल नहीं होगा: बाद में उसे Google Play में कैंसल कर दें।</string>
+    <plurals name="premium_go_lifetime_desc_break_even">
+        <item quantity="one">एक ही पेमेंट में प्रीमियम हमेशा के लिए अपने पास रखें। इसकी कीमत सालाना प्लान के करीब %1$d साल के बराबर है। आपका सब्सक्रिप्शन अपने-आप कैंसल नहीं होगा: बाद में उसे Google Play में कैंसल कर दें।</item>
+        <item quantity="other">एक ही पेमेंट में प्रीमियम हमेशा के लिए अपने पास रखें। इसकी कीमत सालाना प्लान के करीब %1$d साल के बराबर है। आपका सब्सक्रिप्शन अपने-आप कैंसल नहीं होगा: बाद में उसे Google Play में कैंसल कर दें।</item>
+    </plurals>
+
+    <string name="premium_resubscribe_google_play">Google Play में फिर सब्सक्राइब करें</string>
+    <string name="premium_manage_google_play">Google Play में मैनेज करें</string>
+    <string name="premium_manage_hint">Google Play में कैंसल करें, फिर से सब्सक्राइब करें या पेमेंट का तरीका बदलें। वापस आने पर बदलाव यहाँ दिखेंगे।</string>
+
+    <string name="premium_forever_celebration">प्रीमियम हमेशा के लिए आपका है। 🎉</string>
+    <string name="premium_lifetime_title">लाइफ़टाइम प्रीमियम</string>
+    <string name="premium_lifetime_thanks">एक बार पेमेंट हो गया। कोई रिन्यूअल नहीं, आगे कुछ नहीं चुकाना। Focus Growing का साथ देने के लिए धन्यवाद!</string>
+    <string name="premium_lifetime_sub_active_monthly">आपका मासिक सब्सक्रिप्शन अब भी चालू है</string>
+    <string name="premium_lifetime_sub_active_yearly">आपका सालाना सब्सक्रिप्शन अब भी चालू है</string>
+    <string name="premium_lifetime_sub_active_other">आपका प्रीमियम सब्सक्रिप्शन अब भी चालू है</string>
+    <string name="premium_lifetime_sub_cancel_hint">लाइफ़टाइम प्रीमियम इसे अपने-आप कैंसल नहीं करता। इसे Google Play में कैंसल कर दें, ताकि आपसे दोबारा शुल्क न लिया जाए।</string>
+    <string name="premium_cancel_subscription_google_play">Google Play में सब्सक्रिप्शन कैंसल करें</string>
+    <string name="premium_lifetime_sub_cancelled_monthly">आपका पुराना मासिक सब्सक्रिप्शन कैंसल हो चुका है और रिन्यू नहीं होगा।</string>
+    <string name="premium_lifetime_sub_cancelled_yearly">आपका पुराना सालाना सब्सक्रिप्शन कैंसल हो चुका है और रिन्यू नहीं होगा।</string>
+    <string name="premium_lifetime_sub_cancelled_other">आपका पुराना प्रीमियम सब्सक्रिप्शन कैंसल हो चुका है और रिन्यू नहीं होगा।</string>
+
+    <string name="premium_restored">आपका प्रीमियम रीस्टोर हो गया।</string>
+    <string name="premium_plan_changed">आपका प्लान बदल गया।</string>
+    <string name="premium_change_scheduled">हो गया। मौजूदा अवधि खत्म होने पर आपका नया प्लान शुरू होगा।</string>
+    <string name="premium_payment_pending">आपका पेमेंट प्रोसेस हो रहा है। Google Play से पुष्टि होते ही प्रीमियम अनलॉक हो जाएगा।</string>
+
+    <string name="premium_test_mode">टेस्ट मोड</string>
+    <string name="premium_test_resubscribe">टेस्ट: फिर सब्सक्राइब करें</string>
+    <string name="premium_test_cancel">टेस्ट: कैंसल करें</string>
+    <string name="premium_test_reset">टेस्ट: रीसेट करें</string>
+
+    <string name="billing_not_ready">Google Play अभी तैयार नहीं है। कृपया थोड़ी देर में फिर कोशिश करें।</string>
+    <string name="billing_already_own_lifetime">लाइफ़टाइम प्रीमियम पहले से आपके पास है।</string>
+    <string name="billing_already_have_plan">यह प्लान पहले से आपके पास है।</string>
+    <string name="billing_subscription_unreadable">आपके मौजूदा सब्सक्रिप्शन की जानकारी नहीं मिल सकी। कृपया थोड़ी देर में फिर कोशिश करें।</string>
+    <string name="billing_restore_none">इस Google खाते के लिए कोई चालू प्रीमियम सब्सक्रिप्शन नहीं मिला।</string>
+    <string name="billing_restore_none_test">कोई चालू प्रीमियम सब्सक्रिप्शन नहीं मिला (टेस्ट मोड)।</string>
+    <string name="billing_verify_failed">खरीदारी की पुष्टि नहीं हो सकी। अगर आपसे शुल्क लिया गया है, तो “खरीदारी रीस्टोर करें” पर टैप करें।</string>
+    <string name="billing_not_available_in_country">प्रीमियम अभी आपके देश में या इस Google Play खाते पर उपलब्ध नहीं है।</string>
+    <string name="billing_error_unavailable_on_device">इस डिवाइस पर Google Play से खरीदारी उपलब्ध नहीं है। पक्का करें कि Play Store इंस्टॉल है और आपने साइन इन किया हुआ है।</string>
+    <string name="billing_error_unreachable">Google Play से कनेक्ट नहीं हो सका। अपना कनेक्शन चेक करें और फिर कोशिश करें।</string>
+    <string name="billing_error_plan_unavailable">यह प्लान अभी उपलब्ध नहीं है।</string>
+    <string name="billing_error_update_play_store">कृपया Google Play Store ऐप अपडेट करें और फिर कोशिश करें।</string>
+    <string name="billing_error_not_set_up">खरीदारी अभी ठीक से सेट अप नहीं हुई है। कृपया बाद में फिर कोशिश करें।</string>
+    <string name="billing_error_generic">Google Play में कुछ गड़बड़ी हुई। कृपया फिर कोशिश करें।</string>
+
+    <string name="settings_title">सेटिंग्स</string>
+
+    <string name="settings_group_appearance">लुक</string>
+    <string name="settings_group_timer">टाइमर</string>
+    <string name="settings_group_focus_screen">फ़ोकस स्क्रीन</string>
+    <string name="settings_group_notifications">नोटिफ़िकेशन</string>
+    <string name="settings_group_sounds">साउंड और वाइब्रेशन</string>
+    <string name="settings_group_privacy">निजता</string>
+    <string name="settings_group_about">ऐप के बारे में</string>
+
+    <string name="settings_theme_title">थीम</string>
+    <string name="settings_theme_system">सिस्टम</string>
+    <string name="settings_theme_light">लाइट</string>
+    <string name="settings_theme_dark">डार्क</string>
+
+    <string name="settings_color_palette">कलर पैलेट</string>
+    <string name="settings_palette_premium_a11y">%1$s, प्रीमियम</string>
+    <string name="settings_palette_trial_under_hour">%1$s एक घंटे से कम समय के लिए अनलॉक है।</string>
+    <plurals name="settings_palette_trial_hours_left">
+        <item quantity="one">%1$s करीब %2$d घंटे और अनलॉक रहेगा।</item>
+        <item quantity="other">%1$s करीब %2$d घंटे और अनलॉक रहेगा।</item>
+    </plurals>
+
+    <string name="settings_dynamic_colors_title">डायनामिक कलर</string>
+    <string name="settings_dynamic_colors_subtitle">अपने वॉलपेपर के रंग इस्तेमाल करें</string>
+    <string name="settings_text_size_title">टेक्स्ट का साइज़</string>
+    <string name="settings_text_size_small">छोटा</string>
+    <string name="settings_text_size_medium">मध्यम</string>
+    <string name="settings_text_size_large">बड़ा</string>
+    <string name="settings_reduce_animations">ऐनिमेशन कम करें</string>
+
+    <string name="settings_focus_length">फ़ोकस</string>
+    <string name="settings_focus_custom">कस्टम</string>
+    <string name="settings_short_break">छोटा ब्रेक</string>
+    <string name="settings_long_break">लंबा ब्रेक</string>
+    <string name="settings_long_break_every">लंबे ब्रेक का अंतराल</string>
+    <plurals name="settings_sessions_count">
+        <item quantity="one">%1$d सेशन</item>
+        <item quantity="other">%1$d सेशन</item>
+    </plurals>
+    <string name="settings_stepper_decrease">%1$s घटाएँ</string>
+    <string name="settings_stepper_increase">%1$s बढ़ाएँ</string>
+    <string name="settings_custom_focus_title">कस्टम फ़ोकस अवधि</string>
+    <string name="settings_custom_focus_minutes_label">मिनट (%1$d–%2$d)</string>
+
+    <string name="settings_background">बैकग्राउंड</string>
+    <string name="settings_show_clock">घड़ी दिखाएँ</string>
+    <string name="settings_motivational_text">मोटिवेशनल टेक्स्ट</string>
+    <string name="settings_background_overlay">बैकग्राउंड ओवरले</string>
+
+    <string name="settings_session_alerts_title">सेशन अलर्ट</string>
+    <string name="settings_session_alerts_subtitle">फ़ोकस सेशन या ब्रेक खत्म होने पर</string>
+    <string name="settings_timer_in_notification_bar">नोटिफ़िकेशन बार में टाइमर</string>
+    <string name="settings_exact_alarms_title">सटीक अलार्म की अनुमति दें</string>
+    <string name="settings_exact_alarms_subtitle">फ़ोन स्लीप में हो तब भी सेशन ठीक समय पर खत्म होते हैं</string>
+    <string name="settings_system_notification_settings">सिस्टम की नोटिफ़िकेशन सेटिंग्स</string>
+
+    <string name="settings_alert_sound_vibration">अलर्ट साउंड और वाइब्रेशन</string>
+    <string name="settings_haptic_feedback">हैप्टिक फ़ीडबैक</string>
+
+    <string name="settings_ad_privacy_title">विज्ञापन की निजता सेटिंग</string>
+    <string name="settings_ad_privacy_subtitle">आपकी पसंद के विज्ञापनों के लिए अपनी सहमति बदलें</string>
+
+    <string name="settings_version">वर्शन</string>
+
+    <string name="settings_palette_trial_sheet_title">%1$s को 24 घंटे आज़माएँ</string>
+    <string name="settings_palette_trial_sheet_text">एक छोटा वीडियो देखें और कल तक यह पैलेट इस्तेमाल करें। प्रीमियम के साथ हर पैलेट हमेशा आपका रहता है और विज्ञापन कभी नहीं दिखते।</string>
+    <string name="settings_watch_ad">छोटा विज्ञापन देखें</string>
+    <string name="settings_see_premium">प्रीमियम देखें</string>
+    <string name="settings_not_now">अभी नहीं</string>
+    <string name="settings_ad_palette_unlocked">%1$s अगले 24 घंटे के लिए आपका है।</string>
+    <string name="settings_ad_watch_to_end">पैलेट अनलॉक करने के लिए विज्ञापन पूरा देखें।</string>
+    <string name="settings_ad_unavailable">अभी कोई विज्ञापन उपलब्ध नहीं है। कृपया बाद में फिर कोशिश करें।</string>
+
+    <string name="profile_title">प्रोफ़ाइल</string>
+    <string name="profile_add_name">अपना नाम जोड़ें</string>
+    <string name="profile_edit_name">नाम बदलें</string>
+    <string name="profile_name_dialog_title">आपका नाम</string>
+    <string name="profile_rank_seedling">नन्हा पौधा • अभी शुरुआत है</string>
+    <string name="profile_rank_explorer">खोजी • फ़ोकस्ड • बढ़ते हुए</string>
+    <string name="profile_rank_builder">निर्माता • फ़ोकस्ड • बढ़ते हुए</string>
+    <string name="profile_rank_master">माहिर • फ़ोकस्ड • फलते-फूलते</string>
+    <string name="profile_world_level">दुनिया का लेवल</string>
+    <string name="profile_xp_progress">%1$d / %2$d XP</string>
+    <string name="profile_premium_active">चालू है — धन्यवाद!</string>
+    <string name="profile_premium_upgrade">और फ़ीचर के लिए अपग्रेड करें</string>
+    <plurals name="profile_notifications_new">
+        <item quantity="one">%1$d नया</item>
+        <item quantity="other">%1$d नए</item>
+    </plurals>
+    <string name="profile_notifications_subtitle">आपकी हाल की गतिविधि</string>
+    <string name="profile_app_settings">ऐप सेटिंग्स</string>
+    <string name="profile_app_settings_subtitle">थीम, टाइमर, नोटिफ़िकेशन, साउंड</string>
+    <string name="profile_background_gallery">बैकग्राउंड गैलरी</string>
+    <string name="profile_background_gallery_subtitle">अपना फ़ोकस बैकग्राउंड बदलें</string>
+    <string name="profile_help_support">मदद और सपोर्ट</string>
+    <string name="profile_help_support_subtitle">हमसे संपर्क करें</string>
+    <string name="profile_privacy_policy">निजता नीति</string>
+    <string name="profile_privacy_policy_subtitle">हम आपके डेटा का इस्तेमाल कैसे करते हैं</string>
+    <string name="profile_no_app_found">इसे खोलने के लिए कोई ऐप नहीं मिला।</string>
+
+    <string name="notifications_title">नोटिफ़िकेशन</string>
+    <string name="notifications_subtitle">फ़ोकस बनाए रखें, सही राह पर रहें 🌱</string>
+    <string name="notifications_clear_all">सभी हटाएँ</string>
+    <string name="notifications_filter_all">सभी</string>
+    <string name="notifications_filter_mission">मिशन</string>
+    <string name="notifications_filter_focus">फ़ोकस</string>
+    <string name="notifications_filter_world">दुनिया</string>
+    <string name="notifications_filter_system">सिस्टम</string>
+    <string name="notifications_empty_title">अभी कोई नोटिफ़िकेशन नहीं है</string>
+    <string name="notifications_empty_message">अपनी प्रगति यहाँ देखने के लिए फ़ोकस सेशन और मिशन पूरे करें।</string>
+
+    <string name="focus_a11y_change_background">बैकग्राउंड बदलें</string>
+    <string name="focus_a11y_options">फ़ोकस स्क्रीन के विकल्प</string>
+
+    <string name="focus_background_unavailable">आपकी बैकग्राउंड इमेज अब उपलब्ध नहीं है।</string>
+    <string name="focus_free_focus">खुला फ़ोकस</string>
+    <string name="focus_background">बैकग्राउंड</string>
+
+    <string name="focus_quote_1">फ़ोकस बनाए रखें, आप कर सकते हैं!</string>
+    <string name="focus_quote_2">एक समय में एक ही काम।</string>
+    <string name="focus_quote_3">हर दिन छोटे कदम।</string>
+    <string name="focus_quote_4">गहरा काम, शांत मन।</string>
+    <string name="focus_quote_5">आप अपनी दुनिया बढ़ा रहे हैं।</string>
+
+    <string name="focus_label_focus">फ़ोकस</string>
+    <string name="focus_label_short_break">छोटा ब्रेक</string>
+    <string name="focus_label_long_break">लंबा ब्रेक</string>
+    <string name="focus_label_paused">पॉज़ है</string>
+    <string name="focus_label_well_done">शाबाश</string>
+    <string name="focus_label_break_over">ब्रेक खत्म</string>
+    <string name="focus_a11y_time_remaining">%1$s, %2$s बाकी</string>
+
+    <string name="focus_a11y_start">फ़ोकस शुरू करें</string>
+    <string name="focus_a11y_pause">पॉज़ करें</string>
+    <string name="focus_a11y_resume">फिर शुरू करें</string>
+    <string name="focus_a11y_stop_session">सेशन रोकें</string>
+    <string name="focus_a11y_finish_session">सेशन खत्म करें</string>
+    <string name="focus_a11y_choose_mission">मिशन चुनें</string>
+
+    <string name="focus_start_break">ब्रेक शुरू करें · %1$d मिनट</string>
+    <string name="focus_start_long_break">लंबा ब्रेक शुरू करें · %1$d मिनट</string>
+    <string name="focus_skip_break">ब्रेक छोड़ें</string>
+    <string name="focus_start_next_focus">अगला फ़ोकस शुरू करें</string>
+    <string name="focus_done_for_now">अभी के लिए बस</string>
+
+    <string name="focus_finish_dialog_title">अभी खत्म करें?</string>
+    <string name="focus_finish_dialog_text">आपने इस सेशन के आधे से कम समय फ़ोकस किया है, इसलिए यह आपके मिशन या दुनिया के XP में नहीं गिना जाएगा।</string>
+    <string name="focus_finish_dialog_confirm">खत्म करें</string>
+    <string name="focus_stop_dialog_title">यह सेशन रोकें?</string>
+    <string name="focus_stop_dialog_text">सेशन बिना किसी इनाम के रोक दिया जाएगा।</string>
+    <string name="focus_stop_dialog_confirm">रोकें</string>
+    <string name="focus_keep_going">चलते रहें</string>
+
+    <string name="focus_options_title">फ़ोकस स्क्रीन</string>
+    <string name="focus_option_show_clock">घड़ी दिखाएँ</string>
+    <string name="focus_option_motivation">मोटिवेशनल टेक्स्ट</string>
+    <string name="focus_option_mission_title">मिशन का नाम</string>
+    <string name="focus_option_session_dots">सेशन प्रोग्रेस डॉट</string>
+    <string name="focus_option_overlay">डार्क ओवरले</string>
+    <string name="focus_option_blur">ब्लर</string>
+    <string name="focus_option_custom_motivation_label">आपका अपना मोटिवेशनल टेक्स्ट</string>
+    <string name="focus_option_custom_motivation_locked">कस्टम मोटिवेशनल टेक्स्ट</string>
+
+    <string name="focus_picker_title">किस पर फ़ोकस करें</string>
+    <string name="focus_picker_free_focus">खुला फ़ोकस (कोई मिशन नहीं)</string>
+    <string name="focus_a11y_selected">चुना हुआ</string>
+
+    <string name="notif_title_focusing">फ़ोकस चल रहा है</string>
+    <string name="notif_title_short_break">छोटा ब्रेक</string>
+    <string name="notif_title_long_break">लंबा ब्रेक</string>
+    <string name="notif_running_text_default">फ़ोकस बनाए रखें, आप कर सकते हैं!</string>
+    <string name="notif_action_pause">पॉज़ करें</string>
+    <string name="notif_action_resume">फिर शुरू करें</string>
+    <string name="notif_paused_title">पॉज़ है · %1$s बाकी</string>
+    <string name="notif_paused_text_default">अपना सेशन जारी रखने के लिए टैप करें</string>
+
+    <string name="notif_focus_completed_title">🎉 फ़ोकस सेशन पूरा हुआ</string>
+    <string name="notif_mission_completed_title">🎉 मिशन पूरा हुआ!</string>
+    <string name="notif_focus_completed_text">आपने %1$d मिनट का फ़ोकस सेशन पूरा किया।</string>
+    <string name="notif_focus_completed_text_xp">आपने %1$d मिनट का फ़ोकस सेशन पूरा किया। दुनिया का XP +%2$d</string>
+    <string name="notif_text_with_mission">%1$s · %2$s</string>
+    <string name="notif_big_text_with_mission">मिशन: %1$s\n%2$s</string>
+
+    <string name="notif_break_finished_title">☕ ब्रेक खत्म हुआ</string>
+    <string name="notif_break_finished_text">एक और फ़ोकस सेशन के लिए तैयार हैं?</string>
+
+    <string name="nav_home">होम</string>
+    <string name="nav_missions">मिशन</string>
+    <string name="nav_focus">फ़ोकस</string>
+    <string name="nav_stats">आँकड़े</string>
+    <string name="nav_profile">प्रोफ़ाइल</string>
+
+    <string name="home_greeting_with_name">%1$s, %2$s!</string>
+    <string name="home_greeting_no_name">%1$s!</string>
+    <string name="home_tagline">छोटे कदम बड़े बदलाव लाते हैं।</string>
+    <string name="home_notifications">नोटिफ़िकेशन</string>
+    <string name="home_world_level_label">दुनिया का लेवल</string>
+
+    <string name="home_stat_focus_time">फ़ोकस समय</string>
+    <string name="home_stat_completed">पूरे हुए</string>
+    <string name="home_stat_streak">स्ट्रीक</string>
+    <plurals name="home_streak_days">
+        <item quantity="one">%1$d दिन</item>
+        <item quantity="other">%1$d दिन</item>
+    </plurals>
+
+    <string name="home_world_level_number">दुनिया का लेवल %1$d</string>
+    <string name="home_xp_progress">%1$d / %2$d XP</string>
+
+    <string name="home_todays_mission">आज का मिशन</string>
+    <string name="home_view_all">सभी देखें</string>
+    <plurals name="home_mission_pomodoros">
+        <item quantity="one">%1$d/%2$d पोमोडोरो</item>
+        <item quantity="other">%1$d/%2$d पोमोडोरो</item>
+    </plurals>
+    <string name="home_create_first_mission">अपना पहला मिशन बनाएँ</string>
+    <string name="home_create_first_mission_hint">अपने फ़ोकस को एक लक्ष्य दें।</string>
+
+    <string name="home_focus_return">फ़ोकस पर लौटें</string>
+    <string name="home_focus_resume">फ़ोकस फिर शुरू करें</string>
+    <string name="home_focus_start">फ़ोकस शुरू करें</string>
+    <string name="home_focus_without_mission">बिना मिशन के फ़ोकस करें</string>
+
+    <string name="celebration_focus_title">बहुत बढ़िया!</string>
+    <string name="celebration_focus_body">आपने अपना फ़ोकस सेशन पूरा किया।</string>
+    <string name="celebration_remove_ads">प्रीमियम के साथ विज्ञापन हटाएँ</string>
+
+    <string name="celebration_stat_focus_time">फ़ोकस समय</string>
+    <string name="celebration_stat_world_xp">दुनिया का XP</string>
+    <string name="celebration_stat_progress">प्रगति</string>
+    <plurals name="celebration_stat_pomodoros">
+        <item quantity="one">पोमोडोरो</item>
+        <item quantity="other">पोमोडोरो</item>
+    </plurals>
+    <string name="celebration_stat_estimated">अनुमान</string>
+    <string name="celebration_stat_priority">प्राथमिकता</string>
+    <string name="celebration_stat_category">कैटेगरी</string>
+
+    <string name="celebration_xp_earned">+%1$d XP</string>
+    <string name="celebration_minutes_earned">+%1$d मिनट</string>
+    <plurals name="celebration_estimated_pomodoros">
+        <item quantity="one">%1$d पोमोडोरो</item>
+        <item quantity="other">%1$d पोमोडोरो</item>
+    </plurals>
+
+    <string name="celebration_mission_completed_title">मिशन पूरा हुआ!</string>
+    <string name="celebration_mission_completed_body">बहुत बढ़िया! आपने अपना मिशन पूरा किया और इनाम पाए।</string>
+    <string name="celebration_view_mission">मिशन देखें</string>
+
+    <string name="celebration_streak_title">स्ट्रीक जारी है!</string>
+    <plurals name="celebration_streak_subtitle">
+        <item quantity="one">आपकी %1$d दिन की स्ट्रीक चल रही है!</item>
+        <item quantity="other">आपकी %1$d दिन की स्ट्रीक चल रही है!</item>
+    </plurals>
+    <string name="celebration_streak_body">आपका फ़ोकस और रोज़ की लगन आपको बेहतर बना रही है।</string>
+    <string name="celebration_keep_going">ऐसे ही चलते रहें</string>
+    <string name="celebration_streak_quote">अनुशासन ही लक्ष्य और सफलता के बीच का पुल है।</string>
+
+    <string name="celebration_level_up_title">दुनिया का लेवल बढ़ा!</string>
+    <string name="celebration_level_up_subtitle">आपकी दुनिया लेवल %1$d पर पहुँच गई है!</string>
+    <string name="celebration_level">लेवल %1$d</string>
+    <string name="celebration_xp_progress">%1$d / %2$d XP</string>
+    <string name="celebration_unlocked_title">नई चीज़ें अनलॉक हुईं:</string>
+    <string name="celebration_explore_world">अपनी दुनिया देखें</string>
+    <string name="celebration_level_up_footer">आपका फ़ोकस आपकी दुनिया को और खूबसूरत बनाता है।</string>
+
+    <string name="celebration_mission_created_title">नया मिशन जुड़ गया</string>
+    <string name="celebration_mission_created_body">आपकी लिस्ट में एक नया मिशन जुड़ गया है। अपनी रफ़्तार बनाए रखें!</string>
+    <string name="celebration_mission_created_tip">रोज़ के छोटे कदम बड़े नतीजे लाते हैं। 🌱</string>
+
+    <string name="mission_list_title">मिशन</string>
+    <string name="mission_list_new">नया मिशन</string>
+    <string name="mission_filter_all">सभी</string>
+    <string name="mission_filter_todo">बाकी</string>
+    <string name="mission_filter_in_progress">जारी</string>
+    <string name="mission_filter_completed">पूरे</string>
+    <string name="mission_list_empty_title">अभी कोई मिशन नहीं है</string>
+    <string name="mission_list_empty_message">एक मिशन बनाएँ और अपना पहला फ़ोकस सेशन शुरू करें।</string>
+    <string name="mission_list_create">मिशन बनाएँ</string>
+    <string name="mission_list_no_match_title">यहाँ कुछ नहीं है</string>
+    <string name="mission_list_no_match_message">इस फ़िल्टर में कोई मिशन नहीं है।</string>
+
+    <plurals name="mission_pomodoro_count">
+        <item quantity="one">%1$d पोमोडोरो</item>
+        <item quantity="other">%1$d पोमोडोरो</item>
+    </plurals>
+
+    <string name="mission_priority">प्राथमिकता</string>
+    <string name="mission_not_found">मिशन नहीं मिला</string>
+    <string name="mission_not_found_message">हो सकता है इसे हटा दिया गया हो।</string>
+    <string name="mission_step_placeholder">एक स्टेप जोड़ें</string>
+    <string name="mission_step_add">स्टेप जोड़ें</string>
+    <string name="mission_step_remove">स्टेप हटाएँ</string>
+
+    <string name="mission_detail_more_options">और विकल्प</string>
+    <string name="mission_detail_reopen">फिर खोलें</string>
+    <string name="mission_detail_mark_completed">पूरा हुआ मार्क करें</string>
+    <string name="mission_detail_archive">आर्काइव करें</string>
+    <string name="mission_detail_go_back">वापस जाएँ</string>
+    <string name="mission_detail_pomodoros">पोमोडोरो</string>
+    <string name="mission_detail_checklist">चेकलिस्ट</string>
+    <string name="mission_detail_checklist_hint">मिशन को छोटे-छोटे स्टेप में बाँटें।</string>
+    <string name="mission_detail_completed_title">मिशन पूरा हुआ 🎉</string>
+    <string name="mission_detail_completed_on">%1$s को पूरा हुआ</string>
+    <string name="mission_detail_reopen_mission">मिशन फिर खोलें</string>
+    <string name="mission_detail_estimate_reached">अनुमान पूरा हो गया — बचे हुए स्टेप पूरे करें या मिशन को पूरा हुआ मार्क करें।</string>
+    <string name="mission_detail_start_focus">फ़ोकस शुरू करें</string>
+    <string name="mission_detail_created">बनाया गया</string>
+    <string name="mission_detail_status">स्थिति</string>
+    <string name="mission_status_todo">करना बाकी है</string>
+    <string name="mission_status_in_progress">जारी है</string>
+    <string name="mission_status_completed">पूरा हुआ</string>
+    <string name="mission_status_archived">आर्काइव में</string>
+    <string name="mission_delete_title">मिशन हटाएँ?</string>
+    <string name="mission_delete_message">यह मिशन और इसकी चेकलिस्ट हटा दी जाएगी। आपकी फ़ोकस हिस्ट्री और दुनिया का XP बना रहेगा।</string>
+
+    <string name="mission_editor_title_new">नया मिशन</string>
+    <string name="mission_editor_title_edit">मिशन बदलें</string>
+    <string name="mission_editor_title_label">मिशन का नाम</string>
+    <string name="mission_editor_description_label">विवरण (वैकल्पिक)</string>
+    <string name="mission_editor_estimate_label">अनुमानित पोमोडोरो</string>
+    <string name="mission_editor_category_label">कैटेगरी</string>
+    <string name="mission_editor_checklist_label">चेकलिस्ट (वैकल्पिक)</string>
+    <string name="mission_editor_decrease">घटाएँ</string>
+    <string name="mission_editor_increase">बढ़ाएँ</string>
+    <plurals name="mission_editor_pomodoros_unit">
+        <item quantity="one">पोमोडोरो</item>
+        <item quantity="other">पोमोडोरो</item>
+    </plurals>
+    <string name="mission_editor_create">मिशन बनाएँ</string>
+    <string name="mission_editor_save_changes">बदलाव सेव करें</string>
+    <string name="mission_error_empty_title">कृपया अपने मिशन को एक नाम दें।</string>
+    <string name="mission_error_title_too_long">नाम बहुत लंबा है।</string>
+    <string name="mission_error_invalid_estimate">अनुमान 1 से %1$d पोमोडोरो के बीच होना चाहिए।</string>
+
+    <string name="stats_title">आँकड़े</string>
+    <string name="stats_subtitle">अपने फ़ोकस के पैटर्न समझें</string>
+    <string name="stats_range_week">7 दिन</string>
+    <string name="stats_range_month">30 दिन</string>
+    <string name="stats_range_quarter">3 माह</string>
+    <string name="stats_range_year">1 साल</string>
+    <string name="stats_focus_time">फ़ोकस समय</string>
+    <string name="stats_sessions">सेशन</string>
+    <string name="stats_today">आज</string>
+    <string name="stats_this_week">इस हफ़्ते</string>
+    <string name="stats_missions">मिशन</string>
+    <string name="stats_streak">स्ट्रीक</string>
+    <plurals name="stats_streak_days">
+        <item quantity="one">%1$d दिन</item>
+        <item quantity="other">%1$d दिन</item>
+    </plurals>
+    <string name="stats_average_session">औसत सेशन</string>
+    <string name="stats_completion">पूरे सेशन</string>
+    <string name="stats_best_time">सबसे अच्छा समय</string>
+    <string name="stats_estimation">अनुमान</string>
+    <string name="stats_trend_title">फ़ोकस समय का ट्रेंड</string>
+    <string name="stats_top_hours_title">फ़ोकस के सबसे अच्छे घंटे</string>
+    <string name="stats_top_hours_empty">अपने सबसे अच्छे घंटे देखने के लिए कुछ सेशन पूरे करें।</string>
+    <string name="stats_chart_description">फ़ोकस समय का चार्ट। %1$s</string>
+    <string name="stats_advanced_title">एडवांस आँकड़े</string>
+    <string name="stats_advanced_description">फ़ोकस के सबसे अच्छे घंटे, औसत सेशन, सेशन पूरे होने की दर, अनुमान कितना सही रहा और मासिक/सालाना ट्रेंड।</string>
+    <string name="stats_insights_title">इनसाइट्स</string>
+    <string name="stats_insight_locked_title">प्रीमियम इनसाइट</string>
+    <string name="stats_insight_locked_message">अपने फ़ोकस के बारे में यह खास इनसाइट देखने के लिए प्रीमियम अनलॉक करें।</string>
+
+    <string name="bg_gallery_title">बैकग्राउंड गैलरी</string>
+
+    <string name="bg_tab_all">सभी</string>
+    <string name="bg_tab_favorites">पसंदीदा</string>
+    <string name="bg_category_my_photos">मेरी फ़ोटो</string>
+    <string name="bg_category_nature">प्रकृति</string>
+    <string name="bg_category_city">शहर</string>
+    <string name="bg_category_abstract">ऐब्स्ट्रैक्ट</string>
+    <string name="bg_category_space">अंतरिक्ष</string>
+    <string name="bg_category_minimal">मिनिमल</string>
+    <string name="bg_category_dark">डार्क</string>
+
+    <string name="bg_add_title">बैकग्राउंड जोड़ें</string>
+    <string name="bg_add_photos_stay_on_device">आपकी फ़ोटो इसी डिवाइस पर रहती हैं</string>
+    <string name="bg_add_free_count">%1$d / %2$d निजी बैकग्राउंड</string>
+    <string name="bg_add_adjust_hint">प्रीव्यू और एडजस्ट करने के लिए चुने हुए बैकग्राउंड पर दोबारा टैप करें।</string>
+    <string name="bg_source_gallery">गैलरी</string>
+    <string name="bg_source_camera">कैमरा</string>
+    <string name="bg_source_files">फ़ाइलें</string>
+
+    <string name="bg_empty_favorites">किसी बैकग्राउंड को यहाँ जोड़ने के लिए उसके दिल पर टैप करें।</string>
+    <string name="bg_empty_tab">यहाँ अभी कोई बैकग्राउंड नहीं है।</string>
+
+    <string name="bg_error_no_camera_app">कोई कैमरा ऐप उपलब्ध नहीं है।</string>
+    <string name="bg_error_no_file_manager">कोई फ़ाइल मैनेजर उपलब्ध नहीं है।</string>
+    <string name="bg_error_image_unusable">यह इमेज इस्तेमाल नहीं की जा सकती। कृपया कोई दूसरी चुनें।</string>
+    <string name="bg_message_removed">बैकग्राउंड हटा दिया गया</string>
+
+    <string name="bg_default_name_camera">कैमरे की फ़ोटो</string>
+    <string name="bg_default_name_photo">मेरी फ़ोटो</string>
+
+    <string name="bg_limit_title">फ़्री लिमिट पूरी हो गई</string>
+    <string name="bg_limit_message">फ़्री यूज़र %1$d निजी बैकग्राउंड रख सकते हैं। कोई एक हटाएँ, या प्रीमियम के साथ अनलिमिटेड बैकग्राउंड अनलॉक करें।</string>
+    <string name="bg_limit_see_premium">प्रीमियम देखें</string>
+    <string name="bg_limit_not_now">अभी नहीं</string>
+
+    <string name="bg_delete_title">बैकग्राउंड हटाएँ?</string>
+    <string name="bg_delete_message_camera">“%1$s” इसी ऐप के लिए खींची गई थी और सिर्फ़ यहीं सेव है, इसलिए यह डिलीट हो जाएगी।</string>
+    <string name="bg_delete_message_photo">“%1$s” को ऐप से हटा दिया जाएगा। आपके डिवाइस पर मौजूद असली फ़ोटो डिलीट नहीं होगी।</string>
+    <string name="bg_remove">हटाएँ</string>
+
+    <string name="bg_menu_preview">प्रीव्यू</string>
+    <string name="bg_menu_preview_adjust">प्रीव्यू और एडजस्ट</string>
+    <string name="bg_menu_favorite">पसंदीदा में जोड़ें</string>
+    <string name="bg_menu_unfavorite">पसंदीदा से हटाएँ</string>
+
+    <string name="bg_a11y_tile_selected">%1$s, चुना हुआ</string>
+    <string name="bg_a11y_add_favorite">पसंदीदा में जोड़ें</string>
+    <string name="bg_a11y_remove_favorite">पसंदीदा से हटाएँ</string>
+
+    <string name="bg_adjust_title">बैकग्राउंड एडजस्ट करें</string>
+    <string name="bg_adjust_title_preview">प्रीव्यू</string>
+    <string name="bg_adjust_reset_position">पोज़िशन रीसेट करें</string>
+    <string name="bg_adjust_not_found_title">बैकग्राउंड उपलब्ध नहीं है</string>
+    <string name="bg_adjust_not_found_message">हो सकता है इसे हटा दिया गया हो।</string>
+    <string name="bg_adjust_go_back">वापस जाएँ</string>
+    <string name="bg_adjust_sample_label">फ़ोकस</string>
+    <string name="bg_adjust_hint_drag">जगह बदलने के लिए खींचें · रीसेट के लिए डबल-टैप करें</string>
+    <string name="bg_adjust_hint_builtin">ऐप के बैकग्राउंड हमेशा आपकी स्क्रीन पर एकदम फ़िट बैठते हैं।</string>
+    <string name="bg_adjust_position">पोज़िशन</string>
+    <string name="bg_adjust_position_top">ऊपर</string>
+    <string name="bg_adjust_position_center">बीच में</string>
+    <string name="bg_adjust_position_bottom">नीचे</string>
+    <string name="bg_adjust_position_left">बाएँ</string>
+    <string name="bg_adjust_position_right">दाएँ</string>
+    <string name="bg_adjust_zoom">ज़ूम</string>
+    <string name="bg_adjust_unlock_crop_editor">एडवांस क्रॉप एडिटर अनलॉक करें</string>
+    <string name="bg_adjust_darken">गहरा करें</string>
+    <string name="bg_adjust_use_background">यह बैकग्राउंड इस्तेमाल करें</string>
+</resources>

@@ -6,6 +6,8 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.core.content.FileProvider
+import com.focusgrowing.app.R
+import com.focusgrowing.app.core.locale.StringProvider
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -22,6 +24,7 @@ import javax.inject.Singleton
 @Singleton
 class ImageStorage @Inject constructor(
     @ApplicationContext private val context: Context,
+    private val strings: StringProvider,
 ) {
     private val resolver: ContentResolver get() = context.contentResolver
     private val folder: File get() = File(context.filesDir, FOLDER).apply { mkdirs() }
@@ -53,7 +56,7 @@ class ImageStorage @Inject constructor(
             resolver.query(uri, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)?.use { c ->
                 if (c.moveToFirst()) c.getString(0) else null
             }
-        }.getOrNull()?.substringBeforeLast('.')?.take(40) ?: "My photo"
+        }.getOrNull()?.substringBeforeLast('.')?.take(40) ?: strings.get(R.string.bg_default_name_photo)
     }
 
     /** Releases our access / deletes our private copy when a background is removed. */

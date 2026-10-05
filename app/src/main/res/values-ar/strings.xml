@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_timer_name">مؤقت التركيز النشط</string>
+    <string name="channel_timer_desc">يعرض جلسة التركيز الجارية.</string>
+    <string name="channel_events_name">تحديثات الجلسات</string>
+    <string name="channel_events_desc">اكتمال جلسة التركيز، وانتهاء الاستراحة، وارتقاء مستوى العالم.</string>
+
+    <string name="ad_badge">إعلان</string>
+    <string name="common_continue">متابعة</string>
+    <string name="common_cancel">إلغاء</string>
+    <string name="common_save">حفظ</string>
+    <string name="common_delete">حذف</string>
+    <string name="common_edit">تعديل</string>
+    <string name="common_back">رجوع</string>
+    <string name="common_close">إغلاق</string>
+    <string name="common_done">تم</string>
+    <string name="common_premium">بريميوم</string>
+    <string name="common_locked">مقفل</string>
+    <string name="common_unlock_premium">افتح بريميوم</string>
+    <string name="common_minutes_short">%1$d د</string>
+    <string name="a11y_percent">%1$d بالمئة</string>
+
+    <string name="language_title">اللغة</string>
+    <string name="language_system_default">لغة النظام</string>
+    <string name="language_system_default_with_name">لغة النظام (%1$s)</string>
+
+    <string name="format_duration_hours_minutes">%1$d س %2$d د</string>
+    <string name="format_duration_hours">%1$d س</string>
+    <string name="format_duration_minutes">%1$d د</string>
+    <string name="format_yesterday">أمس</string>
+    <plurals name="format_days_ago">
+        <item quantity="zero">اليوم</item>
+        <item quantity="one">قبل يوم واحد</item>
+        <item quantity="two">قبل يومين</item>
+        <item quantity="few">قبل %1$d أيام</item>
+        <item quantity="many">قبل %1$d يومًا</item>
+        <item quantity="other">قبل %1$d يوم</item>
+    </plurals>
+    <string name="format_percent">%1$d%%</string>
+    <string name="format_quoted">«%1$s»</string>
+
+    <string name="greeting_morning">صباح الخير</string>
+    <string name="greeting_afternoon">طاب يومك</string>
+    <string name="greeting_evening">مساء الخير</string>
+    <string name="greeting_hello">مرحبًا</string>
+
+    <string name="priority_low">منخفضة</string>
+    <string name="priority_medium">متوسطة</string>
+    <string name="priority_high">عالية</string>
+
+    <string name="category_general">عام</string>
+    <string name="category_development">تطوير</string>
+    <string name="category_design">تصميم</string>
+    <string name="category_study">دراسة</string>
+    <string name="category_reading">قراءة</string>
+    <string name="category_work">عمل</string>
+    <string name="category_health">صحة</string>
+    <string name="category_personal">شخصي</string>
+
+    <string name="world_item_sprout">برعم</string>
+    <string name="world_item_grass">عشب</string>
+    <string name="world_item_flowers">أزهار</string>
+    <string name="world_item_bush">شجيرات</string>
+    <string name="world_item_pine">أشجار صنوبر</string>
+    <string name="world_item_rocks">صخور</string>
+    <string name="world_item_house">منزل</string>
+    <string name="world_item_fence">سياج</string>
+    <string name="world_item_garden">حديقة</string>
+    <string name="world_item_lake">بحيرة</string>
+    <string name="world_item_oak">أشجار بلوط</string>
+    <string name="world_item_waterfall">شلال</string>
+    <string name="world_item_cabin">كوخ ريفي</string>
+    <string name="world_item_windmill">طاحونة هواء</string>
+    <string name="world_item_bridge">جسر</string>
+    <string name="world_item_lighthouse">منارة</string>
+
+    <string name="scene_mountain_lake">بحيرة جبلية</string>
+    <string name="scene_forest_morning">صباح الغابة</string>
+    <string name="scene_sunset_hills">تلال الغروب</string>
+    <string name="scene_city_dusk">غسق المدينة</string>
+    <string name="scene_city_night">ليل المدينة</string>
+    <string name="scene_abstract_blobs">أشكال ناعمة</string>
+    <string name="scene_aurora">الشفق القطبي</string>
+    <string name="scene_night_sky">سماء الليل</string>
+    <string name="scene_minimal_waves">أمواج هادئة</string>
+    <string name="scene_deep_dark">ظلام عميق</string>
+
+    <string name="onboarding_tagline">المهمة\nالعالم\nالذكاء</string>
+    <string name="onboarding_subtitle">ركّز على مهامك.\nونمِّ عالمك.</string>
+    <string name="onboarding_get_started">ابدأ الآن</string>
+    <string name="onboarding_next">التالي</string>
+    <string name="onboarding_skip">تخطي</string>
+    <string name="onboarding_step_number">%1$d.</string>
+    <string name="onboarding_mission_title">المهمة</string>
+    <string name="onboarding_mission_text">أنشئ مهامك، وحدّد أهدافك، وابدأ العمل.</string>
+    <string name="onboarding_world_title">العالم</string>
+    <string name="onboarding_world_text">أكمل جلسات التركيز ونمِّ عالمك الخاص.</string>
+    <string name="onboarding_intelligence_title">الذكاء</string>
+    <string name="onboarding_intelligence_text">اكتشف عاداتك، واحصل على رؤى، وكن نسخة أفضل من نفسك.</string>
+    <string name="onboarding_change_later">يمكنك تغيير هذا في أي وقت من الإعدادات.</string>
+    <string name="onboarding_focus_length_title">كم تركّز في العادة؟</string>
+    <string name="onboarding_minutes_option">%1$d دقيقة</string>
+    <string name="onboarding_custom">مخصص</string>
+    <string name="onboarding_custom_minutes_label">الدقائق (من 1 إلى 180)</string>
+    <string name="onboarding_first_goal_title">اختر هدفك الأول.</string>
+    <string name="onboarding_first_goal_text">سيصبح مهمتك الأولى، وكل جلسة تركيز تقرّبك من إنجازها.</string>
+    <string name="onboarding_name_label">اسمك (اختياري)</string>
+    <string name="onboarding_goal_example">مثال: إنهاء العرض التقديمي</string>
+    <string name="onboarding_idea_read">قراءة كتاب</string>
+    <string name="onboarding_idea_learn">تعلّم لغة</string>
+    <string name="onboarding_idea_exercise">ممارسة الرياضة</string>
+    <string name="onboarding_start_growing">ابدأ النمو</string>
+    <string name="onboarding_skip_for_now">تخطَّ الآن</string>
+
+    <string name="inbox_focus_completed_title">اكتملت جلسة التركيز</string>
+    <string name="inbox_focus_completed_message">أكملت جلسة تركيز مدتها %1$d دقيقة. أحسنت!</string>
+    <string name="inbox_xp_detail">+%1$d XP</string>
+    <string name="inbox_xp_detail_with_mission">+%1$d XP · %2$s</string>
+    <string name="inbox_mission_completed_title">اكتملت المهمة!</string>
+    <string name="inbox_bonus_xp_detail">حصلت على +%1$d XP إضافية</string>
+    <string name="inbox_streak_title">السلسلة مستمرة!</string>
+    <string name="inbox_streak_message">أنت الآن في اليوم %1$d من سلسلتك!</string>
+    <string name="inbox_streak_detail">واصل التقدّم!</string>
+    <string name="inbox_mission_created_title">مهمة جديدة</string>
+    <plurals name="inbox_estimated_pomodoros">
+        <item quantity="zero">التقدير: %1$d بومودورو</item>
+        <item quantity="one">التقدير: %1$d بومودورو</item>
+        <item quantity="two">التقدير: %1$d بومودورو</item>
+        <item quantity="few">التقدير: %1$d بومودورو</item>
+        <item quantity="many">التقدير: %1$d بومودورو</item>
+        <item quantity="other">التقدير: %1$d بومودورو</item>
+    </plurals>
+    <string name="inbox_level_up_title">ارتقى مستوى العالم!</string>
+    <string name="inbox_level_up_message">وصل عالمك إلى المستوى %1$d!</string>
+    <string name="inbox_level_up_unlocked">عناصر جديدة متاحة: %1$s</string>
+    <string name="bg_error_image_add_failed">تعذّرت إضافة هذه الصورة. جرّب صورة أخرى.</string>
+
+    <string name="insight_getting_started_title">رؤاك في طور النمو</string>
+    <plurals name="insight_getting_started_message">
+        <item quantity="zero">أنت على وشك الحصول على رؤاك الشخصية.</item>
+        <item quantity="one">أكمل جلسة تركيز واحدة أخرى لتحصل على رؤى شخصية.</item>
+        <item quantity="two">أكمل جلستَي تركيز أخريين لتحصل على رؤى شخصية.</item>
+        <item quantity="few">أكمل %1$d جلسات تركيز أخرى لتحصل على رؤى شخصية.</item>
+        <item quantity="many">أكمل %1$d جلسة تركيز أخرى لتحصل على رؤى شخصية.</item>
+        <item quantity="other">أكمل %1$d جلسة تركيز أخرى لتحصل على رؤى شخصية.</item>
+    </plurals>
+    <string name="insight_time_of_day_title_morning">تتألق في الصباح</string>
+    <string name="insight_time_of_day_title_afternoon">تتألق بعد الظهر</string>
+    <string name="insight_time_of_day_title_evening">تتألق في المساء</string>
+    <string name="insight_time_of_day_title_night">تتألق في الليل</string>
+    <string name="insight_time_of_day_message_morning">%1$d%% من وقت تركيزك يكون في الصباح. خصّص هذا الوقت لأصعب مهامك.</string>
+    <string name="insight_time_of_day_message_afternoon">%1$d%% من وقت تركيزك يكون بعد الظهر. خصّص هذا الوقت لأصعب مهامك.</string>
+    <string name="insight_time_of_day_message_evening">%1$d%% من وقت تركيزك يكون في المساء. خصّص هذا الوقت لأصعب مهامك.</string>
+    <string name="insight_time_of_day_message_night">%1$d%% من وقت تركيزك يكون في الليل. خصّص هذا الوقت لأصعب مهامك.</string>
+    <string name="insight_streak_title">سلسلة الأيام: %1$d</string>
+    <string name="insight_streak_message">عدد أيام تركيزك المتتالية: %1$d. الاستمرارية أهم من الشدّة، فلا تقطع السلسلة.</string>
+    <string name="insight_daily_steps_title">خطوات يومية صغيرة</string>
+    <plurals name="insight_daily_steps_message">
+        <item quantity="zero">لم تركّز في أي يوم مؤخرًا. جلسة قصيرة كل يوم تبني عادة أقوى.</item>
+        <item quantity="one">ركّزت في يوم واحد مؤخرًا. جلسة قصيرة كل يوم تبني عادة أقوى.</item>
+        <item quantity="two">ركّزت في يومين مختلفين مؤخرًا. جلسة قصيرة كل يوم تبني عادة أقوى.</item>
+        <item quantity="few">ركّزت في %1$d أيام مختلفة مؤخرًا. جلسة قصيرة كل يوم تبني عادة أقوى.</item>
+        <item quantity="many">ركّزت في %1$d يومًا مختلفًا مؤخرًا. جلسة قصيرة كل يوم تبني عادة أقوى.</item>
+        <item quantity="other">ركّزت في %1$d يوم مختلف مؤخرًا. جلسة قصيرة كل يوم تبني عادة أقوى.</item>
+    </plurals>
+    <string name="insight_short_sessions_title">الجلسات القصيرة تناسبك</string>
+    <string name="insight_short_sessions_message">متوسط مدة جلساتك %1$d دقيقة. يبدو أن جلسات التركيز القصيرة تناسبك جيدًا.</string>
+    <string name="insight_long_interrupted_title">الجلسات الطويلة تنقطع</string>
+    <string name="insight_long_interrupted_message">نحو نصف جلساتك التي تزيد على 40 دقيقة تنتهي مبكرًا. جرّب جلسات من 25 إلى 30 دقيقة.</string>
+    <string name="insight_average_session_title">متوسط الجلسة: %1$d د</string>
+    <string name="insight_average_session_message">مدة تركيزك المعتادة %1$d دقيقة. ضبط المؤقت عليها يقلّل التوقف المبكر.</string>
+    <string name="insight_estimation_over_title">المهام تستغرق أكثر من المخطط</string>
+    <string name="insight_estimation_over_message">مهامك الأخيرة احتاجت إلى بومودورو أكثر من التقدير بنحو %1$d%%. أضف بومودورو احتياطيًا عند التخطيط.</string>
+    <string name="insight_estimation_under_title">تنجز قبل الموعد المخطط</string>
+    <string name="insight_estimation_under_message">تكمل مهامك ببومودورو أقل من التقدير بنحو %1$d%%. يمكنك التخطيط بطموح أكبر.</string>
+    <string name="insight_early_stops_title">توقف مبكر متكرر</string>
+    <string name="insight_early_stops_message">%1$d%% من جلساتك تنتهي مبكرًا. أسكت الإشعارات وأبعد هاتفك عن متناول يدك أثناء التركيز.</string>
+    <string name="insight_pauses_title">توقفات مؤقتة كثيرة</string>
+    <string name="insight_pauses_message">نصف جلساتك يتخللها توقف مؤقت. جهّز الماء وملاحظاتك قبل أن تبدأ.</string>
+    <string name="insight_best_day_title">يوم %1$s هو يومك الذهبي</string>
+    <string name="insight_best_day_message">يوم %1$s هو أكثر يوم تركّز فيه. خصّصه لمهامك المهمة.</string>
+
+    <string name="premium_title_member">عضوية بريميوم</string>
+    <string name="premium_title_upsell">احصل على بريميوم</string>
+    <string name="premium_subtitle_lifetime">لك إلى الأبد.</string>
+    <string name="premium_subtitle_subscribed">أدِر اشتراكك.</string>
+    <string name="premium_subtitle_upsell">أطلق كامل إمكانات رحلتك.</string>
+
+    <string name="premium_benefit_backgrounds">خلفيات مخصصة بلا حدود</string>
+    <string name="premium_benefit_editor">محرر قص متقدم، وتمويه، ونصك التحفيزي الخاص</string>
+    <string name="premium_benefit_statistics">إحصائيات متقدمة: أفضل الساعات، والاتجاهات، وشهريًا وسنويًا</string>
+    <string name="premium_benefit_insights">رؤى مخصصة لك حول تركيزك</string>
+    <string name="premium_benefit_world">عناصر أكثر للعالم ولوحات ألوان مميزة</string>
+    <string name="premium_benefit_no_ads">بلا إعلانات</string>
+
+    <string name="premium_unavailable_title">المشتريات غير متاحة</string>
+    <string name="premium_try_again">إعادة المحاولة</string>
+
+    <string name="premium_free_note">كل ما تحتاجه للتركيز يبقى مجانيًا: المؤقت، والمهام، وعالمك، والإحصائيات الأساسية، وصورك الخاصة.</string>
+    <string name="premium_privacy_policy">سياسة الخصوصية</string>
+
+    <string name="premium_period_monthly">شهري</string>
+    <string name="premium_period_yearly">سنوي</string>
+    <string name="premium_period_lifetime">مدى الحياة</string>
+
+    <string name="premium_save_percent">وفّر %1$d%%</string>
+    <string name="premium_pay_once">ادفع مرة واحدة</string>
+    <string name="premium_plan_lifetime_desc">دفعة واحدة. بريميوم إلى الأبد، بلا اشتراك.</string>
+    <string name="premium_one_time">لمرة واحدة</string>
+    <string name="premium_approx_per_month">≈ %1$s شهريًا</string>
+
+    <string name="premium_price_per_month">%1$s شهريًا</string>
+    <string name="premium_price_per_year">%1$s سنويًا</string>
+    <string name="premium_price_one_time">%1$s لمرة واحدة</string>
+    <string name="premium_price_per_period">%1$s لكل فترة</string>
+
+    <plurals name="premium_plan_trial_then_price_days">
+        <item quantity="zero">%1$d يوم مجانًا، ثم %2$s</item>
+        <item quantity="one">يوم واحد مجانًا، ثم %2$s</item>
+        <item quantity="two">يومان مجانًا، ثم %2$s</item>
+        <item quantity="few">%1$d أيام مجانًا، ثم %2$s</item>
+        <item quantity="many">%1$d يومًا مجانًا، ثم %2$s</item>
+        <item quantity="other">%1$d يوم مجانًا، ثم %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_months">
+        <item quantity="zero">%1$d شهر مجانًا، ثم %2$s</item>
+        <item quantity="one">شهر واحد مجانًا، ثم %2$s</item>
+        <item quantity="two">شهران مجانًا، ثم %2$s</item>
+        <item quantity="few">%1$d أشهر مجانًا، ثم %2$s</item>
+        <item quantity="many">%1$d شهرًا مجانًا، ثم %2$s</item>
+        <item quantity="other">%1$d شهر مجانًا، ثم %2$s</item>
+    </plurals>
+    <plurals name="premium_plan_trial_then_price_years">
+        <item quantity="zero">%1$d سنة مجانًا، ثم %2$s</item>
+        <item quantity="one">سنة واحدة مجانًا، ثم %2$s</item>
+        <item quantity="two">سنتان مجانًا، ثم %2$s</item>
+        <item quantity="few">%1$d سنوات مجانًا، ثم %2$s</item>
+        <item quantity="many">%1$d سنة مجانًا، ثم %2$s</item>
+        <item quantity="other">%1$d سنة مجانًا، ثم %2$s</item>
+    </plurals>
+
+    <string name="premium_buy_lifetime">اشترِ بريميوم مدى الحياة</string>
+    <string name="premium_upgrade">الترقية إلى بريميوم</string>
+    <plurals name="premium_start_trial_days">
+        <item quantity="zero">ابدأ تجربة مجانية لمدة %1$d يوم</item>
+        <item quantity="one">ابدأ تجربة مجانية ليوم واحد</item>
+        <item quantity="two">ابدأ تجربة مجانية ليومين</item>
+        <item quantity="few">ابدأ تجربة مجانية لمدة %1$d أيام</item>
+        <item quantity="many">ابدأ تجربة مجانية لمدة %1$d يومًا</item>
+        <item quantity="other">ابدأ تجربة مجانية لمدة %1$d يوم</item>
+    </plurals>
+    <plurals name="premium_start_trial_months">
+        <item quantity="zero">ابدأ تجربة مجانية لمدة %1$d شهر</item>
+        <item quantity="one">ابدأ تجربة مجانية لشهر واحد</item>
+        <item quantity="two">ابدأ تجربة مجانية لشهرين</item>
+        <item quantity="few">ابدأ تجربة مجانية لمدة %1$d أشهر</item>
+        <item quantity="many">ابدأ تجربة مجانية لمدة %1$d شهرًا</item>
+        <item quantity="other">ابدأ تجربة مجانية لمدة %1$d شهر</item>
+    </plurals>
+    <plurals name="premium_start_trial_years">
+        <item quantity="zero">ابدأ تجربة مجانية لمدة %1$d سنة</item>
+        <item quantity="one">ابدأ تجربة مجانية لسنة واحدة</item>
+        <item quantity="two">ابدأ تجربة مجانية لسنتين</item>
+        <item quantity="few">ابدأ تجربة مجانية لمدة %1$d سنوات</item>
+        <item quantity="many">ابدأ تجربة مجانية لمدة %1$d سنة</item>
+        <item quantity="other">ابدأ تجربة مجانية لمدة %1$d سنة</item>
+    </plurals>
+    <string name="premium_restore_purchase">استعادة الشراء</string>
+    <string name="premium_no_plans">لا توجد خطط متاحة حاليًا.</string>
+
+    <string name="premium_terms_lifetime">دفعة واحدة بقيمة %1$s. بلا اشتراك وبلا تجديد. عملية الشراء مرتبطة بحسابك على Google ويمكن استعادتها على جهاز جديد.</string>
+    <string name="premium_terms_subscription">السعر: %1$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</string>
+    <plurals name="premium_terms_trial_days">
+        <item quantity="zero">مجانًا لمدة %1$d يوم، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="one">مجانًا لمدة يوم واحد، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="two">مجانًا لمدة يومين، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="few">مجانًا لمدة %1$d أيام، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="many">مجانًا لمدة %1$d يومًا، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="other">مجانًا لمدة %1$d يوم، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+    </plurals>
+    <plurals name="premium_terms_trial_months">
+        <item quantity="zero">مجانًا لمدة %1$d شهر، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="one">مجانًا لمدة شهر واحد، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="two">مجانًا لمدة شهرين، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="few">مجانًا لمدة %1$d أشهر، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="many">مجانًا لمدة %1$d شهرًا، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="other">مجانًا لمدة %1$d شهر، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+    </plurals>
+
+    <plurals name="premium_terms_trial_years">
+        <item quantity="zero">مجانًا لمدة %1$d سنة، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="one">مجانًا لمدة سنة واحدة، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="two">مجانًا لمدة سنتين، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="few">مجانًا لمدة %1$d سنوات، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="many">مجانًا لمدة %1$d سنة، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+        <item quantity="other">مجانًا لمدة %1$d سنة، ثم %2$s. يتجدد الاشتراك تلقائيًا إلى أن تلغيه. ألغِ قبل انتهاء الفترة التجريبية ولن تُحصَّل منك أي رسوم. يمكنك الإلغاء في أي وقت من Google Play ← الدفعات والاشتراكات.</item>
+    </plurals>
+
+    <string name="premium_welcome">مرحبًا بك في بريميوم! 🎉</string>
+    <string name="premium_active">بريميوم مفعّل</string>
+    <string name="premium_plan_monthly">الخطة الشهرية</string>
+    <string name="premium_plan_yearly">الخطة السنوية</string>
+    <string name="premium_plan_other">خطة بريميوم</string>
+    <string name="premium_plan_with_price">%1$s · %2$s</string>
+    <string name="premium_status_switches_monthly">ستنتقل إلى الخطة الشهرية عند انتهاء الفترة الحالية.</string>
+    <string name="premium_status_switches_yearly">ستنتقل إلى الخطة السنوية عند انتهاء الفترة الحالية.</string>
+    <string name="premium_status_switches_other">ستنتقل إلى خطة بريميوم عند انتهاء الفترة الحالية.</string>
+    <string name="premium_status_checking">جارٍ التحقق من اشتراكك لدى Google Play…</string>
+    <string name="premium_status_cancelled">تم الإلغاء. يبقى بريميوم مفعّلًا حتى نهاية الفترة التي دفعت مقابلها.</string>
+    <string name="premium_status_renews">يتجدد تلقائيًا. يمكنك الإلغاء في أي وقت من Google Play.</string>
+
+    <string name="premium_switch_to_monthly">التبديل إلى الشهري</string>
+    <string name="premium_switch_to_yearly">التبديل إلى السنوي</string>
+    <string name="premium_switch_to_other">التبديل إلى بريميوم</string>
+    <string name="premium_switch_immediate_desc">تبدأ اليوم. تدفع %1$s الآن، ويُضاف الجزء غير المستخدم من خطتك الحالية كأيام إضافية.</string>
+    <string name="premium_switch_deferred_desc">تبدأ عند انتهاء فترتك الحالية. لن تُحصَّل أي رسوم اليوم، ويبقى بريميوم معك طوال الوقت.</string>
+
+    <string name="premium_go_lifetime">انتقل إلى مدى الحياة</string>
+    <string name="premium_go_lifetime_desc">احتفظ ببريميوم إلى الأبد بدفعة واحدة. اشتراكك لا يُلغى تلقائيًا: ألغِه من Google Play بعد ذلك.</string>
+    <plurals name="premium_go_lifetime_desc_break_even">
+        <item quantity="zero">احتفظ ببريميوم إلى الأبد بدفعة واحدة. تكلفته تعادل تقريبًا %1$d سنة من الخطة السنوية. اشتراكك لا يُلغى تلقائيًا: ألغِه من Google Play بعد ذلك.</item>
+        <item quantity="one">احتفظ ببريميوم إلى الأبد بدفعة واحدة. تكلفته تعادل تقريبًا سنة واحدة من الخطة السنوية. اشتراكك لا يُلغى تلقائيًا: ألغِه من Google Play بعد ذلك.</item>
+        <item quantity="two">احتفظ ببريميوم إلى الأبد بدفعة واحدة. تكلفته تعادل تقريبًا سنتين من الخطة السنوية. اشتراكك لا يُلغى تلقائيًا: ألغِه من Google Play بعد ذلك.</item>
+        <item quantity="few">احتفظ ببريميوم إلى الأبد بدفعة واحدة. تكلفته تعادل تقريبًا %1$d سنوات من الخطة السنوية. اشتراكك لا يُلغى تلقائيًا: ألغِه من Google Play بعد ذلك.</item>
+        <item quantity="many">احتفظ ببريميوم إلى الأبد بدفعة واحدة. تكلفته تعادل تقريبًا %1$d سنة من الخطة السنوية. اشتراكك لا يُلغى تلقائيًا: ألغِه من Google Play بعد ذلك.</item>
+        <item quantity="other">احتفظ ببريميوم إلى الأبد بدفعة واحدة. تكلفته تعادل تقريبًا %1$d سنة من الخطة السنوية. اشتراكك لا يُلغى تلقائيًا: ألغِه من Google Play بعد ذلك.</item>
+    </plurals>
+
+    <string name="premium_resubscribe_google_play">أعد الاشتراك من Google Play</string>
+    <string name="premium_manage_google_play">الإدارة من Google Play</string>
+    <string name="premium_manage_hint">يمكنك الإلغاء أو إعادة الاشتراك أو تغيير طريقة الدفع من Google Play. تظهر التغييرات هنا عند عودتك.</string>
+
+    <string name="premium_forever_celebration">بريميوم لك إلى الأبد. 🎉</string>
+    <string name="premium_lifetime_title">بريميوم مدى الحياة</string>
+    <string name="premium_lifetime_thanks">دفعت مرة واحدة. بلا تجديد ولا مدفوعات أخرى. شكرًا لدعمك Focus Growing!</string>
+    <string name="premium_lifetime_sub_active_monthly">اشتراكك الشهري ما زال نشطًا</string>
+    <string name="premium_lifetime_sub_active_yearly">اشتراكك السنوي ما زال نشطًا</string>
+    <string name="premium_lifetime_sub_active_other">اشتراكك في بريميوم ما زال نشطًا</string>
+    <string name="premium_lifetime_sub_cancel_hint">بريميوم مدى الحياة لا يلغيه تلقائيًا. ألغِه من Google Play حتى لا تُحصَّل منك رسوم مرة أخرى.</string>
+    <string name="premium_cancel_subscription_google_play">إلغاء الاشتراك من Google Play</string>
+    <string name="premium_lifetime_sub_cancelled_monthly">اشتراكك الشهري القديم أُلغي ولن يتجدد.</string>
+    <string name="premium_lifetime_sub_cancelled_yearly">اشتراكك السنوي القديم أُلغي ولن يتجدد.</string>
+    <string name="premium_lifetime_sub_cancelled_other">اشتراكك القديم في بريميوم أُلغي ولن يتجدد.</string>
+
+    <string name="premium_restored">تمت استعادة بريميوم.</string>
+    <string name="premium_plan_changed">تم تغيير خطتك.</string>
+    <string name="premium_change_scheduled">تم. تبدأ خطتك الجديدة عند انتهاء الفترة الحالية.</string>
+    <string name="premium_payment_pending">دفعتك قيد المعالجة. سيُفتح بريميوم فور تأكيد Google Play لها.</string>
+
+    <string name="premium_test_mode">وضع الاختبار</string>
+    <string name="premium_test_resubscribe">اختبار: إعادة الاشتراك</string>
+    <string name="premium_test_cancel">اختبار: إلغاء</string>
+    <string name="premium_test_reset">اختبار: إعادة ضبط</string>
+
+    <string name="billing_not_ready">خدمة Google Play غير جاهزة بعد. حاول مرة أخرى بعد لحظات.</string>
+    <string name="billing_already_own_lifetime">أنت تملك بريميوم مدى الحياة بالفعل.</string>
+    <string name="billing_already_have_plan">أنت مشترك في هذه الخطة بالفعل.</string>
+    <string name="billing_subscription_unreadable">تعذّرت قراءة اشتراكك الحالي. حاول مرة أخرى بعد لحظات.</string>
+    <string name="billing_restore_none">لم يُعثر على اشتراك بريميوم نشط لحساب Google هذا.</string>
+    <string name="billing_restore_none_test">لم يُعثر على اشتراك بريميوم نشط (وضع الاختبار).</string>
+    <string name="billing_verify_failed">تعذّر التحقق من عملية الشراء. إذا خُصم المبلغ منك، فانقر على «استعادة الشراء».</string>
+    <string name="billing_not_available_in_country">بريميوم غير متاح بعد في بلدك أو على حساب Google Play هذا.</string>
+    <string name="billing_error_unavailable_on_device">مشتريات Google Play غير متاحة على هذا الجهاز. تأكد من تثبيت متجر Play ومن تسجيل دخولك.</string>
+    <string name="billing_error_unreachable">تعذّر الاتصال بـ Google Play. تحقق من اتصالك وحاول مرة أخرى.</string>
+    <string name="billing_error_plan_unavailable">هذه الخطة غير متاحة حاليًا.</string>
+    <string name="billing_error_update_play_store">يُرجى تحديث تطبيق متجر Google Play ثم المحاولة مرة أخرى.</string>
+    <string name="billing_error_not_set_up">المشتريات غير مهيأة بشكل صحيح بعد. حاول مرة أخرى لاحقًا.</string>
+    <string name="billing_error_generic">حدث خطأ في Google Play. حاول مرة أخرى.</string>
+
+    <string name="settings_title">الإعدادات</string>
+
+    <string name="settings_group_appearance">المظهر</string>
+    <string name="settings_group_timer">المؤقت</string>
+    <string name="settings_group_focus_screen">شاشة التركيز</string>
+    <string name="settings_group_notifications">الإشعارات</string>
+    <string name="settings_group_sounds">الأصوات والاهتزاز</string>
+    <string name="settings_group_privacy">الخصوصية</string>
+    <string name="settings_group_about">حول التطبيق</string>
+
+    <string name="settings_theme_title">السمة</string>
+    <string name="settings_theme_system">النظام</string>
+    <string name="settings_theme_light">فاتح</string>
+    <string name="settings_theme_dark">داكن</string>
+
+    <string name="settings_color_palette">لوحة الألوان</string>
+    <string name="settings_palette_premium_a11y">%1$s، بريميوم</string>
+    <string name="settings_palette_trial_under_hour">لوحة %1$s متاحة لك لأقل من ساعة.</string>
+    <plurals name="settings_palette_trial_hours_left">
+        <item quantity="zero">لوحة %1$s متاحة لك لأقل من ساعة.</item>
+        <item quantity="one">لوحة %1$s متاحة لك لنحو ساعة واحدة أخرى.</item>
+        <item quantity="two">لوحة %1$s متاحة لك لنحو ساعتين أخريين.</item>
+        <item quantity="few">لوحة %1$s متاحة لك لنحو %2$d ساعات أخرى.</item>
+        <item quantity="many">لوحة %1$s متاحة لك لنحو %2$d ساعة أخرى.</item>
+        <item quantity="other">لوحة %1$s متاحة لك لنحو %2$d ساعة أخرى.</item>
+    </plurals>
+
+    <string name="settings_dynamic_colors_title">ألوان ديناميكية</string>
+    <string name="settings_dynamic_colors_subtitle">استخدم ألوان خلفية هاتفك</string>
+    <string name="settings_text_size_title">حجم النص</string>
+    <string name="settings_text_size_small">صغير</string>
+    <string name="settings_text_size_medium">متوسط</string>
+    <string name="settings_text_size_large">كبير</string>
+    <string name="settings_reduce_animations">تقليل الحركات</string>
+
+    <string name="settings_focus_length">التركيز</string>
+    <string name="settings_focus_custom">مخصص</string>
+    <string name="settings_short_break">استراحة قصيرة</string>
+    <string name="settings_long_break">استراحة طويلة</string>
+    <string name="settings_long_break_every">استراحة طويلة كل</string>
+    <plurals name="settings_sessions_count">
+        <item quantity="zero">%1$d جلسة</item>
+        <item quantity="one">جلسة واحدة</item>
+        <item quantity="two">جلستين</item>
+        <item quantity="few">%1$d جلسات</item>
+        <item quantity="many">%1$d جلسة</item>
+        <item quantity="other">%1$d جلسة</item>
+    </plurals>
+    <string name="settings_stepper_decrease">تقليل: %1$s</string>
+    <string name="settings_stepper_increase">زيادة: %1$s</string>
+    <string name="settings_custom_focus_title">مدة تركيز مخصصة</string>
+    <string name="settings_custom_focus_minutes_label">الدقائق (من %1$d إلى %2$d)</string>
+
+    <string name="settings_background">الخلفية</string>
+    <string name="settings_show_clock">إظهار الساعة</string>
+    <string name="settings_motivational_text">النص التحفيزي</string>
+    <string name="settings_background_overlay">تعتيم الخلفية</string>
+
+    <string name="settings_session_alerts_title">تنبيهات الجلسات</string>
+    <string name="settings_session_alerts_subtitle">عند انتهاء جلسة تركيز أو استراحة</string>
+    <string name="settings_timer_in_notification_bar">المؤقت في شريط الإشعارات</string>
+    <string name="settings_exact_alarms_title">السماح بالمنبهات الدقيقة</string>
+    <string name="settings_exact_alarms_subtitle">تنتهي الجلسات في وقتها تمامًا، حتى والهاتف في وضع السكون</string>
+    <string name="settings_system_notification_settings">إعدادات إشعارات النظام</string>
+
+    <string name="settings_alert_sound_vibration">صوت التنبيه والاهتزاز</string>
+    <string name="settings_haptic_feedback">الاستجابة اللمسية</string>
+
+    <string name="settings_ad_privacy_title">خيارات خصوصية الإعلانات</string>
+    <string name="settings_ad_privacy_subtitle">غيّر موافقتك على الإعلانات المخصصة</string>
+
+    <string name="settings_version">الإصدار</string>
+
+    <string name="settings_palette_trial_sheet_title">جرّب لوحة %1$s لمدة 24 ساعة</string>
+    <string name="settings_palette_trial_sheet_text">شاهد فيديو قصيرًا واحدًا واستخدم هذه اللوحة حتى الغد. مع بريميوم تحتفظ بكل اللوحات ولا ترى أي إعلانات.</string>
+    <string name="settings_watch_ad">شاهد إعلانًا قصيرًا</string>
+    <string name="settings_see_premium">تعرّف على بريميوم</string>
+    <string name="settings_not_now">ليس الآن</string>
+    <string name="settings_ad_palette_unlocked">لوحة %1$s لك خلال الـ 24 ساعة القادمة.</string>
+    <string name="settings_ad_watch_to_end">شاهد الإعلان حتى النهاية لفتح اللوحة.</string>
+    <string name="settings_ad_unavailable">لا يوجد إعلان متاح حاليًا. حاول مرة أخرى لاحقًا.</string>
+
+    <string name="profile_title">الملف الشخصي</string>
+    <string name="profile_add_name">أضف اسمك</string>
+    <string name="profile_edit_name">تعديل الاسم</string>
+    <string name="profile_name_dialog_title">اسمك</string>
+    <string name="profile_rank_seedling">شتلة • في البداية</string>
+    <string name="profile_rank_explorer">مستكشف • مركّز • ينمو</string>
+    <string name="profile_rank_builder">بنّاء • مركّز • ينمو</string>
+    <string name="profile_rank_master">خبير • مركّز • مزدهر</string>
+    <string name="profile_world_level">مستوى العالم</string>
+    <string name="profile_xp_progress">%1$d / %2$d XP</string>
+    <string name="profile_premium_active">مفعّل — شكرًا لك!</string>
+    <string name="profile_premium_upgrade">قم بالترقية لمزايا أكثر</string>
+    <plurals name="profile_notifications_new">
+        <item quantity="zero">لا جديد</item>
+        <item quantity="one">إشعار جديد واحد</item>
+        <item quantity="two">إشعاران جديدان</item>
+        <item quantity="few">%1$d إشعارات جديدة</item>
+        <item quantity="many">%1$d إشعارًا جديدًا</item>
+        <item quantity="other">%1$d إشعار جديد</item>
+    </plurals>
+    <string name="profile_notifications_subtitle">نشاطك الأخير</string>
+    <string name="profile_app_settings">إعدادات التطبيق</string>
+    <string name="profile_app_settings_subtitle">السمة، المؤقت، الإشعارات، الصوت</string>
+    <string name="profile_background_gallery">معرض الخلفيات</string>
+    <string name="profile_background_gallery_subtitle">غيّر خلفية التركيز</string>
+    <string name="profile_help_support">المساعدة والدعم</string>
+    <string name="profile_help_support_subtitle">تواصل معنا</string>
+    <string name="profile_privacy_policy">سياسة الخصوصية</string>
+    <string name="profile_privacy_policy_subtitle">كيف نتعامل مع بياناتك</string>
+    <string name="profile_no_app_found">لا يوجد تطبيق لفتح هذا.</string>
+
+    <string name="notifications_title">الإشعارات</string>
+    <string name="notifications_subtitle">حافظ على تركيزك وابقَ على المسار 🌱</string>
+    <string name="notifications_clear_all">مسح الكل</string>
+    <string name="notifications_filter_all">الكل</string>
+    <string name="notifications_filter_mission">المهام</string>
+    <string name="notifications_filter_focus">التركيز</string>
+    <string name="notifications_filter_world">العالم</string>
+    <string name="notifications_filter_system">النظام</string>
+    <string name="notifications_empty_title">لا توجد إشعارات بعد</string>
+    <string name="notifications_empty_message">أكمل جلسات التركيز والمهام لترى تقدّمك هنا.</string>
+
+    <string name="focus_a11y_change_background">تغيير الخلفية</string>
+    <string name="focus_a11y_options">خيارات شاشة التركيز</string>
+
+    <string name="focus_background_unavailable">صورة الخلفية لم تعد متاحة.</string>
+    <string name="focus_free_focus">تركيز حر</string>
+    <string name="focus_background">الخلفية</string>
+
+    <string name="focus_quote_1">حافظ على تركيزك، أنت قادر!</string>
+    <string name="focus_quote_2">مهمة واحدة في كل مرة.</string>
+    <string name="focus_quote_3">خطوات صغيرة كل يوم.</string>
+    <string name="focus_quote_4">عمل عميق، ذهن هادئ.</string>
+    <string name="focus_quote_5">أنت تنمّي عالمك.</string>
+
+    <string name="focus_label_focus">تركيز</string>
+    <string name="focus_label_short_break">استراحة قصيرة</string>
+    <string name="focus_label_long_break">استراحة طويلة</string>
+    <string name="focus_label_paused">متوقف مؤقتًا</string>
+    <string name="focus_label_well_done">أحسنت</string>
+    <string name="focus_label_break_over">انتهت الاستراحة</string>
+    <string name="focus_a11y_time_remaining">%1$s، المتبقي %2$s</string>
+
+    <string name="focus_a11y_start">بدء التركيز</string>
+    <string name="focus_a11y_pause">إيقاف مؤقت</string>
+    <string name="focus_a11y_resume">استئناف</string>
+    <string name="focus_a11y_stop_session">إيقاف الجلسة</string>
+    <string name="focus_a11y_finish_session">إنهاء الجلسة</string>
+    <string name="focus_a11y_choose_mission">اختيار مهمة</string>
+
+    <string name="focus_start_break">ابدأ الاستراحة · %1$d د</string>
+    <string name="focus_start_long_break">ابدأ استراحة طويلة · %1$d د</string>
+    <string name="focus_skip_break">تخطي الاستراحة</string>
+    <string name="focus_start_next_focus">ابدأ التركيز التالي</string>
+    <string name="focus_done_for_now">يكفي الآن</string>
+
+    <string name="focus_finish_dialog_title">إنهاء الآن؟</string>
+    <string name="focus_finish_dialog_text">ركّزت أقل من نصف هذه الجلسة، لذا لن تُحتسب ضمن مهمتك أو نقاط XP للعالم.</string>
+    <string name="focus_finish_dialog_confirm">إنهاء</string>
+    <string name="focus_stop_dialog_title">إيقاف هذه الجلسة؟</string>
+    <string name="focus_stop_dialog_text">ستتوقف الجلسة بلا مكافآت.</string>
+    <string name="focus_stop_dialog_confirm">إيقاف</string>
+    <string name="focus_keep_going">واصل</string>
+
+    <string name="focus_options_title">شاشة التركيز</string>
+    <string name="focus_option_show_clock">إظهار الساعة</string>
+    <string name="focus_option_motivation">النص التحفيزي</string>
+    <string name="focus_option_mission_title">عنوان المهمة</string>
+    <string name="focus_option_session_dots">نقاط تقدّم الجلسات</string>
+    <string name="focus_option_overlay">التعتيم</string>
+    <string name="focus_option_blur">التمويه</string>
+    <string name="focus_option_custom_motivation_label">نصك التحفيزي الخاص</string>
+    <string name="focus_option_custom_motivation_locked">نص تحفيزي مخصص</string>
+
+    <string name="focus_picker_title">ركّز على</string>
+    <string name="focus_picker_free_focus">تركيز حر (بلا مهمة)</string>
+    <string name="focus_a11y_selected">محدد</string>
+
+    <string name="notif_title_focusing">جارٍ التركيز</string>
+    <string name="notif_title_short_break">استراحة قصيرة</string>
+    <string name="notif_title_long_break">استراحة طويلة</string>
+    <string name="notif_running_text_default">حافظ على تركيزك، أنت قادر!</string>
+    <string name="notif_action_pause">إيقاف مؤقت</string>
+    <string name="notif_action_resume">استئناف</string>
+    <string name="notif_paused_title">متوقف مؤقتًا · المتبقي %1$s</string>
+    <string name="notif_paused_text_default">انقر لمتابعة جلستك</string>
+
+    <string name="notif_focus_completed_title">🎉 اكتملت جلسة التركيز</string>
+    <string name="notif_mission_completed_title">🎉 اكتملت المهمة!</string>
+    <string name="notif_focus_completed_text">أكملت جلسة تركيز مدتها %1$d دقيقة.</string>
+    <string name="notif_focus_completed_text_xp">أكملت جلسة تركيز مدتها %1$d دقيقة. +%2$d XP للعالم</string>
+    <string name="notif_text_with_mission">%1$s · %2$s</string>
+    <string name="notif_big_text_with_mission">المهمة: %1$s\n%2$s</string>
+
+    <string name="notif_break_finished_title">☕ انتهت الاستراحة</string>
+    <string name="notif_break_finished_text">هل أنت مستعد لجلسة تركيز أخرى؟</string>
+
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_missions">المهام</string>
+    <string name="nav_focus">التركيز</string>
+    <string name="nav_stats">الإحصائيات</string>
+    <string name="nav_profile">ملفي</string>
+
+    <string name="home_greeting_with_name">%1$s يا %2$s!</string>
+    <string name="home_greeting_no_name">%1$s!</string>
+    <string name="home_tagline">الخطوات الصغيرة تصنع تغييرات كبيرة.</string>
+    <string name="home_notifications">الإشعارات</string>
+    <string name="home_world_level_label">مستوى العالم</string>
+
+    <string name="home_stat_focus_time">وقت التركيز</string>
+    <string name="home_stat_completed">مكتملة</string>
+    <string name="home_stat_streak">السلسلة</string>
+    <plurals name="home_streak_days">
+        <item quantity="zero">%1$d يوم</item>
+        <item quantity="one">يوم واحد</item>
+        <item quantity="two">يومان</item>
+        <item quantity="few">%1$d أيام</item>
+        <item quantity="many">%1$d يومًا</item>
+        <item quantity="other">%1$d يوم</item>
+    </plurals>
+
+    <string name="home_world_level_number">مستوى العالم %1$d</string>
+    <string name="home_xp_progress">%1$d / %2$d XP</string>
+
+    <string name="home_todays_mission">مهمة اليوم</string>
+    <string name="home_view_all">عرض الكل</string>
+    <plurals name="home_mission_pomodoros">
+        <item quantity="zero">%1$d/%2$d بومودورو</item>
+        <item quantity="one">%1$d/%2$d بومودورو</item>
+        <item quantity="two">%1$d/%2$d بومودورو</item>
+        <item quantity="few">%1$d/%2$d بومودورو</item>
+        <item quantity="many">%1$d/%2$d بومودورو</item>
+        <item quantity="other">%1$d/%2$d بومودورو</item>
+    </plurals>
+    <string name="home_create_first_mission">أنشئ مهمتك الأولى</string>
+    <string name="home_create_first_mission_hint">امنح تركيزك هدفًا.</string>
+
+    <string name="home_focus_return">العودة إلى التركيز</string>
+    <string name="home_focus_resume">استئناف التركيز</string>
+    <string name="home_focus_start">ابدأ التركيز</string>
+    <string name="home_focus_without_mission">ركّز بلا مهمة</string>
+
+    <string name="celebration_focus_title">أحسنت!</string>
+    <string name="celebration_focus_body">أكملت جلسة التركيز.</string>
+    <string name="celebration_remove_ads">أزل الإعلانات مع بريميوم</string>
+
+    <string name="celebration_stat_focus_time">وقت التركيز</string>
+    <string name="celebration_stat_world_xp">نقاط XP للعالم</string>
+    <string name="celebration_stat_progress">التقدّم</string>
+    <plurals name="celebration_stat_pomodoros">
+        <item quantity="zero">بومودورو</item>
+        <item quantity="one">بومودورو</item>
+        <item quantity="two">بومودورو</item>
+        <item quantity="few">بومودورو</item>
+        <item quantity="many">بومودورو</item>
+        <item quantity="other">بومودورو</item>
+    </plurals>
+    <string name="celebration_stat_estimated">التقدير</string>
+    <string name="celebration_stat_priority">الأولوية</string>
+    <string name="celebration_stat_category">الفئة</string>
+
+    <string name="celebration_xp_earned">+%1$d XP</string>
+    <string name="celebration_minutes_earned">+%1$d د</string>
+    <plurals name="celebration_estimated_pomodoros">
+        <item quantity="zero">%1$d بومودورو</item>
+        <item quantity="one">%1$d بومودورو</item>
+        <item quantity="two">%1$d بومودورو</item>
+        <item quantity="few">%1$d بومودورو</item>
+        <item quantity="many">%1$d بومودورو</item>
+        <item quantity="other">%1$d بومودورو</item>
+    </plurals>
+
+    <string name="celebration_mission_completed_title">اكتملت المهمة!</string>
+    <string name="celebration_mission_completed_body">أحسنت! أكملت مهمتك وحصلت على مكافآت.</string>
+    <string name="celebration_view_mission">عرض المهمة</string>
+
+    <string name="celebration_streak_title">السلسلة مستمرة!</string>
+    <plurals name="celebration_streak_subtitle">
+        <item quantity="zero">ابدأ سلسلتك اليوم!</item>
+        <item quantity="one">سلسلتك وصلت إلى يوم واحد!</item>
+        <item quantity="two">سلسلتك وصلت إلى يومين!</item>
+        <item quantity="few">سلسلتك وصلت إلى %1$d أيام!</item>
+        <item quantity="many">سلسلتك وصلت إلى %1$d يومًا!</item>
+        <item quantity="other">سلسلتك وصلت إلى %1$d يوم!</item>
+    </plurals>
+    <string name="celebration_streak_body">تركيزك واستمراريتك يصنعان منك شخصًا أفضل.</string>
+    <string name="celebration_keep_going">واصل التقدّم</string>
+    <string name="celebration_streak_quote">الانضباط هو الجسر بين الأهداف والإنجاز.</string>
+
+    <string name="celebration_level_up_title">ارتقى مستوى العالم!</string>
+    <string name="celebration_level_up_subtitle">وصل عالمك إلى المستوى %1$d!</string>
+    <string name="celebration_level">المستوى %1$d</string>
+    <string name="celebration_xp_progress">%1$d / %2$d XP</string>
+    <string name="celebration_unlocked_title">عناصر جديدة متاحة:</string>
+    <string name="celebration_explore_world">استكشف عالمك</string>
+    <string name="celebration_level_up_footer">تركيزك يبني عالمًا أجمل.</string>
+
+    <string name="celebration_mission_created_title">مهمة جديدة</string>
+    <string name="celebration_mission_created_body">أضفت مهمة جديدة إلى قائمتك. حافظ على حماسك!</string>
+    <string name="celebration_mission_created_tip">خطوات صغيرة كل يوم تقود إلى نتائج كبيرة. 🌱</string>
+
+    <string name="mission_list_title">المهام</string>
+    <string name="mission_list_new">مهمة جديدة</string>
+    <string name="mission_filter_all">الكل</string>
+    <string name="mission_filter_todo">لم تبدأ</string>
+    <string name="mission_filter_in_progress">قيد التنفيذ</string>
+    <string name="mission_filter_completed">مكتملة</string>
+    <string name="mission_list_empty_title">لا توجد مهام بعد</string>
+    <string name="mission_list_empty_message">أنشئ مهمة وابدأ أول جلسة تركيز لك.</string>
+    <string name="mission_list_create">إنشاء مهمة</string>
+    <string name="mission_list_no_match_title">لا شيء هنا</string>
+    <string name="mission_list_no_match_message">لا توجد مهام تطابق هذا الفلتر.</string>
+
+    <plurals name="mission_pomodoro_count">
+        <item quantity="zero">%1$d بومودورو</item>
+        <item quantity="one">%1$d بومودورو</item>
+        <item quantity="two">%1$d بومودورو</item>
+        <item quantity="few">%1$d بومودورو</item>
+        <item quantity="many">%1$d بومودورو</item>
+        <item quantity="other">%1$d بومودورو</item>
+    </plurals>
+
+    <string name="mission_priority">الأولوية</string>
+    <string name="mission_not_found">المهمة غير موجودة</string>
+    <string name="mission_not_found_message">ربما تم حذفها.</string>
+    <string name="mission_step_placeholder">أضف خطوة</string>
+    <string name="mission_step_add">إضافة خطوة</string>
+    <string name="mission_step_remove">إزالة الخطوة</string>
+
+    <string name="mission_detail_more_options">خيارات أخرى</string>
+    <string name="mission_detail_reopen">إعادة فتح</string>
+    <string name="mission_detail_mark_completed">تحديد كمكتملة</string>
+    <string name="mission_detail_archive">أرشفة</string>
+    <string name="mission_detail_go_back">رجوع</string>
+    <string name="mission_detail_pomodoros">بومودورو</string>
+    <string name="mission_detail_checklist">قائمة الخطوات</string>
+    <string name="mission_detail_checklist_hint">قسّم المهمة إلى خطوات صغيرة.</string>
+    <string name="mission_detail_completed_title">اكتملت المهمة 🎉</string>
+    <string name="mission_detail_completed_on">اكتملت في %1$s</string>
+    <string name="mission_detail_reopen_mission">إعادة فتح المهمة</string>
+    <string name="mission_detail_estimate_reached">اكتمل العدد المقدَّر — أنهِ الخطوات المتبقية أو حدّد المهمة كمكتملة.</string>
+    <string name="mission_detail_start_focus">ابدأ التركيز</string>
+    <string name="mission_detail_created">تاريخ الإنشاء</string>
+    <string name="mission_detail_status">الحالة</string>
+    <string name="mission_status_todo">لم تبدأ</string>
+    <string name="mission_status_in_progress">قيد التنفيذ</string>
+    <string name="mission_status_completed">مكتملة</string>
+    <string name="mission_status_archived">مؤرشفة</string>
+    <string name="mission_delete_title">حذف المهمة؟</string>
+    <string name="mission_delete_message">ستُحذف المهمة وقائمة خطواتها. يبقى سجل تركيزك ونقاط XP للعالم كما هي.</string>
+
+    <string name="mission_editor_title_new">مهمة جديدة</string>
+    <string name="mission_editor_title_edit">تعديل المهمة</string>
+    <string name="mission_editor_title_label">عنوان المهمة</string>
+    <string name="mission_editor_description_label">الوصف (اختياري)</string>
+    <string name="mission_editor_estimate_label">عدد البومودورو المقدَّر</string>
+    <string name="mission_editor_category_label">الفئة</string>
+    <string name="mission_editor_checklist_label">قائمة الخطوات (اختياري)</string>
+    <string name="mission_editor_decrease">تقليل</string>
+    <string name="mission_editor_increase">زيادة</string>
+    <plurals name="mission_editor_pomodoros_unit">
+        <item quantity="zero">بومودورو</item>
+        <item quantity="one">بومودورو</item>
+        <item quantity="two">بومودورو</item>
+        <item quantity="few">بومودورو</item>
+        <item quantity="many">بومودورو</item>
+        <item quantity="other">بومودورو</item>
+    </plurals>
+    <string name="mission_editor_create">إنشاء المهمة</string>
+    <string name="mission_editor_save_changes">حفظ التغييرات</string>
+    <string name="mission_error_empty_title">يُرجى إدخال عنوان لمهمتك.</string>
+    <string name="mission_error_title_too_long">العنوان طويل جدًا.</string>
+    <string name="mission_error_invalid_estimate">يجب أن يكون التقدير بين 1 و%1$d بومودورو.</string>
+
+    <string name="stats_title">الإحصائيات</string>
+    <string name="stats_subtitle">افهم أنماط تركيزك</string>
+    <string name="stats_range_week">7 أيام</string>
+    <string name="stats_range_month">30 يومًا</string>
+    <string name="stats_range_quarter">3 أشهر</string>
+    <string name="stats_range_year">سنة</string>
+    <string name="stats_focus_time">وقت التركيز</string>
+    <string name="stats_sessions">الجلسات</string>
+    <string name="stats_today">اليوم</string>
+    <string name="stats_this_week">هذا الأسبوع</string>
+    <string name="stats_missions">المهام</string>
+    <string name="stats_streak">السلسلة</string>
+    <plurals name="stats_streak_days">
+        <item quantity="zero">%1$d يوم</item>
+        <item quantity="one">يوم واحد</item>
+        <item quantity="two">يومان</item>
+        <item quantity="few">%1$d أيام</item>
+        <item quantity="many">%1$d يومًا</item>
+        <item quantity="other">%1$d يوم</item>
+    </plurals>
+    <string name="stats_average_session">متوسط الجلسة</string>
+    <string name="stats_completion">الإكمال</string>
+    <string name="stats_best_time">أفضل وقت</string>
+    <string name="stats_estimation">دقة التقدير</string>
+    <string name="stats_trend_title">اتجاه وقت التركيز</string>
+    <string name="stats_top_hours_title">أفضل ساعات التركيز</string>
+    <string name="stats_top_hours_empty">أكمل بضع جلسات لترى أفضل ساعاتك.</string>
+    <string name="stats_chart_description">مخطط وقت التركيز. %1$s</string>
+    <string name="stats_advanced_title">إحصائيات متقدمة</string>
+    <string name="stats_advanced_description">أفضل ساعات التركيز، ومتوسط الجلسة، ونسبة الإكمال، ودقة التقدير، والاتجاهات الشهرية والسنوية.</string>
+    <string name="stats_insights_title">الرؤى</string>
+    <string name="stats_insight_locked_title">رؤية بريميوم</string>
+    <string name="stats_insight_locked_message">افتح بريميوم لترى هذه الرؤية الشخصية حول تركيزك.</string>
+
+    <string name="bg_gallery_title">معرض الخلفيات</string>
+
+    <string name="bg_tab_all">الكل</string>
+    <string name="bg_tab_favorites">المفضلة</string>
+    <string name="bg_category_my_photos">صوري</string>
+    <string name="bg_category_nature">الطبيعة</string>
+    <string name="bg_category_city">المدن</string>
+    <string name="bg_category_abstract">تجريدي</string>
+    <string name="bg_category_space">الفضاء</string>
+    <string name="bg_category_minimal">بسيط</string>
+    <string name="bg_category_dark">داكن</string>
+
+    <string name="bg_add_title">إضافة خلفية</string>
+    <string name="bg_add_photos_stay_on_device">صورك تبقى على هذا الجهاز</string>
+    <string name="bg_add_free_count">%1$d / %2$d خلفيات شخصية</string>
+    <string name="bg_add_adjust_hint">انقر على الخلفية المحددة مرة أخرى للمعاينة والضبط.</string>
+    <string name="bg_source_gallery">المعرض</string>
+    <string name="bg_source_camera">الكاميرا</string>
+    <string name="bg_source_files">الملفات</string>
+
+    <string name="bg_empty_favorites">انقر على القلب في أي خلفية لإضافتها هنا.</string>
+    <string name="bg_empty_tab">لا توجد خلفيات هنا بعد.</string>
+
+    <string name="bg_error_no_camera_app">لا يوجد تطبيق كاميرا متاح.</string>
+    <string name="bg_error_no_file_manager">لا يوجد مدير ملفات متاح.</string>
+    <string name="bg_error_image_unusable">لا يمكن استخدام هذه الصورة. اختر صورة أخرى.</string>
+    <string name="bg_message_removed">تمت إزالة الخلفية</string>
+
+    <string name="bg_default_name_camera">صورة من الكاميرا</string>
+    <string name="bg_default_name_photo">صورتي</string>
+
+    <string name="bg_limit_title">بلغت الحد المجاني</string>
+    <string name="bg_limit_message">الحد الأقصى للخلفيات الشخصية في النسخة المجانية هو %1$d. أزل واحدة، أو احصل على خلفيات بلا حدود مع بريميوم.</string>
+    <string name="bg_limit_see_premium">تعرّف على بريميوم</string>
+    <string name="bg_limit_not_now">ليس الآن</string>
+
+    <string name="bg_delete_title">إزالة الخلفية؟</string>
+    <string name="bg_delete_message_camera">صورة «%1$s» التُقطت لهذا التطبيق ومحفوظة هنا فقط، لذا ستُحذف نهائيًا.</string>
+    <string name="bg_delete_message_photo">ستُزال «%1$s» من التطبيق. الصورة الأصلية على جهازك لن تُحذف.</string>
+    <string name="bg_remove">إزالة</string>
+
+    <string name="bg_menu_preview">معاينة</string>
+    <string name="bg_menu_preview_adjust">معاينة وضبط</string>
+    <string name="bg_menu_favorite">إضافة للمفضلة</string>
+    <string name="bg_menu_unfavorite">إزالة من المفضلة</string>
+
+    <string name="bg_a11y_tile_selected">%1$s، محددة</string>
+    <string name="bg_a11y_add_favorite">إضافة إلى المفضلة</string>
+    <string name="bg_a11y_remove_favorite">إزالة من المفضلة</string>
+
+    <string name="bg_adjust_title">ضبط الخلفية</string>
+    <string name="bg_adjust_title_preview">معاينة</string>
+    <string name="bg_adjust_reset_position">إعادة ضبط الموضع</string>
+    <string name="bg_adjust_not_found_title">الخلفية غير متاحة</string>
+    <string name="bg_adjust_not_found_message">ربما تمت إزالتها.</string>
+    <string name="bg_adjust_go_back">رجوع</string>
+    <string name="bg_adjust_sample_label">تركيز</string>
+    <string name="bg_adjust_hint_drag">اسحب لتحديد الموضع · انقر مرتين لإعادة الضبط</string>
+    <string name="bg_adjust_hint_builtin">الخلفيات المدمجة تلائم شاشتك تمامًا دائمًا.</string>
+    <string name="bg_adjust_position">الموضع</string>
+    <string name="bg_adjust_position_top">أعلى</string>
+    <string name="bg_adjust_position_center">وسط</string>
+    <string name="bg_adjust_position_bottom">أسفل</string>
+    <string name="bg_adjust_position_left">يسار</string>
+    <string name="bg_adjust_position_right">يمين</string>
+    <string name="bg_adjust_zoom">التكبير</string>
+    <string name="bg_adjust_unlock_crop_editor">افتح محرر القص المتقدم</string>
+    <string name="bg_adjust_darken">التعتيم</string>
+    <string name="bg_adjust_use_background">استخدم هذه الخلفية</string>
+</resources>

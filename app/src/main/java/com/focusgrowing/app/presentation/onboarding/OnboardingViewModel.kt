@@ -59,7 +59,9 @@ class OnboardingViewModel @Inject constructor(
     }
 
     companion object {
-        const val PAGE_COUNT = 6
-        const val PAGE_FOCUS_LENGTH = 4
+        // 0 splash · 1 language · 2-4 intro · 5 focus length · 6 first goal
+        const val PAGE_COUNT = 7
+        const val PAGE_LANGUAGE = 1
+        const val PAGE_FOCUS_LENGTH = 5
     }
 }

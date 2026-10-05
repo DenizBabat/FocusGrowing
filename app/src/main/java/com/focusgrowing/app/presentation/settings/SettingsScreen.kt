@@ -39,6 +39,7 @@ import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.ColorLens
 import androidx.compose.material.icons.rounded.FormatQuote
 import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.Language
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.NotificationsActive
 import androidx.compose.material.icons.rounded.PlayArrow
@@ -67,6 +68,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -76,6 +79,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.focusgrowing.app.BuildConfig
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.CircleIconButton
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusButtonStyle
@@ -93,6 +97,9 @@ import com.focusgrowing.app.domain.model.PomodoroSettings
 import com.focusgrowing.app.domain.model.PremiumFeature
 import com.focusgrowing.app.domain.model.TextScale
 import com.focusgrowing.app.domain.model.ThemeMode
+import com.focusgrowing.app.presentation.common.LanguageDialog
+import com.focusgrowing.app.presentation.common.currentLanguageLabel
+import com.focusgrowing.app.presentation.common.displayLabel
 
 @Composable
 fun SettingsScreen(
@@ -107,6 +114,7 @@ fun SettingsScreen(
     val context = LocalContext.current
     var exactAlarms by remember { mutableStateOf(true) }
     var customFocusDialog by remember { mutableStateOf(false) }
+    var languageDialog by remember { mutableStateOf(false) }
     // Locked premium palette the user tapped: offers a 24-hour trial for watching an ad.
     var trialOffer by remember { mutableStateOf<FocusPalette?>(null) }
 
@@ -129,7 +137,7 @@ fun SettingsScreen(
     }
 
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
-        FocusTopBar(title = "Settings", onBack = onBack)
+        FocusTopBar(title = stringResource(R.string.settings_title), onBack = onBack)
         Column(
             Modifier
                 .verticalScroll(rememberScrollState())
@@ -137,8 +145,13 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.spacedBy(spacing.xl),
         ) {
             // Appearance -------------------------------------------------------------------------
-            SettingsGroup("Appearance") {
-                ChoiceRow("Theme", ThemeMode.entries.map { it.label() }, ThemeMode.entries.indexOf(prefs.appearance.themeMode)) { i ->
+            SettingsGroup(stringResource(R.string.settings_group_appearance)) {
+                SettingsNavRow(
+                    Icons.Rounded.Language, stringResource(R.string.language_title),
+                    onClick = { languageDialog = true },
+                    value = currentLanguageLabel(),
+                )
+                ChoiceRow(stringResource(R.string.settings_theme_title), ThemeMode.entries.map { it.label() }, ThemeMode.entries.indexOf(prefs.appearance.themeMode)) { i ->
                     viewModel.updateAppearance { it.copy(themeMode = ThemeMode.entries[i]) }
                 }
                 PaletteRow(
@@ -154,53 +167,56 @@ fun SettingsScreen(
                 )
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     SettingsToggleRow(
-                        Icons.Rounded.ColorLens, "Dynamic colors", prefs.appearance.dynamicColor,
+                        Icons.Rounded.ColorLens, stringResource(R.string.settings_dynamic_colors_title), prefs.appearance.dynamicColor,
                         { v -> viewModel.updateAppearance { it.copy(dynamicColor = v) } },
-                        subtitle = "Use your wallpaper colors",
+                        subtitle = stringResource(R.string.settings_dynamic_colors_subtitle),
                     )
                 }
-                ChoiceRow("Text size", TextScale.entries.map { it.label() }, TextScale.entries.indexOf(prefs.appearance.textScale)) { i ->
+                ChoiceRow(stringResource(R.string.settings_text_size_title), TextScale.entries.map { it.label() }, TextScale.entries.indexOf(prefs.appearance.textScale)) { i ->
                     viewModel.updateAppearance { it.copy(textScale = TextScale.entries[i]) }
                 }
                 SettingsToggleRow(
-                    Icons.Rounded.Animation, "Reduce animations", prefs.appearance.reduceMotion,
+                    Icons.Rounded.Animation, stringResource(R.string.settings_reduce_animations), prefs.appearance.reduceMotion,
                     { v -> viewModel.updateAppearance { it.copy(reduceMotion = v) } },
                 )
             }
 
             // Timer ------------------------------------------------------------------------------
-            SettingsGroup("Timer") {
+            SettingsGroup(stringResource(R.string.settings_group_timer)) {
                 val focus = prefs.pomodoro.focusMinutes
                 val presets = PomodoroSettings.FocusPresets
                 Column(Modifier.padding(horizontal = spacing.lg, vertical = spacing.sm)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(Icons.Rounded.Timer, contentDescription = null, tint = FocusTheme.colors.onSurfaceVariant, modifier = Modifier.size(22.dp))
                         Spacer(Modifier.width(spacing.md))
-                        Text("Focus", style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface, modifier = Modifier.weight(1f))
-                        Text("$focus min", style = FocusTheme.typography.bodyMedium, color = FocusTheme.colors.primary)
+                        Text(stringResource(R.string.settings_focus_length), style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface, modifier = Modifier.weight(1f))
+                        Text(stringResource(R.string.common_minutes_short, focus), style = FocusTheme.typography.bodyMedium, color = FocusTheme.colors.primary)
                     }
                     Spacer(Modifier.height(spacing.sm))
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(spacing.sm)) {
                         presets.forEach { m ->
                             FocusChip("$m", selected = focus == m, onClick = { viewModel.updatePomodoro { it.copy(focusMinutes = m) } })
                         }
-                        FocusChip("Custom", selected = focus !in presets, onClick = { customFocusDialog = true })
+                        FocusChip(stringResource(R.string.settings_focus_custom), selected = focus !in presets, onClick = { customFocusDialog = true })
                     }
                 }
-                StepperRow("Short break", prefs.pomodoro.shortBreakMinutes, "min", 1..60) { v -> viewModel.updatePomodoro { it.copy(shortBreakMinutes = v) } }
-                StepperRow("Long break", prefs.pomodoro.longBreakMinutes, "min", 1..90) { v -> viewModel.updatePomodoro { it.copy(longBreakMinutes = v) } }
-                StepperRow("Long break every", prefs.pomodoro.longBreakInterval, "sessions", 2..12) { v -> viewModel.updatePomodoro { it.copy(longBreakInterval = v) } }
+                StepperRow(stringResource(R.string.settings_short_break), prefs.pomodoro.shortBreakMinutes, stringResource(R.string.common_minutes_short, prefs.pomodoro.shortBreakMinutes), 1..60) { v -> viewModel.updatePomodoro { it.copy(shortBreakMinutes = v) } }
+                StepperRow(stringResource(R.string.settings_long_break), prefs.pomodoro.longBreakMinutes, stringResource(R.string.common_minutes_short, prefs.pomodoro.longBreakMinutes), 1..90) { v -> viewModel.updatePomodoro { it.copy(longBreakMinutes = v) } }
+                StepperRow(
+                    stringResource(R.string.settings_long_break_every), prefs.pomodoro.longBreakInterval,
+                    pluralStringResource(R.plurals.settings_sessions_count, prefs.pomodoro.longBreakInterval, prefs.pomodoro.longBreakInterval), 2..12,
+                ) { v -> viewModel.updatePomodoro { it.copy(longBreakInterval = v) } }
             }
 
             // Focus screen -----------------------------------------------------------------------
-            SettingsGroup("Focus screen") {
-                SettingsNavRow(Icons.Rounded.Wallpaper, "Background", onClick = onOpenBackgrounds, value = state.backgroundName)
-                SettingsToggleRow(Icons.Rounded.AccessTime, "Show clock", prefs.focusScreen.showClock, { v -> viewModel.updateFocusScreen { it.copy(showClock = v) } })
-                SettingsToggleRow(Icons.Rounded.FormatQuote, "Motivational text", prefs.focusScreen.showMotivation, { v -> viewModel.updateFocusScreen { it.copy(showMotivation = v) } })
+            SettingsGroup(stringResource(R.string.settings_group_focus_screen)) {
+                SettingsNavRow(Icons.Rounded.Wallpaper, stringResource(R.string.settings_background), onClick = onOpenBackgrounds, value = state.background?.displayLabel().orEmpty())
+                SettingsToggleRow(Icons.Rounded.AccessTime, stringResource(R.string.settings_show_clock), prefs.focusScreen.showClock, { v -> viewModel.updateFocusScreen { it.copy(showClock = v) } })
+                SettingsToggleRow(Icons.Rounded.FormatQuote, stringResource(R.string.settings_motivational_text), prefs.focusScreen.showMotivation, { v -> viewModel.updateFocusScreen { it.copy(showMotivation = v) } })
                 Column(Modifier.padding(horizontal = spacing.lg, vertical = spacing.sm)) {
                     Row {
-                        Text("Background overlay", style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface, modifier = Modifier.weight(1f))
-                        Text("${(prefs.focusScreen.overlayAlpha * 100).toInt()}%", style = FocusTheme.typography.bodyMedium, color = FocusTheme.colors.onSurfaceVariant)
+                        Text(stringResource(R.string.settings_background_overlay), style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface, modifier = Modifier.weight(1f))
+                        Text(stringResource(R.string.format_percent, (prefs.focusScreen.overlayAlpha * 100).toInt()), style = FocusTheme.typography.bodyMedium, color = FocusTheme.colors.onSurfaceVariant)
                     }
                     Slider(
                         value = prefs.focusScreen.overlayAlpha,
@@ -216,27 +232,27 @@ fun SettingsScreen(
             }
 
             // Notifications ----------------------------------------------------------------------
-            SettingsGroup("Notifications") {
+            SettingsGroup(stringResource(R.string.settings_group_notifications)) {
                 SettingsToggleRow(
-                    Icons.Rounded.NotificationsActive, "Session alerts", prefs.notifications.sessionAlerts,
+                    Icons.Rounded.NotificationsActive, stringResource(R.string.settings_session_alerts_title), prefs.notifications.sessionAlerts,
                     { v -> viewModel.updateNotifications { it.copy(sessionAlerts = v) } },
-                    subtitle = "When a focus session or break ends",
+                    subtitle = stringResource(R.string.settings_session_alerts_subtitle),
                 )
                 SettingsToggleRow(
-                    Icons.Rounded.Timer, "Timer in notification bar", prefs.notifications.ongoingTimerNotification,
+                    Icons.Rounded.Timer, stringResource(R.string.settings_timer_in_notification_bar), prefs.notifications.ongoingTimerNotification,
                     { v -> viewModel.updateNotifications { it.copy(ongoingTimerNotification = v) } },
                 )
                 if (!exactAlarms && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     SettingsNavRow(
-                        Icons.Rounded.Alarm, "Allow exact alarms",
+                        Icons.Rounded.Alarm, stringResource(R.string.settings_exact_alarms_title),
                         onClick = {
                             open(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:${context.packageName}")))
                         },
-                        subtitle = "Sessions end exactly on time, even when the phone sleeps",
+                        subtitle = stringResource(R.string.settings_exact_alarms_subtitle),
                     )
                 }
                 SettingsNavRow(
-                    Icons.Rounded.NotificationsActive, "System notification settings",
+                    Icons.Rounded.NotificationsActive, stringResource(R.string.settings_system_notification_settings),
                     onClick = {
                         open(Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName))
                     },
@@ -244,30 +260,30 @@ fun SettingsScreen(
             }
 
             // Sounds -----------------------------------------------------------------------------
-            SettingsGroup("Sounds & Vibration") {
+            SettingsGroup(stringResource(R.string.settings_group_sounds)) {
                 SettingsToggleRow(
-                    Icons.AutoMirrored.Rounded.VolumeUp, "Alert sound & vibration", prefs.notifications.alertSoundAndVibration,
+                    Icons.AutoMirrored.Rounded.VolumeUp, stringResource(R.string.settings_alert_sound_vibration), prefs.notifications.alertSoundAndVibration,
                     { v -> viewModel.updateNotifications { it.copy(alertSoundAndVibration = v) } },
                 )
                 SettingsToggleRow(
-                    Icons.Rounded.TouchApp, "Haptic feedback", prefs.notifications.hapticFeedback,
+                    Icons.Rounded.TouchApp, stringResource(R.string.settings_haptic_feedback), prefs.notifications.hapticFeedback,
                     { v -> viewModel.updateNotifications { it.copy(hapticFeedback = v) } },
                 )
             }
 
             // Privacy (only where the law requires the ad consent choice to stay changeable) --------
             if (state.showAdPrivacyOptions) {
-                SettingsGroup("Privacy") {
+                SettingsGroup(stringResource(R.string.settings_group_privacy)) {
                     SettingsNavRow(
-                        Icons.Rounded.PrivacyTip, "Ad privacy choices",
+                        Icons.Rounded.PrivacyTip, stringResource(R.string.settings_ad_privacy_title),
                         onClick = { context.findActivity()?.let(viewModel::showAdPrivacyOptions) },
-                        subtitle = "Change your consent for personalized ads",
+                        subtitle = stringResource(R.string.settings_ad_privacy_subtitle),
                     )
                 }
             }
 
-            SettingsGroup("About") {
-                SettingsNavRow(Icons.Rounded.Info, "Version", onClick = {}, value = BuildConfig.VERSION_NAME)
+            SettingsGroup(stringResource(R.string.settings_group_about)) {
+                SettingsNavRow(Icons.Rounded.Info, stringResource(R.string.settings_version), onClick = {}, value = BuildConfig.VERSION_NAME)
             }
             Spacer(Modifier.height(spacing.lg))
         }
@@ -287,16 +303,20 @@ fun SettingsScreen(
         )
     }
 
+    if (languageDialog) {
+        LanguageDialog(onDismiss = { languageDialog = false })
+    }
+
     if (customFocusDialog) {
         var text by remember { mutableStateOf(prefs.pomodoro.focusMinutes.toString()) }
         AlertDialog(
             onDismissRequest = { customFocusDialog = false },
-            title = { Text("Custom focus length") },
+            title = { Text(stringResource(R.string.settings_custom_focus_title)) },
             text = {
                 OutlinedTextField(
                     value = text,
                     onValueChange = { text = it.filter(Char::isDigit).take(3) },
-                    label = { Text("Minutes (${PomodoroSettings.MIN_MINUTES}–${PomodoroSettings.MAX_MINUTES})") },
+                    label = { Text(stringResource(R.string.settings_custom_focus_minutes_label, PomodoroSettings.MIN_MINUTES, PomodoroSettings.MAX_MINUTES)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     colors = focusTextFieldColors(),
@@ -306,9 +326,9 @@ fun SettingsScreen(
                 TextButton(onClick = {
                     text.toIntOrNull()?.let { m -> viewModel.updatePomodoro { it.copy(focusMinutes = m) } }
                     customFocusDialog = false
-                }) { Text("Save") }
+                }) { Text(stringResource(R.string.common_save)) }
             },
-            dismissButton = { TextButton(onClick = { customFocusDialog = false }) { Text("Cancel") } },
+            dismissButton = { TextButton(onClick = { customFocusDialog = false }) { Text(stringResource(R.string.common_cancel)) } },
         )
     }
 }
@@ -337,7 +357,7 @@ private fun PaletteRow(
 ) {
     val dark = FocusTheme.isDark
     Column(Modifier.padding(horizontal = FocusTheme.spacing.lg, vertical = FocusTheme.spacing.sm)) {
-        Text("Color palette", style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface)
+        Text(stringResource(R.string.settings_color_palette), style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface)
         Spacer(Modifier.height(FocusTheme.spacing.sm))
         Row(horizontalArrangement = Arrangement.spacedBy(FocusTheme.spacing.lg)) {
             FocusPalettes.all.forEach { palette ->
@@ -345,6 +365,7 @@ private fun PaletteRow(
                 // Unlocked by Premium, or for 24 hours by a rewarded ad.
                 val locked = palette.isPremium && !canUsePremium && palette.id != trialPaletteId
                 val selected = palette.id == selectedId
+                val description = if (locked) stringResource(R.string.settings_palette_premium_a11y, palette.displayName) else palette.displayName
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Box(
                         Modifier
@@ -353,7 +374,7 @@ private fun PaletteRow(
                             .background(Brush.linearGradient(listOf(tokens.primaryGradientStart, tokens.primaryGradientEnd)))
                             .border(if (selected) 3.dp else 1.dp, if (selected) FocusTheme.colors.onSurface else FocusTheme.colors.cardBorder, CircleShape)
                             .clickable(role = Role.RadioButton) { if (locked) onLocked(palette) else onSelect(palette) }
-                            .semantics { contentDescription = palette.displayName + if (locked) ", premium" else "" },
+                            .semantics { contentDescription = description },
                         contentAlignment = Alignment.Center,
                     ) {
                         when {
@@ -370,8 +391,8 @@ private fun PaletteRow(
         if (trialName != null && !canUsePremium) {
             Spacer(Modifier.height(FocusTheme.spacing.sm))
             Text(
-                if (trialHoursLeft <= 1) "$trialName is unlocked for less than an hour."
-                else "$trialName is unlocked for about $trialHoursLeft more hours.",
+                if (trialHoursLeft <= 1) stringResource(R.string.settings_palette_trial_under_hour, trialName)
+                else pluralStringResource(R.plurals.settings_palette_trial_hours_left, trialHoursLeft, trialName, trialHoursLeft),
                 style = FocusTheme.typography.bodySmall,
                 color = FocusTheme.colors.onSurfaceVariant,
             )
@@ -401,9 +422,9 @@ private fun PaletteTrialSheet(
                 .padding(bottom = spacing.xl),
             verticalArrangement = Arrangement.spacedBy(spacing.md),
         ) {
-            Text("Try ${palette.displayName} for 24 hours", style = FocusTheme.typography.titleLarge, color = colors.onSurface)
+            Text(stringResource(R.string.settings_palette_trial_sheet_title, palette.displayName), style = FocusTheme.typography.titleLarge, color = colors.onSurface)
             Text(
-                "Watch one short video and use this palette until tomorrow. With Premium you keep every palette and never see ads.",
+                stringResource(R.string.settings_palette_trial_sheet_text),
                 style = FocusTheme.typography.bodyMedium,
                 color = colors.onSurfaceVariant,
             )
@@ -411,14 +432,14 @@ private fun PaletteTrialSheet(
                 Text(message, style = FocusTheme.typography.bodySmall, color = colors.error)
             }
             FocusButton(
-                "Watch a short ad",
+                stringResource(R.string.settings_watch_ad),
                 onClick = onWatchAd,
                 modifier = Modifier.fillMaxWidth(),
                 leadingIcon = Icons.Rounded.PlayArrow,
                 loading = loading,
             )
-            FocusButton("See Premium", onClick = onOpenPremium, modifier = Modifier.fillMaxWidth(), style = FocusButtonStyle.Soft)
-            FocusTextButton("Not now", onClick = onDismiss, modifier = Modifier.align(Alignment.CenterHorizontally))
+            FocusButton(stringResource(R.string.settings_see_premium), onClick = onOpenPremium, modifier = Modifier.fillMaxWidth(), style = FocusButtonStyle.Soft)
+            FocusTextButton(stringResource(R.string.settings_not_now), onClick = onDismiss, modifier = Modifier.align(Alignment.CenterHorizontally))
         }
     }
 }
@@ -430,38 +451,40 @@ private tailrec fun Context.findActivity(): Activity? = when (this) {
 }
 
 @Composable
-private fun StepperRow(title: String, value: Int, unit: String, range: IntRange, onChange: (Int) -> Unit) {
+private fun StepperRow(title: String, value: Int, valueText: String, range: IntRange, onChange: (Int) -> Unit) {
     Row(
         Modifier.fillMaxWidth().padding(horizontal = FocusTheme.spacing.lg, vertical = FocusTheme.spacing.sm),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(title, style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface, modifier = Modifier.weight(1f))
         CircleIconButton(
-            Icons.Rounded.Remove, "Decrease $title",
+            Icons.Rounded.Remove, stringResource(R.string.settings_stepper_decrease, title),
             onClick = { onChange((value - 1).coerceIn(range)) }, size = 34.dp, enabled = value > range.first,
         )
         Text(
-            "$value $unit",
+            valueText,
             style = FocusTheme.typography.bodyMedium,
             color = FocusTheme.colors.onSurface,
             modifier = Modifier.width(92.dp),
             textAlign = androidx.compose.ui.text.style.TextAlign.Center,
         )
         CircleIconButton(
-            Icons.Rounded.Add, "Increase $title",
+            Icons.Rounded.Add, stringResource(R.string.settings_stepper_increase, title),
             onClick = { onChange((value + 1).coerceIn(range)) }, size = 34.dp, enabled = value < range.last,
         )
     }
 }
 
+@Composable
 private fun ThemeMode.label() = when (this) {
-    ThemeMode.SYSTEM -> "System"
-    ThemeMode.LIGHT -> "Light"
-    ThemeMode.DARK -> "Dark"
+    ThemeMode.SYSTEM -> stringResource(R.string.settings_theme_system)
+    ThemeMode.LIGHT -> stringResource(R.string.settings_theme_light)
+    ThemeMode.DARK -> stringResource(R.string.settings_theme_dark)
 }
 
+@Composable
 private fun TextScale.label() = when (this) {
-    TextScale.SMALL -> "Small"
-    TextScale.MEDIUM -> "Medium"
-    TextScale.LARGE -> "Large"
+    TextScale.SMALL -> stringResource(R.string.settings_text_size_small)
+    TextScale.MEDIUM -> stringResource(R.string.settings_text_size_medium)
+    TextScale.LARGE -> stringResource(R.string.settings_text_size_large)
 }

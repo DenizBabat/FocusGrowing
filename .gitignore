@@ -12,3 +12,7 @@
 *.jks
 keystore.properties
 *.md
+
+# Local build check helper and its output (see derle.bat)
+derle.bat
+build_log.txt

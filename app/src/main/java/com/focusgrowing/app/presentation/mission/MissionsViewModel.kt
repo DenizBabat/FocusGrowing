@@ -1,7 +1,9 @@
 package com.focusgrowing.app.presentation.mission
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.focusgrowing.app.R
 import com.focusgrowing.app.domain.model.Mission
 import com.focusgrowing.app.domain.model.MissionStatus
 import com.focusgrowing.app.domain.repository.MissionRepository
@@ -13,7 +15,12 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
-enum class MissionFilter(val label: String) { ALL("All"), TODO("Todo"), IN_PROGRESS("In Progress"), COMPLETED("Completed") }
+enum class MissionFilter(@StringRes val labelRes: Int) {
+    ALL(R.string.mission_filter_all),
+    TODO(R.string.mission_filter_todo),
+    IN_PROGRESS(R.string.mission_filter_in_progress),
+    COMPLETED(R.string.mission_filter_completed),
+}
 
 data class MissionsUiState(
     val loading: Boolean = true,

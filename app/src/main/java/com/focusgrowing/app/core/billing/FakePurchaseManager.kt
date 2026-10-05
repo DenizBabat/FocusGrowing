@@ -1,6 +1,8 @@
 package com.focusgrowing.app.core.billing
 
 import android.app.Activity
+import com.focusgrowing.app.R
+import com.focusgrowing.app.core.locale.StringProvider
 import com.focusgrowing.app.di.ApplicationScope
 import com.focusgrowing.app.domain.logic.PremiumPricing
 import com.focusgrowing.app.domain.model.ActiveSubscription
@@ -35,6 +37,7 @@ import javax.inject.Singleton
 class FakePurchaseManager @Inject constructor(
     private val subscriptions: SubscriptionRepository,
     @ApplicationScope private val scope: CoroutineScope,
+    private val strings: StringProvider,
 ) : PurchaseManager {
 
     private val _state = MutableStateFlow<BillingState>(BillingState.Loading)
@@ -113,7 +116,7 @@ class FakePurchaseManager @Inject constructor(
     }
 
     override fun launchPurchase(activity: Activity, offer: PremiumOffer): PurchaseResult? {
-        if (ownsLifetime.value) return PurchaseResult.Failure("You already own lifetime Premium.")
+        if (ownsLifetime.value) return PurchaseResult.Failure(strings.get(R.string.billing_already_own_lifetime))
         val current = activeSubscription.value
         if (offer.period == BillingPeriod.LIFETIME) {
             scope.launch {
@@ -126,7 +129,7 @@ class FakePurchaseManager @Inject constructor(
             return null
         }
         val mode = current?.let { PremiumPricing.planChangeMode(it.period, offer.period) }
-        if (current != null && mode == null) return PurchaseResult.Failure("You already have this plan.")
+        if (current != null && mode == null) return PurchaseResult.Failure(strings.get(R.string.billing_already_have_plan))
         scope.launch {
             delay(700)
             autoRenewing.value = true
@@ -145,7 +148,7 @@ class FakePurchaseManager @Inject constructor(
     override suspend fun restore(): PurchaseResult {
         delay(400)
         return if (subscriptions.isPremium.first()) PurchaseResult.Success
-        else PurchaseResult.Failure("No active Premium subscription was found (test mode).")
+        else PurchaseResult.Failure(strings.get(R.string.billing_restore_none_test))
     }
 
     override fun manageSubscriptionUrl(): String = "https://play.google.com/store/account/subscriptions"

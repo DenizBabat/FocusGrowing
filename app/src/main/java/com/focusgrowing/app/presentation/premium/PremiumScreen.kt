@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
+import androidx.annotation.PluralsRes
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -36,6 +37,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
@@ -44,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.billing.BillingProducts
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusButtonStyle
@@ -65,12 +69,12 @@ import java.text.NumberFormat
 import java.util.Currency
 
 private val benefits = listOf(
-    "Unlimited custom backgrounds",
-    "Advanced crop editor, blur & your own motivational text",
-    "Advanced statistics: best hours, trends, monthly & yearly",
-    "Personalized insights about your focus",
-    "More world elements & premium color palettes",
-    "No ads",
+    R.string.premium_benefit_backgrounds,
+    R.string.premium_benefit_editor,
+    R.string.premium_benefit_statistics,
+    R.string.premium_benefit_insights,
+    R.string.premium_benefit_world,
+    R.string.premium_benefit_no_ads,
 )
 
 @Composable
@@ -97,7 +101,7 @@ fun PremiumScreen(onBack: () -> Unit, viewModel: PremiumViewModel = hiltViewMode
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
         FocusTopBar(onBack = onBack) {
             if (state.isTestMode) {
-                Pill("Test mode", container = colors.infoContainer, content = colors.info, modifier = Modifier.padding(end = spacing.md))
+                Pill(stringResource(R.string.premium_test_mode), container = colors.infoContainer, content = colors.info, modifier = Modifier.padding(end = spacing.md))
             }
         }
         Column(
@@ -108,16 +112,18 @@ fun PremiumScreen(onBack: () -> Unit, viewModel: PremiumViewModel = hiltViewMode
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text(
-                        if (state.isPremium) "Your Premium" else "Go Premium",
+                        stringResource(if (state.isPremium) R.string.premium_title_member else R.string.premium_title_upsell),
                         style = FocusTheme.typography.headlineMedium,
                         color = colors.onBackground,
                     )
                     Text(
-                        when {
-                            state.hasLifetime -> "Yours forever."
-                            state.isPremium -> "Manage your subscription."
-                            else -> "Unlock the full potential of your journey."
-                        },
+                        stringResource(
+                            when {
+                                state.hasLifetime -> R.string.premium_subtitle_lifetime
+                                state.isPremium -> R.string.premium_subtitle_subscribed
+                                else -> R.string.premium_subtitle_upsell
+                            },
+                        ),
                         style = FocusTheme.typography.bodyMedium,
                         color = colors.onSurfaceVariant,
                     )
@@ -132,7 +138,7 @@ fun PremiumScreen(onBack: () -> Unit, viewModel: PremiumViewModel = hiltViewMode
                 Row(Modifier.padding(vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Rounded.CheckCircle, contentDescription = null, tint = colors.primary)
                     Spacer(Modifier.width(spacing.md))
-                    Text(benefit, style = FocusTheme.typography.bodyLarge, color = colors.onSurface)
+                    Text(stringResource(benefit), style = FocusTheme.typography.bodyLarge, color = colors.onSurface)
                 }
             }
             Spacer(Modifier.height(spacing.xl))
@@ -152,11 +158,11 @@ fun PremiumScreen(onBack: () -> Unit, viewModel: PremiumViewModel = hiltViewMode
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                         if (state.active != null) {
                             FocusTextButton(
-                                if (state.active?.isAutoRenewing == false) "Test: resubscribe" else "Test: cancel",
+                                stringResource(if (state.active?.isAutoRenewing == false) R.string.premium_test_resubscribe else R.string.premium_test_cancel),
                                 onClick = viewModel::toggleTestAutoRenew,
                             )
                         }
-                        FocusTextButton("Test: reset", onClick = viewModel::resetTestPurchase)
+                        FocusTextButton(stringResource(R.string.premium_test_reset), onClick = viewModel::resetTestPurchase)
                     }
                 }
             } else {
@@ -165,11 +171,11 @@ fun PremiumScreen(onBack: () -> Unit, viewModel: PremiumViewModel = hiltViewMode
                         CircularProgressIndicator(color = colors.primary)
                     }
                     is BillingState.Unavailable -> FocusCard(modifier = Modifier.fillMaxWidth()) {
-                        Text("Purchases unavailable", style = FocusTheme.typography.titleSmall, color = colors.onSurface)
+                        Text(stringResource(R.string.premium_unavailable_title), style = FocusTheme.typography.titleSmall, color = colors.onSurface)
                         Spacer(Modifier.height(4.dp))
                         Text(billing.reason, style = FocusTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
                         Spacer(Modifier.height(spacing.md))
-                        FocusButton("Try again", onClick = viewModel::refresh, style = FocusButtonStyle.Soft, modifier = Modifier.fillMaxWidth())
+                        FocusButton(stringResource(R.string.premium_try_again), onClick = viewModel::refresh, style = FocusButtonStyle.Soft, modifier = Modifier.fillMaxWidth())
                     }
                     BillingState.Ready -> PurchaseSection(
                         state = state,
@@ -187,14 +193,14 @@ fun PremiumScreen(onBack: () -> Unit, viewModel: PremiumViewModel = hiltViewMode
 
             Spacer(Modifier.height(spacing.lg))
             Text(
-                "Everything you need to focus stays free: timer, missions, your world, basic statistics and your own photos.",
+                stringResource(R.string.premium_free_note),
                 style = FocusTheme.typography.bodySmall,
                 color = colors.onSurfaceVariant,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth(),
             )
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                FocusTextButton("Privacy Policy", onClick = { openUrl(AppConfig.PRIVACY_POLICY_URL) })
+                FocusTextButton(stringResource(R.string.premium_privacy_policy), onClick = { openUrl(AppConfig.PRIVACY_POLICY_URL) })
             }
             Spacer(Modifier.height(spacing.xl))
         }
@@ -212,7 +218,7 @@ private fun ColumnScope.PurchaseSection(
     val spacing = FocusTheme.spacing
     val selected = state.selectedOffer
     if (selected == null) {
-        Text("No plans available right now.", style = FocusTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
+        Text(stringResource(R.string.premium_no_plans), style = FocusTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
         return
     }
     val monthly = state.monthlyOffer
@@ -230,9 +236,17 @@ private fun ColumnScope.PurchaseSection(
     val trial = selected.freeTrial
     FocusButton(
         when {
-            selected.period == BillingPeriod.LIFETIME -> "Buy lifetime Premium"
-            trial != null -> "Start ${trialLabel(trial)} free trial"
-            else -> "Upgrade to Premium"
+            selected.period == BillingPeriod.LIFETIME -> stringResource(R.string.premium_buy_lifetime)
+            trial != null -> {
+                val (plural, count) = trialPlural(
+                    trial,
+                    years = R.plurals.premium_start_trial_years,
+                    months = R.plurals.premium_start_trial_months,
+                    days = R.plurals.premium_start_trial_days,
+                )
+                pluralStringResource(plural, count, count)
+            }
+            else -> stringResource(R.string.premium_upgrade)
         },
         onClick = onPurchase,
         style = FocusButtonStyle.Premium,
@@ -248,7 +262,7 @@ private fun ColumnScope.PurchaseSection(
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth(),
     )
-    FocusTextButton("Restore purchase", onClick = onRestore, modifier = Modifier.align(Alignment.CenterHorizontally))
+    FocusTextButton(stringResource(R.string.premium_restore_purchase), onClick = onRestore, modifier = Modifier.align(Alignment.CenterHorizontally))
 }
 
 @Composable
@@ -271,20 +285,26 @@ private fun PlanCard(offer: PremiumOffer, selected: Boolean, savingsPercent: Int
                     Text(periodTitle(offer.period), style = FocusTheme.typography.titleMedium, color = colors.onSurface)
                     if (savingsPercent != null) {
                         Spacer(Modifier.width(8.dp))
-                        Pill("Save $savingsPercent%", container = colors.primary, content = colors.onPrimary)
+                        Pill(stringResource(R.string.premium_save_percent, savingsPercent), container = colors.primary, content = colors.onPrimary)
                     }
                     if (offer.period == BillingPeriod.LIFETIME) {
                         Spacer(Modifier.width(8.dp))
-                        Pill("Pay once", container = colors.primary, content = colors.onPrimary)
+                        Pill(stringResource(R.string.premium_pay_once), container = colors.primary, content = colors.onPrimary)
                     }
                 }
-                val sub = if (offer.period == BillingPeriod.LIFETIME) {
-                    "One payment. Premium forever, no subscription."
-                } else {
-                    buildString {
-                        offer.freeTrial?.let { append("${trialLabel(it)} free, then ") }
-                        append("${offer.formattedPrice} ${periodSuffix(offer.period)}")
+                val planTrial = offer.freeTrial
+                val sub = when {
+                    offer.period == BillingPeriod.LIFETIME -> stringResource(R.string.premium_plan_lifetime_desc)
+                    planTrial != null -> {
+                        val (plural, count) = trialPlural(
+                            planTrial,
+                            years = R.plurals.premium_plan_trial_then_price_years,
+                            months = R.plurals.premium_plan_trial_then_price_months,
+                            days = R.plurals.premium_plan_trial_then_price_days,
+                        )
+                        pluralStringResource(plural, count, count, priceWithPeriod(offer))
                     }
+                    else -> priceWithPeriod(offer)
                 }
                 Text(sub, style = FocusTheme.typography.bodySmall, color = colors.onSurfaceVariant)
             }
@@ -292,11 +312,11 @@ private fun PlanCard(offer: PremiumOffer, selected: Boolean, savingsPercent: Int
                 Text(offer.formattedPrice, style = FocusTheme.typography.titleMedium, color = colors.onSurface)
                 if (offer.period == BillingPeriod.YEARLY) {
                     formatMicros(PremiumPricing.monthlyEquivalentMicros(offer.priceMicros), offer.currencyCode)?.let {
-                        Text("≈ $it / month", style = FocusTheme.typography.labelSmall, color = colors.onSurfaceVariant)
+                        Text(stringResource(R.string.premium_approx_per_month, it), style = FocusTheme.typography.labelSmall, color = colors.onSurfaceVariant)
                     }
                 }
                 if (offer.period == BillingPeriod.LIFETIME) {
-                    Text("one-time", style = FocusTheme.typography.labelSmall, color = colors.onSurfaceVariant)
+                    Text(stringResource(R.string.premium_one_time), style = FocusTheme.typography.labelSmall, color = colors.onSurfaceVariant)
                 }
             }
         }
@@ -318,31 +338,38 @@ private fun SubscriptionSection(
 
     FocusCard(modifier = Modifier.fillMaxWidth(), color = colors.premiumContainer, border = false) {
         Text(
-            if (state.justPurchased) "Welcome to Premium! 🎉" else "Premium is active",
+            stringResource(if (state.justPurchased) R.string.premium_welcome else R.string.premium_active),
             style = FocusTheme.typography.titleMedium,
             color = colors.onSurface,
         )
-        val planLine = buildString {
-            append(
-                when (state.currentPeriod) {
-                    BillingPeriod.MONTHLY -> "Monthly plan"
-                    BillingPeriod.YEARLY -> "Yearly plan"
-                    BillingPeriod.LIFETIME -> "Lifetime"
-                    BillingPeriod.OTHER -> "Premium plan"
-                },
-            )
-            currentOffer?.let { append(" · ${it.formattedPrice} ${periodSuffix(it.period)}") }
+        val planName = stringResource(
+            when (state.currentPeriod) {
+                BillingPeriod.MONTHLY -> R.string.premium_plan_monthly
+                BillingPeriod.YEARLY -> R.string.premium_plan_yearly
+                BillingPeriod.LIFETIME -> R.string.premium_period_lifetime
+                BillingPeriod.OTHER -> R.string.premium_plan_other
+            },
+        )
+        val planLine = if (currentOffer != null) {
+            stringResource(R.string.premium_plan_with_price, planName, priceWithPeriod(currentOffer))
+        } else {
+            planName
         }
         Text(planLine, style = FocusTheme.typography.bodyLarge, color = colors.onSurface)
         Spacer(Modifier.height(4.dp))
         val scheduled = state.scheduledPlanId
-        val status = when {
-            scheduled != null ->
-                "Switches to the ${periodTitle(BillingProducts.periodOf(scheduled)).lowercase()} plan when the current period ends."
-            active == null -> "Checking your subscription with Google Play…"
-            !active.isAutoRenewing -> "Cancelled. Premium stays active until the end of the period you paid for."
-            else -> "Renews automatically. Cancel anytime in Google Play."
-        }
+        val status = stringResource(
+            when {
+                scheduled != null -> when (BillingProducts.periodOf(scheduled)) {
+                    BillingPeriod.MONTHLY -> R.string.premium_status_switches_monthly
+                    BillingPeriod.YEARLY -> R.string.premium_status_switches_yearly
+                    BillingPeriod.LIFETIME, BillingPeriod.OTHER -> R.string.premium_status_switches_other
+                }
+                active == null -> R.string.premium_status_checking
+                !active.isAutoRenewing -> R.string.premium_status_cancelled
+                else -> R.string.premium_status_renews
+            },
+        )
         Text(status, style = FocusTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
     }
 
@@ -350,11 +377,18 @@ private fun SubscriptionSection(
     val target = state.switchTarget
     val mode = state.switchMode
     if (target != null && mode != null) {
+        val switchLabel = stringResource(
+            when (target.period) {
+                BillingPeriod.MONTHLY -> R.string.premium_switch_to_monthly
+                BillingPeriod.YEARLY -> R.string.premium_switch_to_yearly
+                BillingPeriod.LIFETIME, BillingPeriod.OTHER -> R.string.premium_switch_to_other
+            },
+        )
         Spacer(Modifier.height(spacing.md))
         FocusCard(modifier = Modifier.fillMaxWidth()) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    "Switch to ${periodTitle(target.period).lowercase()}",
+                    switchLabel,
                     style = FocusTheme.typography.titleMedium,
                     color = colors.onSurface,
                     modifier = Modifier.weight(1f),
@@ -362,25 +396,25 @@ private fun SubscriptionSection(
                 val monthly = state.monthlyOffer
                 if (target.period == BillingPeriod.YEARLY && monthly != null) {
                     PremiumPricing.yearlySavingsPercent(monthly.priceMicros, target.priceMicros)?.let {
-                        Pill("Save $it%", container = colors.primary, content = colors.onPrimary)
+                        Pill(stringResource(R.string.premium_save_percent, it), container = colors.primary, content = colors.onPrimary)
                     }
                 }
             }
-            Text("${target.formattedPrice} ${periodSuffix(target.period)}", style = FocusTheme.typography.bodyLarge, color = colors.onSurface)
+            Text(priceWithPeriod(target), style = FocusTheme.typography.bodyLarge, color = colors.onSurface)
             Spacer(Modifier.height(4.dp))
             Text(
                 when (mode) {
                     PlanChangeMode.IMMEDIATE ->
-                        "Starts today. You pay ${target.formattedPrice} now, and the unused part of your current plan is added as extra days."
+                        stringResource(R.string.premium_switch_immediate_desc, target.formattedPrice)
                     PlanChangeMode.AT_NEXT_RENEWAL ->
-                        "Starts when your current period ends. Nothing is charged today, and you keep Premium the whole time."
+                        stringResource(R.string.premium_switch_deferred_desc)
                 },
                 style = FocusTheme.typography.bodySmall,
                 color = colors.onSurfaceVariant,
             )
             Spacer(Modifier.height(spacing.md))
             FocusButton(
-                "Switch to ${periodTitle(target.period).lowercase()}",
+                switchLabel,
                 onClick = onSwitchPlan,
                 style = if (mode == PlanChangeMode.IMMEDIATE) FocusButtonStyle.Premium else FocusButtonStyle.Soft,
                 loading = state.processing,
@@ -395,24 +429,24 @@ private fun SubscriptionSection(
         Spacer(Modifier.height(spacing.md))
         FocusCard(modifier = Modifier.fillMaxWidth()) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Go lifetime", style = FocusTheme.typography.titleMedium, color = colors.onSurface, modifier = Modifier.weight(1f))
-                Pill("Pay once", container = colors.primary, content = colors.onPrimary)
+                Text(stringResource(R.string.premium_go_lifetime), style = FocusTheme.typography.titleMedium, color = colors.onSurface, modifier = Modifier.weight(1f))
+                Pill(stringResource(R.string.premium_pay_once), container = colors.primary, content = colors.onPrimary)
             }
-            Text("${lifetime.formattedPrice} one-time", style = FocusTheme.typography.bodyLarge, color = colors.onSurface)
+            Text(stringResource(R.string.premium_price_one_time, lifetime.formattedPrice), style = FocusTheme.typography.bodyLarge, color = colors.onSurface)
             Spacer(Modifier.height(4.dp))
             val breakEven = state.yearlyOffer?.let { PremiumPricing.lifetimeBreakEvenYears(it.priceMicros, lifetime.priceMicros) }
             Text(
-                buildString {
-                    append("Keep Premium forever with a single payment. ")
-                    if (breakEven != null) append("Costs about as much as $breakEven ${if (breakEven == 1) "year" else "years"} of the yearly plan. ")
-                    append("Your subscription isn't cancelled automatically: cancel it in Google Play afterwards.")
+                if (breakEven != null) {
+                    pluralStringResource(R.plurals.premium_go_lifetime_desc_break_even, breakEven, breakEven)
+                } else {
+                    stringResource(R.string.premium_go_lifetime_desc)
                 },
                 style = FocusTheme.typography.bodySmall,
                 color = colors.onSurfaceVariant,
             )
             Spacer(Modifier.height(spacing.md))
             FocusButton(
-                "Buy lifetime Premium",
+                stringResource(R.string.premium_buy_lifetime),
                 onClick = onBuyLifetime,
                 style = FocusButtonStyle.Premium,
                 loading = state.processing,
@@ -423,14 +457,14 @@ private fun SubscriptionSection(
 
     Spacer(Modifier.height(spacing.md))
     FocusButton(
-        if (active?.isAutoRenewing == false) "Resubscribe in Google Play" else "Manage in Google Play",
+        stringResource(if (active?.isAutoRenewing == false) R.string.premium_resubscribe_google_play else R.string.premium_manage_google_play),
         onClick = onManage,
         style = if (active?.isAutoRenewing == false) FocusButtonStyle.Premium else FocusButtonStyle.Soft,
         modifier = Modifier.fillMaxWidth(),
     )
     Spacer(Modifier.height(4.dp))
     Text(
-        "Cancel, resubscribe or change your payment method in Google Play. Changes show up here when you return.",
+        stringResource(R.string.premium_manage_hint),
         style = FocusTheme.typography.bodySmall,
         color = colors.onSurfaceVariant,
         textAlign = TextAlign.Center,
@@ -445,12 +479,12 @@ private fun LifetimeSection(state: PremiumUiState, onManage: () -> Unit) {
     val spacing = FocusTheme.spacing
     FocusCard(modifier = Modifier.fillMaxWidth(), color = colors.premiumContainer, border = false) {
         Text(
-            if (state.justPurchased) "Premium is yours forever. 🎉" else "Lifetime Premium",
+            stringResource(if (state.justPurchased) R.string.premium_forever_celebration else R.string.premium_lifetime_title),
             style = FocusTheme.typography.titleMedium,
             color = colors.onSurface,
         )
         Text(
-            "Paid once. No renewals, nothing more to pay. Thank you for supporting Focus Growing!",
+            stringResource(R.string.premium_lifetime_thanks),
             style = FocusTheme.typography.bodyMedium,
             color = colors.onSurfaceVariant,
         )
@@ -465,21 +499,33 @@ private fun LifetimeSection(state: PremiumUiState, onManage: () -> Unit) {
         ) {
             if (sub.isAutoRenewing) {
                 Text(
-                    "Your ${periodTitle(sub.period).lowercase()} subscription is still active",
+                    stringResource(
+                        when (sub.period) {
+                            BillingPeriod.MONTHLY -> R.string.premium_lifetime_sub_active_monthly
+                            BillingPeriod.YEARLY -> R.string.premium_lifetime_sub_active_yearly
+                            BillingPeriod.LIFETIME, BillingPeriod.OTHER -> R.string.premium_lifetime_sub_active_other
+                        },
+                    ),
                     style = FocusTheme.typography.titleSmall,
                     color = colors.onSurface,
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(
-                    "Lifetime Premium doesn't cancel it automatically. Cancel it in Google Play so you aren't charged again.",
+                    stringResource(R.string.premium_lifetime_sub_cancel_hint),
                     style = FocusTheme.typography.bodyMedium,
                     color = colors.onSurface,
                 )
                 Spacer(Modifier.height(spacing.md))
-                FocusButton("Cancel subscription in Google Play", onClick = onManage, style = FocusButtonStyle.Danger, modifier = Modifier.fillMaxWidth())
+                FocusButton(stringResource(R.string.premium_cancel_subscription_google_play), onClick = onManage, style = FocusButtonStyle.Danger, modifier = Modifier.fillMaxWidth())
             } else {
                 Text(
-                    "Your old ${periodTitle(sub.period).lowercase()} subscription is cancelled and won't renew.",
+                    stringResource(
+                        when (sub.period) {
+                            BillingPeriod.MONTHLY -> R.string.premium_lifetime_sub_cancelled_monthly
+                            BillingPeriod.YEARLY -> R.string.premium_lifetime_sub_cancelled_yearly
+                            BillingPeriod.LIFETIME, BillingPeriod.OTHER -> R.string.premium_lifetime_sub_cancelled_other
+                        },
+                    ),
                     style = FocusTheme.typography.bodyMedium,
                     color = colors.onSurfaceVariant,
                 )
@@ -488,52 +534,66 @@ private fun LifetimeSection(state: PremiumUiState, onManage: () -> Unit) {
     }
 }
 
-private fun periodTitle(period: BillingPeriod) = when (period) {
-    BillingPeriod.MONTHLY -> "Monthly"
-    BillingPeriod.YEARLY -> "Yearly"
-    BillingPeriod.LIFETIME -> "Lifetime"
-    BillingPeriod.OTHER -> "Premium"
+@Composable
+private fun periodTitle(period: BillingPeriod): String = stringResource(
+    when (period) {
+        BillingPeriod.MONTHLY -> R.string.premium_period_monthly
+        BillingPeriod.YEARLY -> R.string.premium_period_yearly
+        BillingPeriod.LIFETIME -> R.string.premium_period_lifetime
+        BillingPeriod.OTHER -> R.string.common_premium
+    },
+)
+
+/** The offer's price with its billing period: "₺49,99 per month". */
+@Composable
+private fun priceWithPeriod(offer: PremiumOffer): String = stringResource(
+    when (offer.period) {
+        BillingPeriod.MONTHLY -> R.string.premium_price_per_month
+        BillingPeriod.YEARLY -> R.string.premium_price_per_year
+        BillingPeriod.LIFETIME -> R.string.premium_price_one_time
+        BillingPeriod.OTHER -> R.string.premium_price_per_period
+    },
+    offer.formattedPrice,
+)
+
+/**
+ * Picks the plural resource for a trial length and the number to show with it:
+ * years, months, or days (weeks are counted as days).
+ */
+private fun trialPlural(
+    trial: IsoPeriod,
+    @PluralsRes years: Int,
+    @PluralsRes months: Int,
+    @PluralsRes days: Int,
+): Pair<Int, Int> = when {
+    trial.years > 0 -> years to trial.years
+    trial.months > 0 -> months to trial.months
+    trial.weeks > 0 -> days to (trial.weeks * 7 + trial.days)
+    else -> days to trial.days
 }
 
-private fun periodSuffix(period: BillingPeriod) = when (period) {
-    BillingPeriod.MONTHLY -> "per month"
-    BillingPeriod.YEARLY -> "per year"
-    BillingPeriod.LIFETIME -> "one-time"
-    BillingPeriod.OTHER -> "per period"
-}
-
-private fun trialLabel(trial: IsoPeriod): String = when {
-    trial.years > 0 -> "${trial.years}-year"
-    trial.months > 0 -> "${trial.months}-month"
-    trial.weeks > 0 -> "${trial.weeks * 7 + trial.days}-day"
-    else -> "${trial.days}-day"
-}
-
-/** "7 days", "1 month", "2 weeks" */
-private fun trialDuration(trial: IsoPeriod): String {
-    fun unit(n: Int, one: String) = if (n == 1) "1 $one" else "$n ${one}s"
-    return when {
-        trial.years > 0 -> unit(trial.years, "year")
-        trial.months > 0 -> unit(trial.months, "month")
-        trial.weeks > 0 -> unit(trial.weeks * 7 + trial.days, "day")
-        else -> unit(trial.days, "day")
-    }
-}
-
+@Composable
 private fun purchaseTerms(offer: PremiumOffer): String =
     if (offer.period == BillingPeriod.LIFETIME) {
-        "One-time payment of ${offer.formattedPrice}. No subscription and no renewals. " +
-            "Your purchase is linked to your Google account and can be restored on a new device."
+        stringResource(R.string.premium_terms_lifetime, offer.formattedPrice)
     } else {
         subscriptionTerms(offer)
     }
 
-private fun subscriptionTerms(offer: PremiumOffer): String = buildString {
-    offer.freeTrial?.let { append("Free for ${trialDuration(it)}, then ") }
-    append("${offer.formattedPrice} ${periodSuffix(offer.period)}. ")
-    append("Renews automatically until you cancel. ")
-    if (offer.freeTrial != null) append("Cancel before the trial ends and you won't be charged. ")
-    append("Cancel anytime in Google Play → Payments & subscriptions.")
+@Composable
+private fun subscriptionTerms(offer: PremiumOffer): String {
+    val trial = offer.freeTrial
+    return if (trial == null) {
+        stringResource(R.string.premium_terms_subscription, priceWithPeriod(offer))
+    } else {
+        val (plural, count) = trialPlural(
+            trial,
+            years = R.plurals.premium_terms_trial_years,
+            months = R.plurals.premium_terms_trial_months,
+            days = R.plurals.premium_terms_trial_days,
+        )
+        pluralStringResource(plural, count, count, priceWithPeriod(offer))
+    }
 }
 
 private fun formatMicros(micros: Long, currencyCode: String): String? = try {

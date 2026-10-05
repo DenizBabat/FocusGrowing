@@ -3,7 +3,9 @@ package com.focusgrowing.app.presentation.background
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.image.ImageStorage
+import com.focusgrowing.app.core.locale.StringProvider
 import com.focusgrowing.app.domain.model.BackgroundCategory
 import com.focusgrowing.app.domain.model.BackgroundImage
 import com.focusgrowing.app.domain.model.BackgroundSource
@@ -26,9 +28,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-enum class GalleryTab(val label: String) {
-    ALL("All"), MY_PHOTOS("My Photos"), FAVORITES("Favorites"), NATURE("Nature"),
-    CITY("Cities"), ABSTRACT("Abstract"), SPACE("Space"), MINIMAL("Minimal"), DARK("Dark"),
+enum class GalleryTab {
+    ALL, MY_PHOTOS, FAVORITES, NATURE,
+    CITY, ABSTRACT, SPACE, MINIMAL, DARK,
 }
 
 data class GalleryUiState(
@@ -56,6 +58,7 @@ class BackgroundGalleryViewModel @Inject constructor(
     private val addBackground: AddCustomBackgroundUseCase,
     private val deleteBackground: DeleteBackgroundUseCase,
     private val imageStorage: ImageStorage,
+    private val strings: StringProvider,
 ) : ViewModel() {
 
     private val tab = MutableStateFlow(GalleryTab.ALL)
@@ -103,7 +106,7 @@ class BackgroundGalleryViewModel @Inject constructor(
         viewModelScope.launch {
             deleteBackground(item.id)
             item.uri?.let { imageStorage.release(it) }
-            _events.send(GalleryEvent.Message("Background removed"))
+            _events.send(GalleryEvent.Message(strings.get(R.string.bg_message_removed)))
         }
     }
 
@@ -137,10 +140,10 @@ class BackgroundGalleryViewModel @Inject constructor(
             val persisted = imageStorage.persist(uri)
             if (persisted == null) {
                 busy.value = false
-                _events.send(GalleryEvent.Message("This image can't be used. Please pick another one."))
+                _events.send(GalleryEvent.Message(strings.get(R.string.bg_error_image_unusable)))
                 return@launch
             }
-            val name = if (source == BackgroundSource.CAMERA) "Camera photo" else imageStorage.displayName(uri)
+            val name = if (source == BackgroundSource.CAMERA) strings.get(R.string.bg_default_name_camera) else imageStorage.displayName(uri)
             when (val result = addBackground(persisted, source, name)) {
                 is AddBackgroundResult.Added -> _events.send(GalleryEvent.OpenAdjust(result.background.id))
                 AddBackgroundResult.LimitReached -> {

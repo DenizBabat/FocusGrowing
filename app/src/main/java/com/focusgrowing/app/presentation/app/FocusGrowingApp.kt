@@ -1,5 +1,6 @@
 package com.focusgrowing.app.presentation.app
 
+import androidx.annotation.StringRes
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.fadeIn
@@ -28,6 +29,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination
@@ -40,6 +42,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.theme.FocusTheme
 import com.focusgrowing.app.presentation.background.BackgroundAdjustScreen
 import com.focusgrowing.app.presentation.background.BackgroundGalleryScreen
@@ -61,17 +64,17 @@ val LocalHapticsEnabled = staticCompositionLocalOf { true }
 
 private class TopLevelTab(
     val route: Any,
-    val label: String,
+    @StringRes val labelRes: Int,
     val icon: ImageVector,
     val matches: (NavDestination) -> Boolean,
 )
 
 private val tabs = listOf(
-    TopLevelTab(HomeRoute, "Home", Icons.Rounded.Home) { it.hasRoute<HomeRoute>() },
-    TopLevelTab(MissionsRoute, "Missions", Icons.Rounded.Checklist) { it.hasRoute<MissionsRoute>() },
-    TopLevelTab(FocusRoute(), "Focus", Icons.Rounded.Timer) { it.hasRoute<FocusRoute>() },
-    TopLevelTab(StatisticsRoute, "Stats", Icons.Rounded.BarChart) { it.hasRoute<StatisticsRoute>() },
-    TopLevelTab(ProfileRoute, "Profile", Icons.Rounded.Person) { it.hasRoute<ProfileRoute>() },
+    TopLevelTab(HomeRoute, R.string.nav_home, Icons.Rounded.Home) { it.hasRoute<HomeRoute>() },
+    TopLevelTab(MissionsRoute, R.string.nav_missions, Icons.Rounded.Checklist) { it.hasRoute<MissionsRoute>() },
+    TopLevelTab(FocusRoute(), R.string.nav_focus, Icons.Rounded.Timer) { it.hasRoute<FocusRoute>() },
+    TopLevelTab(StatisticsRoute, R.string.nav_stats, Icons.Rounded.BarChart) { it.hasRoute<StatisticsRoute>() },
+    TopLevelTab(ProfileRoute, R.string.nav_profile, Icons.Rounded.Person) { it.hasRoute<ProfileRoute>() },
 )
 
 /** Screens that show the bottom navigation bar. */
@@ -151,7 +154,7 @@ private fun FocusBottomBar(navController: NavHostController, destination: NavDes
                     }
                 },
                 icon = { Icon(tab.icon, contentDescription = null) },
-                label = { Text(tab.label, style = FocusTheme.typography.labelSmall) },
+                label = { Text(stringResource(tab.labelRes), style = FocusTheme.typography.labelSmall) },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = colors.primary,
                     selectedTextColor = colors.primary,

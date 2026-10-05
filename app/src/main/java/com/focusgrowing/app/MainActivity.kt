@@ -3,11 +3,11 @@ package com.focusgrowing.app
 import android.content.Intent
 import android.os.Bundle
 import android.graphics.Color
-import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -16,6 +16,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.focusgrowing.app.core.ads.AdsManager
 import com.focusgrowing.app.core.designsystem.theme.FocusTheme
+import com.focusgrowing.app.core.locale.StringProvider
+import com.focusgrowing.app.core.notification.FocusNotifier
 import com.focusgrowing.app.domain.model.ThemeMode
 import com.focusgrowing.app.presentation.app.FocusGrowingApp
 import com.focusgrowing.app.presentation.app.MainUiState
@@ -24,11 +26,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+/** AppCompatActivity (not ComponentActivity) so the in-app language choice is applied on every Android version. */
+class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
     @Inject lateinit var adsManager: AdsManager
+    @Inject lateinit var notifier: FocusNotifier
+    @Inject lateinit var strings: StringProvider
 
     /** Incremented when a notification asks to open the Focus screen. */
     private val openFocusSignal = mutableIntStateOf(0)
@@ -39,6 +44,10 @@ class MainActivity : ComponentActivity() {
         splash.setKeepOnScreenCondition { viewModel.uiState.value is MainUiState.Loading }
         enableEdgeToEdge()
         handleIntent(intent)
+        // The screen is rebuilt after a language change: refresh texts kept in memory and
+        // rename the notification channels to match.
+        strings.refreshLanguage()
+        notifier.createChannels()
         // Ads: asks for consent where required, then loads ads. Does nothing for Premium users.
         adsManager.start(this)
 

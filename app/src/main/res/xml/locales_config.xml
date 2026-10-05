@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Languages offered in the app and in Android's "App languages" settings (Android 13+).
+     Keep in sync with core/locale/AppLanguage.kt and the res/values-xx folders. -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="en" />
+    <locale android:name="tr" />
+    <locale android:name="de" />
+    <locale android:name="fr" />
+    <locale android:name="es" />
+    <locale android:name="pt" />
+    <locale android:name="ar" />
+    <locale android:name="hi" />
+    <locale android:name="ja" />
+    <locale android:name="ko" />
+</locale-config>

@@ -45,6 +45,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -53,6 +54,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.theme.FocusTheme
 
 // ---------------------------------------------------------------------------------------------
@@ -182,13 +184,14 @@ fun FocusProgressBar(
         animationSpec = tween(if (FocusTheme.reduceMotion) 0 else 600),
         label = "progress",
     )
+    val percentDescription = stringResource(R.string.a11y_percent, (progress * 100).toInt())
     Box(
         modifier
             .fillMaxWidth()
             .height(height)
             .clip(CircleShape)
             .background(trackColor)
-            .semantics { contentDescription = "${(progress * 100).toInt()} percent" },
+            .semantics { contentDescription = percentDescription },
     ) {
         Box(
             Modifier
@@ -221,7 +224,7 @@ fun FocusTopBar(
     ) {
         if (onBack != null) {
             IconButton(onClick = onBack) {
-                Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = "Back", tint = contentColor)
+                Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = stringResource(R.string.common_back), tint = contentColor)
             }
         } else {
             Spacer(Modifier.width(FocusTheme.spacing.md))
@@ -318,7 +321,7 @@ fun FocusChip(label: String, selected: Boolean, onClick: () -> Unit, modifier: M
         Text(label, style = FocusTheme.typography.labelMedium, color = fg, fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium)
         if (locked) {
             Spacer(Modifier.width(4.dp))
-            Icon(Icons.Rounded.Lock, contentDescription = "Premium", tint = fg, modifier = Modifier.size(12.dp))
+            Icon(Icons.Rounded.Lock, contentDescription = stringResource(R.string.common_premium), tint = fg, modifier = Modifier.size(12.dp))
         }
     }
 }
@@ -439,7 +442,7 @@ fun SettingsNavRow(
             Text(title, style = FocusTheme.typography.bodyLarge, color = FocusTheme.colors.onSurface)
             subtitle?.let { Text(it, style = FocusTheme.typography.bodySmall, color = FocusTheme.colors.onSurfaceVariant) }
         }
-        if (locked) Icon(Icons.Rounded.Lock, contentDescription = "Premium", tint = FocusTheme.colors.premium, modifier = Modifier.size(16.dp))
+        if (locked) Icon(Icons.Rounded.Lock, contentDescription = stringResource(R.string.common_premium), tint = FocusTheme.colors.premium, modifier = Modifier.size(16.dp))
         value?.let { Text(it, style = FocusTheme.typography.bodyMedium, color = FocusTheme.colors.onSurfaceVariant) }
         Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, contentDescription = null, tint = FocusTheme.colors.outline)
     }
@@ -466,12 +469,12 @@ fun PremiumLockedCard(title: String, description: String, onUnlock: () -> Unit, 
     FocusCard(modifier = modifier.fillMaxWidth(), color = FocusTheme.colors.premiumContainer.copy(alpha = 0.5f)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(title, style = FocusTheme.typography.titleMedium, color = FocusTheme.colors.onSurface, modifier = Modifier.weight(1f))
-            Icon(Icons.Rounded.Lock, contentDescription = "Locked", tint = FocusTheme.colors.premium)
+            Icon(Icons.Rounded.Lock, contentDescription = stringResource(R.string.common_locked), tint = FocusTheme.colors.premium)
         }
         Spacer(Modifier.height(FocusTheme.spacing.xs))
         Text(description, style = FocusTheme.typography.bodyMedium, color = FocusTheme.colors.onSurfaceVariant)
         Spacer(Modifier.height(FocusTheme.spacing.md))
-        FocusButton("Unlock Premium", onClick = onUnlock, style = FocusButtonStyle.Premium, modifier = Modifier.fillMaxWidth())
+        FocusButton(stringResource(R.string.common_unlock_premium), onClick = onUnlock, style = FocusButtonStyle.Premium, modifier = Modifier.fillMaxWidth())
     }
 }
 

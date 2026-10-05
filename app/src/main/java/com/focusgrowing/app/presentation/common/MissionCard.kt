@@ -12,8 +12,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.FocusCard
 import com.focusgrowing.app.core.designsystem.component.FocusProgressBar
 import com.focusgrowing.app.core.designsystem.component.IconBadge
@@ -45,7 +47,7 @@ fun MissionCard(mission: Mission, onClick: () -> Unit, modifier: Modifier = Modi
                     overflow = TextOverflow.Ellipsis,
                 )
                 Text(
-                    "${mission.estimatedPomodoros} Pomodoros",
+                    pluralStringResource(R.plurals.mission_pomodoro_count, mission.estimatedPomodoros, mission.estimatedPomodoros),
                     style = FocusTheme.typography.bodySmall,
                     color = FocusTheme.colors.onSurfaceVariant,
                 )

@@ -33,10 +33,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.focusgrowing.app.R
 import com.focusgrowing.app.core.designsystem.component.EmptyState
 import com.focusgrowing.app.core.designsystem.component.FocusButton
 import com.focusgrowing.app.core.designsystem.component.FocusChip
@@ -62,15 +64,20 @@ fun BackgroundAdjustScreen(
     val isCustom = background != null && !background.isDefault
 
     Column(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
-        FocusTopBar(title = if (isCustom) "Adjust background" else "Preview", onBack = onBack) {
+        FocusTopBar(title = stringResource(if (isCustom) R.string.bg_adjust_title else R.string.bg_adjust_title_preview), onBack = onBack) {
             if (isCustom) {
                 IconButton(onClick = viewModel::reset) {
-                    Icon(Icons.Rounded.Refresh, contentDescription = "Reset position", tint = colors.onBackground)
+                    Icon(Icons.Rounded.Refresh, contentDescription = stringResource(R.string.bg_adjust_reset_position), tint = colors.onBackground)
                 }
             }
         }
         if (state.notFound) {
-            EmptyState(Icons.Rounded.Lock, "Background not available", "It may have been removed.", action = { FocusButton("Go back", onClick = onBack) })
+            EmptyState(
+                Icons.Rounded.Lock,
+                stringResource(R.string.bg_adjust_not_found_title),
+                stringResource(R.string.bg_adjust_not_found_message),
+                action = { FocusButton(stringResource(R.string.bg_adjust_go_back), onClick = onBack) },
+            )
         } else if (background != null) {
 
         Column(
@@ -117,14 +124,14 @@ fun BackgroundAdjustScreen(
                     )
                     Box(Modifier.fillMaxSize().background(colors.scrim.copy(alpha = state.overlayAlpha)))
                     Column(Modifier.align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("Focus", style = FocusTheme.typography.labelMedium, color = colors.onScrim)
+                        Text(stringResource(R.string.bg_adjust_sample_label), style = FocusTheme.typography.labelMedium, color = colors.onScrim)
                         Text("25:00", style = FocusTheme.typography.displaySmall, color = colors.onScrim)
                     }
                 }
             }
             Spacer(Modifier.height(spacing.sm))
             Text(
-                if (isCustom) "Drag to position · double-tap to reset" else "Built-in backgrounds always fit your screen perfectly.",
+                stringResource(if (isCustom) R.string.bg_adjust_hint_drag else R.string.bg_adjust_hint_builtin),
                 style = FocusTheme.typography.bodySmall,
                 color = colors.onSurfaceVariant,
                 textAlign = TextAlign.Center,
@@ -132,26 +139,26 @@ fun BackgroundAdjustScreen(
 
             if (isCustom) {
                 Spacer(Modifier.height(spacing.lg))
-                Text("Position", style = FocusTheme.typography.titleSmall, color = colors.onBackground, modifier = Modifier.fillMaxWidth())
+                Text(stringResource(R.string.bg_adjust_position), style = FocusTheme.typography.titleSmall, color = colors.onBackground, modifier = Modifier.fillMaxWidth())
                 Spacer(Modifier.height(spacing.sm))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(spacing.sm)) {
-                    FocusChip("Top", selected = state.alignY == -1f && state.alignX == 0f, onClick = { viewModel.preset(0f, -1f) }, modifier = Modifier.weight(1f))
-                    FocusChip("Center", selected = state.alignY == 0f && state.alignX == 0f, onClick = { viewModel.preset(0f, 0f) }, modifier = Modifier.weight(1f))
-                    FocusChip("Bottom", selected = state.alignY == 1f && state.alignX == 0f, onClick = { viewModel.preset(0f, 1f) }, modifier = Modifier.weight(1f))
+                    FocusChip(stringResource(R.string.bg_adjust_position_top), selected = state.alignY == -1f && state.alignX == 0f, onClick = { viewModel.preset(0f, -1f) }, modifier = Modifier.weight(1f))
+                    FocusChip(stringResource(R.string.bg_adjust_position_center), selected = state.alignY == 0f && state.alignX == 0f, onClick = { viewModel.preset(0f, 0f) }, modifier = Modifier.weight(1f))
+                    FocusChip(stringResource(R.string.bg_adjust_position_bottom), selected = state.alignY == 1f && state.alignX == 0f, onClick = { viewModel.preset(0f, 1f) }, modifier = Modifier.weight(1f))
                 }
                 Spacer(Modifier.height(spacing.sm))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(spacing.sm)) {
-                    FocusChip("Left", selected = state.alignX == -1f && state.alignY == 0f, onClick = { viewModel.preset(-1f, 0f) }, modifier = Modifier.weight(1f))
-                    FocusChip("Right", selected = state.alignX == 1f && state.alignY == 0f, onClick = { viewModel.preset(1f, 0f) }, modifier = Modifier.weight(1f))
+                    FocusChip(stringResource(R.string.bg_adjust_position_left), selected = state.alignX == -1f && state.alignY == 0f, onClick = { viewModel.preset(-1f, 0f) }, modifier = Modifier.weight(1f))
+                    FocusChip(stringResource(R.string.bg_adjust_position_right), selected = state.alignX == 1f && state.alignY == 0f, onClick = { viewModel.preset(1f, 0f) }, modifier = Modifier.weight(1f))
                 }
 
                 Spacer(Modifier.height(spacing.lg))
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                    Text("Zoom", style = FocusTheme.typography.titleSmall, color = colors.onBackground, modifier = Modifier.weight(1f))
+                    Text(stringResource(R.string.bg_adjust_zoom), style = FocusTheme.typography.titleSmall, color = colors.onBackground, modifier = Modifier.weight(1f))
                     if (!state.canZoom) {
                         Icon(Icons.Rounded.Lock, contentDescription = null, tint = colors.premium)
                         Spacer(Modifier.width(4.dp))
-                        Text("Premium", style = FocusTheme.typography.labelMedium, color = colors.premium, modifier = Modifier.padding(end = 4.dp))
+                        Text(stringResource(R.string.common_premium), style = FocusTheme.typography.labelMedium, color = colors.premium, modifier = Modifier.padding(end = 4.dp))
                     } else {
                         Text("%.1fx".format(state.zoom), style = FocusTheme.typography.labelMedium, color = colors.onSurfaceVariant)
                     }
@@ -164,14 +171,14 @@ fun BackgroundAdjustScreen(
                         colors = SliderDefaults.colors(thumbColor = colors.primary, activeTrackColor = colors.primary, inactiveTrackColor = colors.progressTrack),
                     )
                 } else {
-                    FocusChip("Unlock advanced crop editor", selected = false, locked = true, onClick = onOpenPremium, modifier = Modifier.fillMaxWidth())
+                    FocusChip(stringResource(R.string.bg_adjust_unlock_crop_editor), selected = false, locked = true, onClick = onOpenPremium, modifier = Modifier.fillMaxWidth())
                 }
             }
 
             Spacer(Modifier.height(spacing.lg))
             Row(Modifier.fillMaxWidth()) {
-                Text("Darken", style = FocusTheme.typography.titleSmall, color = colors.onBackground, modifier = Modifier.weight(1f))
-                Text("${(state.overlayAlpha * 100).toInt()}%", style = FocusTheme.typography.labelMedium, color = colors.onSurfaceVariant)
+                Text(stringResource(R.string.bg_adjust_darken), style = FocusTheme.typography.titleSmall, color = colors.onBackground, modifier = Modifier.weight(1f))
+                Text(stringResource(R.string.format_percent, (state.overlayAlpha * 100).toInt()), style = FocusTheme.typography.labelMedium, color = colors.onSurfaceVariant)
             }
             Slider(
                 value = state.overlayAlpha,
@@ -182,7 +189,7 @@ fun BackgroundAdjustScreen(
             Spacer(Modifier.height(spacing.lg))
         }
         FocusButton(
-            "Use this background",
+            stringResource(R.string.bg_adjust_use_background),
             onClick = { viewModel.save(onBack) },
             leadingIcon = Icons.Rounded.Check,
             modifier = Modifier.fillMaxWidth().padding(horizontal = spacing.screen, vertical = spacing.md),

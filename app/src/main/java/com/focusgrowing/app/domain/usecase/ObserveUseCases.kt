@@ -14,6 +14,7 @@ import com.focusgrowing.app.domain.repository.FocusSessionRepository
 import com.focusgrowing.app.domain.repository.MissionRepository
 import com.focusgrowing.app.domain.repository.TimeProvider
 import com.focusgrowing.app.domain.repository.WorldRepository
+import com.focusgrowing.app.domain.repository.DomainStrings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
@@ -64,6 +65,7 @@ class ObserveInsightsUseCase @Inject constructor(
     private val missions: MissionRepository,
     private val observeStreak: ObserveStreakUseCase,
     private val time: TimeProvider,
+    private val strings: DomainStrings,
 ) {
     private val engine = InsightEngine()
 
@@ -74,7 +76,7 @@ class ObserveInsightsUseCase @Inject constructor(
             missions.observeMissions(),
             observeStreak(),
         ) { list, allMissions, streak ->
-            engine.generate(InsightInput(list, allMissions, streak, time.zone()))
+            engine.generate(InsightInput(list, allMissions, streak, time.zone(), strings = strings))
         }
     }
 }
