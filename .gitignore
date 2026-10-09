@@ -17,4 +17,5 @@ keystore.properties
 derle.bat
 build_log.txt
 
+/app/release/
 *.aab
