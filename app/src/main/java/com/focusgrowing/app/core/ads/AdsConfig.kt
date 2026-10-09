@@ -17,9 +17,8 @@ object AdsConfig {
     /** Rewarded ad that unlocks a premium color palette for 24 hours. Format in AdMob: Rewarded. */
     private const val REWARDED_PALETTE = "ca-app-pub-8216171271125899/9984978792"
 
-    private const val TEST_NATIVE = "ca-app-pub-8216171271125899/4512411837"
-    private const val TEST_REWARDED = "ca-app-pub-8216171271125899/9984978792"
-
+    private const val TEST_NATIVE = "ca-app-pub-3940256099942544/2247696110"
+    private const val TEST_REWARDED = "ca-app-pub-3940256099942544/5224354917"
     val nativeSessionEndUnitId: String
         get() = if (BuildConfig.DEBUG || NATIVE_SESSION_END.isBlank()) TEST_NATIVE else NATIVE_SESSION_END
 
