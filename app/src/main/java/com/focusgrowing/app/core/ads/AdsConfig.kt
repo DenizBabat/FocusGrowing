@@ -12,10 +12,10 @@ import com.focusgrowing.app.BuildConfig
  */
 object AdsConfig {
     /** Native ad on the "focus completed" screen. Format in AdMob: Native advanced. */
-    private const val NATIVE_SESSION_END = ""
+    private const val NATIVE_SESSION_END = "ca-app-pub-8216171271125899/4512411837"
 
     /** Rewarded ad that unlocks a premium color palette for 24 hours. Format in AdMob: Rewarded. */
-    private const val REWARDED_PALETTE = ""
+    private const val REWARDED_PALETTE = "ca-app-pub-8216171271125899/9984978792"
 
     private const val TEST_NATIVE = "ca-app-pub-8216171271125899/4512411837"
     private const val TEST_REWARDED = "ca-app-pub-8216171271125899/9984978792"

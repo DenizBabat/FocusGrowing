@@ -5,6 +5,6 @@
         Replace it with your own from AdMob → Apps → App settings before publishing.
         Ad UNIT IDs (with a "/") live in core/ads/AdsConfig.kt. See docs/ads/ADS_SETUP.md.
     -->
-    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-8216171271125899~1368122173</string>
     <string name="ad_badge">Ad</string>
 </resources>
